@@ -15,6 +15,11 @@ public struct NKAppInfo {
     public static let Identifier = (NSBundle.mainBundle().infoDictionary?["CFBundleIdentifier"] as? String) ?? ""
 }
 
+public struct NKDeviceInfo {
+    public static let Version = UIDevice.currentDevice().systemVersion
+    public static let Model = UIDevice.currentDevice().model
+}
+
 public var nk_statusBarHeight: CGFloat = {
     return UIApplication.sharedApplication().statusBarFrame.size.height
 }()
