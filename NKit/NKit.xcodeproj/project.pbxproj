@@ -415,6 +415,7 @@
 				FRAMEWORK_SEARCH_PATHS = "${SRCROOT}/../Carthage/Build/iOS";
 				INFOPLIST_FILE = NKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.knacker.NKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -432,6 +433,7 @@
 				FRAMEWORK_SEARCH_PATHS = "${SRCROOT}/../Carthage/Build/iOS";
 				INFOPLIST_FILE = NKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.knacker.NKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
