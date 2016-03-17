@@ -129,6 +129,12 @@ public extension UIViewController {
         return self
     }
     
+    public func nk_removeTransparentBar() -> UIViewController {
+        self.navigationController?.navigationBar.nk_removeTransparentBar()
+        
+        return self
+    }
+    
     public func nk_setLineBarColor(lineWith lineWith: Double = 0.5,
         color: UIColor = UIColor.blackColor()) -> UIViewController {
         self.navigationController?.navigationBar.nk_setLineBarColor(lineWith: lineWith, color: color)
@@ -168,6 +174,12 @@ public extension UINavigationBar {
         
         self.backgroundColor = UIColor.clearColor()
         
+        return self
+    }
+    
+    public func nk_removeTransparentBar() -> UINavigationBar {
+        self.setBackgroundImage(nil, forBarMetrics: UIBarMetrics.Default)
+        self.translucent = false
         return self
     }
     

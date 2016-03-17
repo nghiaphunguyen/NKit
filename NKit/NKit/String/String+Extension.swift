@@ -15,9 +15,15 @@ public func ++(left: String, right: String) -> String {
 
 public extension String {
     public subscript(r: Range<Int>) -> String {
-        let startIndex = self.startIndex.advancedBy(r.startIndex)
+        let startIndex = self.startIndex.advancedBy(min(self.characters.count, r.startIndex))
         let endIndex = self.startIndex.advancedBy(min(self.characters.count, r.endIndex))
         
         return self[Range(start: startIndex, end: endIndex)]
+    }
+}
+
+public extension String {
+    public var localized: String {
+        return NSLocalizedString(self, comment: "")
     }
 }

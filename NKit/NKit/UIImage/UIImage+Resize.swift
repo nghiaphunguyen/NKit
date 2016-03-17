@@ -6,77 +6,20 @@
 //
 public extension UIImage {
     public func nk_resizedImageToSize(dstSize: CGSize) -> UIImage? {
-        var dstSize = dstSize
+        let hightScale = dstSize.height / self.size.height
+        let widthScale = dstSize.width / self.size.width
+        let scale = hightScale > widthScale ? hightScale : widthScale
         
-        let imgRef: CGImageRef = self.CGImage!
-        // the below values are regardless of orientation : for UIImages from Camera, width>height (landscape)
-        let srcSize: CGSize = CGSizeMake(CGFloat(CGImageGetWidth(imgRef)), CGFloat(CGImageGetHeight(imgRef)))
-        // not equivalent to self.size (which is dependant on the imageOrientation)!
-        /* Don't resize if we already meet the required destination size. */
-        if CGSizeEqualToSize(srcSize, dstSize) {
-            
-        }
-        let scaleRatio: CGFloat = dstSize.width / srcSize.width
-        let orient: UIImageOrientation = self.imageOrientation
-        var transform: CGAffineTransform = CGAffineTransformIdentity
-        switch orient {
-        case .Up:
-            //EXIF = 1
-            transform = CGAffineTransformIdentity
-        case .UpMirrored:
-            //EXIF = 2
-            transform = CGAffineTransformMakeTranslation(srcSize.width, 0.0)
-            transform = CGAffineTransformScale(transform, -1.0, 1.0)
-        case .Down:
-            //EXIF = 3
-            transform = CGAffineTransformMakeTranslation(srcSize.width, srcSize.height)
-            transform = CGAffineTransformRotate(transform, CGFloat(M_PI))
-        case .DownMirrored:
-            //EXIF = 4
-            transform = CGAffineTransformMakeTranslation(0.0, srcSize.height)
-            transform = CGAffineTransformScale(transform, 1.0, -1.0)
-        case .LeftMirrored:
-            //EXIF = 5
-            dstSize = CGSizeMake(dstSize.height, dstSize.width)
-            transform = CGAffineTransformMakeTranslation(srcSize.height, srcSize.width)
-            transform = CGAffineTransformScale(transform, -1.0, 1.0)
-            transform = CGAffineTransformRotate(transform, 3.0 * CGFloat(M_PI_2))
-        case .Left:
-            //EXIF = 6
-            dstSize = CGSizeMake(dstSize.height, dstSize.width)
-            transform = CGAffineTransformMakeTranslation(0.0, srcSize.width)
-            transform = CGAffineTransformRotate(transform, 3.0 * CGFloat(M_PI_2))
-        case .RightMirrored:
-            //EXIF = 7
-            dstSize = CGSizeMake(dstSize.height, dstSize.width)
-            transform = CGAffineTransformMakeScale(-1.0, 1.0)
-            transform = CGAffineTransformRotate(transform, CGFloat(M_PI_2))
-        case .Right:
-            //EXIF = 8
-            dstSize = CGSizeMake(dstSize.height, dstSize.width)
-            transform = CGAffineTransformMakeTranslation(srcSize.height, 0.0)
-            transform = CGAffineTransformRotate(transform, CGFloat(M_PI_2))
-        }
-        /////////////////////////////////////////////////////////////////////////////
-        // The actual resize: draw the image on a new context, applying a transform matrix
-        UIGraphicsBeginImageContextWithOptions(dstSize, false, UIScreen.mainScreen().scale)
-        guard let context = UIGraphicsGetCurrentContext() else {
-            return nil
-        }
-        if orient == .Right || orient == .Left {
-            CGContextScaleCTM(context, -scaleRatio, scaleRatio)
-            CGContextTranslateCTM(context, -srcSize.height, 0)
-        }
-        else {
-            CGContextScaleCTM(context, scaleRatio, -scaleRatio)
-            CGContextTranslateCTM(context, 0, -srcSize.height)
-        }
-        CGContextConcatCTM(context, transform)
-        // we use srcSize (and not dstSize) as the size to specify is in user space (and we use the CTM to apply a scaleRatio)
-        CGContextDrawImage(UIGraphicsGetCurrentContext(), CGRectMake(0, 0, srcSize.width, srcSize.height), imgRef)
-        let resizedImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()
+        let aspectSize = CGSizeMake(self.size.width * scale, self.size.height * scale)
+        let aspectPoint = CGPointMake(dstSize.width / 2 - aspectSize.width / 2, dstSize.height / 2 - aspectSize.height / 2)
+        let aspectRect = CGRectMake(aspectPoint.x, aspectPoint.y, self.size.width * scale, self.size.height * scale)
+        
+        UIGraphicsBeginImageContext(dstSize)
+        self.drawInRect(aspectRect)
+        let resizeImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
-        return resizedImage
+        
+        return resizeImage
     }
     /////////////////////////////////////////////////////////////////////////////
     

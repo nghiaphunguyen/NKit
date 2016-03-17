@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		422DF28D1C9B03B000421051 /* NKBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422DF2841C9B03B000421051 /* NKBaseView.swift */; };
+		422DF28E1C9B03B000421051 /* NKCircleImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422DF2851C9B03B000421051 /* NKCircleImageView.swift */; };
+		422DF28F1C9B03B000421051 /* NKContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422DF2861C9B03B000421051 /* NKContainerView.swift */; };
+		422DF2901C9B03B000421051 /* NKCornerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422DF2871C9B03B000421051 /* NKCornerView.swift */; };
+		422DF2911C9B03B000421051 /* NKDrawView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422DF2881C9B03B000421051 /* NKDrawView.swift */; };
+		422DF2921C9B03B000421051 /* NKGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422DF2891C9B03B000421051 /* NKGradientView.swift */; };
+		422DF2931C9B03B000421051 /* NKPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422DF28A1C9B03B000421051 /* NKPopupView.swift */; };
+		422DF2941C9B03B000421051 /* NKTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422DF28B1C9B03B000421051 /* NKTextField.swift */; };
+		422DF2951C9B03B000421051 /* NKTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422DF28C1C9B03B000421051 /* NKTextView.swift */; };
 		42AF353C1C6EC0370046F454 /* NKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 42AF353B1C6EC0370046F454 /* NKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		42AF35811C6EC1ED0046F454 /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42AF35801C6EC1EC0046F454 /* SnapKit.framework */; };
 		42AF35A01C6EC3BC0046F454 /* UIAlertController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42AF35831C6EC3BC0046F454 /* UIAlertController+Extension.swift */; };
@@ -32,6 +41,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		422DF2841C9B03B000421051 /* NKBaseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKBaseView.swift; sourceTree = "<group>"; };
+		422DF2851C9B03B000421051 /* NKCircleImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKCircleImageView.swift; sourceTree = "<group>"; };
+		422DF2861C9B03B000421051 /* NKContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKContainerView.swift; sourceTree = "<group>"; };
+		422DF2871C9B03B000421051 /* NKCornerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKCornerView.swift; sourceTree = "<group>"; };
+		422DF2881C9B03B000421051 /* NKDrawView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKDrawView.swift; sourceTree = "<group>"; };
+		422DF2891C9B03B000421051 /* NKGradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKGradientView.swift; sourceTree = "<group>"; };
+		422DF28A1C9B03B000421051 /* NKPopupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKPopupView.swift; sourceTree = "<group>"; };
+		422DF28B1C9B03B000421051 /* NKTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKTextField.swift; sourceTree = "<group>"; };
+		422DF28C1C9B03B000421051 /* NKTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKTextView.swift; sourceTree = "<group>"; };
 		42AF35381C6EC0370046F454 /* NKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		42AF353B1C6EC0370046F454 /* NKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NKit.h; sourceTree = "<group>"; };
 		42AF353D1C6EC0370046F454 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -70,6 +88,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		422DF2831C9B03B000421051 /* CustomViews */ = {
+			isa = PBXGroup;
+			children = (
+				422DF2841C9B03B000421051 /* NKBaseView.swift */,
+				422DF2851C9B03B000421051 /* NKCircleImageView.swift */,
+				422DF2861C9B03B000421051 /* NKContainerView.swift */,
+				422DF2871C9B03B000421051 /* NKCornerView.swift */,
+				422DF2881C9B03B000421051 /* NKDrawView.swift */,
+				422DF2891C9B03B000421051 /* NKGradientView.swift */,
+				422DF28A1C9B03B000421051 /* NKPopupView.swift */,
+				422DF28B1C9B03B000421051 /* NKTextField.swift */,
+				422DF28C1C9B03B000421051 /* NKTextView.swift */,
+			);
+			path = CustomViews;
+			sourceTree = "<group>";
+		};
 		42AF352E1C6EC0370046F454 = {
 			isa = PBXGroup;
 			children = (
@@ -90,6 +124,7 @@
 		42AF353A1C6EC0370046F454 /* NKit */ = {
 			isa = PBXGroup;
 			children = (
+				422DF2831C9B03B000421051 /* CustomViews */,
 				42AF35BA1C6ED30E0046F454 /* String */,
 				42AF35B31C6EC60B0046F454 /* CALayer */,
 				42AF35821C6EC3BC0046F454 /* UIAlertController */,
@@ -291,25 +326,34 @@
 			buildActionMask = 2147483647;
 			files = (
 				42AF35B71C6ECC550046F454 /* NKConstants.swift in Sources */,
+				422DF2941C9B03B000421051 /* NKTextField.swift in Sources */,
 				42AF35A51C6EC3BC0046F454 /* UIImageView+Extension.swift in Sources */,
 				42AF35B51C6EC60B0046F454 /* CALayer+Closure.swift in Sources */,
 				42AF35A01C6EC3BC0046F454 /* UIAlertController+Extension.swift in Sources */,
+				422DF2911C9B03B000421051 /* NKDrawView.swift in Sources */,
 				42AF35A81C6EC3BC0046F454 /* UIView+Animation.swift in Sources */,
 				42AF35A61C6EC3BC0046F454 /* UILabel+Extension.swift in Sources */,
 				42AF35A31C6EC3BC0046F454 /* UIImage+Color.swift in Sources */,
 				42AF35AB1C6EC3BC0046F454 /* UIView+Utilities.swift in Sources */,
+				422DF28D1C9B03B000421051 /* NKBaseView.swift in Sources */,
+				422DF2901C9B03B000421051 /* NKCornerView.swift in Sources */,
 				42AF35BC1C6ED30E0046F454 /* String+Extension.swift in Sources */,
+				422DF28E1C9B03B000421051 /* NKCircleImageView.swift in Sources */,
 				42AF35AD1C6EC3BC0046F454 /* UIViewController+NavigationBar.swift in Sources */,
 				42AF35B21C6EC3BC0046F454 /* NKUtilities.swift in Sources */,
 				42AF35A21C6EC3BC0046F454 /* UIColor+Extension.swift in Sources */,
 				42AF35AC1C6EC3BC0046F454 /* UIViewController+Loading.swift in Sources */,
 				42AF35B01C6EC3BC0046F454 /* NKScreenSize.swift in Sources */,
 				42AF35B91C6ECCD40046F454 /* UIView+AutoLayout.swift in Sources */,
+				422DF2951C9B03B000421051 /* NKTextView.swift in Sources */,
 				42AF35A41C6EC3BC0046F454 /* UIImage+Resize.swift in Sources */,
 				42AF35A91C6EC3BC0046F454 /* UIView+SnapKitAutolayout.swift in Sources */,
 				42AF35A71C6EC3BC0046F454 /* UINavigationController+Animation.swift in Sources */,
 				42AF35A11C6EC3BC0046F454 /* UIButton+Extension.swift in Sources */,
 				42AF35AA1C6EC3BC0046F454 /* UIView+Frame.swift in Sources */,
+				422DF2931C9B03B000421051 /* NKPopupView.swift in Sources */,
+				422DF2921C9B03B000421051 /* NKGradientView.swift in Sources */,
+				422DF28F1C9B03B000421051 /* NKContainerView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
