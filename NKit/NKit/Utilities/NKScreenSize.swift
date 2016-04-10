@@ -10,14 +10,14 @@ public enum NKScreenType {
     case IP4S
     case IP5
     case IP6
-    case IP6S
+    case IP6Plus
 }
 
 public struct NKScreenSize {
     public static let IP4S = CGSizeMake(320, 480)
     public static let IP5 = CGSizeMake(320, 568)
     public static let IP6 = CGSizeMake(375, 667)
-    public static let IP6S = CGSizeMake(414, 736)
+    public static let IP6Plus = CGSizeMake(414, 736)
     public static let Current = UIScreen.mainScreen().bounds.size
     
     public static let CurrentType : NKScreenType = {
@@ -29,8 +29,8 @@ public struct NKScreenSize {
             return .IP6
         }
         
-        if Current == IP6S {
-            return .IP6S
+        if Current == IP6Plus {
+            return .IP6Plus
         }
         
         return .IP4S
@@ -61,6 +61,6 @@ public struct NKScreenSize {
  - Parameter num: layout config.
  - Returns: Config after standardize.
  */
-public func ST(num: AnyObject, powValue: CGFloat = 1) -> CGFloat {
+public func ST(num: Any, powValue: CGFloat = 1) -> CGFloat {
     return NKScreenSize.LayoutRatio * (num as? CGFloat ?? 0) * pow(NKScreenSize.Ratio, powValue)
 }
