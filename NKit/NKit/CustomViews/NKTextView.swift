@@ -10,8 +10,16 @@ public class NKTextView: UITextView, UITextViewDelegate {
     
     public typealias NKTextViewHandler = (textView: NKTextView) -> Void
     
-    public var didBeginEditHandler: NKTextViewHandler?
-    public var didEndEditHandler: NKTextViewHandler?
+    public var didBeginEditHandlers = [NKTextViewHandler]()
+    public var didEndEditHandlers = [NKTextViewHandler]()
+    
+    public func addDidBeginEditHandler(handler: NKTextViewHandler) {
+        self.didBeginEditHandlers.append(handler)
+    }
+    
+    public func addDidEndEditHandler(handler: NKTextViewHandler) {
+        self.didEndEditHandlers.append(handler)
+    }
     
     public var placeholder: String? {
         didSet {
@@ -50,9 +58,18 @@ public class NKTextView: UITextView, UITextViewDelegate {
     
     override public var text: String? {
         didSet {
-            super.text = self.text
-            self.checkAndTurnOnPlaceholder()
+            if self.text == "" {
+                self.isTurnOnPlaceholder = true
+                self.textColor = self.placeholderColor
+            } else {
+                self.isTurnOnPlaceholder = false
+                self.textColor = self.contentTextColor
+            }
         }
+    }
+    
+    convenience init() {
+        self.init(frame: CGRect.zero, textContainer: nil)
     }
     
     public override init(frame: CGRect, textContainer: NSTextContainer?) {
@@ -78,13 +95,17 @@ public class NKTextView: UITextView, UITextViewDelegate {
             self.textColor = self.contentTextColor
         }
         
-        didBeginEditHandler?(textView: self)
+        self.didBeginEditHandlers.forEach { (handler) -> () in
+            handler(textView: self)
+        }
     }
     
     public func textViewDidEndEditing(textView: UITextView) {
         self.checkAndTurnOnPlaceholder()
         
-        didEndEditHandler?(textView: self)
+        self.didEndEditHandlers.forEach { (handler) -> () in
+            handler(textView: self)
+        }
 
     }
 }

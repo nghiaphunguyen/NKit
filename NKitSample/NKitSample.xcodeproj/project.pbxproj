@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		42AAE2BD1CB9E919002D3EAB /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42AAE2BB1CB9E919002D3EAB /* SnapKit.framework */; };
+		42AAE2BE1CB9E919002D3EAB /* SnapKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 42AAE2BB1CB9E919002D3EAB /* SnapKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		42AAE2BF1CB9E919002D3EAB /* TZStackView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42AAE2BC1CB9E919002D3EAB /* TZStackView.framework */; };
+		42AAE2C01CB9E919002D3EAB /* TZStackView.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 42AAE2BC1CB9E919002D3EAB /* TZStackView.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		42AAE2C31CB9E940002D3EAB /* NKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42AAE2C21CB9E940002D3EAB /* NKit.framework */; };
 		42AF35501C6EC07A0046F454 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42AF354F1C6EC07A0046F454 /* AppDelegate.swift */; };
 		42AF35521C6EC07A0046F454 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42AF35511C6EC07A0046F454 /* ViewController.swift */; };
 		42AF35551C6EC07A0046F454 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 42AF35531C6EC07A0046F454 /* Main.storyboard */; };
@@ -33,7 +38,25 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		42AAE2C11CB9E919002D3EAB /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				42AAE2C01CB9E919002D3EAB /* TZStackView.framework in Embed Frameworks */,
+				42AAE2BE1CB9E919002D3EAB /* SnapKit.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		42AAE2BB1CB9E919002D3EAB /* SnapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SnapKit.framework; path = ../Carthage/Build/iOS/SnapKit.framework; sourceTree = "<group>"; };
+		42AAE2BC1CB9E919002D3EAB /* TZStackView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TZStackView.framework; path = ../Carthage/Build/iOS/TZStackView.framework; sourceTree = "<group>"; };
+		42AAE2C21CB9E940002D3EAB /* NKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NKit.framework; path = "../NKit/build/Debug-iphoneos/NKit.framework"; sourceTree = "<group>"; };
 		42AF354C1C6EC07A0046F454 /* NKitSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NKitSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		42AF354F1C6EC07A0046F454 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		42AF35511C6EC07A0046F454 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -54,6 +77,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				42AAE2C31CB9E940002D3EAB /* NKit.framework in Frameworks */,
+				42AAE2BF1CB9E919002D3EAB /* TZStackView.framework in Frameworks */,
+				42AAE2BD1CB9E919002D3EAB /* SnapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -77,6 +103,9 @@
 		42AF35431C6EC07A0046F454 = {
 			isa = PBXGroup;
 			children = (
+				42AAE2C21CB9E940002D3EAB /* NKit.framework */,
+				42AAE2BB1CB9E919002D3EAB /* SnapKit.framework */,
+				42AAE2BC1CB9E919002D3EAB /* TZStackView.framework */,
 				42AF354E1C6EC07A0046F454 /* NKitSample */,
 				42AF35631C6EC07A0046F454 /* NKitSampleTests */,
 				42AF356E1C6EC07A0046F454 /* NKitSampleUITests */,
@@ -135,6 +164,7 @@
 				42AF35481C6EC07A0046F454 /* Sources */,
 				42AF35491C6EC07A0046F454 /* Frameworks */,
 				42AF354A1C6EC07A0046F454 /* Resources */,
+				42AAE2C11CB9E919002D3EAB /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -399,6 +429,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = "${SRCROOT}/../Carthage/Build/iOS";
 				INFOPLIST_FILE = NKitSample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.knacker.NKitSample;
@@ -410,6 +441,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = "${SRCROOT}/../Carthage/Build/iOS";
 				INFOPLIST_FILE = NKitSample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.knacker.NKitSample;
@@ -484,6 +516,7 @@
 				42AF35761C6EC07A0046F454 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		42AF35771C6EC07A0046F454 /* Build configuration list for PBXNativeTarget "NKitSampleTests" */ = {
 			isa = XCConfigurationList;
@@ -492,6 +525,7 @@
 				42AF35791C6EC07A0046F454 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		42AF357A1C6EC07A0046F454 /* Build configuration list for PBXNativeTarget "NKitSampleUITests" */ = {
 			isa = XCConfigurationList;
@@ -500,6 +534,7 @@
 				42AF357C1C6EC07A0046F454 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
