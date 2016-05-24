@@ -16,7 +16,6 @@
 		422DF2931C9B03B000421051 /* NKPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422DF28A1C9B03B000421051 /* NKPopupView.swift */; };
 		422DF2941C9B03B000421051 /* NKTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422DF28B1C9B03B000421051 /* NKTextField.swift */; };
 		422DF2951C9B03B000421051 /* NKTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422DF28C1C9B03B000421051 /* NKTextView.swift */; };
-		423C3ED01CE9C97A00C03197 /* NKCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 423C3ECF1CE9C97A00C03197 /* NKCollectionView.swift */; };
 		427055D51CC45F9200698E3D /* NKTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427055D31CC45F9200698E3D /* NKTableView.swift */; };
 		427055D61CC45F9200698E3D /* NKTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427055D41CC45F9200698E3D /* NKTableViewCell.swift */; };
 		427055D91CC45FA400698E3D /* NKStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427055D81CC45FA400698E3D /* NKStackView.swift */; };
@@ -58,7 +57,6 @@
 		422DF28A1C9B03B000421051 /* NKPopupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKPopupView.swift; sourceTree = "<group>"; };
 		422DF28B1C9B03B000421051 /* NKTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKTextField.swift; sourceTree = "<group>"; };
 		422DF28C1C9B03B000421051 /* NKTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKTextView.swift; sourceTree = "<group>"; };
-		423C3ECF1CE9C97A00C03197 /* NKCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKCollectionView.swift; sourceTree = "<group>"; };
 		427055D31CC45F9200698E3D /* NKTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKTableView.swift; sourceTree = "<group>"; };
 		427055D41CC45F9200698E3D /* NKTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKTableViewCell.swift; sourceTree = "<group>"; };
 		427055D81CC45FA400698E3D /* NKStackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKStackView.swift; sourceTree = "<group>"; };
@@ -178,7 +176,6 @@
 				42AF359A1C6EC3BC0046F454 /* Utilities */,
 				42AF353B1C6EC0370046F454 /* NKit.h */,
 				42AF353D1C6EC0370046F454 /* Info.plist */,
-				423C3ECF1CE9C97A00C03197 /* NKCollectionView.swift */,
 			);
 			path = NKit;
 			sourceTree = "<group>";
@@ -389,7 +386,6 @@
 				42AF35AB1C6EC3BC0046F454 /* UIView+Utilities.swift in Sources */,
 				422DF28D1C9B03B000421051 /* NKBaseView.swift in Sources */,
 				422DF2901C9B03B000421051 /* NKCornerView.swift in Sources */,
-				423C3ED01CE9C97A00C03197 /* NKCollectionView.swift in Sources */,
 				42AF35BC1C6ED30E0046F454 /* String+Extension.swift in Sources */,
 				422DF28E1C9B03B000421051 /* NKCircleImageView.swift in Sources */,
 				42AF35AD1C6EC3BC0046F454 /* UIViewController+NavigationBar.swift in Sources */,
