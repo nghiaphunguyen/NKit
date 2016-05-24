@@ -28,7 +28,7 @@ public class NKTextField: UITextField {
         }
         
         set {
-            objc_setAssociatedObject(self, &NKTextFieldEdgeInsetToken, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_COPY_NONATOMIC)
+            objc_setAssociatedObject(self, &NKTextFieldEdgeInsetToken, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         }
     }
     

@@ -25,7 +25,7 @@ public class NKStackView: NKBaseView {
     private typealias ConfigViewBlock = (view: UIView, model: Any) -> Void
     
     private lazy var stackView: TZStackView = {
-       let stackView = TZStackView()
+        let stackView = TZStackView()
         return stackView
     }()
     
@@ -90,28 +90,32 @@ public extension NKStackView {
             return
         }
         
-        let action = {
-            let items = dataSource.stackViewItems(self)
+        let action = {[weak self] in
+            guard let strongSelf = self else {
+                return
+            }
+            
+            let items = dataSource.stackViewItems(strongSelf)
             
             for (index, item) in items.enumerate() {
-                guard let mapping = self.modelViewTypeMapping["\(item.dynamicType.self)"] else {
+                guard let mapping = strongSelf.modelViewTypeMapping["\(item.dynamicType.self)"] else {
                     continue
                 }
                 
                 let addNewViewToStackViewAtIndex: (index: Int) -> UIView = { (index) in
                     let view = mapping.viewType.init()
-                    self.stackView.insertArrangedSubview(view, atIndex: index)
+                    strongSelf.stackView.insertArrangedSubview(view, atIndex: index)
                     return view
                 }
                 
                 let view: UIView
-                if self.stackView.arrangedSubviews.count > index {
-                    if self.stackView.arrangedSubviews[index].isKindOfClass(mapping.viewType)  {
-                        view = self.stackView.arrangedSubviews[index]
+                if strongSelf.stackView.arrangedSubviews.count > index {
+                    if strongSelf.stackView.arrangedSubviews[index].isKindOfClass(mapping.viewType)  {
+                        view = strongSelf.stackView.arrangedSubviews[index]
                     } else {
                         // remove view at index
-                        let preview = self.stackView.arrangedSubviews[index]
-                        self.stackView.removeArrangedSubview(preview)
+                        let preview = strongSelf.stackView.arrangedSubviews[index]
+                        strongSelf.stackView.removeArrangedSubview(preview)
                         preview.removeFromSuperview()
                         
                         view = addNewViewToStackViewAtIndex(index: index)
@@ -120,13 +124,23 @@ public extension NKStackView {
                     view = addNewViewToStackViewAtIndex(index: index)
                 }
                 
+                view.hidden = false
                 mapping.configViewBlock(view: view, model: item)
             }
             
-            var redundantItemCount = self.stackView.arrangedSubviews.count - items.count
+            if (items.count > 0) {
+                // add a fake view to prepare show animate
+                if let mapping = strongSelf.modelViewTypeMapping["\(items[items.count - 1].dynamicType.self)"] where strongSelf.stackView.arrangedSubviews.count == items.count {
+                    let view = mapping.viewType.init()
+                    view.hidden = true
+                    strongSelf.stackView.insertArrangedSubview(view, atIndex: items.count)
+                }
+            }
+            
+            var redundantItemCount = strongSelf.stackView.arrangedSubviews.count - 1 - items.count
             while redundantItemCount > 0 {
-                let view = self.stackView.arrangedSubviews[self.stackView.arrangedSubviews.count - 1]
-                self.stackView.removeArrangedSubview(view)
+                let view = strongSelf.stackView.arrangedSubviews[strongSelf.stackView.arrangedSubviews.count - 1]
+                strongSelf.stackView.removeArrangedSubview(view)
                 view.removeFromSuperview()
                 redundantItemCount -= 1
             }

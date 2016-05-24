@@ -54,10 +54,10 @@ public class NKContainerView<T: UIView>: NKBaseView{
                 
                 if self.nk_shadowOffset.height < 0 {
                     make.top.equalTo(0).offset(self.nk_shadowOffset.height)
-                    make.trailing.equalTo(0)
+                    make.bottom.equalTo(0)
                 } else {
                     make.top.equalTo(0)
-                    make.trailing.equalTo(0).offset(self.nk_shadowOffset.height)
+                    make.bottom.equalTo(0).offset(self.nk_shadowOffset.height)
                 }
             }
         }

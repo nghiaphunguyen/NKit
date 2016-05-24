@@ -46,7 +46,6 @@ public struct NKScreenSize {
         }
     }
     
-    
     private static var LayoutRatio = NKScreenSize.Current.height / NKScreenSize.Layout.height
     private static var Ratio: CGFloat = {
         let currentRatio = NKScreenSize.Current.height / NKScreenSize.Current.width
