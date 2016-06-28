@@ -11,7 +11,7 @@ public typealias NKAlertAction = (title: String, style: UIAlertActionStyle)
 
 public extension UIAlertController {
     
-    public static func nk_showAlertController(fromController controller: UIViewController, title: String?, message: String?, actions: [NKAlertAction], type: UIAlertControllerStyle = .Alert, handler: NKAlertControllerHandler, completion: (() -> Void)? = nil) -> UIAlertController {
+    public static func nk_showAlertController(fromController controller: UIViewController? = nk_topVisibleVisibleViewController, title: String?, message: String?, actions: [NKAlertAction], type: UIAlertControllerStyle = .Alert, handler: NKAlertControllerHandler, completion: (() -> Void)? = nil) -> UIAlertController {
         
         var alertActions = [UIAlertAction]()
         for (index, action) in actions.enumerate() {
@@ -24,7 +24,7 @@ public extension UIAlertController {
         return self.nk_showAlertController(fromController: controller, title: title, message: message, actions: alertActions, type: type, completion: completion)
     }
     
-    public static func nk_showAlertController(fromController controller: UIViewController,
+    public static func nk_showAlertController(fromController controller: UIViewController? = nk_topVisibleVisibleViewController,
         title: String?,
         message: String?,
         actions: [UIAlertAction],
@@ -35,9 +35,7 @@ public extension UIAlertController {
                 alertController.addAction(action)
             }
             
-            controller.presentViewController(alertController, animated: true, completion: completion)
+            controller?.presentViewController(alertController, animated: true, completion: completion)
             return alertController
     }
-    
-    
 }
