@@ -46,6 +46,84 @@ public extension UIView {
         }
     }
     
+    public var nk_cornerRadius: CGFloat {
+        get {
+            return self.layer.cornerRadius
+        }
+        
+        set {
+            self.clipsToBounds = true
+            self.layer.cornerRadius = newValue
+        }
+    }
+    
+    public var nk_shadowOffset: CGSize {
+        get {
+            return self.layer.shadowOffset
+        }
+        
+        set {
+            self.layer.shadowOffset = newValue
+        }
+    }
+    
+    public var nk_shadowOpacity: Float {
+        get {
+            return self.layer.shadowOpacity
+        }
+        
+        set {
+            self.layer.shadowOpacity = newValue
+        }
+    }
+    
+    public var nk_shadowColor: UIColor? {
+        get {
+            if let color = self.layer.shadowColor {
+                return UIColor(CGColor: color)
+            }
+            
+            return nil
+        }
+        
+        set {
+            self.layer.shadowColor = newValue?.CGColor
+        }
+    }
+    
+    public var nk_shadowRadius: CGFloat {
+        get {
+            return self.layer.shadowRadius
+        }
+        
+        set {
+            self.layer.shadowRadius = newValue
+        }
+    }
+    
+    public var nk_borderColor: UIColor? {
+        get {
+            if let color = self.layer.borderColor {
+                return UIColor(CGColor: color)
+            }
+            return nil
+        }
+        
+        set {
+            self.layer.borderColor = newValue?.CGColor
+        }
+    }
+    
+    public var nk_borderWidth: Float {
+        get {
+            return self.layer.shadowOpacity
+        }
+        
+        set {
+            self.layer.shadowOpacity = newValue
+        }
+    }
+    
     //MARK: Align with view
     public func nk_alignTopView(view: UIView, offset: CGFloat = 0) -> UIView {
         self.nk_y = view.nk_y + view.nk_height + offset

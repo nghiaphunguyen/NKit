@@ -4,58 +4,29 @@
 //  Created by Nghia Nguyen on 12/7/15.
 //
 
-import Foundation
+import UIKit
 
 public typealias NKAlertControllerHandler = (index: Int) -> Void
+public typealias NKAlertAction = (title: String, style: UIAlertActionStyle)
 
 public extension UIAlertController {
     
-    public static func nk_showAlertController(fromController controller: UIViewController,
-        title: String,
-        message: String,
-        cancelTitle: String? = nil,
-        cancelHandler: (() -> Void)? = nil,
-        destructiveTitle: String? = nil,
-        destructiveHandler: (() -> Void)? = nil,
-        otherTitles: [String] = [String](),
-        otherHandler: NKAlertControllerHandler? = nil,
-        type: UIAlertControllerStyle = .Alert,
-        completion: (() -> Void)? = nil) -> UIAlertController {
-            var actions = [UIAlertAction]()
-            
-            if destructiveTitle != nil {
-                let destructiveAction = UIAlertAction(title: destructiveTitle, style: .Destructive) { (alertAction) -> Void in
-                    destructiveHandler?()
-                }
-                actions.append(destructiveAction)
-            }
-            
-            for (index, otherTitle) in otherTitles.enumerate() {
-                let action = UIAlertAction(title: otherTitle, style: .Default, handler: { (alertAction) -> Void in
-                    otherHandler?(index: index)
-                })
-                
-                actions.append(action)
-            }
-            
-            if cancelTitle != nil {
-                let cancelAction = UIAlertAction(title: cancelTitle, style: UIAlertActionStyle.Cancel) { (alertAction) -> Void in
-                    cancelHandler?()
-                }
-                
-                if type == .Alert {
-                    actions.insert(cancelAction, atIndex: 0)
-                } else {
-                    actions.append(cancelAction)
-                }
-            }
-            
-            return nk_showAlertController(fromController: controller, title: title, message: message, actions: actions, type: type, completion: completion)
+    public static func nk_showAlertController(fromController controller: UIViewController, title: String?, message: String?, actions: [NKAlertAction], type: UIAlertControllerStyle = .Alert, handler: NKAlertControllerHandler, completion: (() -> Void)? = nil) -> UIAlertController {
+        
+        var alertActions = [UIAlertAction]()
+        for (index, action) in actions.enumerate() {
+            let alertAction = UIAlertAction(title: action.title, style: action.style, handler: { (_) in
+                handler(index: index)
+            })
+            alertActions.append(alertAction)
+        }
+        
+        return self.nk_showAlertController(fromController: controller, title: title, message: message, actions: alertActions, type: type, completion: completion)
     }
     
     public static func nk_showAlertController(fromController controller: UIViewController,
-        title: String,
-        message: String,
+        title: String?,
+        message: String?,
         actions: [UIAlertAction],
         type: UIAlertControllerStyle = .Alert,
         completion: (() -> Void)? = nil) -> UIAlertController {

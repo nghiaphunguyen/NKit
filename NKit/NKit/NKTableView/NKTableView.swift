@@ -1,89 +1,100 @@
+////
+////  NKTableView.swift
+////  FastSell
+////
+////  Created by Nghia Nguyen on 4/18/16.
+////  Copyright © 2016 vn.fastsell. All rights reserved.
+////
 //
-//  NKTableView.swift
-//  NKit
+//import Foundation
+//import ATTableView
 //
-//  Created by Nghia Nguyen on 4/17/16.
-//  Copyright © 2016 knacker. All rights reserved.
 //
-
-import Foundation
-import SnapKit
-
-//MARK: - Constants
-private extension NKTableView {
-    struct Constant {
-        static var EstimatedRowHeight: CGFloat {return 100}
-    }
-}
-
-//MARK: Properties
-public class NKTableView: UITableView {
-    public var selectedCell: ((indexPath: NSIndexPath, cellModel: Any))?
-    public var items: (() -> [[Any]])?
-    
-    public var isHeightToFit = false {
-        didSet {
-            self.estimatedRowHeight = Constant.EstimatedRowHeight
-            self.rowHeight = UITableViewAutomaticDimension
-            self.setNeedsLayout()
-        }
-    }
-    
-    //private properties
-    private lazy var preHeight: CGFloat? = nil
-    
-    //Constructor
-    public override init(frame: CGRect, style: UITableViewStyle) {
-        super.init(frame: frame, style: style)
-        self.setupView()
-    }
-    
-    public required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        self.setupView()
-    }
-}
-
-//MARK: - Override functions
-public extension NKTableView {
-    public override func layoutSubviews() {
-        super.layoutSubviews()
-        
-        if self.isHeightToFit && self.contentSize.height != self.preHeight{
-            self.preHeight = self.contentSize.height
-            
-            self.snp_updateConstraints(closure: { (make) -> Void in
-                make.height.equalTo(self.contentSize.height)
-            })
-        }
-        
-        self.layoutIfNeeded()
-    }
-}
-
-//MARK: - Setup view
-private extension NKTableView {
-    private func setupView() {
-        
-    }
-}
-
-//MARK: - UITableViewDataSource
-extension NKTableView: UITableViewDataSource {
-    public func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
-    }
-    
-    public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        return UITableViewCell()
-    }
-}
-
-extension NKTableView: UITableViewDelegate {
-    
-}
- 
+////MARK: - Constants
+//private extension NKTableView {
+//    struct Constant {
+//        static var EstimatedRowHeight: CGFloat {return 50}
+//    }
+//}
+//
+////MARK: - Properties
+//public class NKTableView: ATTableView {
+//    
+//    //private properties
+//    private lazy var preHeight: CGFloat? = nil
+//    
+//    public var cellHeightToFit = false {
+//        didSet {
+//            self.estimatedRowHeight = Constant.EstimatedRowHeight
+//            self.rowHeight = UITableViewAutomaticDimension
+//            self.setNeedsLayout()
+//        }
+//    }
+//    
+//    public var isHeightToFit = false {
+//        didSet {
+//            self.setNeedsLayout()
+//        }
+//    }
+//    
+//    public var addMoreConfigForCell: ((cell: UITableViewCell, indexPath: NSIndexPath) -> Void)?
+//    
+//    public var separateHeight: CGFloat? //just trick to use separate views
+//    
+//    public override func initialize() {
+//        super.initialize()
+//        
+//        if self.isHeightToFit {
+//            self.snp_updateConstraints(closure: { (make) -> Void in
+//                make.height.equalTo(Constant.EstimatedRowHeight)
+//            })
+//        }
+//    }
+//    
+//    public override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+//        let cell = super.tableView(tableView, cellForRowAtIndexPath: indexPath)
+//        self.addMoreConfigForCell?(cell: cell, indexPath: indexPath)
+//        return cell
+//    }
+//}
+//
+//public extension NKTableView {
+//    public func reloadWithItems(items: [Any]) {
+//        self.clearAll()
+//        
+//        if let separateHeight = self.separateHeight {
+//            for (index, item) in items.enumerate() {
+//                let section = ATTableViewSection()
+//                section.headerHeight = separateHeight
+//                section.customHeaderView = { (_) in
+//                    let view = UIView()
+//                    view.backgroundColor = UIColor.clearColor()
+//                    return view
+//                }
+//                self.addSection(section, atIndex: index)
+//                self.addItems([item], section: index)
+//            }
+//        } else {
+//            self.addItems(items)
+//        }
+//        
+//        self.reloadData()
+//    }
+//}
+//
+////MARK: - Override functions
+//public extension NKTableView {
+//    public override func layoutSubviews() {
+//        super.layoutSubviews()
+//        
+//        if self.isHeightToFit && self.contentSize.height != self.preHeight{
+//            self.preHeight = self.contentSize.height
+//            
+//            self.snp_updateConstraints(closure: { (make) -> Void in
+//                make.height.equalTo(self.contentSize.height)
+//            })
+//        }
+//        
+//        self.layoutIfNeeded()
+//    }
+//}

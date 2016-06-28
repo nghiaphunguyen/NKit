@@ -6,9 +6,9 @@
 //  Copyright © 2016 knacker. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
-public class NKTableViewCell: UITableViewCell {
+public class NKBaseTableViewCell: UITableViewCell {
     public override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.setupView()
@@ -19,7 +19,5 @@ public class NKTableViewCell: UITableViewCell {
         self.setupView()
     }
     
-    public func setupView() {
-        
-    }
+    public func setupView() {}
 }

@@ -25,11 +25,16 @@ public var nk_statusBarHeight: CGFloat = {
 }()
 
 public var nk_rootViewController: UIViewController? {
-    if let window = UIApplication.sharedApplication().delegate?.window {
-        return window?.rootViewController
-    }
-    
-    return nil
+    return UIApplication.sharedApplication().keyWindow?.rootViewController
+}
+
+public var nk_topViewController: UIViewController? {
+    // Otherwise, we must get the root UIViewController and iterate through presented views
+    return nk_rootViewController?.nk_topViewController
+}
+
+public var nk_topVisibleVisibleViewController: UIViewController? {
+    return nk_rootViewController?.nk_topViewController?.nk_visibleViewController
 }
 
 public var nk_documentDirectory: String = {

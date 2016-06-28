@@ -12,13 +12,19 @@ public class NKBaseView: UIView {
     public override init(frame: CGRect) {
         super.init(frame: frame)
         self.setupView()
+        self.setupRx()
     }
     
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         self.setupView()
+        self.setupRx()
     }
     
     public func setupView() {
+    }
+    
+    public func setupRx() {
+        
     }
 }

@@ -7,6 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		18B47BAE1D2279DA00DA7F08 /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18B47BAD1D2279DA00DA7F08 /* RxSwift.framework */; };
+		18B47BB21D22853000DA7F08 /* UIViewController+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B47BB11D22853000DA7F08 /* UIViewController+Utils.swift */; };
+		18D0ADE41D224355005C76E0 /* UIView+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D0ADE31D224355005C76E0 /* UIView+Rx.swift */; };
+		18D0ADE61D22435A005C76E0 /* UIViewController+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D0ADE51D22435A005C76E0 /* UIViewController+Rx.swift */; };
+		18D0ADE91D2243E7005C76E0 /* UIBarButtonItem+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D0ADE81D2243E7005C76E0 /* UIBarButtonItem+Extension.swift */; };
+		18D0ADEB1D225E91005C76E0 /* NKBaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D0ADEA1D225E91005C76E0 /* NKBaseTableViewCell.swift */; };
+		18D0ADED1D225E98005C76E0 /* NKBaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D0ADEC1D225E98005C76E0 /* NKBaseCollectionViewCell.swift */; };
+		18D0ADF01D22741C005C76E0 /* OAStackView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18D0ADEE1D22741C005C76E0 /* OAStackView.framework */; };
+		18D0ADF11D22741C005C76E0 /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18D0ADEF1D22741C005C76E0 /* SnapKit.framework */; };
+		18D0ADF31D227801005C76E0 /* UIViewController+ChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D0ADF21D227801005C76E0 /* UIViewController+ChildViewController.swift */; };
 		422DF28D1C9B03B000421051 /* NKBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422DF2841C9B03B000421051 /* NKBaseView.swift */; };
 		422DF28E1C9B03B000421051 /* NKCircleImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422DF2851C9B03B000421051 /* NKCircleImageView.swift */; };
 		422DF28F1C9B03B000421051 /* NKContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422DF2861C9B03B000421051 /* NKContainerView.swift */; };
@@ -17,12 +27,8 @@
 		422DF2941C9B03B000421051 /* NKTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422DF28B1C9B03B000421051 /* NKTextField.swift */; };
 		422DF2951C9B03B000421051 /* NKTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422DF28C1C9B03B000421051 /* NKTextView.swift */; };
 		427055D51CC45F9200698E3D /* NKTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427055D31CC45F9200698E3D /* NKTableView.swift */; };
-		427055D61CC45F9200698E3D /* NKTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427055D41CC45F9200698E3D /* NKTableViewCell.swift */; };
 		427055D91CC45FA400698E3D /* NKStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427055D81CC45FA400698E3D /* NKStackView.swift */; };
-		427055DB1CC45FCF00698E3D /* NKTableViewCellDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427055DA1CC45FCF00698E3D /* NKTableViewCellDatasource.swift */; };
-		42AAE2B81CB95D5C002D3EAB /* TZStackView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42AAE2B71CB95D5C002D3EAB /* TZStackView.framework */; };
 		42AF353C1C6EC0370046F454 /* NKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 42AF353B1C6EC0370046F454 /* NKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		42AF35811C6EC1ED0046F454 /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42AF35801C6EC1EC0046F454 /* SnapKit.framework */; };
 		42AF35A01C6EC3BC0046F454 /* UIAlertController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42AF35831C6EC3BC0046F454 /* UIAlertController+Extension.swift */; };
 		42AF35A11C6EC3BC0046F454 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42AF35851C6EC3BC0046F454 /* UIButton+Extension.swift */; };
 		42AF35A21C6EC3BC0046F454 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42AF35871C6EC3BC0046F454 /* UIColor+Extension.swift */; };
@@ -48,6 +54,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		18B47BAD1D2279DA00DA7F08 /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = ../Carthage/Build/iOS/RxSwift.framework; sourceTree = "<group>"; };
+		18B47BB11D22853000DA7F08 /* UIViewController+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Utils.swift"; sourceTree = "<group>"; };
+		18D0ADE31D224355005C76E0 /* UIView+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Rx.swift"; sourceTree = "<group>"; };
+		18D0ADE51D22435A005C76E0 /* UIViewController+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Rx.swift"; sourceTree = "<group>"; };
+		18D0ADE81D2243E7005C76E0 /* UIBarButtonItem+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+Extension.swift"; sourceTree = "<group>"; };
+		18D0ADEA1D225E91005C76E0 /* NKBaseTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKBaseTableViewCell.swift; sourceTree = "<group>"; };
+		18D0ADEC1D225E98005C76E0 /* NKBaseCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKBaseCollectionViewCell.swift; sourceTree = "<group>"; };
+		18D0ADEE1D22741C005C76E0 /* OAStackView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OAStackView.framework; path = ../Carthage/Build/iOS/OAStackView.framework; sourceTree = "<group>"; };
+		18D0ADEF1D22741C005C76E0 /* SnapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SnapKit.framework; path = ../Carthage/Build/iOS/SnapKit.framework; sourceTree = "<group>"; };
+		18D0ADF21D227801005C76E0 /* UIViewController+ChildViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+ChildViewController.swift"; sourceTree = "<group>"; };
 		422DF2841C9B03B000421051 /* NKBaseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKBaseView.swift; sourceTree = "<group>"; };
 		422DF2851C9B03B000421051 /* NKCircleImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKCircleImageView.swift; sourceTree = "<group>"; };
 		422DF2861C9B03B000421051 /* NKContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKContainerView.swift; sourceTree = "<group>"; };
@@ -58,14 +74,10 @@
 		422DF28B1C9B03B000421051 /* NKTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKTextField.swift; sourceTree = "<group>"; };
 		422DF28C1C9B03B000421051 /* NKTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKTextView.swift; sourceTree = "<group>"; };
 		427055D31CC45F9200698E3D /* NKTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKTableView.swift; sourceTree = "<group>"; };
-		427055D41CC45F9200698E3D /* NKTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKTableViewCell.swift; sourceTree = "<group>"; };
 		427055D81CC45FA400698E3D /* NKStackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKStackView.swift; sourceTree = "<group>"; };
-		427055DA1CC45FCF00698E3D /* NKTableViewCellDatasource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKTableViewCellDatasource.swift; sourceTree = "<group>"; };
-		42AAE2B71CB95D5C002D3EAB /* TZStackView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TZStackView.framework; path = ../Carthage/Build/iOS/TZStackView.framework; sourceTree = "<group>"; };
 		42AF35381C6EC0370046F454 /* NKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		42AF353B1C6EC0370046F454 /* NKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NKit.h; sourceTree = "<group>"; };
 		42AF353D1C6EC0370046F454 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		42AF35801C6EC1EC0046F454 /* SnapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SnapKit.framework; path = ../Carthage/Build/iOS/SnapKit.framework; sourceTree = "<group>"; };
 		42AF35831C6EC3BC0046F454 /* UIAlertController+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Extension.swift"; sourceTree = "<group>"; };
 		42AF35851C6EC3BC0046F454 /* UIButton+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
 		42AF35871C6EC3BC0046F454 /* UIColor+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
@@ -95,14 +107,23 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				42AAE2B81CB95D5C002D3EAB /* TZStackView.framework in Frameworks */,
-				42AF35811C6EC1ED0046F454 /* SnapKit.framework in Frameworks */,
+				18B47BAE1D2279DA00DA7F08 /* RxSwift.framework in Frameworks */,
+				18D0ADF01D22741C005C76E0 /* OAStackView.framework in Frameworks */,
+				18D0ADF11D22741C005C76E0 /* SnapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		18D0ADE71D2243E7005C76E0 /* UIBarButtonItem */ = {
+			isa = PBXGroup;
+			children = (
+				18D0ADE81D2243E7005C76E0 /* UIBarButtonItem+Extension.swift */,
+			);
+			path = UIBarButtonItem;
+			sourceTree = "<group>";
+		};
 		422DF2831C9B03B000421051 /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
@@ -122,9 +143,8 @@
 		427055D21CC45F9200698E3D /* NKTableView */ = {
 			isa = PBXGroup;
 			children = (
+				18D0ADEA1D225E91005C76E0 /* NKBaseTableViewCell.swift */,
 				427055D31CC45F9200698E3D /* NKTableView.swift */,
-				427055D41CC45F9200698E3D /* NKTableViewCell.swift */,
-				427055DA1CC45FCF00698E3D /* NKTableViewCellDatasource.swift */,
 			);
 			path = NKTableView;
 			sourceTree = "<group>";
@@ -140,8 +160,9 @@
 		42AF352E1C6EC0370046F454 = {
 			isa = PBXGroup;
 			children = (
-				42AAE2B71CB95D5C002D3EAB /* TZStackView.framework */,
-				42AF35801C6EC1EC0046F454 /* SnapKit.framework */,
+				18B47BAD1D2279DA00DA7F08 /* RxSwift.framework */,
+				18D0ADEE1D22741C005C76E0 /* OAStackView.framework */,
+				18D0ADEF1D22741C005C76E0 /* SnapKit.framework */,
 				42AF353A1C6EC0370046F454 /* NKit */,
 				42AF35391C6EC0370046F454 /* Products */,
 			);
@@ -158,6 +179,7 @@
 		42AF353A1C6EC0370046F454 /* NKit */ = {
 			isa = PBXGroup;
 			children = (
+				18D0ADE71D2243E7005C76E0 /* UIBarButtonItem */,
 				42F4B1201CF4104800DC3FA9 /* UICollectionView */,
 				427055D71CC45FA400698E3D /* NKStackView */,
 				427055D21CC45F9200698E3D /* NKTableView */,
@@ -240,6 +262,7 @@
 		42AF35921C6EC3BC0046F454 /* UIView */ = {
 			isa = PBXGroup;
 			children = (
+				18D0ADE31D224355005C76E0 /* UIView+Rx.swift */,
 				42AF35B81C6ECCD40046F454 /* UIView+AutoLayout.swift */,
 				42AF35931C6EC3BC0046F454 /* UIView+Animation.swift */,
 				42AF35941C6EC3BC0046F454 /* UIView+SnapKitAutolayout.swift */,
@@ -252,9 +275,12 @@
 		42AF35971C6EC3BC0046F454 /* UIViewController */ = {
 			isa = PBXGroup;
 			children = (
+				18D0ADE51D22435A005C76E0 /* UIViewController+Rx.swift */,
 				42F4B1231CF4111800DC3FA9 /* UIViewController+Injected.swift */,
 				42AF35981C6EC3BC0046F454 /* UIViewController+Loading.swift */,
 				42AF35991C6EC3BC0046F454 /* UIViewController+NavigationBar.swift */,
+				18D0ADF21D227801005C76E0 /* UIViewController+ChildViewController.swift */,
+				18B47BB11D22853000DA7F08 /* UIViewController+Utils.swift */,
 			);
 			path = UIViewController;
 			sourceTree = "<group>";
@@ -288,6 +314,7 @@
 		42F4B1201CF4104800DC3FA9 /* UICollectionView */ = {
 			isa = PBXGroup;
 			children = (
+				18D0ADEC1D225E98005C76E0 /* NKBaseCollectionViewCell.swift */,
 				42F4B1211CF4104800DC3FA9 /* NKCollectionView.swift */,
 			);
 			path = UICollectionView;
@@ -373,6 +400,7 @@
 			files = (
 				42AF35B71C6ECC550046F454 /* NKConstants.swift in Sources */,
 				422DF2941C9B03B000421051 /* NKTextField.swift in Sources */,
+				18D0ADE91D2243E7005C76E0 /* UIBarButtonItem+Extension.swift in Sources */,
 				42AF35A51C6EC3BC0046F454 /* UIImageView+Extension.swift in Sources */,
 				42AF35B51C6EC60B0046F454 /* CALayer+Closure.swift in Sources */,
 				427055D51CC45F9200698E3D /* NKTableView.swift in Sources */,
@@ -386,24 +414,28 @@
 				42AF35AB1C6EC3BC0046F454 /* UIView+Utilities.swift in Sources */,
 				422DF28D1C9B03B000421051 /* NKBaseView.swift in Sources */,
 				422DF2901C9B03B000421051 /* NKCornerView.swift in Sources */,
+				18D0ADED1D225E98005C76E0 /* NKBaseCollectionViewCell.swift in Sources */,
 				42AF35BC1C6ED30E0046F454 /* String+Extension.swift in Sources */,
 				422DF28E1C9B03B000421051 /* NKCircleImageView.swift in Sources */,
 				42AF35AD1C6EC3BC0046F454 /* UIViewController+NavigationBar.swift in Sources */,
 				42AF35B21C6EC3BC0046F454 /* NKUtilities.swift in Sources */,
+				18D0ADEB1D225E91005C76E0 /* NKBaseTableViewCell.swift in Sources */,
 				42AF35A21C6EC3BC0046F454 /* UIColor+Extension.swift in Sources */,
-				427055D61CC45F9200698E3D /* NKTableViewCell.swift in Sources */,
 				42AF35AC1C6EC3BC0046F454 /* UIViewController+Loading.swift in Sources */,
+				18B47BB21D22853000DA7F08 /* UIViewController+Utils.swift in Sources */,
+				18D0ADE61D22435A005C76E0 /* UIViewController+Rx.swift in Sources */,
 				42AF35B01C6EC3BC0046F454 /* NKScreenSize.swift in Sources */,
 				42AF35B91C6ECCD40046F454 /* UIView+AutoLayout.swift in Sources */,
 				427055D91CC45FA400698E3D /* NKStackView.swift in Sources */,
 				422DF2951C9B03B000421051 /* NKTextView.swift in Sources */,
 				42AF35A41C6EC3BC0046F454 /* UIImage+Resize.swift in Sources */,
-				427055DB1CC45FCF00698E3D /* NKTableViewCellDatasource.swift in Sources */,
 				42AF35A91C6EC3BC0046F454 /* UIView+SnapKitAutolayout.swift in Sources */,
 				42AF35A71C6EC3BC0046F454 /* UINavigationController+Animation.swift in Sources */,
 				42AF35A11C6EC3BC0046F454 /* UIButton+Extension.swift in Sources */,
 				42AF35AA1C6EC3BC0046F454 /* UIView+Frame.swift in Sources */,
 				422DF2931C9B03B000421051 /* NKPopupView.swift in Sources */,
+				18D0ADE41D224355005C76E0 /* UIView+Rx.swift in Sources */,
+				18D0ADF31D227801005C76E0 /* UIViewController+ChildViewController.swift in Sources */,
 				422DF2921C9B03B000421051 /* NKGradientView.swift in Sources */,
 				422DF28F1C9B03B000421051 /* NKContainerView.swift in Sources */,
 			);

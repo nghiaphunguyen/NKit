@@ -7,11 +7,11 @@
 //
 
 import Foundation
-import TZStackView
+import OAStackView
 
 //MARK: - NKStackViewItemProtocol
 public protocol NKStackViewItemProtocol: NSObjectProtocol {
-    typealias StackViewModel
+    associatedtype StackViewModel
     func stackView(stackView: NKStackView, configViewWithModel model: StackViewModel)
 }
 
@@ -24,8 +24,8 @@ public class NKStackView: NKBaseView {
     //Private properties
     private typealias ConfigViewBlock = (view: UIView, model: Any) -> Void
     
-    private lazy var stackView: TZStackView = {
-        let stackView = TZStackView()
+    private lazy var stackView: OAStackView = {
+        let stackView = OAStackView()
         return stackView
     }()
     
@@ -53,7 +53,7 @@ public class NKStackView: NKBaseView {
         }
     }
     
-    public var alignment: TZStackViewAlignment {
+    public var alignment: OAStackViewAlignment {
         get {
             return self.stackView.alignment
         }
@@ -63,7 +63,7 @@ public class NKStackView: NKBaseView {
         }
     }
     
-    public var distribution: TZStackViewDistribution {
+    public var distribution: OAStackViewDistribution {
         get {
             return self.stackView.distribution
         }
@@ -104,7 +104,7 @@ public extension NKStackView {
                 
                 let addNewViewToStackViewAtIndex: (index: Int) -> UIView = { (index) in
                     let view = mapping.viewType.init()
-                    strongSelf.stackView.insertArrangedSubview(view, atIndex: index)
+                    strongSelf.stackView.insertArrangedSubview(view, atIndex: UInt(index))
                     return view
                 }
                 
@@ -133,7 +133,7 @@ public extension NKStackView {
                 if let mapping = strongSelf.modelViewTypeMapping["\(items[items.count - 1].dynamicType.self)"] where strongSelf.stackView.arrangedSubviews.count == items.count {
                     let view = mapping.viewType.init()
                     view.hidden = true
-                    strongSelf.stackView.insertArrangedSubview(view, atIndex: items.count)
+                    strongSelf.stackView.insertArrangedSubview(view, atIndex: UInt(items.count))
                 }
             }
             

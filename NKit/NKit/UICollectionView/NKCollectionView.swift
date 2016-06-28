@@ -13,20 +13,49 @@ public protocol NKCollectionViewDataSource: class {
 }
 
 public protocol NKCollectionViewItemProtocol: class {
-    typealias CollectionViewItemModel
-    func collectionView(collectionView: NKCollectionView, configWithModel model: CollectionViewItemModel)
+    associatedtype CollectionViewItemModel
+    func collectionView(collectionView: NKCollectionView, configWithModel model: CollectionViewItemModel, atIndexPath indexPath: NSIndexPath)
 }
 
 public class NKCollectionView: UICollectionView {
+    private lazy var preHeight: CGFloat? = nil
+    
+    public var isHeightToFit = false {
+        didSet {
+            self.setNeedsLayout()
+        }
+    }
+    
+    public lazy var animateFitHeightDuration: NSTimeInterval = 0
+    
     public weak var nk_dataSource: NKCollectionViewDataSource? {
         didSet {
             self.dataSource = self
         }
     }
     
-    public var nk_viewForSupplementaryElementClosure: ((kind: String, indexPath: NSIndexPath) -> UICollectionReusableView)?
+    public override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        if self.isHeightToFit && self.contentSize.height != self.preHeight{
+            self.preHeight = self.contentSize.height
+            
+            self.snp_updateConstraints(closure: { (make) -> Void in
+                make.height.equalTo(self.contentSize.height)
+            })
+            
+            UIView.animateWithDuration(self.animateFitHeightDuration, delay: 0, options: UIViewAnimationOptions.CurveEaseIn, animations: {
+                self.layoutIfNeeded()
+                }, completion: nil)
+        }
+        
+    }
     
-    private typealias ConfigViewBlock = (cell: UIView, model: Any) -> Void
+    public var nk_viewForSupplementaryElementClosure: ((collectionView: UICollectionView, kind: String, indexPath: NSIndexPath) -> UICollectionReusableView)?
+    
+    public var nk_animateForCellClosure: ((cell: UICollectionViewCell, indexPath: NSIndexPath) -> Void)?
+    
+    private typealias ConfigViewBlock = (cell: UIView, model: Any, indexPath: NSIndexPath) -> Void
     
     private lazy var modelViewTypeMapping = [String: (viewType: UIView.Type, configViewBlock: ConfigViewBlock)]()
 }
@@ -36,13 +65,13 @@ public extension NKCollectionView {
         let modelName = "\(type.CollectionViewItemModel.self)"
         
         self.registerClass(T.self, forCellWithReuseIdentifier: modelName)
-        self.modelViewTypeMapping[modelName] = (viewType: type, configViewBlock: {[weak self] (view, model) in
+        self.modelViewTypeMapping[modelName] = (viewType: type, configViewBlock: {[weak self] (view, model, indexPath) in
             guard let strongSelf = self else {
                 return
             }
             
             if let view = view as? T, model = model as? T.CollectionViewItemModel {
-                view.collectionView(strongSelf, configWithModel: model)
+                view.collectionView(strongSelf, configWithModel: model, atIndexPath: indexPath)
             }
             })
     }
@@ -71,7 +100,10 @@ extension NKCollectionView: UICollectionViewDataSource {
         }
         
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(typeName, forIndexPath: indexPath)
-        mapping.configViewBlock(cell: cell, model: items[section][row])
+        mapping.configViewBlock(cell: cell, model: items[section][row], indexPath: indexPath)
+        
+        self.nk_animateForCellClosure?(cell: cell, indexPath: indexPath)
+        
         return cell
     }
     
@@ -84,6 +116,6 @@ extension NKCollectionView: UICollectionViewDataSource {
             return UICollectionReusableView()
         }
         
-        return closure(kind: kind, indexPath: indexPath)
+        return closure(collectionView: collectionView, kind: kind, indexPath: indexPath)
     }
 }

@@ -1,45 +1,35 @@
 //
+//  ProfilePictureImageView.swift
+//  FastSell
 //
 //  Created by Nghia Nguyen on 2/20/16.
+//  Copyright © 2016 vn.fastsell. All rights reserved.
 //
 
 import UIKit
 
-public class NKCircleImageView: NKBaseView {
-    struct Constants {
-        static let padding: CGFloat = 1
-    }
+class NKCircleImageView: UIView {
+    lazy var circleView = NKCircleView(frame: CGRect.zero)
     
-    //MARK: Properties
-    public var circleLineWidth: CGFloat {
-        get {
-            return self.circleView.circleLineWidth
-        }
-        
-        set {
-            self.circleView.circleLineWidth = newValue
-        }
-    }
+    lazy var enableCircle = true
     
-    public var circleColor: UIColor {
-        get {
-            return self.circleView.circleColor
-        }
-        
-        set {
-            self.circleView.circleColor = newValue
-        }
-    }
-    
-    public lazy var circleView = NKCircleView(frame: CGRect.zero)
-    
-    public lazy var imageView: UIImageView = {
+    lazy var imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.clipsToBounds = true
         return imageView
     }()
     
-    public override func setupView() {
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        self.setupView()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        self.setupView()
+    }
+    
+    func setupView() {
         self.backgroundColor = UIColor.clearColor()
         self.clipsToBounds = true
         
@@ -50,10 +40,10 @@ public class NKCircleImageView: NKBaseView {
         self.addSubview(self.circleView)
         
         self.imageView.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(0).offset(Constants.padding)
-            make.leading.equalTo(0).offset(Constants.padding)
-            make.trailing.equalTo(0).offset(-Constants.padding)
-            make.bottom.equalTo(0).offset(-Constants.padding)
+            make.top.equalTo(0).offset(1)
+            make.leading.equalTo(0).offset(1)
+            make.trailing.equalTo(0).offset(-1)
+            make.bottom.equalTo(0).offset(-1)
         }
         
         self.circleView.snp_makeConstraints { (make) -> Void in
@@ -61,19 +51,21 @@ public class NKCircleImageView: NKBaseView {
         }
     }
     
-    public override func drawRect(rect: CGRect) {
+    override func drawRect(rect: CGRect) {
         super.drawRect(rect)
         
-        let width = rect.size.width / 2 - Constants.padding
-        self.imageView.layer.cornerRadius = width
+        if self.enableCircle {
+            let width = rect.size.width / 2 - 1
+            self.imageView.layer.cornerRadius = width
+        }
     }
 }
 
-public class NKCircleView : UIView {
-    public lazy var circleLineWidth: CGFloat = 3
-    public lazy var circleColor = UIColor.whiteColor()
+class NKCircleView : UIView {
+    lazy var circleLineWidth: CGFloat = 0
+    lazy var circleColor = UIColor.whiteColor()
     
-    public override func drawRect(rect: CGRect) {
+    override func drawRect(rect: CGRect) {
         super.drawRect(rect)
         
         let context = UIGraphicsGetCurrentContext()

@@ -8,7 +8,8 @@ import UIKit
 
 public extension UIView {
     //MARK: set width and height
-    public func nk_widthConstraintView(var view: UIView? = nil, multiplier: CGFloat = 1, constant: CGFloat = 0) -> UIView {
+    public func nk_widthConstraintView( view: UIView? = nil, multiplier: CGFloat = 1, constant: CGFloat = 0) -> UIView {
+        var view = view
         if view == nil {
             guard let superview = self.superview else {
                 return self
@@ -25,7 +26,9 @@ public extension UIView {
         return self
     }
     
-    public func nk_heightConstraintView(var view: UIView? = nil, multiplier: CGFloat = 1, constant: CGFloat = 0) -> UIView {
+    public func nk_heightConstraintView( view: UIView? = nil, multiplier: CGFloat = 1, constant: CGFloat = 0) -> UIView {
+        var view = view
+        
         if view == nil {
             guard let superview = self.superview else {
                 return self
@@ -62,7 +65,8 @@ public extension UIView {
     
     //MARK: set constraints
     
-    public func nk_centerXConstraintView(var view: UIView? = nil, multiplier: CGFloat = 1, offset: CGFloat = 0) -> UIView {
+    public func nk_centerXConstraintView( view: UIView? = nil, multiplier: CGFloat = 1, offset: CGFloat = 0) -> UIView {
+        var view = view
         if view == nil {
             guard let superview = self.superview else {
                 return self
@@ -79,7 +83,9 @@ public extension UIView {
         return self
     }
     
-    public func nk_centerYConstraintView(var view: UIView? = nil, multiplier: CGFloat = 1, offset: CGFloat = 0) -> UIView {
+    public func nk_centerYConstraintView( view: UIView? = nil, multiplier: CGFloat = 1, offset: CGFloat = 0) -> UIView {
+        var view = view
+        
         if view == nil {
             guard let superview = self.superview else {
                 return self
@@ -96,7 +102,9 @@ public extension UIView {
         return self
     }
     
-    public func nk_alignTopConstraintView(var view: UIView? = nil, multiplier: CGFloat = 1, offset: CGFloat = 0) -> UIView {
+    public func nk_alignTopConstraintView( view: UIView? = nil, multiplier: CGFloat = 1, offset: CGFloat = 0) -> UIView {
+        var view = view
+        
         if view == nil {
             guard let superview = self.superview else {
                 return self
@@ -113,7 +121,9 @@ public extension UIView {
         return self
     }
     
-    public func nk_alignBottomConstraintView(var view: UIView? = nil, multiplier: CGFloat = 1, offset: CGFloat = 0) -> UIView {
+    public func nk_alignBottomConstraintView( view: UIView? = nil, multiplier: CGFloat = 1, offset: CGFloat = 0) -> UIView {
+        var view = view
+        
         if view == nil {
             guard let superview = self.superview else {
                 return self
@@ -130,7 +140,9 @@ public extension UIView {
         return self
     }
     
-    public func nk_alignTrailingConstraintView(var view: UIView? = nil, multiplier: CGFloat = 1, offset: CGFloat = 0) -> UIView {
+    public func nk_alignTrailingConstraintView( view: UIView? = nil, multiplier: CGFloat = 1, offset: CGFloat = 0) -> UIView {
+        var view = view
+        
         if view == nil {
             guard let superview = self.superview else {
                 return self
@@ -147,7 +159,9 @@ public extension UIView {
         return self
     }
     
-    public func nk_alignLeadingConstraintView(var view: UIView? = nil, multiplier: CGFloat = 1, offset: CGFloat = 0) -> UIView {
+    public func nk_alignLeadingConstraintView( view: UIView? = nil, multiplier: CGFloat = 1, offset: CGFloat = 0) -> UIView {
+        var view = view
+        
         if view == nil {
             guard let superview = self.superview else {
                 return self
@@ -166,7 +180,9 @@ public extension UIView {
     
     //MARK: pin constraints
     
-    public func nk_pinTopConstraintView(var view: UIView? = nil, multiplier: CGFloat = 1, offset: CGFloat = 0) -> UIView {
+    public func nk_pinTopConstraintView( view: UIView? = nil, multiplier: CGFloat = 1, offset: CGFloat = 0) -> UIView {
+        var view = view
+        
         if view == nil {
             guard let superview = self.superview else {
                 return self
@@ -184,7 +200,9 @@ public extension UIView {
         return self
     }
     
-    public func nk_pinBottomConstraintView(var view: UIView? = nil, multiplier: CGFloat = 1, offset: CGFloat = 0) -> UIView {
+    public func nk_pinBottomConstraintView( view: UIView? = nil, multiplier: CGFloat = 1, offset: CGFloat = 0) -> UIView {
+        var view = view
+        
         if view == nil {
             guard let superview = self.superview else {
                 return self
@@ -201,7 +219,9 @@ public extension UIView {
         return self
     }
     
-    public func nk_pinLeadingConstraintView(var view: UIView? = nil, multiplier: CGFloat = 1, offset: CGFloat = 0) -> UIView {
+    public func nk_pinLeadingConstraintView( view: UIView? = nil, multiplier: CGFloat = 1, offset: CGFloat = 0) -> UIView {
+        var view = view
+        
         if view == nil {
             guard let superview = self.superview else {
                 return self
@@ -218,7 +238,9 @@ public extension UIView {
         return self
     }
     
-    public func nk_pinTrailingConstraintView(var view: UIView? = nil, multiplier: CGFloat = 1, offset: CGFloat = 0) -> UIView {
+    public func nk_pinTrailingConstraintView( view: UIView? = nil, multiplier: CGFloat = 1, offset: CGFloat = 0) -> UIView {
+        var view = view
+        
         if view == nil {
             guard let superview = self.superview else {
                 return self

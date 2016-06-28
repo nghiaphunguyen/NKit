@@ -59,7 +59,7 @@ public extension UINavigationController {
         var indexToPopNoAnimation: Int = self.viewControllers.count - 1
         while indexToPopNoAnimation > indexOfSaveVC + 1 {
             self.popViewControllerAnimated(false)
-            indexToPopNoAnimation--
+            indexToPopNoAnimation -= 1
         }
         
         self.nk_animationPop(duration: 0.3, type: kCATransitionReveal, subType: kCATransitionFromBottom)
