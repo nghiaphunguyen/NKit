@@ -12,6 +12,7 @@ Pod::Spec.new do |s|
   s.requires_arc = true
 
   s.dependency 'SnapKit', '0.21.1'
-  s.dependency 'SnapKit', '0.21.1'
-  s.dependency 'SnapKit', '0.21.1'
+  s.dependency 'RxSwift', '2.5.0'
+  s.dependency 'OAStackView', '1.0.1'
+  s.dependency 'ATTableView', '1.2'
 end
