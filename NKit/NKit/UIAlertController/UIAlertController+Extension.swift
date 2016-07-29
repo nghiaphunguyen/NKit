@@ -12,15 +12,15 @@ public struct NKAlertAction {
     let title: String
     let style: UIAlertActionStyle
     
-    public static func defaultStyle(title: String) {
+    public static func defaultStyle(title: String) -> NKAlertAction {
         return NKAlertAction(title: title, style: .Default)
     }
     
-    public static func cancelStyle(title: String) {
+    public static func cancelStyle(title: String) -> NKAlertAction{
         return NKAlertAction(title: title, style: .Cancel)
     }
     
-    public static func destructiveStyle(title: String) {
+    public static func destructiveStyle(title: String) -> NKAlertAction {
         return NKAlertAction(title: title, style: .Destructive)
     }
 }
