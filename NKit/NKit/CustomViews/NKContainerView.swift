@@ -25,7 +25,6 @@ public class NKContainerView<T: UIView>: NKBaseView{
             if let view = self.contentView {
                 self.addSubview(view)
                 self.bringSubviewToFront(view)
-                view.layoutIfNeeded()
             }
         }
     }
