@@ -8,7 +8,7 @@ import UIKit
 
 public extension UIImage {
 
-    public static func nk_fromColor(color: UIColor, size: CGSize) -> UIImage {
+    public static func nk_fromColor(color: UIColor, size: CGSize = CGSizeMake(1, 1)) -> UIImage {
         let rect = CGRectMake(0, 0, size.width, size.height)
         UIGraphicsBeginImageContextWithOptions(rect.size, false, UIScreen.mainScreen().scale)
         let context = UIGraphicsGetCurrentContext()

@@ -20,7 +20,7 @@ public enum NKEdgePos{
 
 public extension UIView {
     public func nk_addBorder(pos pos: NKEdgePos, lineWidth: Double,
-        offset1: Double = 0, offset2: Double = 0, color: UIColor) {
+        offset1: Double = 0, offset2: Double = 0, color: UIColor) -> UIView {
         let border = UIView()
         border.backgroundColor = color
         
@@ -50,6 +50,8 @@ public extension UIView {
                 make.bottom.equalTo(self).offset(-offset2)
             }
         }
+        
+        return border
     }
 }
 

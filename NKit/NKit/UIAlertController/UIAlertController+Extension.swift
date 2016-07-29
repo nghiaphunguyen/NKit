@@ -7,7 +7,23 @@
 import UIKit
 
 public typealias NKAlertControllerHandler = (index: Int) -> Void
-public typealias NKAlertAction = (title: String, style: UIAlertActionStyle)
+
+public struct NKAlertAction {
+    let title: String
+    let style: UIAlertActionStyle
+    
+    public static func defaultStyle(title: String) {
+        return NKAlertAction(title: title, style: .Default)
+    }
+    
+    public static func cancelStyle(title: String) {
+        return NKAlertAction(title: title, style: .Cancel)
+    }
+    
+    public static func destructiveStyle(title: String) {
+        return NKAlertAction(title: title, style: .Destructive)
+    }
+}
 
 public extension UIAlertController {
     
