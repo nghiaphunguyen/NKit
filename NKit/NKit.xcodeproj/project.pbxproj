@@ -10,7 +10,6 @@
 		18B47BAE1D2279DA00DA7F08 /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18B47BAD1D2279DA00DA7F08 /* RxSwift.framework */; };
 		18B47BB21D22853000DA7F08 /* UIViewController+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B47BB11D22853000DA7F08 /* UIViewController+Utils.swift */; };
 		18D0ADE41D224355005C76E0 /* UIView+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D0ADE31D224355005C76E0 /* UIView+Rx.swift */; };
-		18D0ADE61D22435A005C76E0 /* UIViewController+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D0ADE51D22435A005C76E0 /* UIViewController+Rx.swift */; };
 		18D0ADE91D2243E7005C76E0 /* UIBarButtonItem+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D0ADE81D2243E7005C76E0 /* UIBarButtonItem+Extension.swift */; };
 		18D0ADEB1D225E91005C76E0 /* NKBaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D0ADEA1D225E91005C76E0 /* NKBaseTableViewCell.swift */; };
 		18D0ADED1D225E98005C76E0 /* NKBaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D0ADEC1D225E98005C76E0 /* NKBaseCollectionViewCell.swift */; };
@@ -57,7 +56,6 @@
 		18B47BAD1D2279DA00DA7F08 /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = ../Carthage/Build/iOS/RxSwift.framework; sourceTree = "<group>"; };
 		18B47BB11D22853000DA7F08 /* UIViewController+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Utils.swift"; sourceTree = "<group>"; };
 		18D0ADE31D224355005C76E0 /* UIView+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Rx.swift"; sourceTree = "<group>"; };
-		18D0ADE51D22435A005C76E0 /* UIViewController+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Rx.swift"; sourceTree = "<group>"; };
 		18D0ADE81D2243E7005C76E0 /* UIBarButtonItem+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+Extension.swift"; sourceTree = "<group>"; };
 		18D0ADEA1D225E91005C76E0 /* NKBaseTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKBaseTableViewCell.swift; sourceTree = "<group>"; };
 		18D0ADEC1D225E98005C76E0 /* NKBaseCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKBaseCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -275,7 +273,6 @@
 		42AF35971C6EC3BC0046F454 /* UIViewController */ = {
 			isa = PBXGroup;
 			children = (
-				18D0ADE51D22435A005C76E0 /* UIViewController+Rx.swift */,
 				42F4B1231CF4111800DC3FA9 /* UIViewController+Injected.swift */,
 				42AF35981C6EC3BC0046F454 /* UIViewController+Loading.swift */,
 				42AF35991C6EC3BC0046F454 /* UIViewController+NavigationBar.swift */,
@@ -423,7 +420,6 @@
 				42AF35A21C6EC3BC0046F454 /* UIColor+Extension.swift in Sources */,
 				42AF35AC1C6EC3BC0046F454 /* UIViewController+Loading.swift in Sources */,
 				18B47BB21D22853000DA7F08 /* UIViewController+Utils.swift in Sources */,
-				18D0ADE61D22435A005C76E0 /* UIViewController+Rx.swift in Sources */,
 				42AF35B01C6EC3BC0046F454 /* NKScreenSize.swift in Sources */,
 				42AF35B91C6ECCD40046F454 /* UIView+AutoLayout.swift in Sources */,
 				427055D91CC45FA400698E3D /* NKStackView.swift in Sources */,
