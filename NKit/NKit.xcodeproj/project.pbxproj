@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		18B47BAE1D2279DA00DA7F08 /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18B47BAD1D2279DA00DA7F08 /* RxSwift.framework */; };
 		18B47BB21D22853000DA7F08 /* UIViewController+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B47BB11D22853000DA7F08 /* UIViewController+Utils.swift */; };
-		18D0ADE41D224355005C76E0 /* UIView+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D0ADE31D224355005C76E0 /* UIView+Rx.swift */; };
 		18D0ADE91D2243E7005C76E0 /* UIBarButtonItem+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D0ADE81D2243E7005C76E0 /* UIBarButtonItem+Extension.swift */; };
 		18D0ADEB1D225E91005C76E0 /* NKBaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D0ADEA1D225E91005C76E0 /* NKBaseTableViewCell.swift */; };
 		18D0ADED1D225E98005C76E0 /* NKBaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D0ADEC1D225E98005C76E0 /* NKBaseCollectionViewCell.swift */; };
@@ -55,7 +54,6 @@
 /* Begin PBXFileReference section */
 		18B47BAD1D2279DA00DA7F08 /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = ../Carthage/Build/iOS/RxSwift.framework; sourceTree = "<group>"; };
 		18B47BB11D22853000DA7F08 /* UIViewController+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Utils.swift"; sourceTree = "<group>"; };
-		18D0ADE31D224355005C76E0 /* UIView+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Rx.swift"; sourceTree = "<group>"; };
 		18D0ADE81D2243E7005C76E0 /* UIBarButtonItem+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+Extension.swift"; sourceTree = "<group>"; };
 		18D0ADEA1D225E91005C76E0 /* NKBaseTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKBaseTableViewCell.swift; sourceTree = "<group>"; };
 		18D0ADEC1D225E98005C76E0 /* NKBaseCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKBaseCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -260,7 +258,6 @@
 		42AF35921C6EC3BC0046F454 /* UIView */ = {
 			isa = PBXGroup;
 			children = (
-				18D0ADE31D224355005C76E0 /* UIView+Rx.swift */,
 				42AF35B81C6ECCD40046F454 /* UIView+AutoLayout.swift */,
 				42AF35931C6EC3BC0046F454 /* UIView+Animation.swift */,
 				42AF35941C6EC3BC0046F454 /* UIView+SnapKitAutolayout.swift */,
@@ -430,7 +427,6 @@
 				42AF35A11C6EC3BC0046F454 /* UIButton+Extension.swift in Sources */,
 				42AF35AA1C6EC3BC0046F454 /* UIView+Frame.swift in Sources */,
 				422DF2931C9B03B000421051 /* NKPopupView.swift in Sources */,
-				18D0ADE41D224355005C76E0 /* UIView+Rx.swift in Sources */,
 				18D0ADF31D227801005C76E0 /* UIViewController+ChildViewController.swift in Sources */,
 				422DF2921C9B03B000421051 /* NKGradientView.swift in Sources */,
 				422DF28F1C9B03B000421051 /* NKContainerView.swift in Sources */,
