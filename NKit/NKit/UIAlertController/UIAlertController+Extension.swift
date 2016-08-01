@@ -38,12 +38,12 @@ public enum NKAlertAction {
 
 public extension UIAlertController {
     
-    public static func nk_showAlertController(fromController controller: UIViewController? = nk_topVisibleVisibleViewController, title: String?, message: String?, actions: [NKAlertAction], type: UIAlertControllerStyle = .Alert, handler: NKAlertControllerHandler, completion: (() -> Void)? = nil) -> UIAlertController {
+    public static func nk_showAlertController(fromController controller: UIViewController? = nk_topVisibleVisibleViewController, title: String?, message: String?, actions: [NKAlertAction], type: UIAlertControllerStyle = .Alert, handler: NKAlertControllerHandler? = nil, completion: (() -> Void)? = nil) -> UIAlertController {
         
         var alertActions = [UIAlertAction]()
         for (index, action) in actions.enumerate() {
             let alertAction = UIAlertAction(title: action.title, style: action.style, handler: { (_) in
-                handler(index: index)
+                handler?(index: index)
             })
             alertActions.append(alertAction)
         }
