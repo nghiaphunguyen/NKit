@@ -22,3 +22,20 @@ public extension UILabel {
             }
     }
 }
+
+
+public extension UILabel {
+    public func nk_heightWithWidth(width: CGFloat) -> CGFloat {
+        guard let text = text else {
+            return 0
+        }
+        return text.heightWithWidth(width, font: font)
+    }
+    
+    public func nk_heightWithAttributedWidth(width: CGFloat) -> CGFloat {
+        guard let attributedText = attributedText else {
+            return 0
+        }
+        return attributedText.heightWithWidth(width)
+    }
+}

@@ -27,3 +27,33 @@ public extension String {
         return NSLocalizedString(self, comment: "")
     }
 }
+
+public extension String {
+    public var isValidEmail: Bool {
+        if self.characters.count == 0 {
+            return false
+        }
+        
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}"
+        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        let result = emailTest.evaluateWithObject(self)
+        
+        return result
+    }
+}
+
+public extension String {
+    public func nk_heightWithWidth(width: CGFloat, font: UIFont) -> CGFloat {
+        let maxSize = CGSize(width: width, height: CGFloat.max)
+        let actualSize = self.boundingRectWithSize(maxSize, options: [.UsesLineFragmentOrigin], attributes: [NSFontAttributeName: font], context: nil)
+        return actualSize.height
+    }
+}
+
+public extension NSAttributedString {
+    public func nk_heightWithWidth(width: CGFloat) -> CGFloat {
+        let maxSize = CGSize(width: width, height: CGFloat.max)
+        let actualSize = boundingRectWithSize(maxSize, options: [.UsesLineFragmentOrigin], context: nil)
+        return actualSize.height
+    }
+}
