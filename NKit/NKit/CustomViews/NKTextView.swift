@@ -45,7 +45,7 @@ public class NKTextView: UITextView, UITextViewDelegate {
     
     public var isTurnOnPlaceholder: Bool = false
     
-    func checkAndTurnOnPlaceholder() -> NKTextView {
+    public func checkAndTurnOnPlaceholder() -> NKTextView {
         if self.text == "" {
             self.isTurnOnPlaceholder = true
             self.textColor = self.placeholderColor

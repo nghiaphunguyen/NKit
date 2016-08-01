@@ -8,20 +8,31 @@ import UIKit
 
 public typealias NKAlertControllerHandler = (index: Int) -> Void
 
-public struct NKAlertAction {
-    let title: String
-    let style: UIAlertActionStyle
+public enum NKAlertAction {
+    case Default(String)
+    case Cancel(String)
+    case Destructive(String)
     
-    public static func defaultStyle(title: String) -> NKAlertAction {
-        return NKAlertAction(title: title, style: .Default)
+    public var title: String {
+        switch self {
+        case .Default(let title):
+            return title
+        case .Cancel(let title):
+            return title
+        case Destructive(let title):
+            return title
+        }
     }
     
-    public static func cancelStyle(title: String) -> NKAlertAction{
-        return NKAlertAction(title: title, style: .Cancel)
-    }
-    
-    public static func destructiveStyle(title: String) -> NKAlertAction {
-        return NKAlertAction(title: title, style: .Destructive)
+    public var style: UIAlertActionStyle {
+        switch self {
+        case .Default(_):
+            return .Default
+        case .Cancel(_):
+            return .Cancel
+        case Destructive(_):
+            return .Destructive
+        }
     }
 }
 

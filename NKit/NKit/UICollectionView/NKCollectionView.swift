@@ -51,9 +51,11 @@ public class NKCollectionView: UICollectionView {
         
     }
     
-    public var nk_viewForSupplementaryElementClosure: ((collectionView: UICollectionView, kind: String, indexPath: NSIndexPath) -> UICollectionReusableView)?
+    public var nk_viewForSupplementaryElementClosure: ((collectionView: UICollectionView, kind: String, indexPath: NSIndexPath) -> UICollectionReusableView)? = nil
     
-    public var nk_animateForCellClosure: ((cell: UICollectionViewCell, indexPath: NSIndexPath) -> Void)?
+    public var nk_animateForCellClosure: ((cell: UICollectionViewCell, indexPath: NSIndexPath) -> Void)? = nil
+    
+    public var nk_moreConfigForCellClosure: ((cell: UICollectionViewCell, indexPath: NSIndexPath) -> Void)? = nil
     
     private typealias ConfigViewBlock = (cell: UIView, model: Any, indexPath: NSIndexPath) -> Void
     
@@ -103,7 +105,7 @@ extension NKCollectionView: UICollectionViewDataSource {
         mapping.configViewBlock(cell: cell, model: items[section][row], indexPath: indexPath)
         
         self.nk_animateForCellClosure?(cell: cell, indexPath: indexPath)
-        
+        self.nk_moreConfigForCellClosure?(cell: cell, indexPath: indexPath)
         return cell
     }
     
