@@ -228,3 +228,14 @@ public extension UIView {
         return self
     }
 }
+
+
+public extension UIView {
+    public func nk_convertFrameToView(view: UIView) -> CGRect {
+        return self.convertRect(self.bounds, toView: view)
+    }
+    
+    public func nk_convertPointToView(view: UIView) -> CGPoint {
+        return self.convertPoint(self.bounds.origin, toView: view)
+    }
+}

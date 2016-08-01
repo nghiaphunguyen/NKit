@@ -8,12 +8,12 @@
 
 import UIKit
 
-class NKCornerView: UIView {
+public class NKCornerView: UIView {
     
     private var rectCorner: UIRectCorner = .AllCorners
     private var radius: CGFloat = 0
     
-    init(frame: CGRect = CGRectZero, rectCorner: UIRectCorner,
+    public init(frame: CGRect = CGRectZero, rectCorner: UIRectCorner,
          radius: CGFloat) {
         super.init(frame: frame)
         self.contentMode = .Redraw
@@ -21,7 +21,7 @@ class NKCornerView: UIView {
         self.radius = radius
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
