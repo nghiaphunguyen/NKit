@@ -114,13 +114,13 @@ public extension UIView {
         }
     }
     
-    public var nk_borderWidth: Float {
+    public var nk_borderWidth: CGFloat {
         get {
-            return self.layer.shadowOpacity
+            return self.layer.borderWidth
         }
         
         set {
-            self.layer.shadowOpacity = newValue
+            self.layer.borderWidth = newValue
         }
     }
     
