@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		18435CE61D4F4C2D009D6DE3 /* NKLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18435CE51D4F4C2D009D6DE3 /* NKLabel.swift */; };
 		18B47BAE1D2279DA00DA7F08 /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18B47BAD1D2279DA00DA7F08 /* RxSwift.framework */; };
 		18B47BB21D22853000DA7F08 /* UIViewController+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B47BB11D22853000DA7F08 /* UIViewController+Utils.swift */; };
 		18D0ADE91D2243E7005C76E0 /* UIBarButtonItem+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D0ADE81D2243E7005C76E0 /* UIBarButtonItem+Extension.swift */; };
@@ -52,6 +53,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		18435CE51D4F4C2D009D6DE3 /* NKLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKLabel.swift; sourceTree = "<group>"; };
 		18B47BAD1D2279DA00DA7F08 /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = ../Carthage/Build/iOS/RxSwift.framework; sourceTree = "<group>"; };
 		18B47BB11D22853000DA7F08 /* UIViewController+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Utils.swift"; sourceTree = "<group>"; };
 		18D0ADE81D2243E7005C76E0 /* UIBarButtonItem+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+Extension.swift"; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 		422DF2831C9B03B000421051 /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
+				18435CE51D4F4C2D009D6DE3 /* NKLabel.swift */,
 				422DF2841C9B03B000421051 /* NKBaseView.swift */,
 				422DF2851C9B03B000421051 /* NKCircleImageView.swift */,
 				422DF2861C9B03B000421051 /* NKContainerView.swift */,
@@ -415,6 +418,7 @@
 				42AF35B21C6EC3BC0046F454 /* NKUtilities.swift in Sources */,
 				18D0ADEB1D225E91005C76E0 /* NKBaseTableViewCell.swift in Sources */,
 				42AF35A21C6EC3BC0046F454 /* UIColor+Extension.swift in Sources */,
+				18435CE61D4F4C2D009D6DE3 /* NKLabel.swift in Sources */,
 				42AF35AC1C6EC3BC0046F454 /* UIViewController+Loading.swift in Sources */,
 				18B47BB21D22853000DA7F08 /* UIViewController+Utils.swift in Sources */,
 				42AF35B01C6EC3BC0046F454 /* NKScreenSize.swift in Sources */,

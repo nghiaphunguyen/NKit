@@ -8,8 +8,8 @@
 
 import UIKit
 
-extension UIViewController {
-    func nk_addChildViewController(controller: UIViewController, frame: CGRect) {
+public extension UIViewController {
+    public func nk_addChildViewController(controller: UIViewController, frame: CGRect) {
         self.addChildViewController(controller)
         controller.view.frame = frame
         self.view.addSubview(controller.view)
@@ -17,13 +17,25 @@ extension UIViewController {
         controller.didMoveToParentViewController(self)
     }
     
-    func nk_addChildViewController(controller: UIViewController) {
+    public func nk_addChildViewController(controller: UIViewController) {
         self.nk_addChildViewController(controller, frame: self.view.bounds)
     }
     
-    func nk_removeFromParentViewController() {
+    public func nk_removeFromParentViewController() {
         self.willMoveToParentViewController(nil)
         self.view.removeFromSuperview()
         self.removeFromParentViewController()
+    }
+}
+
+
+public extension UIViewController {
+    public func nk_hideKeyboardWhenTappedOuside() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.dynamicType.nk_hideKeyboard))
+        self.view.addGestureRecognizer(tapGesture)
+    }
+    
+    public func nk_hideKeyboard() {
+        self.view.endEditing(true)
     }
 }
