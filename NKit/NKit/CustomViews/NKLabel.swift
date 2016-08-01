@@ -9,8 +9,6 @@
 import UIKit
 
 public class NKLabel: UILabel {
-    public var nk_edgeInsets: UIEdgeInsets?
-    
     public override func textRectForBounds(bounds: CGRect, limitedToNumberOfLines numberOfLines: Int) -> CGRect {
         var rect = super.textRectForBounds(bounds, limitedToNumberOfLines: numberOfLines)
         
@@ -21,8 +19,8 @@ public class NKLabel: UILabel {
     
     public override func drawTextInRect(rect: CGRect) {
         var actualRect = self.textRectForBounds(rect, limitedToNumberOfLines: self.numberOfLines)
-        
-        if let height = self.text?.heightWithWidth(self.nk_width, font: self.font) where actualRect.size.height < height {
+        let height = self.nk_heightWithWidth(self.nk_width)
+        if  actualRect.size.height < height {
            actualRect.size.height = height
         }
         
