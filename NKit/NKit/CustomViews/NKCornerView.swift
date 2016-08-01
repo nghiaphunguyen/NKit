@@ -25,7 +25,7 @@ public class NKCornerView: UIView {
         super.init(coder: aDecoder)
     }
     
-    override func drawRect(rect: CGRect) {
+    public override func drawRect(rect: CGRect) {
         let path = UIBezierPath(roundedRect: rect, byRoundingCorners: rectCorner,
                                 cornerRadii: CGSizeMake(self.radius, self.radius))
         
