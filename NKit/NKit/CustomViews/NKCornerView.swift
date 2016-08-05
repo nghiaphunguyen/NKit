@@ -10,8 +10,17 @@ import UIKit
 
 public class NKCornerView: UIView {
     
-    private var rectCorner: UIRectCorner = .AllCorners
-    private var radius: CGFloat = 0
+    public var rectCorner: UIRectCorner = .AllCorners {
+        didSet {
+            self.layoutIfNeeded()
+        }
+    }
+    
+    public var radius: CGFloat = 0 {
+        didSet {
+            self.layoutIfNeeded()
+        }
+    }
     
     public init(frame: CGRect = CGRectZero, rectCorner: UIRectCorner,
          radius: CGFloat) {
