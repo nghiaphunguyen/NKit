@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		18169D281D6F0D1F00DB8C89 /* Array+BinaryInsert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18169D271D6F0D1F00DB8C89 /* Array+BinaryInsert.swift */; };
+		18169D2A1D6F0EB900DB8C89 /* TimeChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18169D291D6F0EB900DB8C89 /* TimeChecker.swift */; };
 		18435CE61D4F4C2D009D6DE3 /* NKLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18435CE51D4F4C2D009D6DE3 /* NKLabel.swift */; };
 		18B47BAE1D2279DA00DA7F08 /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18B47BAD1D2279DA00DA7F08 /* RxSwift.framework */; };
 		18B47BB21D22853000DA7F08 /* UIViewController+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B47BB11D22853000DA7F08 /* UIViewController+Utils.swift */; };
@@ -55,6 +56,7 @@
 
 /* Begin PBXFileReference section */
 		18169D271D6F0D1F00DB8C89 /* Array+BinaryInsert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+BinaryInsert.swift"; sourceTree = "<group>"; };
+		18169D291D6F0EB900DB8C89 /* TimeChecker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeChecker.swift; sourceTree = "<group>"; };
 		18435CE51D4F4C2D009D6DE3 /* NKLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKLabel.swift; sourceTree = "<group>"; };
 		18B47BAD1D2279DA00DA7F08 /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = ../Carthage/Build/iOS/RxSwift.framework; sourceTree = "<group>"; };
 		18B47BB11D22853000DA7F08 /* UIViewController+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Utils.swift"; sourceTree = "<group>"; };
@@ -296,6 +298,7 @@
 		42AF359A1C6EC3BC0046F454 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				18169D291D6F0EB900DB8C89 /* TimeChecker.swift */,
 				42AF359D1C6EC3BC0046F454 /* NKScreenSize.swift */,
 				42AF359F1C6EC3BC0046F454 /* NKUtilities.swift */,
 				42AF35B61C6ECC550046F454 /* NKConstants.swift */,
@@ -413,6 +416,7 @@
 				42AF35B51C6EC60B0046F454 /* CALayer+Closure.swift in Sources */,
 				427055D51CC45F9200698E3D /* NKTableView.swift in Sources */,
 				42F4B1221CF4104800DC3FA9 /* NKCollectionView.swift in Sources */,
+				18169D2A1D6F0EB900DB8C89 /* TimeChecker.swift in Sources */,
 				42AF35A01C6EC3BC0046F454 /* UIAlertController+Extension.swift in Sources */,
 				422DF2911C9B03B000421051 /* NKDrawView.swift in Sources */,
 				42F4B1241CF4111800DC3FA9 /* UIViewController+Injected.swift in Sources */,

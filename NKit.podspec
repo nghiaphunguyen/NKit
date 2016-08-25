@@ -12,6 +12,7 @@ Pod::Spec.new do |s|
   s.requires_arc = true
 
   s.dependency 'SnapKit'
+  s.dependency 'NRxSwift'
   s.dependency 'OAStackView'
   s.dependency 'ATTableView'
 end
