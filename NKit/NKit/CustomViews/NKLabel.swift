@@ -9,22 +9,32 @@
 import UIKit
 
 public class NKLabel: UILabel {
+    public var edgeInsets: UIEdgeInsets = UIEdgeInsetsZero
+    public var fitBounds: Bool = false
+    
     public override func textRectForBounds(bounds: CGRect, limitedToNumberOfLines numberOfLines: Int) -> CGRect {
         var rect = super.textRectForBounds(bounds, limitedToNumberOfLines: numberOfLines)
         
-        rect.origin.y = self.bounds.origin.y
+        if self.fitBounds {
+            rect.origin.y = self.bounds.origin.y
+        }
         return rect
         
     }
     
     public override func drawTextInRect(rect: CGRect) {
-        var actualRect = self.textRectForBounds(rect, limitedToNumberOfLines: self.numberOfLines)
-        let height = self.nk_heightWithWidth(self.nk_width)
-        if  actualRect.size.height < height {
-           actualRect.size.height = height
+        var actualRect = rect
+        
+        if self.fitBounds {
+            actualRect = self.textRectForBounds(rect, limitedToNumberOfLines: self.numberOfLines)
+            
+            let height = self.nk_heightWithWidth(self.nk_width)
+            if  actualRect.size.height < height {
+                actualRect.size.height = height
+            }
         }
         
-        return super.drawTextInRect(actualRect)
+        return super.drawTextInRect(UIEdgeInsetsInsetRect(actualRect, self.edgeInsets))
     }
 }
 

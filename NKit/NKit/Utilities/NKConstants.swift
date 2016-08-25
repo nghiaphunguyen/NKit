@@ -33,7 +33,7 @@ public var nk_topViewController: UIViewController? {
     return nk_rootViewController?.nk_topViewController
 }
 
-public var nk_topVisibleVisibleViewController: UIViewController? {
+public var nk_topVisibleViewController: UIViewController? {
     return nk_rootViewController?.nk_topViewController?.nk_visibleViewController
 }
 

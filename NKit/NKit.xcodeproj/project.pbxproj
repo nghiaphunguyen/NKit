@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		18169D281D6F0D1F00DB8C89 /* Array+BinaryInsert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18169D271D6F0D1F00DB8C89 /* Array+BinaryInsert.swift */; };
 		18435CE61D4F4C2D009D6DE3 /* NKLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18435CE51D4F4C2D009D6DE3 /* NKLabel.swift */; };
 		18B47BAE1D2279DA00DA7F08 /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18B47BAD1D2279DA00DA7F08 /* RxSwift.framework */; };
 		18B47BB21D22853000DA7F08 /* UIViewController+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B47BB11D22853000DA7F08 /* UIViewController+Utils.swift */; };
@@ -53,6 +54,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		18169D271D6F0D1F00DB8C89 /* Array+BinaryInsert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+BinaryInsert.swift"; sourceTree = "<group>"; };
 		18435CE51D4F4C2D009D6DE3 /* NKLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKLabel.swift; sourceTree = "<group>"; };
 		18B47BAD1D2279DA00DA7F08 /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = ../Carthage/Build/iOS/RxSwift.framework; sourceTree = "<group>"; };
 		18B47BB11D22853000DA7F08 /* UIViewController+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Utils.swift"; sourceTree = "<group>"; };
@@ -114,6 +116,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		18169D261D6F0D1F00DB8C89 /* Array */ = {
+			isa = PBXGroup;
+			children = (
+				18169D271D6F0D1F00DB8C89 /* Array+BinaryInsert.swift */,
+			);
+			path = Array;
+			sourceTree = "<group>";
+		};
 		18D0ADE71D2243E7005C76E0 /* UIBarButtonItem */ = {
 			isa = PBXGroup;
 			children = (
@@ -178,6 +188,7 @@
 		42AF353A1C6EC0370046F454 /* NKit */ = {
 			isa = PBXGroup;
 			children = (
+				18169D261D6F0D1F00DB8C89 /* Array */,
 				18D0ADE71D2243E7005C76E0 /* UIBarButtonItem */,
 				42F4B1201CF4104800DC3FA9 /* UICollectionView */,
 				427055D71CC45FA400698E3D /* NKStackView */,
@@ -434,6 +445,7 @@
 				18D0ADF31D227801005C76E0 /* UIViewController+ChildViewController.swift in Sources */,
 				422DF2921C9B03B000421051 /* NKGradientView.swift in Sources */,
 				422DF28F1C9B03B000421051 /* NKContainerView.swift in Sources */,
+				18169D281D6F0D1F00DB8C89 /* Array+BinaryInsert.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
