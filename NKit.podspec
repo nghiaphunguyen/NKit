@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "NKit"
-  s.version      = "0.6.18"
+  s.version      = "0.7"
   s.summary      = "NKit provides some exteions of UIKit and Foundation classes"
   s.homepage     = "http://knacker.com"
   s.license      = "MIT"
@@ -8,7 +8,7 @@ Pod::Spec.new do |s|
   s.platform     = :ios, "8.0"
   s.ios.deployment_target = "8.0"
   s.source       = { :git => "https://github.com/nghiaphunguyen/NKit", :tag => s.version}
-  s.source_files  = "Classes", "NKit/NKit/**/*.{swift}"
+  s.source_files  = "Classes", "NKit/Source/**/*.{swift}"
   s.requires_arc = true
 
   s.dependency 'SnapKit'
