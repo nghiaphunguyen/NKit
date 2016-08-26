@@ -11,11 +11,25 @@ import RxSwift
 import NRxSwift
 
 public final class NKTimeChecker: AnyObject {
-    private(set) var latestSuccessfulCheckingTime: NSTimeInterval = 0
-    let timeInterval: NSTimeInterval
+    private(set) var latestSuccessfulCheckingTime: NSTimeInterval = 0 {
+        didSet {
+            guard let key = self.key else {
+                return
+            }
+            
+            NSUserDefaults.standardUserDefaults().setDouble(latestSuccessfulCheckingTime, forKey: key)
+        }
+    }
     
-    public init(timeInterval: NSTimeInterval) {
+    let timeInterval: NSTimeInterval
+    let key: String?
+    public init(timeInterval: NSTimeInterval, key: String? = nil) {
         self.timeInterval  = timeInterval
+        self.key = key
+        
+        if let key = self.key {
+            self.latestSuccessfulCheckingTime = NSUserDefaults.standardUserDefaults().doubleForKey(key)
+        }
     }
     
     public func checkTime() -> Observable<Bool> {

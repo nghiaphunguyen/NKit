@@ -21,7 +21,8 @@ public extension Array {
         }
     }
     
-    public mutating func nk_binaryInsert(element: Element, comparation: (element1: Element, element2: Element) -> Bool) {
+    public mutating func nk_binaryInsert(element: Element, comparation:
+        (element1: Element, element2: Element) -> Bool) {
         var lo = 0
         var hi = self.count - 1
         while lo <= hi {

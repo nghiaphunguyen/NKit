@@ -10,5 +10,6 @@ pod 'SnapKit'
 pod 'NRxSwift'
 pod 'OAStackView'
 pod 'ATTableView'
+pod 'RxCocoa'
 
 end

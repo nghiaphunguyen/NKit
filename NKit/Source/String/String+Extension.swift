@@ -9,6 +9,16 @@
 import UIKit
 import Foundation
 
+
+public func *(left: String, right: UInt) -> String {
+    var result = left
+    for _ in 0..<right {
+        result += left
+    }
+    
+    return result
+}
+
 infix operator ++ {}
 public func ++(left: String, right: String) -> String {
     return (left as NSString).stringByAppendingPathComponent(right)

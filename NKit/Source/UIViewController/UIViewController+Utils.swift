@@ -9,8 +9,8 @@
 import UIKit
 
 
-extension UIViewController {
-    var nk_visibleViewController: UIViewController? {
+public extension UIViewController {
+    public var nk_visibleViewController: UIViewController? {
         if let navigationController = self as? UINavigationController {
             return navigationController.visibleViewController?.nk_visibleViewController
         }
@@ -22,7 +22,7 @@ extension UIViewController {
         return self
     }
     
-    var nk_topViewController: UIViewController? {
+    public var nk_topViewController: UIViewController? {
         var viewController: UIViewController? = self
         while viewController?.presentedViewController != nil {
             viewController = viewController?.presentedViewController
@@ -31,7 +31,23 @@ extension UIViewController {
         return viewController
     }
     
-    var nk_topVisibleViewController: UIViewController? {
+    public var nk_topVisibleViewController: UIViewController? {
         return self.nk_topViewController?.nk_visibleViewController
     }
 }
+
+private var NKAssociatedGestureRecognizerDelegate: UInt8 = 0
+extension UIViewController{
+    
+    var nk_gestureRecognizerDelegate: NKGestureRecognizerDelegate? {
+        get {
+            return objc_getAssociatedObject(self, &NKAssociatedGestureRecognizerDelegate) as? NKGestureRecognizerDelegate
+        }
+        
+        set {
+            objc_setAssociatedObject(self, &NKAssociatedGestureRecognizerDelegate, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+        }
+    }
+}
+
+

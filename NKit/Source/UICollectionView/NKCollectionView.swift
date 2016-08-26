@@ -18,9 +18,50 @@ public protocol NKCollectionViewItemProtocol: class {
 }
 
 public class NKCollectionView: UICollectionView {
+    public enum Option {
+        case LineSpace(CGFloat)
+        case InterItemSpacing(CGFloat)
+        case ItemSize(CGSize)
+        case ScrollDirection(UICollectionViewScrollDirection)
+        case SectionInset(UIEdgeInsets)
+        case AutoFitCell(CGSize, NKDimension)
+    }
+    
     private lazy var preHeight: CGFloat? = nil
     
+    public convenience init(options: [Option]) {
+        let flowLayout = UICollectionViewFlowLayout()
+        
+        var dimension: NKDimension? = nil
+        for option in options {
+            switch option {
+            case .LineSpace(let value):
+                flowLayout.minimumLineSpacing = value
+            case .InterItemSpacing(let value):
+                flowLayout.minimumInteritemSpacing = value
+            case .ItemSize(let value):
+                flowLayout.itemSize = value
+            case .ScrollDirection(let value):
+                flowLayout.scrollDirection = value
+            case .SectionInset(let value):
+                flowLayout.sectionInset = value
+            case .AutoFitCell(let size, let value):
+                flowLayout.estimatedItemSize = size
+                dimension = value
+            }
+        }
+        
+        self.init(frame: CGRect.zero, collectionViewLayout: flowLayout)
+        self.autoFitCellDimension = dimension
+    }
+    
     public var isHeightToFit = false {
+        didSet {
+            self.setNeedsLayout()
+        }
+    }
+    
+    public var autoFitCellDimension: NKDimension? = nil {
         didSet {
             self.setNeedsLayout()
         }
@@ -102,6 +143,10 @@ extension NKCollectionView: UICollectionViewDataSource {
         }
         
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(typeName, forIndexPath: indexPath)
+        if let cell = cell as? NKBaseCollectionViewCell {
+            cell.autoFitDimension = self.autoFitCellDimension
+        }
+        
         mapping.configViewBlock(cell: cell, model: items[section][row], indexPath: indexPath)
         
         self.nk_animateForCellClosure?(cell: cell, indexPath: indexPath)

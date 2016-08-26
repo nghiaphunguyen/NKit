@@ -50,14 +50,23 @@ public extension UIViewController {
         return self
     }
     
+    private func setupHandleGestureForLeftButtonIfNeed(likeBackButton: Bool) {
+        if likeBackButton && self.navigationController?.respondsToSelector(Selector("interactivePopGestureRecognizer")) != nil {
+            self.navigationController?.interactivePopGestureRecognizer?.enabled = true
+            if self.nk_gestureRecognizerDelegate == nil {
+                self.nk_gestureRecognizerDelegate = NKGestureRecognizerDelegate()
+            }
+            
+            self.navigationController?.interactivePopGestureRecognizer?.delegate = self.nk_gestureRecognizerDelegate
+        }
+    }
+    
     public func nk_setLeftBarButton(text: String,
                                     color: UIColor = UIColor.blackColor(),
                                     highlightColor: UIColor = UIColor.lightGrayColor(),
                                     font: UIFont = UIFont.systemFontOfSize(14),
-                                    selector: Selector,
-                                    likeBackButton: Bool = false) -> UIViewController {
-        self.navigationItem.hidesBackButton = true
-        
+                                    selector: Selector = #selector(UIViewController.nk_defaultTappedLeftBarButton),
+                                    likeBackButton: Bool = true) -> UIViewController {
         let textAttributes = [NSForegroundColorAttributeName : color,
                               NSFontAttributeName : font]
         let highlightTextAttributes = [NSForegroundColorAttributeName : highlightColor,
@@ -71,12 +80,7 @@ public extension UIViewController {
         self.navigationItem.leftBarButtonItem?.setTitleTextAttributes(textAttributes, forState: UIControlState.Normal)
         self.navigationItem.leftBarButtonItem?.setTitleTextAttributes(highlightTextAttributes, forState: UIControlState.Highlighted)
         
-        if likeBackButton
-            && self.navigationController?.respondsToSelector(Selector("interactivePopGestureRecognizer")) != nil {
-            self.navigationController?.interactivePopGestureRecognizer?.enabled = true
-            self.navigationController?.interactivePopGestureRecognizer?.delegate = (self as! UIGestureRecognizerDelegate)
-            // TODO: figure out way to add recognizer touch gesture
-        }
+        self.setupHandleGestureForLeftButtonIfNeed(likeBackButton)
         
         return self
     }
@@ -85,13 +89,7 @@ public extension UIViewController {
                                     selector: Selector = #selector(UIViewController.nk_defaultTappedLeftBarButton),
                                     likeBackButton: Bool = true) -> UIViewController {
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: image, style: UIBarButtonItemStyle.Plain, target: self, action: selector)
-        
-        if let delegate = self as? UIGestureRecognizerDelegate where likeBackButton && self.navigationController?.respondsToSelector(Selector("interactivePopGestureRecognizer")) != nil {
-            self.navigationController?.interactivePopGestureRecognizer?.enabled = true
-            self.navigationController?.interactivePopGestureRecognizer?.delegate = delegate
-            // TODO: figure out way to add recognizer touch gesture
-        }
-        
+        self.setupHandleGestureForLeftButtonIfNeed(likeBackButton)
         return self
     }
     
@@ -101,11 +99,7 @@ public extension UIViewController {
         
         self.navigationItem.leftBarButtonItems = [UIBarButtonItem(image: image, style: UIBarButtonItemStyle.Plain, target: self, action: selector)] + otherItems
         
-        if let delegate = self as? UIGestureRecognizerDelegate where likeBackButton && self.navigationController?.respondsToSelector(Selector("interactivePopGestureRecognizer")) != nil {
-            self.navigationController?.interactivePopGestureRecognizer?.enabled = true
-            self.navigationController?.interactivePopGestureRecognizer?.delegate = delegate
-            // TODO: figure out way to add recognizer touch gesture
-        }
+        self.setupHandleGestureForLeftButtonIfNeed(likeBackButton)
         
         return self
     }
