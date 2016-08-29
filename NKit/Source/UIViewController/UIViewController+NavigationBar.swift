@@ -50,8 +50,8 @@ public extension UIViewController {
         return self
     }
     
-    private func setupHandleGestureForLeftButtonIfNeed(likeBackButton: Bool) {
-        if likeBackButton && self.navigationController?.respondsToSelector(Selector("interactivePopGestureRecognizer")) != nil {
+    private func setupHandleGestureForLeftButtonIfNeed(enablePopGesture: Bool) {
+        if enablePopGesture && self.navigationController?.respondsToSelector(Selector("interactivePopGestureRecognizer")) != nil {
             self.navigationController?.interactivePopGestureRecognizer?.enabled = true
             if self.nk_gestureRecognizerDelegate == nil {
                 self.nk_gestureRecognizerDelegate = NKGestureRecognizerDelegate()
@@ -66,7 +66,7 @@ public extension UIViewController {
                                     highlightColor: UIColor = UIColor.lightGrayColor(),
                                     font: UIFont = UIFont.systemFontOfSize(14),
                                     selector: Selector = #selector(UIViewController.nk_defaultTappedLeftBarButton),
-                                    likeBackButton: Bool = true) -> UIViewController {
+                                    enablePopGesture: Bool = true) -> UIViewController {
         let textAttributes = [NSForegroundColorAttributeName : color,
                               NSFontAttributeName : font]
         let highlightTextAttributes = [NSForegroundColorAttributeName : highlightColor,
@@ -80,26 +80,26 @@ public extension UIViewController {
         self.navigationItem.leftBarButtonItem?.setTitleTextAttributes(textAttributes, forState: UIControlState.Normal)
         self.navigationItem.leftBarButtonItem?.setTitleTextAttributes(highlightTextAttributes, forState: UIControlState.Highlighted)
         
-        self.setupHandleGestureForLeftButtonIfNeed(likeBackButton)
+        self.setupHandleGestureForLeftButtonIfNeed(enablePopGesture)
         
         return self
     }
     
     public func nk_setLeftBarButton(image: UIImage?,
                                     selector: Selector = #selector(UIViewController.nk_defaultTappedLeftBarButton),
-                                    likeBackButton: Bool = true) -> UIViewController {
+                                    enablePopGesture: Bool = true) -> UIViewController {
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: image, style: UIBarButtonItemStyle.Plain, target: self, action: selector)
-        self.setupHandleGestureForLeftButtonIfNeed(likeBackButton)
+        self.setupHandleGestureForLeftButtonIfNeed(enablePopGesture)
         return self
     }
     
     public func nk_setLeftBarButtons(image: UIImage?, otherItems: [UIBarButtonItem],
                                      selector: Selector = #selector(UIViewController.nk_defaultTappedLeftBarButton),
-                                     likeBackButton: Bool = true) -> UIViewController {
+                                     enablePopGesture: Bool = true) -> UIViewController {
         
         self.navigationItem.leftBarButtonItems = [UIBarButtonItem(image: image, style: UIBarButtonItemStyle.Plain, target: self, action: selector)] + otherItems
         
-        self.setupHandleGestureForLeftButtonIfNeed(likeBackButton)
+        self.setupHandleGestureForLeftButtonIfNeed(enablePopGesture)
         
         return self
     }

@@ -14,8 +14,7 @@ final class TestingCollectionViewController: UIViewController {
     
     let collectionView: NKCollectionView = {
        let collectionView = NKCollectionView(options: [
-        .LineSpace(5),
-        .AutoFitCell(CGSizeMake(NKScreenSize.Current.width / 2 - 10, 1), .Height)
+        .AutoFitCell(CGSizeMake(NKScreenSize.Current.width, 1), .Height)
         ])
         
         collectionView.registerView(CollectionViewCell.self)

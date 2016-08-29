@@ -31,7 +31,9 @@ public class NKCollectionView: UICollectionView {
     
     public convenience init(options: [Option]) {
         let flowLayout = UICollectionViewFlowLayout()
-        
+        flowLayout.minimumLineSpacing = 0
+        flowLayout.minimumInteritemSpacing = 0
+        flowLayout.sectionInset = UIEdgeInsetsZero
         var dimension: NKDimension? = nil
         for option in options {
             switch option {
