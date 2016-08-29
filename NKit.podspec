@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "NKit"
-  s.version      = "0.7"
+  s.version      = "0.7.1"
   s.summary      = "NKit provides some exteions of UIKit and Foundation classes"
   s.homepage     = "http://knacker.com"
   s.license      = "MIT"
