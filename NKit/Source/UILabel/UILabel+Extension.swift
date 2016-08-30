@@ -7,7 +7,7 @@
 import UIKit
 
 public extension UILabel {
-    public convenience init(text: String? = nil,
+    public convenience init(text: String?,
         font: UIFont = UIFont.systemFontOfSize(14),
         color: UIColor = UIColor.blackColor(),
         isSizeToFit: Bool = true,
