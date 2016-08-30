@@ -25,11 +25,35 @@ public func ++(left: String, right: String) -> String {
 }
 
 public extension String {
+    private enum RXPattern: String {
+        case Email = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}"
+        case Number = "^[0-9]*?$"
+    }
+    
+    public var nk_uppercaseFirstCharacter: String {
+        var string = self
+        if string.characters.count < 1 {
+            return ""
+        }
+        
+        string.replaceRange(string.startIndex...string.startIndex, with: string[0...0].uppercaseString)
+        return string
+    }
+    
     public subscript(r: Range<Int>) -> String {
         let startIndex = self.startIndex.advancedBy(min(self.characters.count, r.startIndex))
         let endIndex = self.startIndex.advancedBy(min(self.characters.count, r.endIndex))
         
         return self[startIndex..<endIndex]
+    }
+    
+    public func nk_match(pattern: String) -> Bool {
+        do {
+            let regex = try NSRegularExpression(pattern: pattern, options: [.CaseInsensitive])
+            return regex.firstMatchInString(self, options: NSMatchingOptions(rawValue: 0), range: NSMakeRange(0, characters.count)) != nil
+        } catch {
+            return false
+        }
     }
 }
 
@@ -40,16 +64,12 @@ public extension String {
 }
 
 public extension String {
-    public var isValidEmail: Bool {
-        if self.characters.count == 0 {
-            return false
-        }
-        
-        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}"
-        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
-        let result = emailTest.evaluateWithObject(self)
-        
-        return result
+    public var nk_isEmail: Bool {
+        return self.nk_match(RXPattern.Email.rawValue)
+    }
+    
+    public var nk_isNumber: Bool {
+        return self.nk_match(RXPattern.Number.rawValue)
     }
 }
 

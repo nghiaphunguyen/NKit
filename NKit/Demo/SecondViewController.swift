@@ -12,7 +12,10 @@ import RxCocoa
 
 class SecondViewController: UIViewController {
     
-    let button = UIButton(title: "nghia")
+    lazy var button: UIButton = {
+       let button = UIButton(title: "nghia")
+        return button
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()

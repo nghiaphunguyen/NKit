@@ -36,5 +36,12 @@ public class NKLabel: UILabel {
         
         return super.drawTextInRect(UIEdgeInsetsInsetRect(actualRect, self.edgeInsets))
     }
+    
+    public override func intrinsicContentSize() -> CGSize {
+        var contentSize = super.intrinsicContentSize()
+        contentSize.width += self.edgeInsets.left + self.edgeInsets.right
+        contentSize.height += self.edgeInsets.top + self.edgeInsets.bottom
+        return contentSize
+    }
 }
 

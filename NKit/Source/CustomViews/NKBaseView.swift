@@ -25,6 +25,5 @@ public class NKBaseView: UIView {
     }
     
     public func setupRx() {
-        
     }
 }

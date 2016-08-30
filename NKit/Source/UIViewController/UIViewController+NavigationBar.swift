@@ -223,6 +223,8 @@ public extension UINavigationBar {
         }
     }
     
+    
+    
     public func nk_transparentBar(keepLineBreak: Bool = false) -> UINavigationBar {
         self.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
         self.translucent = true
