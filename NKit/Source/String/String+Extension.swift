@@ -9,7 +9,6 @@
 import UIKit
 import Foundation
 
-
 public func *(left: String, right: UInt) -> String {
     var result = left
     for _ in 0..<right {
@@ -54,6 +53,24 @@ public extension String {
         } catch {
             return false
         }
+    }
+    
+    public func nk_removeFirstSubstring(substring: String) -> String {
+        var result = self
+        if let range = result.rangeOfString(substring) {
+            result.removeRange(range)
+        }
+        
+        return result
+    }
+    
+    public func nk_removeSubstring(substring: String) -> String {
+        var result = self
+        while let range = result.rangeOfString(substring) {
+            result.removeRange(range)
+        }
+        
+        return result
     }
 }
 
