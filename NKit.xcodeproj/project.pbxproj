@@ -20,7 +20,6 @@
 		1828D0CF1D6F1799007D0933 /* NKTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1828D0911D6F1799007D0933 /* NKTextField.swift */; };
 		1828D0D01D6F1799007D0933 /* NKTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1828D0921D6F1799007D0933 /* NKTextView.swift */; };
 		1828D0D11D6F1799007D0933 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1828D0931D6F1799007D0933 /* Info.plist */; };
-		1828D0D21D6F1799007D0933 /* NKStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1828D0961D6F1799007D0933 /* NKStackView.swift */; };
 		1828D0D31D6F1799007D0933 /* NKBaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1828D09A1D6F1799007D0933 /* NKBaseTableViewCell.swift */; };
 		1828D0D41D6F1799007D0933 /* NKTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1828D09B1D6F1799007D0933 /* NKTableView.swift */; };
 		1828D0D51D6F1799007D0933 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1828D09D1D6F1799007D0933 /* String+Extension.swift */; };
@@ -79,7 +78,6 @@
 		1828D0921D6F1799007D0933 /* NKTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKTextView.swift; sourceTree = "<group>"; };
 		1828D0931D6F1799007D0933 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1828D0941D6F1799007D0933 /* NKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NKit.h; sourceTree = "<group>"; };
-		1828D0961D6F1799007D0933 /* NKStackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKStackView.swift; sourceTree = "<group>"; };
 		1828D09A1D6F1799007D0933 /* NKBaseTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKBaseTableViewCell.swift; sourceTree = "<group>"; };
 		1828D09B1D6F1799007D0933 /* NKTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKTableView.swift; sourceTree = "<group>"; };
 		1828D09D1D6F1799007D0933 /* String+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
@@ -156,7 +154,6 @@
 				1828D0881D6F1799007D0933 /* CustomViews */,
 				1828D0931D6F1799007D0933 /* Info.plist */,
 				1828D0941D6F1799007D0933 /* NKit.h */,
-				1828D0951D6F1799007D0933 /* NKStackView */,
 				1828D0991D6F1799007D0933 /* NKTableView */,
 				1828D09C1D6F1799007D0933 /* String */,
 				1828D09E1D6F1799007D0933 /* UIAlertController */,
@@ -206,14 +203,6 @@
 				1828D0921D6F1799007D0933 /* NKTextView.swift */,
 			);
 			path = CustomViews;
-			sourceTree = "<group>";
-		};
-		1828D0951D6F1799007D0933 /* NKStackView */ = {
-			isa = PBXGroup;
-			children = (
-				1828D0961D6F1799007D0933 /* NKStackView.swift */,
-			);
-			path = NKStackView;
 			sourceTree = "<group>";
 		};
 		1828D0991D6F1799007D0933 /* NKTableView */ = {
@@ -551,7 +540,6 @@
 				1828D0EB1D6F1799007D0933 /* UIViewController+NRx.swift in Sources */,
 				1828D0EA1D6F1799007D0933 /* UIViewController+NavigationBar.swift in Sources */,
 				1828D0E91D6F1799007D0933 /* UIViewController+Loading.swift in Sources */,
-				1828D0D21D6F1799007D0933 /* NKStackView.swift in Sources */,
 				1828D0DE1D6F1799007D0933 /* UIImageView+Extension.swift in Sources */,
 				1828D0EF1D6F1799007D0933 /* NKUtilities.swift in Sources */,
 				1828D0F01D6F1799007D0933 /* NKTimeChecker.swift in Sources */,
