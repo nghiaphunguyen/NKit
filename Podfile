@@ -8,7 +8,6 @@ target 'NKit' do
   # Pods for NKit
 pod 'SnapKit'
 pod 'NRxSwift'
-pod 'OAStackView'
 pod 'ATTableView'
 pod 'RxCocoa'
 
