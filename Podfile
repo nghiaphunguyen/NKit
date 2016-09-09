@@ -10,5 +10,6 @@ pod 'SnapKit'
 pod 'NRxSwift'
 pod 'ATTableView'
 pod 'RxCocoa'
+pod 'RxGesture'
 
 end

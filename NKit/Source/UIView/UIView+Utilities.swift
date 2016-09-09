@@ -55,3 +55,39 @@ public extension UIView {
         return image
     }
 }
+
+public extension UIView {
+    public func nk_autoHideKeyboardWhenTapOutside() {
+        self.rx_gesture(.Tap)
+            .bindNext({[unowned self]_ in
+                self.endEditing(true)})
+            .addDisposableTo(self.nk_disposeBag)
+    }
+    
+    public var nk_firstSubviewResponse: UIView? {
+        if self.isFirstResponder() {
+            return self
+        }
+        
+        for view in self.subviews {
+            if let v = view.nk_firstSubviewResponse {
+                return v
+            }
+        }
+        
+        return nil
+    }
+    
+    public func nk_findAllSubviews(types types: [AnyClass]) -> [UIView] {
+        var result = [UIView]()
+        
+        if types.contains({self.isKindOfClass($0) })  {
+            result += [self]
+        }
+        
+        for view in self.subviews {
+            result += view.nk_findAllSubviews(types: types)
+        }
+        return result
+    }
+}

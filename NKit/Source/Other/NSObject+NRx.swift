@@ -11,7 +11,7 @@ import RxSwift
 
 private var NKAssociativeKeyDisposeBag: UInt8 = 0
 
-public extension UIView {
+public extension NSObject {
     public var nk_disposeBag: DisposeBag {
         get {
             guard let bag = objc_getAssociatedObject(self, &NKAssociativeKeyDisposeBag) as? DisposeBag else {
