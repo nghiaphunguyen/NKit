@@ -54,6 +54,11 @@
 		183D0DA51D8285FC0084754E /* NSNotificationCenter+NRx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183D0DA41D8285FC0084754E /* NSNotificationCenter+NRx.swift */; };
 		183D0DA91D82ADCC0084754E /* TestKeyboardAutoScroll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183D0DA81D82ADCC0084754E /* TestKeyboardAutoScroll.swift */; };
 		183D0DAC1D82BF360084754E /* UIScrollView+AutoScrolling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183D0DAB1D82BF360084754E /* UIScrollView+AutoScrolling.swift */; };
+		183D0DAF1D8505930084754E /* NKLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183D0DAE1D8505930084754E /* NKLocationManager.swift */; };
+		183D0DB11D855D050084754E /* NKPullingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183D0DB01D855D050084754E /* NKPullingViewController.swift */; };
+		183D0DB31D8579DA0084754E /* NKAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183D0DB21D8579DA0084754E /* NKAnimator.swift */; };
+		183D0DB51D8595E50084754E /* OneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183D0DB41D8595E50084754E /* OneViewController.swift */; };
+		183D0DB71D85C94C0084754E /* NKNavigationAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183D0DB61D85C94C0084754E /* NKNavigationAnimator.swift */; };
 		18703F721D75D05200BFB829 /* NSDate+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18703F711D75D05200BFB829 /* NSDate+Extensions.swift */; };
 		189C3BE71D7090960057F068 /* NKGestureRecognizerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189C3BE61D7090960057F068 /* NKGestureRecognizerDelegate.swift */; };
 		189C3BE91D7092BE0057F068 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189C3BE81D7092BE0057F068 /* SecondViewController.swift */; };
@@ -114,6 +119,11 @@
 		183D0DA41D8285FC0084754E /* NSNotificationCenter+NRx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSNotificationCenter+NRx.swift"; sourceTree = "<group>"; };
 		183D0DA81D82ADCC0084754E /* TestKeyboardAutoScroll.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestKeyboardAutoScroll.swift; sourceTree = "<group>"; };
 		183D0DAB1D82BF360084754E /* UIScrollView+AutoScrolling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIScrollView+AutoScrolling.swift"; sourceTree = "<group>"; };
+		183D0DAE1D8505930084754E /* NKLocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKLocationManager.swift; sourceTree = "<group>"; };
+		183D0DB01D855D050084754E /* NKPullingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKPullingViewController.swift; sourceTree = "<group>"; };
+		183D0DB21D8579DA0084754E /* NKAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKAnimator.swift; sourceTree = "<group>"; };
+		183D0DB41D8595E50084754E /* OneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OneViewController.swift; sourceTree = "<group>"; };
+		183D0DB61D85C94C0084754E /* NKNavigationAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKNavigationAnimator.swift; sourceTree = "<group>"; };
 		18703F711D75D05200BFB829 /* NSDate+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+Extensions.swift"; sourceTree = "<group>"; };
 		189C3BE61D7090960057F068 /* NKGestureRecognizerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKGestureRecognizerDelegate.swift; sourceTree = "<group>"; };
 		189C3BE81D7092BE0057F068 /* SecondViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
@@ -152,6 +162,7 @@
 		1828D0831D6F1799007D0933 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				183D0DAD1D8505870084754E /* Manager */,
 				183D0DAA1D82BF360084754E /* UIScrollView */,
 				183D0DA11D8285C40084754E /* Other */,
 				18703F701D75D04300BFB829 /* NSDate */,
@@ -174,6 +185,7 @@
 				1828D0B21D6F1799007D0933 /* UIView */,
 				1828D0B91D6F1799007D0933 /* UIViewController */,
 				1828D0C01D6F1799007D0933 /* Utilities */,
+				183D0DB21D8579DA0084754E /* NKAnimator.swift */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -207,6 +219,7 @@
 				1828D0901D6F1799007D0933 /* NKPopupView.swift */,
 				1828D0911D6F1799007D0933 /* NKTextField.swift */,
 				1828D0921D6F1799007D0933 /* NKTextView.swift */,
+				183D0DB01D855D050084754E /* NKPullingViewController.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -335,6 +348,7 @@
 				1828D0C41D6F1799007D0933 /* NKTimeChecker.swift */,
 				1828D0F61D6FF23D007D0933 /* NKDemension.swift */,
 				189C3BE61D7090960057F068 /* NKGestureRecognizerDelegate.swift */,
+				183D0DB61D85C94C0084754E /* NKNavigationAnimator.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -345,6 +359,7 @@
 				1828D0F41D6FEA96007D0933 /* TestingCollectionViewController.swift */,
 				189C3BE81D7092BE0057F068 /* SecondViewController.swift */,
 				183D0DA81D82ADCC0084754E /* TestKeyboardAutoScroll.swift */,
+				183D0DB41D8595E50084754E /* OneViewController.swift */,
 			);
 			path = Demo;
 			sourceTree = "<group>";
@@ -364,6 +379,14 @@
 				183D0DAB1D82BF360084754E /* UIScrollView+AutoScrolling.swift */,
 			);
 			path = UIScrollView;
+			sourceTree = "<group>";
+		};
+		183D0DAD1D8505870084754E /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				183D0DAE1D8505930084754E /* NKLocationManager.swift */,
+			);
+			path = Manager;
 			sourceTree = "<group>";
 		};
 		18703F701D75D04300BFB829 /* NSDate */ = {
@@ -543,6 +566,7 @@
 				1828D0E71D6F1799007D0933 /* UIViewController+ChildViewController.swift in Sources */,
 				183D0DA31D8285C40084754E /* NSObject+NRx.swift in Sources */,
 				1828D0CE1D6F1799007D0933 /* NKPopupView.swift in Sources */,
+				183D0DB11D855D050084754E /* NKPullingViewController.swift in Sources */,
 				1828D0C51D6F1799007D0933 /* Array+BinaryInsert.swift in Sources */,
 				1828D0C81D6F1799007D0933 /* NKCircleImageView.swift in Sources */,
 				1828D0CA1D6F1799007D0933 /* NKCornerView.swift in Sources */,
@@ -555,6 +579,7 @@
 				183D0DA91D82ADCC0084754E /* TestKeyboardAutoScroll.swift in Sources */,
 				1828D0DD1D6F1799007D0933 /* UIImage+Resize.swift in Sources */,
 				1828D0CC1D6F1799007D0933 /* NKGradientView.swift in Sources */,
+				183D0DB71D85C94C0084754E /* NKNavigationAnimator.swift in Sources */,
 				1828D0EE1D6F1799007D0933 /* NKScreenSize.swift in Sources */,
 				1828D0C61D6F1799007D0933 /* CALayer+Closure.swift in Sources */,
 				1828D0C71D6F1799007D0933 /* NKBaseView.swift in Sources */,
@@ -567,7 +592,9 @@
 				1828D0E91D6F1799007D0933 /* UIViewController+Loading.swift in Sources */,
 				1828D0DE1D6F1799007D0933 /* UIImageView+Extension.swift in Sources */,
 				1828D0EF1D6F1799007D0933 /* NKUtilities.swift in Sources */,
+				183D0DB31D8579DA0084754E /* NKAnimator.swift in Sources */,
 				1828D0F01D6F1799007D0933 /* NKTimeChecker.swift in Sources */,
+				183D0DB51D8595E50084754E /* OneViewController.swift in Sources */,
 				1828D0D51D6F1799007D0933 /* String+Extension.swift in Sources */,
 				1828D0E61D6F1799007D0933 /* UIView+Utilities.swift in Sources */,
 				1828D0DC1D6F1799007D0933 /* UIImage+Color.swift in Sources */,
@@ -586,6 +613,7 @@
 				1828D0CF1D6F1799007D0933 /* NKTextField.swift in Sources */,
 				1828D0D61D6F1799007D0933 /* UIAlertController+Extension.swift in Sources */,
 				1828D0DF1D6F1799007D0933 /* UILabel+Extension.swift in Sources */,
+				183D0DAF1D8505930084754E /* NKLocationManager.swift in Sources */,
 				1828D0E31D6F1799007D0933 /* UIView+Frame.swift in Sources */,
 				1828D0D01D6F1799007D0933 /* NKTextView.swift in Sources */,
 				18A1DAC61D6F167D00D566C2 /* AppDelegate.swift in Sources */,

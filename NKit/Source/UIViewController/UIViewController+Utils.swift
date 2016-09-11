@@ -34,18 +34,40 @@ public extension UIViewController {
     public var nk_topVisibleViewController: UIViewController? {
         return self.nk_topViewController?.nk_visibleViewController
     }
+    
+    public var nk_navigationAnimator: NKNavigationAnimator {
+        if self._nk_navigationAnimator == nil {
+            self._nk_navigationAnimator = NKNavigationAnimator(type: self.dynamicType)
+        }
+        
+        return self._nk_navigationAnimator!
+    }
 }
 
-private var NKAssociatedGestureRecognizerDelegate: UInt8 = 0
+private struct Identifier {
+    static var GestureRecognizerDelegate: UInt8 = 0
+    static var NavigationAnimator: UInt8 = 1
+}
+
 extension UIViewController{
     
     var nk_gestureRecognizerDelegate: NKGestureRecognizerDelegate? {
         get {
-            return objc_getAssociatedObject(self, &NKAssociatedGestureRecognizerDelegate) as? NKGestureRecognizerDelegate
+            return objc_getAssociatedObject(self, &Identifier.GestureRecognizerDelegate) as? NKGestureRecognizerDelegate
         }
         
         set {
-            objc_setAssociatedObject(self, &NKAssociatedGestureRecognizerDelegate, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+            objc_setAssociatedObject(self, &Identifier.GestureRecognizerDelegate, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+        }
+    }
+    
+    private var _nk_navigationAnimator: NKNavigationAnimator? {
+        get {
+            return objc_getAssociatedObject(self, &Identifier.NavigationAnimator) as? NKNavigationAnimator
+        }
+        
+        set {
+            objc_setAssociatedObject(self, &Identifier.NavigationAnimator, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         }
     }
 }

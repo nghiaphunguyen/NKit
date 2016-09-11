@@ -70,12 +70,15 @@ class TestKeyboardAutoScrollingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.nk_setBarTintColor(UIColor.whiteColor())
+        
         self.view.backgroundColor = UIColor.blackColor()
         self.automaticallyAdjustsScrollViewInsets = false
         
         self.view.addSubview(self.scrollView)
         self.scrollView.snp_makeConstraints { (make) in
-            make.edges.equalTo(0)
+            make.leading.trailing.bottom.equalTo(0)
+            make.top.equalTo(0)
         }
         self.view.nk_autoHideKeyboardWhenTapOutside()
     }
