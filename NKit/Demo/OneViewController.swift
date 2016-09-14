@@ -9,7 +9,6 @@
 import Foundation
 import UIKit
 import RxSwift
-import RxGesture
 
 class OneViewController: UIViewController {
     
@@ -19,6 +18,40 @@ class OneViewController: UIViewController {
         return button
     }()
     
+    lazy var dismissButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Dismiss", forState: .Normal)
+        return button
+    }()
+    
+    lazy var pushAnimator = NKAnimator(duration: 0.5, transitionType: .Push, animationType: .Both , animations: { (animator) in
+        animator.toView.alpha = 0
+        
+        UIView.animateWithDuration(animator.duration, animations: {
+            animator.toView.alpha = 1
+            }, completion: { (_) in
+                animator.completeTransition()
+        })
+    })
+    
+    lazy var dismissAnimator = NKAnimator(duration: 0.5, transitionType: .Pop, animationType: .Default, animations: { (animator) in
+        UIView.animateWithDuration(animator.duration, animations: {
+            animator.fromView.alpha = 0
+            }, completion: { (_) in
+                animator.completeTransition()
+        })
+    })
+    
+//    init() {
+//        super.init(nibName: nil, bundle: nil)
+//        
+//        modalPresentationStyle = UIModalPresentationStyle.Custom
+//    }
+//    
+//    required init?(coder aDecoder: NSCoder) {
+//        fatalError("init(coder:) has not been implemented")
+//    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -27,8 +60,18 @@ class OneViewController: UIViewController {
             make.center.equalTo(0)
         }
         
+        self.view.addSubview(self.dismissButton)
+        self.dismissButton.snp_makeConstraints { (make) in
+            make.top.equalTo(0).offset(100)
+            make.centerX.equalTo(0)
+        }
+        
         self.button.rx_tap.bindNext { 
             self.navigationController?.pushViewController(TestKeyboardAutoScrollingViewController(), animated: true)
+        }.addDisposableTo(self.nk_disposeBag)
+        
+        self.dismissButton.rx_tap.bindNext { 
+            self.dismissViewControllerAnimated(true, completion: nil)
         }.addDisposableTo(self.nk_disposeBag)
         
         self.view.backgroundColor = UIColor.blueColor()
@@ -38,7 +81,7 @@ class OneViewController: UIViewController {
             
             if gesture.state == .Began {
                 self.startX = location.x
-                self.nk_navigationAnimator.pushInteractiveAnimator = UIPercentDrivenInteractiveTransition()
+                self.pushAnimator.startInteractiveTransition()
                 self.navigationController?.pushViewController(TestKeyboardAutoScrollingViewController(), animated: true)
             }
             
@@ -46,12 +89,11 @@ class OneViewController: UIViewController {
                 var d = (location.x - self.startX)
                 d = max(0, min(1, d / 100))
                 print("update interactiveAnimate=\(d)")
-                self.nk_navigationAnimator.pushInteractiveAnimator?.updateInteractiveTransition(d)
+                self.pushAnimator.updateInteractiveTransition(d)
             }
             
             if gesture.state == .Cancelled {
-                self.nk_navigationAnimator.pushInteractiveAnimator?.cancelInteractiveTransition()
-                self.nk_navigationAnimator.pushInteractiveAnimator = nil
+                self.pushAnimator.cancelInteractiveTransition()
             }
             
             if gesture.state == .Ended {
@@ -60,12 +102,10 @@ class OneViewController: UIViewController {
                 let velocity = gesture.velocityInView(self.view.window).x
                 print("update interactiveAnimate=\(d) velocity=\(velocity)")
                 if d > 0.7 || velocity  > 300 {
-                    self.nk_navigationAnimator.pushInteractiveAnimator?.finishInteractiveTransition()
+                    self.pushAnimator.finishInteractiveTransition()
                 } else {
-                    self.nk_navigationAnimator.pushInteractiveAnimator?.cancelInteractiveTransition()
+                    self.pushAnimator.cancelInteractiveTransition()
                 }
-                
-                self.nk_navigationAnimator.pushInteractiveAnimator = nil
             }
         }.addDisposableTo(self.nk_disposeBag)
         
@@ -77,19 +117,26 @@ class OneViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.nk_navigationAnimator.pushAnimator = NKAnimator(duration: 0.5, animations: { (animator) in
-            animator.toView.alpha = 0
-            
-            UIView.animateWithDuration(animator.duration, animations: { 
-                animator.toView.alpha = 1
-                }, completion: { (_) in
-                    animator.completeTransition()
-            })
-        })
+        self.navigationController?.nk_transition[NKAnyViewController.self >> TestKeyboardAutoScrollingViewController.self] = self.pushAnimator
         
-        self.navigationController?.delegate = self.nk_navigationAnimator
-        self.nk_setBarTintColor(UIColor.whiteColor())
+        self.navigationController?.nk_transition[self << NKAnyViewController.self] = self.dismissAnimator
+
+        
+        self.navigationController?.nk_transition[self >> TwoViewController.self] = self.pushAnimator.clone()
+        
+        self.navigationController?.delegate = self.navigationController?.nk_transition
+        self.nk_setBarTintColor(UIColor.whiteColor()).nk_setRightBarButton("TwoViewController", selector: #selector(OneViewController.moveToTwoViewController))
     }
     
+    func moveToTwoViewController() {
+        self.navigationController?.pushViewController(TwoViewController(), animated: true)
+    }
     
+}
+
+class TestController: UIPresentationController {
+    
+    override func frameOfPresentedViewInContainerView() -> CGRect {
+        return self.containerView?.bounds.insetBy(dx: 100, dy: 100) ?? CGRect.zero
+    }
 }

@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import RxGesture
 
 public extension UIScrollView {
     public func nk_autoSrollWithKeyboardBehaviour(offsetY: CGFloat = 10) {

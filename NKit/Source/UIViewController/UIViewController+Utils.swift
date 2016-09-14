@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 public extension UIViewController {
     public var nk_visibleViewController: UIViewController? {
         if let navigationController = self as? UINavigationController {
@@ -35,22 +34,41 @@ public extension UIViewController {
         return self.nk_topViewController?.nk_visibleViewController
     }
     
-    public var nk_navigationAnimator: NKNavigationAnimator {
-        if self._nk_navigationAnimator == nil {
-            self._nk_navigationAnimator = NKNavigationAnimator(type: self.dynamicType)
+    public var nk_sourceViewController: UIViewController? {
+        return self.presentingViewController?._nk_sourceViewControllerFromViewController(self)
+    }
+    
+    private func _nk_sourceViewControllerFromViewController(viewController: UIViewController) -> UIViewController? {
+        if let navigationController = self as? UINavigationController {
+            for i in (navigationController.viewControllers.count-1).stride(to: 0, by: -1) {
+                if let sourceViewController = navigationController.viewControllers[i]._nk_sourceViewControllerFromViewController(viewController) {
+                    return sourceViewController
+                }
+            }
         }
         
-        return self._nk_navigationAnimator!
+        if let tabController = self as? UITabBarController, viewControllers = tabController.viewControllers {
+            for i in (viewControllers.count-1).stride(to: 0, by: -1) {
+                if let sourceViewController = viewControllers[i]._nk_sourceViewControllerFromViewController(viewController) {
+                    return sourceViewController
+                }
+            }
+        }
+        
+        if self.presentedViewController == viewController {
+            return self
+        }
+        
+        return nil
     }
 }
 
 private struct Identifier {
-    static var GestureRecognizerDelegate: UInt8 = 0
-    static var NavigationAnimator: UInt8 = 1
+    static var GestureRecognizerDelegate: UInt8 = 1
 }
 
 extension UIViewController{
-    
+        
     var nk_gestureRecognizerDelegate: NKGestureRecognizerDelegate? {
         get {
             return objc_getAssociatedObject(self, &Identifier.GestureRecognizerDelegate) as? NKGestureRecognizerDelegate
@@ -58,16 +76,6 @@ extension UIViewController{
         
         set {
             objc_setAssociatedObject(self, &Identifier.GestureRecognizerDelegate, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-        }
-    }
-    
-    private var _nk_navigationAnimator: NKNavigationAnimator? {
-        get {
-            return objc_getAssociatedObject(self, &Identifier.NavigationAnimator) as? NKNavigationAnimator
-        }
-        
-        set {
-            objc_setAssociatedObject(self, &Identifier.NavigationAnimator, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         }
     }
 }
