@@ -58,6 +58,7 @@
 		183D0DB11D855D050084754E /* NKPullingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183D0DB01D855D050084754E /* NKPullingViewController.swift */; };
 		183D0DB51D8595E50084754E /* OneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183D0DB41D8595E50084754E /* OneViewController.swift */; };
 		183D0DBB1D86472E0084754E /* UIView+Gesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183D0DBA1D86472E0084754E /* UIView+Gesture.swift */; };
+		184F79C11D9284010087B6AF /* UIScrollView+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184F79C01D9284010087B6AF /* UIScrollView+Rx.swift */; };
 		18703F721D75D05200BFB829 /* NSDate+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18703F711D75D05200BFB829 /* NSDate+Extensions.swift */; };
 		189C3BE71D7090960057F068 /* NKGestureRecognizerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189C3BE61D7090960057F068 /* NKGestureRecognizerDelegate.swift */; };
 		189C3BE91D7092BE0057F068 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189C3BE81D7092BE0057F068 /* SecondViewController.swift */; };
@@ -128,6 +129,7 @@
 		183D0DB01D855D050084754E /* NKPullingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKPullingViewController.swift; sourceTree = "<group>"; };
 		183D0DB41D8595E50084754E /* OneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OneViewController.swift; sourceTree = "<group>"; };
 		183D0DBA1D86472E0084754E /* UIView+Gesture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Gesture.swift"; sourceTree = "<group>"; };
+		184F79C01D9284010087B6AF /* UIScrollView+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIScrollView+Rx.swift"; sourceTree = "<group>"; };
 		18703F711D75D05200BFB829 /* NSDate+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+Extensions.swift"; sourceTree = "<group>"; };
 		189C3BE61D7090960057F068 /* NKGestureRecognizerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKGestureRecognizerDelegate.swift; sourceTree = "<group>"; };
 		189C3BE81D7092BE0057F068 /* SecondViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
@@ -389,6 +391,7 @@
 			isa = PBXGroup;
 			children = (
 				183D0DAB1D82BF360084754E /* UIScrollView+AutoScrolling.swift */,
+				184F79C01D9284010087B6AF /* UIScrollView+Rx.swift */,
 			);
 			path = UIScrollView;
 			sourceTree = "<group>";
@@ -632,6 +635,7 @@
 				183D0DBB1D86472E0084754E /* UIView+Gesture.swift in Sources */,
 				18DD40101D87BA85004B420E /* NKNavigationTransition.swift in Sources */,
 				1828D0DB1D6F1799007D0933 /* UIColor+Extension.swift in Sources */,
+				184F79C11D9284010087B6AF /* UIScrollView+Rx.swift in Sources */,
 				18DD400A1D87B17C004B420E /* NKAnimator.swift in Sources */,
 				1828D0E21D6F1799007D0933 /* UIView+AutoLayout.swift in Sources */,
 				1828D0CD1D6F1799007D0933 /* NKLabel.swift in Sources */,

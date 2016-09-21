@@ -24,13 +24,13 @@ public final class NKAnimator: NSObject {
     }
     
     public struct Context {
-        let context: UIViewControllerContextTransitioning
-        let containerView: UIView
-        let fromView: UIView
-        let toView: UIView
-        let fromViewController: UIViewController
-        let toViewController: UIViewController
-        let duration: NSTimeInterval
+        public let context: UIViewControllerContextTransitioning
+        public let containerView: UIView
+        public let fromView: UIView
+        public let toView: UIView
+        public let fromViewController: UIViewController
+        public let toViewController: UIViewController
+        public let duration: NSTimeInterval
         
         public func completeTransition(didComplete: Bool? = nil) {
             if let didComplete = didComplete {
