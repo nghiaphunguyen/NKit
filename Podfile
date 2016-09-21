@@ -6,7 +6,7 @@ target 'NKit' do
   use_frameworks!
 
   # Pods for NKit
-pod 'SnapKit'
+pod 'SnapKit’, ‘0.22.0’
 pod 'NRxSwift'
 pod 'ATTableView'
 pod 'RxCocoa'
