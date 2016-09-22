@@ -9,7 +9,6 @@
 import Foundation
 import UIKit
 import RxSwift
-import RxCocoa
 
 public extension UIView {
     public func rx_pan(numOfTouches: Int = 1) -> Observable<UIPanGestureRecognizer> {
