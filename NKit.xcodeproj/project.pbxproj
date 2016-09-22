@@ -50,8 +50,6 @@
 		1828D0F01D6F1799007D0933 /* NKTimeChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1828D0C41D6F1799007D0933 /* NKTimeChecker.swift */; };
 		1828D0F51D6FEA96007D0933 /* TestingCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1828D0F41D6FEA96007D0933 /* TestingCollectionViewController.swift */; };
 		1828D0F71D6FF23D007D0933 /* NKDemension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1828D0F61D6FF23D007D0933 /* NKDemension.swift */; };
-		183D0DA31D8285C40084754E /* NSObject+NRx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183D0DA21D8285C40084754E /* NSObject+NRx.swift */; };
-		183D0DA51D8285FC0084754E /* NSNotificationCenter+NRx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183D0DA41D8285FC0084754E /* NSNotificationCenter+NRx.swift */; };
 		183D0DA91D82ADCC0084754E /* TestKeyboardAutoScroll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183D0DA81D82ADCC0084754E /* TestKeyboardAutoScroll.swift */; };
 		183D0DAC1D82BF360084754E /* UIScrollView+AutoScrolling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183D0DAB1D82BF360084754E /* UIScrollView+AutoScrolling.swift */; };
 		183D0DAF1D8505930084754E /* NKLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183D0DAE1D8505930084754E /* NKLocationManager.swift */; };
@@ -60,6 +58,10 @@
 		183D0DBB1D86472E0084754E /* UIView+Gesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183D0DBA1D86472E0084754E /* UIView+Gesture.swift */; };
 		184F79C11D9284010087B6AF /* UIScrollView+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184F79C01D9284010087B6AF /* UIScrollView+Rx.swift */; };
 		18703F721D75D05200BFB829 /* NSDate+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18703F711D75D05200BFB829 /* NSDate+Extensions.swift */; };
+		188474EC1D93C2FE009F4506 /* NKPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188474EB1D93C2FE009F4506 /* NKPresentationController.swift */; };
+		188474F31D93D570009F4506 /* NKLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188474F01D93D570009F4506 /* NKLoadable.swift */; };
+		188474F41D93D570009F4506 /* NSNotificationCenter+NRx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188474F11D93D570009F4506 /* NSNotificationCenter+NRx.swift */; };
+		188474F51D93D570009F4506 /* NSObject+NRx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188474F21D93D570009F4506 /* NSObject+NRx.swift */; };
 		189C3BE71D7090960057F068 /* NKGestureRecognizerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189C3BE61D7090960057F068 /* NKGestureRecognizerDelegate.swift */; };
 		189C3BE91D7092BE0057F068 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189C3BE81D7092BE0057F068 /* SecondViewController.swift */; };
 		18A1DAC61D6F167D00D566C2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A1DAC51D6F167D00D566C2 /* AppDelegate.swift */; };
@@ -121,8 +123,6 @@
 		1828D0C41D6F1799007D0933 /* NKTimeChecker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKTimeChecker.swift; sourceTree = "<group>"; };
 		1828D0F41D6FEA96007D0933 /* TestingCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestingCollectionViewController.swift; sourceTree = "<group>"; };
 		1828D0F61D6FF23D007D0933 /* NKDemension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKDemension.swift; sourceTree = "<group>"; };
-		183D0DA21D8285C40084754E /* NSObject+NRx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSObject+NRx.swift"; sourceTree = "<group>"; };
-		183D0DA41D8285FC0084754E /* NSNotificationCenter+NRx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSNotificationCenter+NRx.swift"; sourceTree = "<group>"; };
 		183D0DA81D82ADCC0084754E /* TestKeyboardAutoScroll.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestKeyboardAutoScroll.swift; sourceTree = "<group>"; };
 		183D0DAB1D82BF360084754E /* UIScrollView+AutoScrolling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIScrollView+AutoScrolling.swift"; sourceTree = "<group>"; };
 		183D0DAE1D8505930084754E /* NKLocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKLocationManager.swift; sourceTree = "<group>"; };
@@ -131,6 +131,10 @@
 		183D0DBA1D86472E0084754E /* UIView+Gesture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Gesture.swift"; sourceTree = "<group>"; };
 		184F79C01D9284010087B6AF /* UIScrollView+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIScrollView+Rx.swift"; sourceTree = "<group>"; };
 		18703F711D75D05200BFB829 /* NSDate+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+Extensions.swift"; sourceTree = "<group>"; };
+		188474EB1D93C2FE009F4506 /* NKPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKPresentationController.swift; sourceTree = "<group>"; };
+		188474F01D93D570009F4506 /* NKLoadable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKLoadable.swift; sourceTree = "<group>"; };
+		188474F11D93D570009F4506 /* NSNotificationCenter+NRx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSNotificationCenter+NRx.swift"; sourceTree = "<group>"; };
+		188474F21D93D570009F4506 /* NSObject+NRx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSObject+NRx.swift"; sourceTree = "<group>"; };
 		189C3BE61D7090960057F068 /* NKGestureRecognizerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKGestureRecognizerDelegate.swift; sourceTree = "<group>"; };
 		189C3BE81D7092BE0057F068 /* SecondViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		18A1DAC21D6F167D00D566C2 /* NKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -174,10 +178,10 @@
 		1828D0831D6F1799007D0933 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				188474EF1D93D570009F4506 /* Rx */,
 				18DD40061D87B17C004B420E /* Transition */,
 				183D0DAD1D8505870084754E /* Manager */,
 				183D0DAA1D82BF360084754E /* UIScrollView */,
-				183D0DA11D8285C40084754E /* Other */,
 				18703F701D75D04300BFB829 /* NSDate */,
 				1828D0841D6F1799007D0933 /* Array */,
 				1828D0861D6F1799007D0933 /* CALayer */,
@@ -378,15 +382,6 @@
 			path = Demo;
 			sourceTree = "<group>";
 		};
-		183D0DA11D8285C40084754E /* Other */ = {
-			isa = PBXGroup;
-			children = (
-				183D0DA21D8285C40084754E /* NSObject+NRx.swift */,
-				183D0DA41D8285FC0084754E /* NSNotificationCenter+NRx.swift */,
-			);
-			path = Other;
-			sourceTree = "<group>";
-		};
 		183D0DAA1D82BF360084754E /* UIScrollView */ = {
 			isa = PBXGroup;
 			children = (
@@ -410,6 +405,16 @@
 				18703F711D75D05200BFB829 /* NSDate+Extensions.swift */,
 			);
 			path = NSDate;
+			sourceTree = "<group>";
+		};
+		188474EF1D93D570009F4506 /* Rx */ = {
+			isa = PBXGroup;
+			children = (
+				188474F01D93D570009F4506 /* NKLoadable.swift */,
+				188474F11D93D570009F4506 /* NSNotificationCenter+NRx.swift */,
+				188474F21D93D570009F4506 /* NSObject+NRx.swift */,
+			);
+			path = Rx;
 			sourceTree = "<group>";
 		};
 		18A1DAB91D6F167D00D566C2 = {
@@ -452,6 +457,7 @@
 				18DD400D1D87B5FD004B420E /* NKNavigationDirection.swift */,
 				18DD400F1D87BA85004B420E /* NKNavigationTransition.swift */,
 				18DD40151D87FB7E004B420E /* NKPresentationTransition.swift */,
+				188474EB1D93C2FE009F4506 /* NKPresentationController.swift */,
 			);
 			path = Transition;
 			sourceTree = "<group>";
@@ -589,8 +595,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				1828D0ED1D6F1799007D0933 /* NKConstants.swift in Sources */,
+				188474F41D93D570009F4506 /* NSNotificationCenter+NRx.swift in Sources */,
 				1828D0E71D6F1799007D0933 /* UIViewController+ChildViewController.swift in Sources */,
-				183D0DA31D8285C40084754E /* NSObject+NRx.swift in Sources */,
 				1828D0CE1D6F1799007D0933 /* NKPopupView.swift in Sources */,
 				183D0DB11D855D050084754E /* NKPullingViewController.swift in Sources */,
 				1828D0C51D6F1799007D0933 /* Array+BinaryInsert.swift in Sources */,
@@ -610,12 +616,12 @@
 				1828D0EE1D6F1799007D0933 /* NKScreenSize.swift in Sources */,
 				18DD40161D87FB7E004B420E /* NKPresentationTransition.swift in Sources */,
 				1828D0C61D6F1799007D0933 /* CALayer+Closure.swift in Sources */,
+				188474EC1D93C2FE009F4506 /* NKPresentationController.swift in Sources */,
 				1828D0C71D6F1799007D0933 /* NKBaseView.swift in Sources */,
 				1828D0F71D6FF23D007D0933 /* NKDemension.swift in Sources */,
 				18A1DAC81D6F167D00D566C2 /* ViewController.swift in Sources */,
 				1828D0D41D6F1799007D0933 /* NKTableView.swift in Sources */,
 				189C3BE91D7092BE0057F068 /* SecondViewController.swift in Sources */,
-				183D0DA51D8285FC0084754E /* NSNotificationCenter+NRx.swift in Sources */,
 				1828D0EA1D6F1799007D0933 /* UIViewController+NavigationBar.swift in Sources */,
 				1828D0E91D6F1799007D0933 /* UIViewController+Loading.swift in Sources */,
 				1828D0DE1D6F1799007D0933 /* UIImageView+Extension.swift in Sources */,
@@ -628,6 +634,7 @@
 				1828D0C91D6F1799007D0933 /* NKContainerView.swift in Sources */,
 				1828D0E01D6F1799007D0933 /* UINavigationController+Animation.swift in Sources */,
 				1828D0E11D6F1799007D0933 /* UIView+Animation.swift in Sources */,
+				188474F51D93D570009F4506 /* NSObject+NRx.swift in Sources */,
 				1828D0E51D6F1799007D0933 /* UIView+SnapKitAutolayout.swift in Sources */,
 				1828D0DA1D6F1799007D0933 /* NKCollectionView.swift in Sources */,
 				18DD40011D870055004B420E /* TwoViewController.swift in Sources */,
@@ -649,6 +656,7 @@
 				1828D0E31D6F1799007D0933 /* UIView+Frame.swift in Sources */,
 				1828D0D01D6F1799007D0933 /* NKTextView.swift in Sources */,
 				18A1DAC61D6F167D00D566C2 /* AppDelegate.swift in Sources */,
+				188474F31D93D570009F4506 /* NKLoadable.swift in Sources */,
 				1828D0D81D6F1799007D0933 /* UIButton+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

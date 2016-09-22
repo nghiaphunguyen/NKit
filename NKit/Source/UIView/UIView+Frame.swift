@@ -238,4 +238,13 @@ public extension UIView {
     public func nk_convertPointToView(view: UIView) -> CGPoint {
         return self.convertPoint(self.bounds.origin, toView: view)
     }
+    
+    public func nk_frameAtCenterWithSize(size: CGSize, offset: CGSize = CGSize.zero) -> CGRect {
+        let center = CGPointMake(self.frame.size.width / 2, self.frame.size.height / 2)
+        var result = CGRect.zero
+        result.size = size
+        result.origin = CGPointMake(center.x - size.width / 2 + offset.width, center.y - size.height / 2 + offset.height)
+        
+        return result
+    }
 }
