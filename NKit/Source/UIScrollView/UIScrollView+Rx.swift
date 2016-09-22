@@ -8,7 +8,6 @@
 
 import UIKit
 import RxSwift
-import RxCocoa
 
 public extension UIScrollView {
     public var nk_scrollViewWillBeginDraggingObservable: Observable<CGPoint> {
