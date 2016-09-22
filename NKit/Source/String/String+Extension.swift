@@ -105,3 +105,41 @@ public extension NSAttributedString {
         return actualSize.height
     }
 }
+
+
+public extension String {
+    public func nk_isGreaterVersion(version: String) -> Bool {
+        let newVersions = self.nk_versionValues
+        let num = newVersions.count
+        let oldVersions = version.nk_versionValues
+        
+        var equalNum = 0
+        for i in 0..<num {
+            if newVersions[i] < oldVersions[i] {
+                return false
+            }
+            
+            if newVersions[i] == oldVersions[i] {
+                equalNum += 1
+            }
+        }
+        
+        return equalNum < num
+    }
+    
+    public var nk_versionValues: [Int] {
+        let num = 3
+        let strings = self.componentsSeparatedByString(".")
+        
+        var result = [Int]()
+        strings.forEach { s in
+            result.append(Int(s) ?? 0)
+        }
+        
+        while result.count < num {
+            result.append(0)
+        }
+        
+        return result
+    }
+}
