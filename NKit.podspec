@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "NKit"
-  s.version      = "0.8.2"
+  s.version      = "0.8.3"
   s.summary      = "NKit provides some exteions of UIKit and Foundation classes"
   s.homepage     = "http://knacker.com"
   s.license      = "MIT"
@@ -14,6 +14,7 @@ Pod::Spec.new do |s|
   s.dependency 'SnapKit', '0.22.0'
   s.dependency 'NRxSwift'
   s.dependency 'ATTableView'
+  s.dependency 'RxCocoa'
 
 
 end
