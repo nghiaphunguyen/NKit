@@ -6,6 +6,7 @@
 
 import UIKit
 import RxSwift
+import RxCocoa
 
 public extension UIView {
     public var nk_parentViewController: UIViewController? {
