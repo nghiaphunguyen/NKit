@@ -64,11 +64,14 @@
 		188474F51D93D570009F4506 /* NSObject+NRx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188474F21D93D570009F4506 /* NSObject+NRx.swift */; };
 		189C3BE71D7090960057F068 /* NKGestureRecognizerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189C3BE61D7090960057F068 /* NKGestureRecognizerDelegate.swift */; };
 		189C3BE91D7092BE0057F068 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189C3BE81D7092BE0057F068 /* SecondViewController.swift */; };
+		189DF1BF1D97F22D00266E12 /* NKLayoutTester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189DF1BD1D97F22D00266E12 /* NKLayoutTester.swift */; };
+		189DF1C01D97F22D00266E12 /* NKTestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189DF1BE1D97F22D00266E12 /* NKTestable.swift */; };
 		18A1DAC61D6F167D00D566C2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A1DAC51D6F167D00D566C2 /* AppDelegate.swift */; };
 		18A1DAC81D6F167D00D566C2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A1DAC71D6F167D00D566C2 /* ViewController.swift */; };
 		18A1DACB1D6F167D00D566C2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18A1DAC91D6F167D00D566C2 /* Main.storyboard */; };
 		18A1DACD1D6F167E00D566C2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18A1DACC1D6F167E00D566C2 /* Assets.xcassets */; };
 		18A1DAD01D6F167E00D566C2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18A1DACE1D6F167E00D566C2 /* LaunchScreen.storyboard */; };
+		18CE80761D959A2800D510E4 /* UIView+Injected.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CE80751D959A2800D510E4 /* UIView+Injected.swift */; };
 		18DD40011D870055004B420E /* TwoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DD40001D870055004B420E /* TwoViewController.swift */; };
 		18DD400A1D87B17C004B420E /* NKAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DD40071D87B17C004B420E /* NKAnimator.swift */; };
 		18DD400E1D87B5FD004B420E /* NKNavigationDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DD400D1D87B5FD004B420E /* NKNavigationDirection.swift */; };
@@ -137,6 +140,8 @@
 		188474F21D93D570009F4506 /* NSObject+NRx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSObject+NRx.swift"; sourceTree = "<group>"; };
 		189C3BE61D7090960057F068 /* NKGestureRecognizerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKGestureRecognizerDelegate.swift; sourceTree = "<group>"; };
 		189C3BE81D7092BE0057F068 /* SecondViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
+		189DF1BD1D97F22D00266E12 /* NKLayoutTester.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKLayoutTester.swift; sourceTree = "<group>"; };
+		189DF1BE1D97F22D00266E12 /* NKTestable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKTestable.swift; sourceTree = "<group>"; };
 		18A1DAC21D6F167D00D566C2 /* NKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18A1DAC51D6F167D00D566C2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		18A1DAC71D6F167D00D566C2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -144,6 +149,7 @@
 		18A1DACC1D6F167E00D566C2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		18A1DACF1D6F167E00D566C2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		18A1DAD11D6F167E00D566C2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		18CE80751D959A2800D510E4 /* UIView+Injected.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Injected.swift"; sourceTree = "<group>"; };
 		18DD40001D870055004B420E /* TwoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwoViewController.swift; sourceTree = "<group>"; };
 		18DD40071D87B17C004B420E /* NKAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKAnimator.swift; sourceTree = "<group>"; };
 		18DD400D1D87B5FD004B420E /* NKNavigationDirection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKNavigationDirection.swift; sourceTree = "<group>"; };
@@ -178,6 +184,7 @@
 		1828D0831D6F1799007D0933 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				189DF1BC1D97F22D00266E12 /* TestingLayout */,
 				188474EF1D93D570009F4506 /* Rx */,
 				18DD40061D87B17C004B420E /* Transition */,
 				183D0DAD1D8505870084754E /* Manager */,
@@ -335,6 +342,7 @@
 		1828D0B21D6F1799007D0933 /* UIView */ = {
 			isa = PBXGroup;
 			children = (
+				18CE80751D959A2800D510E4 /* UIView+Injected.swift */,
 				1828D0B31D6F1799007D0933 /* UIView+Animation.swift */,
 				1828D0B41D6F1799007D0933 /* UIView+AutoLayout.swift */,
 				1828D0B51D6F1799007D0933 /* UIView+Frame.swift */,
@@ -415,6 +423,15 @@
 				188474F21D93D570009F4506 /* NSObject+NRx.swift */,
 			);
 			path = Rx;
+			sourceTree = "<group>";
+		};
+		189DF1BC1D97F22D00266E12 /* TestingLayout */ = {
+			isa = PBXGroup;
+			children = (
+				189DF1BD1D97F22D00266E12 /* NKLayoutTester.swift */,
+				189DF1BE1D97F22D00266E12 /* NKTestable.swift */,
+			);
+			path = TestingLayout;
 			sourceTree = "<group>";
 		};
 		18A1DAB91D6F167D00D566C2 = {
@@ -602,6 +619,7 @@
 				1828D0C51D6F1799007D0933 /* Array+BinaryInsert.swift in Sources */,
 				1828D0C81D6F1799007D0933 /* NKCircleImageView.swift in Sources */,
 				1828D0CA1D6F1799007D0933 /* NKCornerView.swift in Sources */,
+				18CE80761D959A2800D510E4 /* UIView+Injected.swift in Sources */,
 				18DD400E1D87B5FD004B420E /* NKNavigationDirection.swift in Sources */,
 				183D0DAC1D82BF360084754E /* UIScrollView+AutoScrolling.swift in Sources */,
 				1828D0D91D6F1799007D0933 /* NKBaseCollectionViewCell.swift in Sources */,
@@ -622,6 +640,7 @@
 				18A1DAC81D6F167D00D566C2 /* ViewController.swift in Sources */,
 				1828D0D41D6F1799007D0933 /* NKTableView.swift in Sources */,
 				189C3BE91D7092BE0057F068 /* SecondViewController.swift in Sources */,
+				189DF1C01D97F22D00266E12 /* NKTestable.swift in Sources */,
 				1828D0EA1D6F1799007D0933 /* UIViewController+NavigationBar.swift in Sources */,
 				1828D0E91D6F1799007D0933 /* UIViewController+Loading.swift in Sources */,
 				1828D0DE1D6F1799007D0933 /* UIImageView+Extension.swift in Sources */,
@@ -634,6 +653,7 @@
 				1828D0C91D6F1799007D0933 /* NKContainerView.swift in Sources */,
 				1828D0E01D6F1799007D0933 /* UINavigationController+Animation.swift in Sources */,
 				1828D0E11D6F1799007D0933 /* UIView+Animation.swift in Sources */,
+				189DF1BF1D97F22D00266E12 /* NKLayoutTester.swift in Sources */,
 				188474F51D93D570009F4506 /* NSObject+NRx.swift in Sources */,
 				1828D0E51D6F1799007D0933 /* UIView+SnapKitAutolayout.swift in Sources */,
 				1828D0DA1D6F1799007D0933 /* NKCollectionView.swift in Sources */,

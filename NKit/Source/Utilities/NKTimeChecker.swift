@@ -32,9 +32,16 @@ public final class NKTimeChecker: AnyObject {
         }
     }
     
-    public func checkTime() -> Observable<Bool> {
-        return Observable.just(NSDate().timeIntervalSince1970 - self.latestSuccessfulCheckingTime >= self.timeInterval)
+    public func checkTime() -> Bool {
+        return NSDate().timeIntervalSince1970 - self.latestSuccessfulCheckingTime >= self.timeInterval
     }
+    
+    public func checkTimeObservable() -> Observable<Bool> {
+        return Observable.nk_baseCreate({ (observer) in
+            observer.nk_setValue(self.checkTime())
+        })
+    }
+    
     
     public func updateLatestSuccessfullCheckingTime(time: NSTimeInterval = NSDate().timeIntervalSince1970) -> Void {
         self.latestSuccessfulCheckingTime = time
