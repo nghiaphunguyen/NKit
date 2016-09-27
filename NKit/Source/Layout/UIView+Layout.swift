@@ -17,7 +17,7 @@ public protocol NKViewIdentifier {
 
 public extension NKViewIdentifier {
     var identifier: String {
-        return "\(self.dynamicType)-\(rawValue)"
+        return "\(String(reflecting: self.dynamicType))-\(rawValue)"
     }
 }
 
