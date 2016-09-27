@@ -1,7 +1,7 @@
 ## Build generated
 build/
 DerivedData
-
+**/iOSInjectionProject/
 ## Various settings
 **/*.pbxuser
 !default.pbxuser
