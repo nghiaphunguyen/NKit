@@ -1,0 +1,2 @@
+/Users/apple/Library/Developer/Xcode/DerivedData/NKit-fceuxstsmdlcdeaeugcamivllsrr/Build/Products/Debug-iphonesimulator/NKit.app
+

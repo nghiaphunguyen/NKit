@@ -15,6 +15,7 @@ Pod::Spec.new do |s|
   s.dependency 'NRxSwift'
   s.dependency 'ATTableView'
   s.dependency 'RxCocoa'
-
+  s.dependency 'OAStackView'
+  s.dependency 'NTZStackView'
 
 end
