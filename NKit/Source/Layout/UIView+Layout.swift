@@ -33,6 +33,22 @@ public extension NKViewIdentifier {
     public func view(fromView: UIView) -> UIView? {
         return fromView.nk_findViewById(self)
     }
+    
+    public func view<T: UIView>(fromViewController: UIViewController) -> T {
+        return fromViewController.view.nk_findViewById(self)
+    }
+    
+    public func view<T: UIView>(fromViewController: UIViewController) -> T? {
+        return fromViewController.view.nk_findViewById(self)
+    }
+    
+    public func view(fromViewController: UIViewController) -> UIView? {
+        return fromViewController.view.nk_findViewById(self)
+    }
+}
+
+public extension NKViewIdentifier {
+    
 }
 
 extension String: NKViewIdentifier {
