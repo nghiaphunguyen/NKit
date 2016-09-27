@@ -56,11 +56,12 @@
 		183D0DB11D855D050084754E /* NKPullingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183D0DB01D855D050084754E /* NKPullingViewController.swift */; };
 		183D0DB51D8595E50084754E /* OneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183D0DB41D8595E50084754E /* OneViewController.swift */; };
 		183D0DBB1D86472E0084754E /* UIView+Gesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183D0DBA1D86472E0084754E /* UIView+Gesture.swift */; };
+		184EBA821D9A4CCA00471EF3 /* UIStackView+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184EBA811D9A4CCA00471EF3 /* UIStackView+Layout.swift */; };
 		184F79C11D9284010087B6AF /* UIScrollView+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184F79C01D9284010087B6AF /* UIScrollView+Rx.swift */; };
 		1865A18A1D9980B0005D4C4A /* UIView+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1865A1891D9980B0005D4C4A /* UIView+Layout.swift */; };
 		1865A18C1D9983E7005D4C4A /* TZStackView+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1865A18B1D9983E7005D4C4A /* TZStackView+Layout.swift */; };
 		1865A18E1D9987F6005D4C4A /* ThreeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1865A18D1D9987F6005D4C4A /* ThreeViewController.swift */; };
-		1865A1921D9A29B2005D4C4A /* OAStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1865A1911D9A29B2005D4C4A /* OAStackView.swift */; };
+		1865A1921D9A29B2005D4C4A /* OAStackView+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1865A1911D9A29B2005D4C4A /* OAStackView+Layout.swift */; };
 		18703F721D75D05200BFB829 /* NSDate+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18703F711D75D05200BFB829 /* NSDate+Extensions.swift */; };
 		188474EC1D93C2FE009F4506 /* NKPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188474EB1D93C2FE009F4506 /* NKPresentationController.swift */; };
 		188474F31D93D570009F4506 /* NKLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188474F01D93D570009F4506 /* NKLoadable.swift */; };
@@ -138,11 +139,12 @@
 		183D0DB01D855D050084754E /* NKPullingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKPullingViewController.swift; sourceTree = "<group>"; };
 		183D0DB41D8595E50084754E /* OneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OneViewController.swift; sourceTree = "<group>"; };
 		183D0DBA1D86472E0084754E /* UIView+Gesture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Gesture.swift"; sourceTree = "<group>"; };
+		184EBA811D9A4CCA00471EF3 /* UIStackView+Layout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIStackView+Layout.swift"; sourceTree = "<group>"; };
 		184F79C01D9284010087B6AF /* UIScrollView+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIScrollView+Rx.swift"; sourceTree = "<group>"; };
 		1865A1891D9980B0005D4C4A /* UIView+Layout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Layout.swift"; sourceTree = "<group>"; };
 		1865A18B1D9983E7005D4C4A /* TZStackView+Layout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TZStackView+Layout.swift"; sourceTree = "<group>"; };
 		1865A18D1D9987F6005D4C4A /* ThreeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreeViewController.swift; sourceTree = "<group>"; };
-		1865A1911D9A29B2005D4C4A /* OAStackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAStackView.swift; sourceTree = "<group>"; };
+		1865A1911D9A29B2005D4C4A /* OAStackView+Layout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "OAStackView+Layout.swift"; sourceTree = "<group>"; };
 		18703F711D75D05200BFB829 /* NSDate+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+Extensions.swift"; sourceTree = "<group>"; };
 		188474EB1D93C2FE009F4506 /* NKPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKPresentationController.swift; sourceTree = "<group>"; };
 		188474F01D93D570009F4506 /* NKLoadable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKLoadable.swift; sourceTree = "<group>"; };
@@ -428,7 +430,8 @@
 			children = (
 				1865A1891D9980B0005D4C4A /* UIView+Layout.swift */,
 				1865A18B1D9983E7005D4C4A /* TZStackView+Layout.swift */,
-				1865A1911D9A29B2005D4C4A /* OAStackView.swift */,
+				1865A1911D9A29B2005D4C4A /* OAStackView+Layout.swift */,
+				184EBA811D9A4CCA00471EF3 /* UIStackView+Layout.swift */,
 			);
 			path = Layout;
 			sourceTree = "<group>";
@@ -651,7 +654,7 @@
 				1828D0CE1D6F1799007D0933 /* NKPopupView.swift in Sources */,
 				189619621D9908E4006BBA0D /* Int+Random.swift in Sources */,
 				183D0DB11D855D050084754E /* NKPullingViewController.swift in Sources */,
-				1865A1921D9A29B2005D4C4A /* OAStackView.swift in Sources */,
+				1865A1921D9A29B2005D4C4A /* OAStackView+Layout.swift in Sources */,
 				1828D0C51D6F1799007D0933 /* Array+BinaryInsert.swift in Sources */,
 				1828D0C81D6F1799007D0933 /* NKCircleImageView.swift in Sources */,
 				1828D0CA1D6F1799007D0933 /* NKCornerView.swift in Sources */,
@@ -704,6 +707,7 @@
 				184F79C11D9284010087B6AF /* UIScrollView+Rx.swift in Sources */,
 				1865A18A1D9980B0005D4C4A /* UIView+Layout.swift in Sources */,
 				18DD400A1D87B17C004B420E /* NKAnimator.swift in Sources */,
+				184EBA821D9A4CCA00471EF3 /* UIStackView+Layout.swift in Sources */,
 				1828D0E21D6F1799007D0933 /* UIView+AutoLayout.swift in Sources */,
 				1828D0CD1D6F1799007D0933 /* NKLabel.swift in Sources */,
 				189C3BE71D7090960057F068 /* NKGestureRecognizerDelegate.swift in Sources */,
@@ -834,6 +838,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = NKit/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cornerteam.NKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -846,6 +851,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = NKit/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cornerteam.NKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";

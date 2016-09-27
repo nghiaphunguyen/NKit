@@ -18,11 +18,11 @@ class ThreeViewController: UIViewController {
         case Button
     }
     
-    lazy var stackView: UIStackView = ViewIdentifier.StackView.view(self.view)
-    lazy var firstLabel: UILabel = ViewIdentifier.FirstLabel.view(self.view)
-    lazy var secondLabel: UILabel = ViewIdentifier.SecondLabel.view(self.view)
-    lazy var thirdLabel: UILabel = ViewIdentifier.ThirdLabel.view(self.view)
-    lazy var button: UIButton = ViewIdentifier.Button.view(self.view)
+    var stackView: TZStackView {return ViewIdentifier.StackView.view(self.view) }
+    var firstLabel: UILabel {return ViewIdentifier.FirstLabel.view(self.view) }
+    var secondLabel: UILabel {return ViewIdentifier.SecondLabel.view(self.view) }
+    var thirdLabel: UILabel {return ViewIdentifier.ThirdLabel.view(self.view) }
+    var button: UIButton {return ViewIdentifier.Button.view(self.view) }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +33,7 @@ class ThreeViewController: UIViewController {
     }
 }
 
+//MARK: Layout
 extension ThreeViewController {
     override func loadView() {
         super.loadView()

@@ -8,6 +8,7 @@
 
 import UIKit
 import NTZStackView
+import OAStackView
 
 public protocol NKViewIdentifier {
     var rawValue: String {get}
@@ -134,15 +135,23 @@ public extension UIView {
 public extension UIView {
     public var nk_weight: CGFloat {
         set {
-            if let superView = self.superview as? TZStackView {
+            let updateConstraints: (superView: UIView, isVertical: Bool) -> Void = { superView, isVertical in
+                
                 self.snp_updateConstraints { (make) in
-                    if superView.axis == .Vertical {
+                    if isVertical {
                         make.height.equalTo(superView).multipliedBy(newValue)
                     } else {
                         make.width.equalTo(superView).multipliedBy(newValue)
                     }
-                    
                 }
+            }
+            
+            if let superView = self.superview as? TZStackView {
+                updateConstraints(superView: superView, isVertical: superView.axis == .Vertical)
+            }
+            
+            if let superView = self.superview as? OAStackView {
+                updateConstraints(superView: superView, isVertical: superView.axis == .Vertical)
             }
         }
         
