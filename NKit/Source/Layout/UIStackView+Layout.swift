@@ -10,7 +10,7 @@ import UIKit
 
 @available(iOS 9.0, *)
 public extension UIStackView {
-    public func nk_addArrangedSubview<T: UIView>(view: T, _ config: ((T) -> Void)? = nil) -> Self {
+    public func nk_addArrangedSubview<T: UIView>(view: T, config: ((T) -> Void)? = nil) -> Self {
         self.addArrangedSubview(view)
         config?(view)
         return self
@@ -25,11 +25,11 @@ public extension UIStackView {
         return stackView
     }
     
-    public static func nk_row(distribution: UIStackViewDistribution = .Fill, _ alignment: UIStackViewAlignment = .Fill, _ spacing: CGFloat = 0) -> UIStackView {
+    public static func nk_row(distribution: UIStackViewDistribution = .Fill, alignment: UIStackViewAlignment = .Fill, spacing: CGFloat = 0) -> UIStackView {
         return self.nk_create(distribution, alignment: alignment, spacing: spacing, axis: .Horizontal)
     }
     
-    public static func nk_column(distribution: UIStackViewDistribution = .Fill, _ alignment: UIStackViewAlignment = .Fill, _ spacing: CGFloat = 0) -> UIStackView {
+    public static func nk_column(distribution: UIStackViewDistribution = .Fill, alignment: UIStackViewAlignment = .Fill, spacing: CGFloat = 0) -> UIStackView {
         return self.nk_create(distribution, alignment: alignment, spacing: spacing, axis: .Vertical)
     }
 }

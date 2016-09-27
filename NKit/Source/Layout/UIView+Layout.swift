@@ -104,7 +104,7 @@ public extension UIView {
         }
     }
     
-    public func nk_addSubview<T: UIView>(view: T, _ config: ((T) -> Void)? = nil) -> Self {
+    public func nk_addSubview<T: UIView>(view: T, config: ((T) -> Void)? = nil) -> Self {
         self.addSubview(view)
         config?(view)
         return self

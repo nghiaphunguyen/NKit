@@ -76,14 +76,14 @@ extension ThreeViewController {
                             make.top.leading.bottom.equalTo(0)
                             make.width.equalTo(view.superview!).dividedBy(4)
                         })
-                        }.nk_addSubview(UIView(), { (view) in
+                        }.nk_addSubview(UIView()) { (view) in
                             view.backgroundColor = UIColor.lightGrayColor()
                             view.snp_makeConstraints(closure: { (make) in
                                 make.top.trailing.bottom.equalTo(view.superview!)
                                 make.leading.equalTo(view.superview!.nk_findViewById("TestHangHo").snp_trailing)
                             })
                             
-                        })
+                        }
             }
             }.nk_config {
                 $0.backgroundColor = UIColor.yellowColor()

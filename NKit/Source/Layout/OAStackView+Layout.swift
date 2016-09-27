@@ -10,7 +10,7 @@ import UIKit
 import OAStackView
 
 public extension OAStackView {
-    public func nk_addArrangedSubview<T: UIView>(view: T, _ config: ((T) -> Void)? = nil) -> Self {
+    public func nk_addArrangedSubview<T: UIView>(view: T, config: ((T) -> Void)? = nil) -> Self {
         self.addArrangedSubview(view)
         config?(view)
         return self
@@ -25,11 +25,11 @@ public extension OAStackView {
         return stackView
     }
     
-    public static func nk_row(distribution: OAStackViewDistribution = .Fill, _ alignment: OAStackViewAlignment = .Fill, _ spacing: CGFloat = 0) -> OAStackView {
+    public static func nk_row(distribution: OAStackViewDistribution = .Fill, alignment: OAStackViewAlignment = .Fill, spacing: CGFloat = 0) -> OAStackView {
         return self.nk_create(distribution, alignment: alignment, spacing: spacing, axis: .Horizontal)
     }
     
-    public static func nk_column(distribution: OAStackViewDistribution = .Fill, _ alignment: OAStackViewAlignment = .Fill, _ spacing: CGFloat = 0) -> OAStackView {
+    public static func nk_column(distribution: OAStackViewDistribution = .Fill, alignment: OAStackViewAlignment = .Fill, spacing: CGFloat = 0) -> OAStackView {
         return self.nk_create(distribution, alignment: alignment, spacing: spacing, axis: .Vertical)
     }
 }
