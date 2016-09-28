@@ -6,7 +6,6 @@ target 'NKit' do
   use_frameworks!
 
   # Pods for NKit
-pod 'dyci', :git => 'https://github.com/DyCI/dyci-main.git'
 pod 'SnapKit’, ‘0.22.0’
 pod 'NRxSwift'
 pod 'ATTableView'

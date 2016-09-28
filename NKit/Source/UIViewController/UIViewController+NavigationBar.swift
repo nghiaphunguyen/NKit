@@ -209,17 +209,17 @@ public extension UIViewController {
 
 import ObjectiveC
 
-var MFLAssociatedBorderViewHandle: UInt8 = 0
+var NKLAssociatedBorderViewHandle: UInt8 = 0
 
 public extension UINavigationBar {
     
     public var nk_borderView: UIView? {
         get {
-            return objc_getAssociatedObject(self, &MFLAssociatedBorderViewHandle) as? UIView
+            return objc_getAssociatedObject(self, &NKLAssociatedBorderViewHandle) as? UIView
         }
         
         set {
-            objc_setAssociatedObject(self, &MFLAssociatedBorderViewHandle, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+            objc_setAssociatedObject(self, &NKLAssociatedBorderViewHandle, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         }
     }
     

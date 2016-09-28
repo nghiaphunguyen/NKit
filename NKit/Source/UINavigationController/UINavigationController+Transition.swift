@@ -8,9 +8,7 @@
 
 import UIKit
 
-private struct AssociatedKey {
-    static var Transition: UInt8 = 0
-}
+private var NKAssociatedKeyTransition: UInt8 = 0
 
 public extension UINavigationController {
     public var nk_transition: NKNavigationTransition {
@@ -25,11 +23,11 @@ public extension UINavigationController {
 extension UINavigationController {
     var _nk_transition: NKNavigationTransition? {
         get {
-            return objc_getAssociatedObject(self, &AssociatedKey.Transition) as? NKNavigationTransition
+            return objc_getAssociatedObject(self, &NKAssociatedKeyTransition) as? NKNavigationTransition
         }
         
         set {
-            objc_setAssociatedObject(self, &AssociatedKey.Transition, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+            objc_setAssociatedObject(self, &NKAssociatedKeyTransition, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         }
     }
 }
