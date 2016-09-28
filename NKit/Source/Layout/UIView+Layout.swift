@@ -67,11 +67,12 @@ public extension NKViewProtocol where Self: UIView {
 
 extension UIView: NKViewProtocol {}
 
+private struct AssociatedKey {
+    static var Id: Int = 100
+    static var Subviews: Int = 101
+}
+
 public extension UIView {
-    private struct AssociatedKey {
-        static var Id: Int = 100
-        static var Subviews: Int = 101
-    }
     
     public var nk_subviews: [String : UIView] {
         get {
