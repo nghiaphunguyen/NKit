@@ -41,15 +41,18 @@ extension ThreeViewController {
         self.view.nk_addSubview(TZStackView.nk_column().nk_id(ViewIdentifier.StackView)) {
             $0.distribution = .Fill
             $0.alignment = .Fill
-            
+                        
             $0.snp_makeConstraints(closure: { (make) in
                 make.edges.equalTo(0).inset(10)
             })
             
             $0.nk_addArrangedSubview(UILabel(text: 30.nk_dummyString, isSizeToFit: true, alignment: .Left).nk_id(ViewIdentifier.FirstLabel)) {
-                $0.snp_updateConstraints(closure: { (make) in
-                    make.height.equalTo(100)
-                })
+//                $0.snp_updateConstraints(closure: { (make) in
+//                    make.height.equalTo(100)
+//                })
+                
+                $0.nka_height == 40
+                
                 $0.numberOfLines = 0
                 $0.backgroundColor = UIColor.blueColor()
                 }
@@ -72,6 +75,7 @@ extension ThreeViewController {
                     
                     $0.nk_addSubview(UIView().nk_id("TestHangHo")) { view in
                         view.backgroundColor = UIColor.grayColor()
+                        
                         view.snp_makeConstraints(closure: { (make) in
                             make.top.leading.bottom.equalTo(0)
                             make.width.equalTo(view.superview!).dividedBy(4)

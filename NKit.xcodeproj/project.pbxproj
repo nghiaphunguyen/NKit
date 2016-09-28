@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1821A5E41D9AD926004C8FAC /* SnapKit+NKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1821A5E31D9AD926004C8FAC /* SnapKit+NKit.swift */; };
 		1821A5E61D9ADABC004C8FAC /* Mirror+NKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1821A5E51D9ADABC004C8FAC /* Mirror+NKit.swift */; };
+		1821A5E81D9B63E6004C8FAC /* NKConstraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1821A5E71D9B63E6004C8FAC /* NKConstraints.swift */; };
 		1828D0C51D6F1799007D0933 /* Array+BinaryInsert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1828D0851D6F1799007D0933 /* Array+BinaryInsert.swift */; };
 		1828D0C61D6F1799007D0933 /* CALayer+Closure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1828D0871D6F1799007D0933 /* CALayer+Closure.swift */; };
 		1828D0C71D6F1799007D0933 /* NKBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1828D0891D6F1799007D0933 /* NKBaseView.swift */; };
@@ -93,6 +94,7 @@
 /* Begin PBXFileReference section */
 		1821A5E31D9AD926004C8FAC /* SnapKit+NKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SnapKit+NKit.swift"; sourceTree = "<group>"; };
 		1821A5E51D9ADABC004C8FAC /* Mirror+NKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Mirror+NKit.swift"; sourceTree = "<group>"; };
+		1821A5E71D9B63E6004C8FAC /* NKConstraints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKConstraints.swift; sourceTree = "<group>"; };
 		1828D0851D6F1799007D0933 /* Array+BinaryInsert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+BinaryInsert.swift"; sourceTree = "<group>"; };
 		1828D0871D6F1799007D0933 /* CALayer+Closure.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CALayer+Closure.swift"; sourceTree = "<group>"; };
 		1828D0891D6F1799007D0933 /* NKBaseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKBaseView.swift; sourceTree = "<group>"; };
@@ -438,6 +440,7 @@
 				1865A1911D9A29B2005D4C4A /* OAStackView+Layout.swift */,
 				184EBA811D9A4CCA00471EF3 /* UIStackView+Layout.swift */,
 				1821A5E31D9AD926004C8FAC /* SnapKit+NKit.swift */,
+				1821A5E71D9B63E6004C8FAC /* NKConstraints.swift */,
 			);
 			path = Layout;
 			sourceTree = "<group>";
@@ -654,6 +657,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1821A5E81D9B63E6004C8FAC /* NKConstraints.swift in Sources */,
 				1828D0ED1D6F1799007D0933 /* NKConstants.swift in Sources */,
 				188474F41D93D570009F4506 /* NSNotificationCenter+NRx.swift in Sources */,
 				1828D0E71D6F1799007D0933 /* UIViewController+ChildViewController.swift in Sources */,

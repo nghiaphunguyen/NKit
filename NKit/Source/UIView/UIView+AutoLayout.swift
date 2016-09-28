@@ -7,253 +7,39 @@
 import UIKit
 
 public extension UIView {
-    //MARK: set width and height
-    public func nk_widthConstraintView( view: UIView? = nil, multiplier: CGFloat = 1, constant: CGFloat = 0) -> UIView {
-        var view = view
-        if view == nil {
-            guard let superview = self.superview else {
-                return self
-            }
-            
-            view = superview
-        }
-        
-        self.translatesAutoresizingMaskIntoConstraints = false
-        let constraint = NSLayoutConstraint(item: self, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: view, attribute: NSLayoutAttribute.Width, multiplier: multiplier, constant: constant)
-        
-        self.superview?.addConstraint(constraint)
-        
-        return self
+    public var nka_leading: NKConstraintItem {
+        return NKConstraintItem(view: self, attribute: .Leading)
     }
     
-    public func nk_heightConstraintView( view: UIView? = nil, multiplier: CGFloat = 1, constant: CGFloat = 0) -> UIView {
-        var view = view
-        
-        if view == nil {
-            guard let superview = self.superview else {
-                return self
-            }
-            
-            view = superview
-        }
-        
-        self.translatesAutoresizingMaskIntoConstraints = false
-        let constraint = NSLayoutConstraint(item: self, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: view, attribute: NSLayoutAttribute.Height, multiplier: multiplier, constant: constant)
-        
-        self.superview?.addConstraint(constraint)
-        
-        return self
+    public var nka_trailing: NKConstraintItem {
+        return NKConstraintItem(view: self, attribute: .Trailing)
     }
     
-    public func nk_widthConstraint(width: CGFloat, relation: NSLayoutRelation = .Equal) -> UIView {
-        self.translatesAutoresizingMaskIntoConstraints = false
-        let constraint = NSLayoutConstraint(item: self, attribute: NSLayoutAttribute.Width, relatedBy: relation, toItem: nil, attribute: NSLayoutAttribute.Width, multiplier: 0, constant: width)
-        
-        self.superview?.addConstraint(constraint)
-        
-        return self
+    public var nka_bottom: NKConstraintItem {
+        return NKConstraintItem(view: self, attribute: .Bottom)
     }
     
-    public func nk_heightConstraint(height: CGFloat, relation: NSLayoutRelation = .Equal) -> UIView {
-        self.translatesAutoresizingMaskIntoConstraints = false
-        let constraint = NSLayoutConstraint(item: self, attribute: NSLayoutAttribute.Height, relatedBy: relation, toItem: nil, attribute: NSLayoutAttribute.Height, multiplier: 0, constant: height)
-        
-        self.superview?.addConstraint(constraint)
-        
-        return self
+    public var nka_top: NKConstraintItem {
+        return NKConstraintItem(view: self, attribute: .Top)
     }
     
-    //MARK: set constraints
-    
-    public func nk_centerXConstraintView( view: UIView? = nil, multiplier: CGFloat = 1, offset: CGFloat = 0) -> UIView {
-        var view = view
-        if view == nil {
-            guard let superview = self.superview else {
-                return self
-            }
-            
-            view = superview
-        }
-        
-        self.translatesAutoresizingMaskIntoConstraints = false
-        let constraint = NSLayoutConstraint(item: self, attribute: NSLayoutAttribute.CenterX, relatedBy: NSLayoutRelation.Equal, toItem: view, attribute: NSLayoutAttribute.CenterX, multiplier: multiplier, constant: offset)
-        
-        self.superview?.addConstraint(constraint)
-        
-        return self
+    public var nka_baseline: NKConstraintItem {
+        return NKConstraintItem(view: self, attribute: .Baseline)
     }
     
-    public func nk_centerYConstraintView( view: UIView? = nil, multiplier: CGFloat = 1, offset: CGFloat = 0) -> UIView {
-        var view = view
-        
-        if view == nil {
-            guard let superview = self.superview else {
-                return self
-            }
-            
-            view = superview
-        }
-        
-        self.translatesAutoresizingMaskIntoConstraints = false
-        let constraint = NSLayoutConstraint(item: self, attribute: NSLayoutAttribute.CenterY, relatedBy: NSLayoutRelation.Equal, toItem: view, attribute: NSLayoutAttribute.CenterY, multiplier: multiplier, constant: offset)
-        
-        self.superview?.addConstraint(constraint)
-        
-        return self
+    public var nka_centerX: NKConstraintItem {
+        return NKConstraintItem(view: self, attribute: .CenterX)
     }
     
-    public func nk_alignTopConstraintView( view: UIView? = nil, multiplier: CGFloat = 1, offset: CGFloat = 0) -> UIView {
-        var view = view
-        
-        if view == nil {
-            guard let superview = self.superview else {
-                return self
-            }
-            
-            view = superview
-        }
-        
-        self.translatesAutoresizingMaskIntoConstraints = false
-        let constraint = NSLayoutConstraint(item: self, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: view, attribute: NSLayoutAttribute.Bottom, multiplier: multiplier, constant: offset)
-        
-        self.superview?.addConstraint(constraint)
-        
-        return self
+    public var nka_centerY: NKConstraintItem {
+        return NKConstraintItem(view: self, attribute: .CenterY)
     }
     
-    public func nk_alignBottomConstraintView( view: UIView? = nil, multiplier: CGFloat = 1, offset: CGFloat = 0) -> UIView {
-        var view = view
-        
-        if view == nil {
-            guard let superview = self.superview else {
-                return self
-            }
-            
-            view = superview
-        }
-        
-        self.translatesAutoresizingMaskIntoConstraints = false
-        let constraint = NSLayoutConstraint(item: self, attribute: NSLayoutAttribute.Bottom, relatedBy: NSLayoutRelation.Equal, toItem: view, attribute: NSLayoutAttribute.Top, multiplier: multiplier, constant: offset)
-        
-        self.superview?.addConstraint(constraint)
-        
-        return self
+    public var nka_width: NKConstraintItem {
+        return NKConstraintItem(view: self, attribute: .Width)
     }
     
-    public func nk_alignTrailingConstraintView( view: UIView? = nil, multiplier: CGFloat = 1, offset: CGFloat = 0) -> UIView {
-        var view = view
-        
-        if view == nil {
-            guard let superview = self.superview else {
-                return self
-            }
-            
-            view = superview
-        }
-        
-        self.translatesAutoresizingMaskIntoConstraints = false
-        let constraint = NSLayoutConstraint(item: self, attribute: NSLayoutAttribute.Trailing, relatedBy: NSLayoutRelation.Equal, toItem: view, attribute: NSLayoutAttribute.Leading, multiplier: multiplier, constant: offset)
-        
-        self.superview?.addConstraint(constraint)
-        
-        return self
-    }
-    
-    public func nk_alignLeadingConstraintView( view: UIView? = nil, multiplier: CGFloat = 1, offset: CGFloat = 0) -> UIView {
-        var view = view
-        
-        if view == nil {
-            guard let superview = self.superview else {
-                return self
-            }
-            
-            view = superview
-        }
-        
-        self.translatesAutoresizingMaskIntoConstraints = false
-        let constraint = NSLayoutConstraint(item: self, attribute: NSLayoutAttribute.Leading, relatedBy: NSLayoutRelation.Equal, toItem: view, attribute: NSLayoutAttribute.Trailing, multiplier: multiplier, constant: offset)
-        
-        self.superview?.addConstraint(constraint)
-        
-        return self
-    }
-    
-    //MARK: pin constraints
-    
-    public func nk_pinTopConstraintView( view: UIView? = nil, multiplier: CGFloat = 1, offset: CGFloat = 0) -> UIView {
-        var view = view
-        
-        if view == nil {
-            guard let superview = self.superview else {
-                return self
-            }
-            
-            view = superview
-        }
-        
-        self.translatesAutoresizingMaskIntoConstraints = false
-        
-        let constraint = NSLayoutConstraint(item: self, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: view, attribute: NSLayoutAttribute.Top, multiplier: multiplier, constant: offset)
-        
-        self.superview?.addConstraint(constraint)
-        
-        return self
-    }
-    
-    public func nk_pinBottomConstraintView( view: UIView? = nil, multiplier: CGFloat = 1, offset: CGFloat = 0) -> UIView {
-        var view = view
-        
-        if view == nil {
-            guard let superview = self.superview else {
-                return self
-            }
-            
-            view = superview
-        }
-        
-        self.translatesAutoresizingMaskIntoConstraints = false
-        let constraint = NSLayoutConstraint(item: self, attribute: NSLayoutAttribute.Bottom, relatedBy: NSLayoutRelation.Equal, toItem: view, attribute: NSLayoutAttribute.Bottom, multiplier: multiplier, constant: offset)
-        
-        self.superview?.addConstraint(constraint)
-        
-        return self
-    }
-    
-    public func nk_pinLeadingConstraintView( view: UIView? = nil, multiplier: CGFloat = 1, offset: CGFloat = 0) -> UIView {
-        var view = view
-        
-        if view == nil {
-            guard let superview = self.superview else {
-                return self
-            }
-            
-            view = superview
-        }
-        
-        self.translatesAutoresizingMaskIntoConstraints = false
-        let constraint = NSLayoutConstraint(item: self, attribute: NSLayoutAttribute.Leading, relatedBy: NSLayoutRelation.Equal, toItem: view, attribute: NSLayoutAttribute.Leading, multiplier: multiplier, constant: offset)
-        
-        self.superview?.addConstraint(constraint)
-        
-        return self
-    }
-    
-    public func nk_pinTrailingConstraintView( view: UIView? = nil, multiplier: CGFloat = 1, offset: CGFloat = 0) -> UIView {
-        var view = view
-        
-        if view == nil {
-            guard let superview = self.superview else {
-                return self
-            }
-            
-            view = superview
-        }
-        
-        self.translatesAutoresizingMaskIntoConstraints = false
-        let constraint = NSLayoutConstraint(item: self, attribute: NSLayoutAttribute.Trailing, relatedBy: NSLayoutRelation.Equal, toItem: view, attribute: NSLayoutAttribute.Trailing, multiplier: multiplier, constant: offset)
-        
-        self.superview?.addConstraint(constraint)
-        
-        return self
+    public var nka_height: NKConstraintItem {
+        return NKConstraintItem(view: self, attribute: .Height)
     }
 }
