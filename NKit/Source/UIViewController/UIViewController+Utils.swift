@@ -9,6 +9,14 @@
 import UIKit
 
 public extension UIViewController {
+    public var nk_nearestNavigationController: UINavigationController? {
+        if let navigationController = self as? UINavigationController {
+            return navigationController
+        }
+        
+        return self.parentViewController?.nk_nearestNavigationController
+    }
+    
     public var nk_visibleViewController: UIViewController? {
         if let navigationController = self as? UINavigationController {
             return navigationController.visibleViewController?.nk_visibleViewController

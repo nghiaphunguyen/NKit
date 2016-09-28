@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1821A5E41D9AD926004C8FAC /* SnapKit+NKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1821A5E31D9AD926004C8FAC /* SnapKit+NKit.swift */; };
+		1821A5E61D9ADABC004C8FAC /* Mirror+NKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1821A5E51D9ADABC004C8FAC /* Mirror+NKit.swift */; };
 		1828D0C51D6F1799007D0933 /* Array+BinaryInsert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1828D0851D6F1799007D0933 /* Array+BinaryInsert.swift */; };
 		1828D0C61D6F1799007D0933 /* CALayer+Closure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1828D0871D6F1799007D0933 /* CALayer+Closure.swift */; };
 		1828D0C71D6F1799007D0933 /* NKBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1828D0891D6F1799007D0933 /* NKBaseView.swift */; };
@@ -89,6 +91,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1821A5E31D9AD926004C8FAC /* SnapKit+NKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SnapKit+NKit.swift"; sourceTree = "<group>"; };
+		1821A5E51D9ADABC004C8FAC /* Mirror+NKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Mirror+NKit.swift"; sourceTree = "<group>"; };
 		1828D0851D6F1799007D0933 /* Array+BinaryInsert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+BinaryInsert.swift"; sourceTree = "<group>"; };
 		1828D0871D6F1799007D0933 /* CALayer+Closure.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CALayer+Closure.swift"; sourceTree = "<group>"; };
 		1828D0891D6F1799007D0933 /* NKBaseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKBaseView.swift; sourceTree = "<group>"; };
@@ -391,6 +395,7 @@
 				1828D0F61D6FF23D007D0933 /* NKDemension.swift */,
 				189C3BE61D7090960057F068 /* NKGestureRecognizerDelegate.swift */,
 				1896195B1D9900DB006BBA0D /* KillOptional.swift */,
+				1821A5E51D9ADABC004C8FAC /* Mirror+NKit.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -432,6 +437,7 @@
 				1865A18B1D9983E7005D4C4A /* TZStackView+Layout.swift */,
 				1865A1911D9A29B2005D4C4A /* OAStackView+Layout.swift */,
 				184EBA811D9A4CCA00471EF3 /* UIStackView+Layout.swift */,
+				1821A5E31D9AD926004C8FAC /* SnapKit+NKit.swift */,
 			);
 			path = Layout;
 			sourceTree = "<group>";
@@ -677,6 +683,7 @@
 				188474EC1D93C2FE009F4506 /* NKPresentationController.swift in Sources */,
 				1828D0C71D6F1799007D0933 /* NKBaseView.swift in Sources */,
 				1828D0F71D6FF23D007D0933 /* NKDemension.swift in Sources */,
+				1821A5E41D9AD926004C8FAC /* SnapKit+NKit.swift in Sources */,
 				18A1DAC81D6F167D00D566C2 /* ViewController.swift in Sources */,
 				1828D0D41D6F1799007D0933 /* NKTableView.swift in Sources */,
 				189C3BE91D7092BE0057F068 /* SecondViewController.swift in Sources */,
@@ -695,6 +702,7 @@
 				1828D0E01D6F1799007D0933 /* UINavigationController+Animation.swift in Sources */,
 				1828D0E11D6F1799007D0933 /* UIView+Animation.swift in Sources */,
 				189DF1BF1D97F22D00266E12 /* NKLayoutTester.swift in Sources */,
+				1821A5E61D9ADABC004C8FAC /* Mirror+NKit.swift in Sources */,
 				188474F51D93D570009F4506 /* NSObject+NRx.swift in Sources */,
 				1828D0E51D6F1799007D0933 /* UIView+SnapKitAutolayout.swift in Sources */,
 				1828D0DA1D6F1799007D0933 /* NKCollectionView.swift in Sources */,

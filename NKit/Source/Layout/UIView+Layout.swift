@@ -9,6 +9,7 @@
 import UIKit
 import NTZStackView
 import OAStackView
+import SnapKit
 
 public protocol NKViewIdentifier {
     var rawValue: String {get}
@@ -168,6 +169,12 @@ public extension UIView {
             
             if let superView = self.superview as? OAStackView {
                 updateConstraints(superView: superView, isVertical: superView.axis == .Vertical)
+            }
+            
+            if #available(iOS 9.0, *) {
+                if let superView = self.superview as? UIStackView {
+                    updateConstraints(superView: superView, isVertical: superView.axis == .Vertical)
+                }
             }
         }
         
