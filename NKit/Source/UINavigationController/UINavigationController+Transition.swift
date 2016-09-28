@@ -8,7 +8,7 @@
 
 import UIKit
 
-private struct Identifier {
+private struct AssociatedKey {
     static var Transition: UInt8 = 0
 }
 
@@ -25,11 +25,11 @@ public extension UINavigationController {
 extension UINavigationController {
     var _nk_transition: NKNavigationTransition? {
         get {
-            return objc_getAssociatedObject(self, &Identifier.Transition) as? NKNavigationTransition
+            return objc_getAssociatedObject(self, &AssociatedKey.Transition) as? NKNavigationTransition
         }
         
         set {
-            objc_setAssociatedObject(self, &Identifier.Transition, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+            objc_setAssociatedObject(self, &AssociatedKey.Transition, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         }
     }
 }

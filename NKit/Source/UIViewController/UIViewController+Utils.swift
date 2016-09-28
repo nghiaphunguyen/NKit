@@ -71,7 +71,7 @@ public extension UIViewController {
     }
 }
 
-private struct Identifier {
+private struct AssociatedKey {
     static var GestureRecognizerDelegate: UInt8 = 1
 }
 
@@ -79,11 +79,11 @@ extension UIViewController{
         
     var nk_gestureRecognizerDelegate: NKGestureRecognizerDelegate? {
         get {
-            return objc_getAssociatedObject(self, &Identifier.GestureRecognizerDelegate) as? NKGestureRecognizerDelegate
+            return objc_getAssociatedObject(self, &AssociatedKey.GestureRecognizerDelegate) as? NKGestureRecognizerDelegate
         }
         
         set {
-            objc_setAssociatedObject(self, &Identifier.GestureRecognizerDelegate, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+            objc_setAssociatedObject(self, &AssociatedKey.GestureRecognizerDelegate, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         }
     }
 }
