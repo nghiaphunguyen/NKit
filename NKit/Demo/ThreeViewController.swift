@@ -57,16 +57,16 @@ extension ThreeViewController {
                 $0.backgroundColor = UIColor.blueColor()
                 }
                 .nk_addArrangedSubview(UILabel(text: 200.nk_dummyString, isSizeToFit: true, alignment: .Left).nk_id(ViewIdentifier.SecondLabel)) {
-                    $0.nk_weight = 0.1
+                    $0.nka_weight = 0.1
                     $0.numberOfLines = 0
                     $0.backgroundColor = UIColor.greenColor()
                     
                 }.nk_addArrangedSubview(UILabel(text: 2000.nk_dummyString, isSizeToFit: true, alignment: .Left).nk_id(ViewIdentifier.ThirdLabel)) {
-                    $0.nk_weight = 0.2
+                    $0.nka_weight = 0.2
                     $0.numberOfLines = 0
                     $0.backgroundColor = UIColor.redColor()
                 }.nk_addArrangedSubview(UIButton().nk_id(ViewIdentifier.Button)) {
-                    $0.nk_weight = 0.4
+                    $0.nka_weight = 0.4
                     $0.setTitle("Ok nhe", forState: .Normal)
                     $0.setBackgroundImage(UIImage.nk_fromColor(UIColor.blueColor()), forState: .Normal)
                     
@@ -91,6 +91,6 @@ extension ThreeViewController {
             }
             }.nk_config {
                 $0.backgroundColor = UIColor.yellowColor()
-        }
+        }.nk_map()
     }
 }

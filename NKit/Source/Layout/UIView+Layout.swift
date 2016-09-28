@@ -95,11 +95,6 @@ public extension UIView {
         }
         
         set {
-            (objc_getAssociatedObject(self, &NKAssociatedKeyId) as? String) ?! {
-                self.nk_subviews[$0] = nil
-            }
-            
-            newValue ?! { self.nk_subviews[$0] = self }
             objc_setAssociatedObject(self, &NKAssociatedKeyId, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         }
     }
@@ -129,27 +124,64 @@ public extension UIView {
     }
     
     public func nk_findViewById(id: NKViewIdentifier) -> UIView? {
-        if self.nk_id == id.identifier {
-            return self
+        return self._nk_findViewById(self, id: id)
+    }
+    
+    private func _nk_findViewById(root: UIView, id: NKViewIdentifier) -> UIView? {
+        let findView: (view: UIView) -> UIView? = { view in
+            
+            if let viewId = view.nk_id {
+                root.nk_subviews[viewId] = view
+                
+                if viewId == id.identifier {
+                    return view
+                }
+            }
+            
+            if let view = view.nk_subviews[id.identifier] {
+                return view
+            }
+            
+            return nil
         }
         
-        if let view = self.nk_subviews[id.identifier] {
+        if let view = findView(view: self) {
             return view
         }
         
         for view in self.subviews {
-            if let result = view.nk_findViewById(id) {
-                self.nk_subviews[id.identifier] = result
-                return result
+            if let v = findView(view: view) {
+                return v
+            }
+        }
+        
+        for view in self.subviews {
+            if let v = view._nk_findViewById(root, id: id) {
+                return v
             }
         }
         
         return nil
     }
+    
+    public func nk_map() -> Self {
+        self._nk_map(self)
+        return self
+    }
+    
+    private func _nk_map(view: UIView) {
+        if let id = self.nk_id {
+            view.nk_subviews[id] = self
+        }
+        
+        for v in self.subviews {
+            v._nk_map(view)
+        }
+    }
 }
 
 public extension UIView {
-    public var nk_weight: CGFloat {
+    public var nka_weight: CGFloat {
         set {
             let updateConstraints: (superView: UIView, isVertical: Bool) -> Void = { superView, isVertical in
                 
