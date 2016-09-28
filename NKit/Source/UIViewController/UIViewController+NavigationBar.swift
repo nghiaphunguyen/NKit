@@ -32,7 +32,9 @@ public extension UIViewController {
     }
     
     public func nk_setBarTintColor(color: UIColor) -> UIViewController {
-        self.navigationController?.navigationBar.translucent = color == UIColor.clearColor()
+        let transparent = (color == UIColor.clearColor())
+        self.navigationController?.navigationBar.translucent = transparent
+        self.navigationController?.navigationBar.userInteractionEnabled = transparent
         self.navigationController?.navigationBar.barTintColor = color
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
