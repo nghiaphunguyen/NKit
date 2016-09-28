@@ -67,16 +67,14 @@ public extension NKViewProtocol where Self: UIView {
 
 extension UIView: NKViewProtocol {}
 
-private struct AssociatedKey {
-    static var Id: Int = 100
-    static var Subviews: Int = 101
-}
+private let kAssociatedKeyId: UInt8 = 100
+private let kAssociatedKeySubviews: UInt8 = 101
 
 public extension UIView {
     
     public var nk_subviews: [String : UIView] {
         get {
-            guard let subviews = (objc_getAssociatedObject(self, &AssociatedKey.Subviews) as? [String: UIView]) else {
+            guard let subviews = (objc_getAssociatedObject(self, &kAssociatedKeySubviews) as? [String: UIView]) else {
                 let result = [String: UIView]()
                 self.nk_subviews = result
                 return result
@@ -86,23 +84,23 @@ public extension UIView {
         }
         
         set {
-            objc_setAssociatedObject(self, &AssociatedKey.Id, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+            objc_setAssociatedObject(self, &kAssociatedKeySubviews, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         }
     }
     
     //NPN TODO: Some views is still be stored instead id is invalid
     public var nk_id: String? {
         get {
-            return objc_getAssociatedObject(self, &AssociatedKey.Id) as? String
+            return objc_getAssociatedObject(self, &kAssociatedKeyId) as? String
         }
         
         set {
-            (objc_getAssociatedObject(self, &AssociatedKey.Id) as? String) ?! {
+            (objc_getAssociatedObject(self, &kAssociatedKeyId) as? String) ?! {
                 self.nk_subviews[$0] = nil
             }
             
             newValue ?! { self.nk_subviews[$0] = self }
-            objc_setAssociatedObject(self, &AssociatedKey.Id, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+            objc_setAssociatedObject(self, &kAssociatedKeyId, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         }
     }
     
