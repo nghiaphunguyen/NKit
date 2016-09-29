@@ -128,30 +128,17 @@ public extension UIView {
     }
     
     private func _nk_findViewById(root: UIView, id: NKViewIdentifier) -> UIView? {
-        let findView: (view: UIView) -> UIView? = { view in
-            
-            if let viewId = view.nk_id {
-                root.nk_subviews[viewId] = view
-                
-                if viewId == id.identifier {
-                    return view
-                }
-            }
-            
-            if let view = view.nk_subviews[id.identifier] {
-                return view
-            }
-            
-            return nil
-        }
-        
-        if let view = findView(view: self) {
+        if let view = self.nk_subviews[id.identifier] {
             return view
         }
         
         for view in self.subviews {
-            if let v = findView(view: view) {
-                return v
+            guard let viewId = view.nk_id else { continue }
+            
+            root.nk_subviews[viewId] = view
+            
+            if viewId == id.identifier {
+                return view
             }
         }
         
@@ -164,18 +151,18 @@ public extension UIView {
         return nil
     }
     
-    public func nk_map() -> Self {
-        self._nk_map(self)
+    public func nk_mapIds() -> Self {
+        self._nk_mapIds(self)
         return self
     }
     
-    private func _nk_map(view: UIView) {
+    private func _nk_mapIds(view: UIView) {
         if let id = self.nk_id {
             view.nk_subviews[id] = self
         }
         
         for v in self.subviews {
-            v._nk_map(view)
+            v._nk_mapIds(view)
         }
     }
 }
