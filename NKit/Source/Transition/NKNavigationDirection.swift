@@ -10,7 +10,6 @@ import UIKit
 
 public typealias NKAnyViewController = UIViewController
 
-infix operator >> {}
 public func >>(left: UIViewController, right: UIViewController) -> NKNavigationDirection {
     return left.dynamicType.self >> right.dynamicType.self
 }
@@ -27,7 +26,6 @@ public func >>(left: UIViewController.Type, right: UIViewController.Type) -> NKN
     return NKNavigationDirection(source: left, destination: right, operation: .Push)
 }
 
-infix operator << {}
 public func <<(left: UIViewController, right: UIViewController) -> NKNavigationDirection {
     return left.dynamicType.self << right.dynamicType.self
 }

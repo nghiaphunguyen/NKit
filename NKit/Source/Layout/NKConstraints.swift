@@ -68,7 +68,6 @@ public func /(left: NKConstraintRelativeItem, right: CGFloat) -> NKConstraintRel
     return left * (1 / right)
 }
 
-infix operator ~ {} //priority
 public func ~(left: NKConstraintRelativeItem, right: UInt) -> NKConstraintRelativeItem {
     return NKConstraintRelativeItem(item: left.item, multiple: left.multiple, constant: left.constant, priority: right)
 }

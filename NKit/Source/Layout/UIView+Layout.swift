@@ -202,3 +202,61 @@ public extension UIView {
     }
 }
 
+public struct NKViewConfiguration<T> {
+    let view: T
+    let config: (T) -> Void
+}
+
+infix operator ~ {precedence 160}
+public func ~ <T: UIView>(left: T, right: NKViewIdentifier) -> T {
+    return left.nk_id(right)
+}
+
+infix operator >>> {precedence 150}
+public func >>> <T: UIView>(left: T, right: (T) -> Void) -> NKViewConfiguration<T> {
+    return NKViewConfiguration(view: left, config: right)
+}
+
+infix operator <> {associativity left precedence 151}
+public func <> <T: UIView>(left: T, right: (T) -> Void) -> T {
+    right(left)
+    
+    return left
+}
+
+infix operator <<< { associativity left precedence 140}
+public func <<< <T: UIView, U: UIView>(left: T, right: U) -> T {
+    return left.nk_addSubview(right)
+}
+
+public func <<< <T: TZStackView, U: UIView>(left: T, right: U) -> T {
+    return left.nk_addArrangedSubview(right)
+}
+
+public func <<< <T: OAStackView, U: UIView>(left: T, right: U) -> T {
+    return left.nk_addArrangedSubview(right)
+}
+
+@available(iOS 9.0, *)
+public func <<< <T: UIStackView
+    , U: UIView>(left: T, right: U) -> T {
+    return left.nk_addArrangedSubview(right)
+}
+
+public func <<< <T: UIView, U: UIView>(left: T, right: NKViewConfiguration<U>) -> T {
+    return left.nk_addSubview(right.view, config: right.config)
+}
+
+public func <<< <T: TZStackView, U: UIView>(left: T, right: NKViewConfiguration<U>) -> T {
+    return left.nk_addArrangedSubview(right.view, config: right.config)
+}
+
+public func <<< <T: OAStackView, U: UIView>(left: T, right: NKViewConfiguration<U>) -> T {
+    return left.nk_addArrangedSubview(right.view, config: right.config)
+}
+
+@available(iOS 9.0, *)
+public func <<< <T: UIStackView
+    , U: UIView>(left: T, right: NKViewConfiguration<U>) -> T {
+    return left.nk_addArrangedSubview(right.view, config: right.config)
+}

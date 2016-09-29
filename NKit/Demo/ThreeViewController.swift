@@ -18,17 +18,17 @@ class ThreeViewController: UIViewController {
         case Button
     }
     
-    var stackView: TZStackView {return ViewIdentifier.StackView.view(self.view) }
-    var firstLabel: UILabel {return ViewIdentifier.FirstLabel.view(self.view) }
-    var secondLabel: UILabel {return ViewIdentifier.SecondLabel.view(self.view) }
-    var thirdLabel: UILabel {return ViewIdentifier.ThirdLabel.view(self.view) }
-    var button: UIButton {return ViewIdentifier.Button.view(self.view) }
+    var stackView: TZStackView {return ViewIdentifier.StackView.view(self) }
+    var firstLabel: UILabel {return ViewIdentifier.FirstLabel.view(self) }
+    var secondLabel: UILabel {return ViewIdentifier.SecondLabel.view(self) }
+    var thirdLabel: UILabel {return ViewIdentifier.ThirdLabel.view(self) }
+    var button: UIButton {return ViewIdentifier.Button.view(self) }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.button.rx_tap.bindNext {
-            print("ok roi nhe")
+            print("ok")
             }.addDisposableTo(self.nk_disposeBag)
     }
 }
@@ -38,9 +38,18 @@ extension ThreeViewController {
     override func loadView() {
         super.loadView()
         
-        self.view.nk_config {
-            $0.backgroundColor = UIColor.yellowColor()
-            }.nk_addSubview(TZStackView.nk_column().nk_id(ViewIdentifier.StackView)) {
+        //        self.view > UIView() * {
+        //            $0.nk_id = nil
+        //            } > UIView() * {
+        //                $0.nk_id = nil
+        //        }
+        
+        self.view
+            <> {
+                $0.backgroundColor = UIColor.yellowColor()
+            }
+            
+            <<< TZStackView.nk_column().nk_id(ViewIdentifier.StackView) >>> {
                 $0.distribution = .Fill
                 $0.alignment = .Fill
                 
@@ -49,26 +58,34 @@ extension ThreeViewController {
                     make.leading.trailing.bottom.equalTo(0).inset(10)
                 })
                 
-                $0.nk_addArrangedSubview(UILabel(text: 30.nk_dummyString, isSizeToFit: true, alignment: .Left).nk_id(ViewIdentifier.FirstLabel)) {
+                $0
+                    <<< UILabel(text: 30.nk_dummyString, isSizeToFit: true, alignment: .Left).nk_id(ViewIdentifier.FirstLabel) >>> {
                     $0.nka_height == $0.nka_width / 4
                     
                     $0.numberOfLines = 0
                     $0.backgroundColor = UIColor.blueColor()
-                    }.nk_addArrangedSubview(UILabel(text: 200.nk_dummyString, isSizeToFit: true, alignment: .Left).nk_id(ViewIdentifier.SecondLabel)) {
+                    }
+                    
+                    <<< UILabel(text: 200.nk_dummyString, isSizeToFit: true, alignment: .Left).nk_id(ViewIdentifier.SecondLabel) >>> {
                         $0.nka_weight = 0.1
                         $0.numberOfLines = 0
                         $0.backgroundColor = UIColor.greenColor()
                         
-                    }.nk_addArrangedSubview(UILabel(text: 2000.nk_dummyString, isSizeToFit: true, alignment: .Left).nk_id(ViewIdentifier.ThirdLabel)) {
+                    }
+                    
+                    <<< (UILabel(text: 2000.nk_dummyString, isSizeToFit: true, alignment: .Left).nk_id(ViewIdentifier.ThirdLabel) >>> {
                         $0.nka_weight = 0.55
                         $0.numberOfLines = 0
                         $0.backgroundColor = UIColor.redColor()
-                    }.nk_addArrangedSubview(UIButton().nk_id(ViewIdentifier.Button)) {
+                    }
+                        
+                    <<< (UIButton().nk_id(ViewIdentifier.Button)) >>> {
                         $0.nka_weight = 0.1
                         $0.setTitle("Ok nhe", forState: .Normal)
                         $0.setBackgroundImage(UIImage.nk_fromColor(UIColor.blueColor()), forState: .Normal)
                         
-                    }.nk_addArrangedSubview(UIView()) {
+                    }
+                    <<< (UIView()) >>> {
                         $0.backgroundColor = UIColor.brownColor()
                         
                         $0.nk_addSubview(UIView().nk_id("TestHangHo")) { view in
@@ -86,7 +103,6 @@ extension ThreeViewController {
                                 })
                                 
                         }
-                }
-            }.nk_mapIds()
-    }
+                    }
+        }
 }
