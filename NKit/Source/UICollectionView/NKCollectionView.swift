@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RxSwift
 
 public protocol NKCollectionViewDataSource: class {
     func itemsForCollectionView(collectionView: NKCollectionView) -> [[Any]]
@@ -75,6 +76,68 @@ public class NKCollectionView: UICollectionView {
         didSet {
             self.dataSource = self
         }
+    }
+    
+    private lazy var rx_paging = Variable<Bool?>(nil)
+    public var nk_paging: Bool {
+        get {
+            return self.rx_paging.value ?? false
+        }
+        
+        set {
+            self.rx_paging.value = newValue
+            
+            if newValue {
+                self.setupPaging()
+            }
+        }
+    }
+    
+    private func setupPaging() {
+        var startedOffset: CGPoint? = nil
+        
+        self.nk_scrollViewWillBeginDraggingObservable
+            .takeUntil(self.rx_paging.asObservable().filter({$0 == false}))
+            .subscribeNext { (point) in
+                startedOffset = point
+            }.addDisposableTo(self.nk_disposeBag)
+        
+        self.nk_scrollViewWillEndScrollingObservable
+            .takeUntil(self.rx_paging.asObservable().filter({$0 == false}))
+            .bindNext { (point) in
+                guard let layout = self.collectionViewLayout as? UICollectionViewFlowLayout else {
+                    return
+                }
+                
+                let isHorizontal = layout.scrollDirection == .Horizontal
+                
+                let value = ((isHorizontal) ? layout.itemSize.width : layout.itemSize.height) + layout.minimumLineSpacing
+                
+                let firstCenter = isHorizontal ? layout.sectionInset.left + layout.itemSize.width / 2 : layout.sectionInset.top + layout.itemSize.height / 2
+                let xFirstCenter = isHorizontal ? self.nk_width / 2 : self.nk_height / 2
+                let firstValue = value - (xFirstCenter - firstCenter)
+                
+                let sOffset = isHorizontal ? startedOffset?.x : startedOffset?.y
+                let offset = isHorizontal ? point.x : point.y
+                let minOffset: CGFloat = 0
+                
+                let maxOffset = isHorizontal ? self.contentSize.width - self.nk_width : self.contentSize.height - self.nk_height
+                
+                let currentPage: Int
+                if offset >= firstValue {
+                    currentPage = Int((offset - firstValue) / value) + 1
+                } else {
+                    currentPage = 0
+                }
+                
+                let k = offset > sOffset ? 1 : 0
+                
+                let page = currentPage + k
+                
+                let newOffset = max(minOffset, min(CGFloat(page - 1) * value + (page > 0 ? firstValue : 0), maxOffset))
+                let newPoint = isHorizontal ? CGPointMake(newOffset, point.y) : CGPointMake(point.x, newOffset)
+                self.setContentOffset(newPoint, animated: true)
+            }.addDisposableTo(self.nk_disposeBag)
     }
     
     public override func layoutSubviews() {
