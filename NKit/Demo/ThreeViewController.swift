@@ -37,72 +37,104 @@ class ThreeViewController: UIViewController {
 extension ThreeViewController {
     override func loadView() {
         super.loadView()
-        
+
+        self.view
+            .nk_config() {
+                $0.backgroundColor = UIColor.blackColor()
+            }
+
+            .nk_addSubview(UIView()) {
+                $0.nk_id = ""
+
+                $0
+                .nk_addSubview(UIView()) {
+
+                    $0
+                    .nk_addSubview(UIView()) {
+                        $0.nk_id = ""
+                    }
+
+                    .nk_addSubview(UIView()) {
+                        $0.nk_id = ""
+                    }
+                }
+
+                .nk_addSubview(UIView()) {
+
+                    $0
+                    .nk_addSubview(UIView()) {
+                        $0.nk_id = ""
+                    }
+                }
+            }
+
+            .nk_addSubview(UIView()) {
+                $0.nk_id = ""
+            }.nk_mapIds()
+
+
         //        self.view > UIView() * {
         //            $0.nk_id = nil
         //            } > UIView() * {
         //                $0.nk_id = nil
         //        }
         
-        self.view
-            <> {
-                $0.backgroundColor = UIColor.yellowColor()
-            }
-            
-            <<< TZStackView.nk_column().nk_id(ViewIdentifier.StackView) >>> {
-                $0.distribution = .Fill
-                $0.alignment = .Fill
-                
-                $0.snp_makeConstraints(closure: { (make) in
-                    make.top.equalTo(0).inset(20)
-                    make.leading.trailing.bottom.equalTo(0).inset(10)
-                })
-                
-                $0
-                    <<< UILabel(text: 30.nk_dummyString, isSizeToFit: true, alignment: .Left).nk_id(ViewIdentifier.FirstLabel) >>> {
-                    $0.nka_height == $0.nka_width / 4
-                    
-                    $0.numberOfLines = 0
-                    $0.backgroundColor = UIColor.blueColor()
-                    }
-                    
-                    <<< UILabel(text: 200.nk_dummyString, isSizeToFit: true, alignment: .Left).nk_id(ViewIdentifier.SecondLabel) >>> {
-                        $0.nka_weight = 0.1
-                        $0.numberOfLines = 0
-                        $0.backgroundColor = UIColor.greenColor()
-                        
-                    }
-                    
-                    <<< (UILabel(text: 2000.nk_dummyString, isSizeToFit: true, alignment: .Left).nk_id(ViewIdentifier.ThirdLabel) >>> {
-                        $0.nka_weight = 0.55
-                        $0.numberOfLines = 0
-                        $0.backgroundColor = UIColor.redColor()
-                    }
-                        
-                    <<< (UIButton().nk_id(ViewIdentifier.Button)) >>> {
-                        $0.nka_weight = 0.1
-                        $0.setTitle("Ok nhe", forState: .Normal)
-                        $0.setBackgroundImage(UIImage.nk_fromColor(UIColor.blueColor()), forState: .Normal)
-                        
-                    }
-                    <<< (UIView()) >>> {
-                        $0.backgroundColor = UIColor.brownColor()
-                        
-                        $0.nk_addSubview(UIView().nk_id("TestHangHo")) { view in
-                            view.backgroundColor = UIColor.grayColor()
-                            
-                            view.snp_makeConstraints(closure: { (make) in
-                                make.top.leading.bottom.equalTo(0)
-                                make.width.equalTo(view.superview!).dividedBy(4)
-                            })
-                            }.nk_addSubview(UIView()) { (view) in
-                                view.backgroundColor = UIColor.lightGrayColor()
-                                view.snp_makeConstraints(closure: { (make) in
-                                    make.top.trailing.bottom.equalTo(view.superview!)
-                                    make.leading.equalTo(view.superview!.nk_findViewById("TestHangHo").snp_trailing)
-                                })
-                                
-                        }
-                    }
+//        self.view.nk_config {
+//                $0.backgroundColor = UIColor.yellowColor()
+//            }.add_subviews()TZStackView.nk_column().nk_id(ViewIdentifier.StackView) >>> {
+//                $0.distribution = .Fill
+//                $0.alignment = .Fill
+//                
+//                $0.snp_makeConstraints(closure: { (make) in
+//                    make.top.equalTo(0).inset(20)
+//                    make.leading.trailing.bottom.equalTo(0).inset(10)
+//                })
+//                
+//                $0
+//                    <<< UILabel(text: 30.nk_dummyString, isSizeToFit: true, alignment: .Left).nk_id(ViewIdentifier.FirstLabel) >>> {
+//                    $0.nka_height == $0.nka_width / 4
+//                    
+//                    $0.numberOfLines = 0
+//                    $0.backgroundColor = UIColor.blueColor()
+//                    }
+//                    
+//                    <<< UILabel(text: 200.nk_dummyString, isSizeToFit: true, alignment: .Left).nk_id(ViewIdentifier.SecondLabel) >>> {
+//                        $0.nka_weight = 0.1
+//                        $0.numberOfLines = 0
+//                        $0.backgroundColor = UIColor.greenColor()
+//                        
+//                    }
+//                    
+//                    <<< (UILabel(text: 2000.nk_dummyString, isSizeToFit: true, alignment: .Left).nk_id(ViewIdentifier.ThirdLabel) >>> {
+//                        $0.nka_weight = 0.55
+//                        $0.numberOfLines = 0
+//                        $0.backgroundColor = UIColor.redColor()
+//                    }
+//                        
+//                    <<< (UIButton().nk_id(ViewIdentifier.Button)) >>> {
+//                        $0.nka_weight = 0.1
+//                        $0.setTitle("Ok nhe", forState: .Normal)
+//                        $0.setBackgroundImage(UIImage.nk_fromColor(UIColor.blueColor()), forState: .Normal)
+//                        
+//                    }
+//                    <<< (UIView()) >>> {
+//                        $0.backgroundColor = UIColor.brownColor()
+//                        
+//                        $0.nk_addSubview(UIView().nk_id("TestHangHo")) { view in
+//                            view.backgroundColor = UIColor.grayColor()
+//                            
+//                            view.snp_makeConstraints(closure: { (make) in
+//                                make.top.leading.bottom.equalTo(0)
+//                                make.width.equalTo(view.superview!).dividedBy(4)
+//                            })
+//                            }.nk_addSubview(UIView()) { (view) in
+//                                view.backgroundColor = UIColor.lightGrayColor()
+//                                view.snp_makeConstraints(closure: { (make) in
+//                                    make.top.trailing.bottom.equalTo(view.superview!)
+//                                    make.leading.equalTo(view.superview!.nk_findViewById("TestHangHo").snp_trailing)
+//                                })
+//                                
+//                        }
+//                    }
         }
 }

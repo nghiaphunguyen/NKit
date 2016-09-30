@@ -260,3 +260,13 @@ public func <<< <T: UIStackView
     , U: UIView>(left: T, right: NKViewConfiguration<U>) -> T {
     return left.nk_addArrangedSubview(right.view, config: right.config)
 }
+
+public var MAP = NKLayoutMapping.Ids
+public enum NKLayoutMapping {
+    case Ids
+}
+
+infix operator <-> {precedence 130}
+public func <-> <T: UIView>(left: T, right: NKLayoutMapping) -> T {
+    return left.nk_mapIds()
+}
