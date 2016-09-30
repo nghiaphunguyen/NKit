@@ -62,6 +62,9 @@
 		184EBA821D9A4CCA00471EF3 /* UIStackView+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184EBA811D9A4CCA00471EF3 /* UIStackView+Layout.swift */; };
 		184F79C11D9284010087B6AF /* UIScrollView+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184F79C01D9284010087B6AF /* UIScrollView+Rx.swift */; };
 		186058C01D9E5D830079CE63 /* ForurViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186058BF1D9E5D830079CE63 /* ForurViewController.swift */; };
+		186058C21D9E79C40079CE63 /* NKText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186058C11D9E79C40079CE63 /* NKText.swift */; };
+		186058C41D9E7A2F0079CE63 /* NKImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186058C31D9E7A2F0079CE63 /* NKImage.swift */; };
+		186058C61D9E7AA00079CE63 /* NKFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186058C51D9E7AA00079CE63 /* NKFont.swift */; };
 		1865A18A1D9980B0005D4C4A /* UIView+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1865A1891D9980B0005D4C4A /* UIView+Layout.swift */; };
 		1865A18C1D9983E7005D4C4A /* TZStackView+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1865A18B1D9983E7005D4C4A /* TZStackView+Layout.swift */; };
 		1865A18E1D9987F6005D4C4A /* ThreeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1865A18D1D9987F6005D4C4A /* ThreeViewController.swift */; };
@@ -149,6 +152,9 @@
 		184EBA811D9A4CCA00471EF3 /* UIStackView+Layout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIStackView+Layout.swift"; sourceTree = "<group>"; };
 		184F79C01D9284010087B6AF /* UIScrollView+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIScrollView+Rx.swift"; sourceTree = "<group>"; };
 		186058BF1D9E5D830079CE63 /* ForurViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForurViewController.swift; sourceTree = "<group>"; };
+		186058C11D9E79C40079CE63 /* NKText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKText.swift; sourceTree = "<group>"; };
+		186058C31D9E7A2F0079CE63 /* NKImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKImage.swift; sourceTree = "<group>"; };
+		186058C51D9E7AA00079CE63 /* NKFont.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKFont.swift; sourceTree = "<group>"; };
 		1865A1891D9980B0005D4C4A /* UIView+Layout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Layout.swift"; sourceTree = "<group>"; };
 		1865A18B1D9983E7005D4C4A /* TZStackView+Layout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TZStackView+Layout.swift"; sourceTree = "<group>"; };
 		1865A18D1D9987F6005D4C4A /* ThreeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreeViewController.swift; sourceTree = "<group>"; };
@@ -400,6 +406,9 @@
 				189C3BE61D7090960057F068 /* NKGestureRecognizerDelegate.swift */,
 				1896195B1D9900DB006BBA0D /* KillOptional.swift */,
 				1821A5E51D9ADABC004C8FAC /* Mirror+NKit.swift */,
+				186058C11D9E79C40079CE63 /* NKText.swift */,
+				186058C31D9E7A2F0079CE63 /* NKImage.swift */,
+				186058C51D9E7AA00079CE63 /* NKFont.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -675,6 +684,7 @@
 				18DD400E1D87B5FD004B420E /* NKNavigationDirection.swift in Sources */,
 				183D0DAC1D82BF360084754E /* UIScrollView+AutoScrolling.swift in Sources */,
 				1865A18C1D9983E7005D4C4A /* TZStackView+Layout.swift in Sources */,
+				186058C21D9E79C40079CE63 /* NKText.swift in Sources */,
 				1828D0D91D6F1799007D0933 /* NKBaseCollectionViewCell.swift in Sources */,
 				1828D0F51D6FEA96007D0933 /* TestingCollectionViewController.swift in Sources */,
 				1828D0E81D6F1799007D0933 /* UIViewController+Injected.swift in Sources */,
@@ -711,6 +721,7 @@
 				1828D0E11D6F1799007D0933 /* UIView+Animation.swift in Sources */,
 				189DF1BF1D97F22D00266E12 /* NKLayoutTester.swift in Sources */,
 				1821A5E61D9ADABC004C8FAC /* Mirror+NKit.swift in Sources */,
+				186058C41D9E7A2F0079CE63 /* NKImage.swift in Sources */,
 				188474F51D93D570009F4506 /* NSObject+NRx.swift in Sources */,
 				1828D0E51D6F1799007D0933 /* UIView+SnapKitAutolayout.swift in Sources */,
 				1828D0DA1D6F1799007D0933 /* NKCollectionView.swift in Sources */,
@@ -728,6 +739,7 @@
 				1828D0CD1D6F1799007D0933 /* NKLabel.swift in Sources */,
 				189C3BE71D7090960057F068 /* NKGestureRecognizerDelegate.swift in Sources */,
 				1828D0D31D6F1799007D0933 /* NKBaseTableViewCell.swift in Sources */,
+				186058C61D9E7AA00079CE63 /* NKFont.swift in Sources */,
 				1828D0CB1D6F1799007D0933 /* NKDrawView.swift in Sources */,
 				1828D0CF1D6F1799007D0933 /* NKTextField.swift in Sources */,
 				1828D0D61D6F1799007D0933 /* UIAlertController+Extension.swift in Sources */,
