@@ -8,44 +8,120 @@
 
 import UIKit
 
-class TwoViewController: UIViewController {
+final class TwoViewController: UIViewController {
     
-    lazy var presentationTransition: NKPresentationTransition = {
-        let presentationAnimator = NKAnimator.present(duration: 1) { (context) in
-            context.toView.alpha = 0
+    enum Id: String, NKViewIdentifier {
+        case scrollView
+    }
+    
+    private lazy var scrollView: UIScrollView = Id.scrollView.view(self)
+    
+    private lazy var popAnimator: NKAnimator = self.setupPopAnimator()
+    private func setupPopAnimator() -> NKAnimator {
+        let animator = NKAnimator.pop(duration: 1, animationType: NKAnimator.AnimationType.Interactive) { (context) in
+            let fromView = context.fromView
             UIView.animateWithDuration(context.duration, animations: {
-                context.toView.alpha = 1
-                }, completion: { (_) in
+                fromView.nk_y = -NKScreenSize.Current.height
+                }, completion:  { _ in
                     context.completeTransition()
             })
         }
         
-        let dismissAnimator = NKAnimator.dismiss(duration: 1) { (context) in
-            UIView.animateWithDuration(context.duration, animations: {
-                context.fromView.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.000001, 0.000001)
-                }, completion: { (_) in
-                    context.completeTransition()
+        return animator
+    }
+    
+    override func loadView() {
+        super.loadView()
+        
+        self.view
+            .nk_config {
+                $0.backgroundColor = UIColor.blueColor()
+            }
+            .nk_addSubview(UIScrollView().nk_id(Id.scrollView)) {
+            $0.snp_makeConstraints(closure: { (make) in
+                make.edges.equalTo(0)
             })
+            
+            $0.nk_addSubview(UIView()) {
+                $0.snp_makeConstraints(closure: { (make) in
+                    make.edges.equalTo(0)
+                    make.height.equalTo(make.nk_view.superview!).multipliedBy(2)
+                    make.width.equalTo(make.nk_view.superview!)
+                })
+            }
         }
-        return NKPresentationTransition(presentAnimator: presentationAnimator, dismissAnimator: dismissAnimator, controller: TestController())
-    }()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor.greenColor()
+        
+        self.navigationController?.nk_transition[NKAnyViewController.self << self] = self.popAnimator
+        self.navigationController?.delegate = self.navigationController?.nk_transition
+        
+        self.setupPopInteractive()
+        
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.nk_setBarTintColor(UIColor.greenColor()).nk_setRightBarButton("OneViewController", selector: #selector(TwoViewController.oneView))
+        self.nk_setBarTintColor(UIColor.clearColor()).nk_setLeftBarButton("back")
+        self.navigationItem.hidesBackButton = true
+                print("twoViewWillAppear with navigationItem=\(self.navigationController?.navigationItem) leftButton=\(self.navigationController?.navigationItem.leftBarButtonItem)")
+        self.navigationController?.view.layoutIfNeeded()
     }
     
-    func oneView() {
-        let oneViewController = OneViewController()
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
         
-        oneViewController.transitioningDelegate = presentationTransition
-        oneViewController.modalPresentationStyle = .Custom
-        self.presentViewController(oneViewController, animated: true, completion: nil)
+        self.navigationController?.view.layoutIfNeeded()
+    }
+    
+    func setupPopInteractive() {
+        
+        var startPan: CGFloat = -1
+        self.scrollView.panGestureRecognizer.rx_event.bindNext { [unowned self] (gesture) in
+            let position = gesture.locationInView(self.view.window!)
+            let percent = max(0, min(1, (startPan - position.y) / 500))
+            
+            switch gesture.state {
+            case .Began, .Changed:
+                
+                print("Pan gesture change: \(position.y)")
+                let contentOffsetY = self.scrollView.contentOffset.y
+                let maxContentOffsetY = self.scrollView.contentSize.height - self.scrollView.nk_height
+                
+                guard contentOffsetY >= maxContentOffsetY else {
+                    return
+                }
+                
+                if startPan == -1 {
+                    print("Start pop: \(position.y)")
+                    self.popAnimator.startInteractiveTransition()
+                    startPan = position.y
+                    self.navigationController?.popViewControllerAnimated(true)
+                }
+                
+                print("Change pop interactive percent: \(percent)")
+                self.popAnimator.updateInteractiveTransition(percent)
+            case .Cancelled:
+                print("Cancel pan gesture")
+                self.popAnimator.cancelInteractiveTransition()
+                startPan = -1
+            case .Ended:
+                print("End pan gesture")
+                let velocity = gesture.velocityInView(self.view.window!)
+                if percent >= 1 || percent > 0.3 && velocity.y < -100 {
+                    self.popAnimator.finishInteractiveTransition()
+                } else {
+                    self.popAnimator.cancelInteractiveTransition()
+                }
+                
+                startPan = -1
+            default:
+                break
+            }
+            
+            }.addDisposableTo(self.nk_disposeBag)
     }
 }

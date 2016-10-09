@@ -18,6 +18,7 @@ public final class NKTimeChecker: AnyObject {
             }
             
             NSUserDefaults.standardUserDefaults().setDouble(latestSuccessfulCheckingTime, forKey: key)
+            NSUserDefaults.standardUserDefaults().synchronize()
         }
     }
     

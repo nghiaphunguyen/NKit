@@ -38,6 +38,7 @@ extension ThreeViewController {
     override func loadView() {
         super.loadView()
 
+        
         self.view
             .nk_config() {
                 $0.backgroundColor = UIColor.blackColor()
@@ -71,7 +72,7 @@ extension ThreeViewController {
             .nk_addSubview(UIView()) {
                 $0.nk_id = ""
             }.nk_mapIds()
-
+        
 
         //        self.view > UIView() * {
         //            $0.nk_id = nil
