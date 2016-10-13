@@ -9,31 +9,31 @@
 import Foundation
 
 public extension Array {
-    public mutating func nk_removeFirstElement(condition: (element: Element) -> Bool) {
-        if let index = self.indexOf(condition) {
-            self.removeAtIndex(index)
+    public mutating func nk_removeFirstElement(condition: (_ element: Element) -> Bool) {
+        if let index = self.index(where: condition) {
+            self.remove(at: index)
         }
     }
     
-    public mutating func nk_removeElements(condition: (element: Element) -> Bool) {
-        while let index = self.indexOf(condition) {
-            self.removeAtIndex(index)
+    public mutating func nk_removeElements(condition: (_ element: Element) -> Bool) {
+        while let index = self.index(where: condition) {
+            self.remove(at: index)
         }
     }
     
     public mutating func nk_binaryInsert(element: Element, comparation:
-        (element1: Element, element2: Element) -> Bool) {
+        (_ element1: Element, _ element2: Element) -> Bool) {
         var lo = 0
         var hi = self.count - 1
         while lo <= hi {
             let mid = (lo + hi) / 2
-            if comparation(element1: self[mid], element2: element) {
+            if comparation(self[mid], element) {
                 lo = mid + 1
             } else {
                 hi = mid - 1
             }
         }
         
-        self.insert(element, atIndex: lo)
+        self.insert(element, at: lo)
     }
 }

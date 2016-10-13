@@ -22,51 +22,51 @@ public final class NKPresentationController: UIPresentationController {
         case CloseButton(UIImage, CGSize)
     }
     
-    private var frameOfPresentedView: ((presentationController: NKPresentationController) -> CGRect)?
+    private var frameOfPresentedView: ((_ presentationController: NKPresentationController) -> CGRect)?
     private lazy var closeButton: UIButton = {
        let button = UIButton()
-        button.hidden = true
+        button.isHidden = true
         return button
     }()
     
     private var dimView: UIView = {
         let dimView = UIView()
-        dimView.hidden = true
+        dimView.isHidden = true
         return dimView
     }()
     
     private var blurView: UIVisualEffectView = {
        let blurView = UIVisualEffectView()
-        blurView.hidden = true
+        blurView.isHidden = true
         return blurView
     }()
     
-    public convenience init(options: [Option], frameOfPresentedView frameClousure: (UIPresentationController) -> CGRect) {
-        self.init()
+    public convenience init(options: [Option], frameOfPresentedView frameClousure: @escaping (UIPresentationController) -> CGRect) {
+        self.init(presentedViewController: UIViewController(), presenting: nil)
         
         self.frameOfPresentedView = frameClousure
         
         let dismissPresentedViewController = {
-            self.presentingViewController.dismissViewControllerAnimated(true, completion: nil)
+            self.presentingViewController.dismiss(animated: true, completion: nil)
         }
         
         options.forEach {
             switch $0 {
             case .BlurViewStyle(let style):
                 self.blurView.effect = UIBlurEffect(style: style)
-                self.blurView.hidden = false
+                self.blurView.isHidden = false
             case .DimViewColor(let color):
                 self.dimView.backgroundColor = color
-                self.dimView.hidden = false
+                self.dimView.isHidden = false
             case .TapOutsideToDismiss:
                 self.blurView.rx_tap().bindNext({_ in dismissPresentedViewController()}).addDisposableTo(self.nk_disposeBag)
                 self.dimView.rx_tap().bindNext({_ in dismissPresentedViewController()}).addDisposableTo(self.nk_disposeBag)
             case .CloseButton(let image, let size):
-                self.closeButton.setImage(image, forState: .Normal)
-                self.closeButton.hidden = false
-                self.closeButton.rx_tap.bindNext({_ in dismissPresentedViewController()}).addDisposableTo(self.nk_disposeBag)
+                self.closeButton.setImage(image, for: .normal)
+                self.closeButton.isHidden = false
+                self.closeButton.rx.tap.bindNext({_ in dismissPresentedViewController()}).addDisposableTo(self.nk_disposeBag)
                 
-                self.closeButton.snp_updateConstraints(closure: { (make) in
+                self.closeButton.snp.updateConstraints({ (make) in
                     make.size.equalTo(size)
                 })
             }
@@ -84,35 +84,35 @@ public final class NKPresentationController: UIPresentationController {
         self.containerView?.addSubview(self.blurView)
         self.containerView?.addSubview(self.closeButton)
         
-        self.dimView.snp_makeConstraints { (make) in
+        self.dimView.snp.makeConstraints { (make) in
             make.edges.equalTo(0)
         }
         
-        self.blurView.snp_makeConstraints { (make) in
+        self.blurView.snp.makeConstraints { (make) in
             make.edges.equalTo(0)
         }
         
-        self.closeButton.snp_makeConstraints { (make) in
+        self.closeButton.snp.makeConstraints { (make) in
             make.top.equalTo(0).offset(Layout.ButtonTopMargin)
             make.leading.equalTo(0).offset(Layout.ButtonLeadingMargin)
         }
         
         super.presentationTransitionWillBegin()
         
-        guard self.blurView.hidden == false
-            || self.closeButton.hidden == false
-            || self.dimView.hidden == false else {
+        guard self.blurView.isHidden == false
+            || self.closeButton.isHidden == false
+            || self.dimView.isHidden == false else {
                 return
         }
         
-        guard  let coordinator = self.presentedViewController.transitionCoordinator() else {
+        guard  let coordinator = self.presentedViewController.transitionCoordinator else {
             return
         }
                 
         self.blurView.alpha = 0
         self.closeButton.alpha = 0
         self.dimView.alpha = 0
-        coordinator.animateAlongsideTransition({ (context) in
+        coordinator.animate(alongsideTransition: { (context) in
             self.blurView.alpha = 1
             self.closeButton.alpha = 1
             self.dimView.alpha = 1
@@ -120,26 +120,26 @@ public final class NKPresentationController: UIPresentationController {
     }
     
     public override func dismissalTransitionWillBegin() {
-        guard self.blurView.hidden == false
-            || self.closeButton.hidden == false
-            || self.dimView.hidden == false else {
+        guard self.blurView.isHidden == false
+            || self.closeButton.isHidden == false
+            || self.dimView.isHidden == false else {
                 return
         }
         
-        guard let coordinator = self.presentedViewController.transitionCoordinator() else {
+        guard let coordinator = self.presentedViewController.transitionCoordinator else {
             return
         }
         
-        coordinator.animateAlongsideTransition({ (context) in
+        coordinator.animate(alongsideTransition: { (context) in
             self.blurView.alpha = 0
             self.closeButton.alpha = 0
             self.dimView.alpha = 0
             }, completion: nil)
     }
     
-    public override func frameOfPresentedViewInContainerView() -> CGRect {
+    public override var frameOfPresentedViewInContainerView: CGRect {
         if let closure = self.frameOfPresentedView {
-            return closure(presentationController: self)
+            return closure(self)
         }
         
         return self.containerView?.bounds ?? CGRect.zero

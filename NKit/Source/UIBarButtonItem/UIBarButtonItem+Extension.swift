@@ -10,7 +10,7 @@ import UIKit
 
 public extension UIBarButtonItem {
     public var nk_view: UIView? {
-        return self.valueForKeyPath("view") as? UIView
+        return self.value(forKeyPath: "view") as? UIView
     }
 }
 

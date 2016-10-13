@@ -95,7 +95,7 @@ extension NKPresentationTransition: UIViewControllerTransitioningDelegate {
         }
     }
     
-    public func interactionControllerForPresentation(animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+    public func interactionControllerForPresentation(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
         
         guard let animator = self.presentAnimator else {
             return nil
@@ -109,7 +109,7 @@ extension NKPresentationTransition: UIViewControllerTransitioningDelegate {
         }
     }
     
-    public func interactionControllerForDismissal(animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+    public func interactionControllerForDismissal(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
         guard let animator = self.dismissAnimator else {
             return nil
         }

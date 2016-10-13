@@ -30,29 +30,29 @@ class NKCircleImageView: UIView {
     }
     
     func setupView() {
-        self.backgroundColor = UIColor.clearColor()
+        self.backgroundColor = UIColor.clear
         self.clipsToBounds = true
         
-        self.imageView.backgroundColor = UIColor.clearColor()
+        self.imageView.backgroundColor = UIColor.clear
         self.addSubview(self.imageView)
         
-        self.circleView.backgroundColor = UIColor.clearColor()
+        self.circleView.backgroundColor = UIColor.clear
         self.addSubview(self.circleView)
         
-        self.imageView.snp_makeConstraints { (make) -> Void in
+        self.imageView.snp.makeConstraints { (make) -> Void in
             make.top.equalTo(0).offset(1)
             make.leading.equalTo(0).offset(1)
             make.trailing.equalTo(0).offset(-1)
             make.bottom.equalTo(0).offset(-1)
         }
         
-        self.circleView.snp_makeConstraints { (make) -> Void in
+        self.circleView.snp.makeConstraints { (make) -> Void in
             make.edges.equalTo(0)
         }
     }
     
-    override func drawRect(rect: CGRect) {
-        super.drawRect(rect)
+    override func draw(_ rect: CGRect) {
+        super.draw(rect)
         
         if self.enableCircle {
             let width = rect.size.width / 2 - 1
@@ -63,15 +63,18 @@ class NKCircleImageView: UIView {
 
 class NKCircleView : UIView {
     lazy var circleLineWidth: CGFloat = 0
-    lazy var circleColor = UIColor.whiteColor()
+    lazy var circleColor = UIColor.white
     
-    override func drawRect(rect: CGRect) {
-        super.drawRect(rect)
+    override func draw(_ rect: CGRect) {
+        super.draw(rect)
         
-        let context = UIGraphicsGetCurrentContext()
-        CGContextSetLineWidth(context, self.circleLineWidth)
-        CGContextSetStrokeColorWithColor(context, self.circleColor.CGColor)
-        CGContextAddEllipseInRect(context, rect.insetBy(dx: self.circleLineWidth / 2, dy: self.circleLineWidth / 2))
-        CGContextStrokePath(context)
+        guard let context = UIGraphicsGetCurrentContext() else {
+            return
+        }
+        
+        context.setLineWidth(self.circleLineWidth)
+        context.setStrokeColor(self.circleColor.cgColor)
+        context.addEllipse(in: rect.insetBy(dx: self.circleLineWidth / 2, dy: self.circleLineWidth / 2))
+        context.strokePath()
     }
 }

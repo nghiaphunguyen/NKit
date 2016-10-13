@@ -11,7 +11,7 @@ public class NKGradientView: UIView {
     
     private lazy var gradientLayer: CAGradientLayer = {
         let layer = CAGradientLayer()
-        self.layer.insertSublayer(layer, atIndex: 0)
+        self.layer.insertSublayer(layer, at: 0)
         return layer
     }()
     
@@ -21,7 +21,7 @@ public class NKGradientView: UIView {
         didSet {
             cgColors.removeAll()
             for color in self.colors {
-                cgColors.append(color.CGColor)
+                cgColors.append(color.cgColor)
             }
         }
     }
@@ -29,17 +29,17 @@ public class NKGradientView: UIView {
     public override init(frame: CGRect) {
         super.init(frame: frame)
         
-        self.backgroundColor = UIColor.clearColor()
+        self.backgroundColor = UIColor.clear
     }
     
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
-        self.backgroundColor = UIColor.clearColor()
+        self.backgroundColor = UIColor.clear
     }
     
-    public override func drawRect(rect: CGRect) {
-        super.drawRect(rect)
+    public override func draw(_ rect: CGRect) {
+        super.draw(rect)
         self.gradientLayer.frame = rect
         self.gradientLayer.colors = self.cgColors
     }

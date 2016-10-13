@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct NKDimension: OptionSetType {
+public struct NKDimension: OptionSet {
     public let rawValue: Int
     
     static let Width = NKDimension(rawValue: 1)

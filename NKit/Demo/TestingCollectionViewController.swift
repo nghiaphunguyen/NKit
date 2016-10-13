@@ -14,28 +14,28 @@ final class TestingCollectionViewController: UIViewController {
     
     let collectionView: NKCollectionView = {
        let collectionView = NKCollectionView(options: [
-        .AutoFitCell(CGSizeMake(NKScreenSize.Current.width, 1), .Height)
+        .AutoFitCell(CGSize(width: NKScreenSize.Current.width, height: 1),  .Height)
         ])
         
         collectionView.registerView(CollectionViewCell.self)
-        collectionView.backgroundColor = UIColor.whiteColor()
+        collectionView.backgroundColor = UIColor.white
         return collectionView
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.automaticallyAdjustsScrollViewInsets = false
-        self.view.backgroundColor = UIColor.whiteColor()
+        self.view.backgroundColor = UIColor.white
         
         self.view.addSubview(self.collectionView)
-        self.collectionView.snp_makeConstraints { (make) in
+        self.collectionView.snp.makeConstraints { (make) in
             make.edges.equalTo(0)
         }
         
         self.collectionView.nk_dataSource = self
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
 }
@@ -48,17 +48,17 @@ extension TestingCollectionViewController: NKCollectionViewDataSource {
 
 final class CollectionViewCell: NKBaseCollectionViewCell {
     var titleLabel: UILabel = {
-        let label = UILabel(text: "", isSizeToFit: true, alignment: .Left)
+        let label = UILabel(text: "", isSizeToFit: true, alignment: .left)
         label.numberOfLines = 0
         return label
     }()
     
     override func setupView() {
-        self.nk_borderColor = UIColor.blackColor()
+        self.nk_borderColor = UIColor.black
         self.nk_borderWidth = 1
-        self.backgroundColor = UIColor.blueColor()
+        self.backgroundColor = UIColor.blue
         self.contentView.addSubview(self.titleLabel)
-        self.titleLabel.snp_makeConstraints { (make) in
+        self.titleLabel.snp.makeConstraints { (make) in
             make.edges.equalTo(0)
         }
     }
@@ -66,7 +66,7 @@ final class CollectionViewCell: NKBaseCollectionViewCell {
 
 extension CollectionViewCell: NKCollectionViewItemProtocol {
     typealias CollectionViewItemModel = String
-    func collectionView(collectionView: NKCollectionView, configWithModel model: CollectionViewItemModel, atIndexPath indexPath: NSIndexPath) {
+    func collectionView(collectionView: NKCollectionView, configWithModel model: CollectionViewItemModel, atIndexPath indexPath: IndexPath) {
         self.titleLabel.text = model + "(\(model.characters.count))"
     }
 }

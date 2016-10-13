@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import ATTableView
+import NATTableView
 import UIKit
 
 //MARK: - Constants
@@ -18,10 +18,11 @@ private extension NKTableView {
 }
 
 //MARK: - Properties
-public class NKTableView: ATTableView {
+open class NKTableView: ATTableView {
     
     //private properties
-    private lazy var preHeight: CGFloat? = nil
+    
+    lazy var preHeight: CGFloat? = nil
     
     public var cellHeightToFit = false {
         didSet {
@@ -37,23 +38,24 @@ public class NKTableView: ATTableView {
         }
     }
     
-    public var addMoreConfigForCell: ((cell: UITableViewCell, indexPath: NSIndexPath) -> Void)?
+    public var addMoreConfigForCell: ((_ cell: UITableViewCell, _ indexPath: IndexPath) -> Void)?
     
     public var separateHeight: CGFloat? //just trick to use separate views
     
-    public override func initialize() {
+    open override func initialize() {
         super.initialize()
         
         if self.isHeightToFit {
-            self.snp_updateConstraints(closure: { (make) -> Void in
+            self.snp.updateConstraints({ (make) in
                 make.height.equalTo(Constant.EstimatedRowHeight)
             })
         }
     }
     
-    public override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = super.tableView(tableView, cellForRowAtIndexPath: indexPath)
-        self.addMoreConfigForCell?(cell: cell, indexPath: indexPath)
+    open override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell = super.tableView(tableView, cellForRowAt: indexPath)
+        self.addMoreConfigForCell?(cell, indexPath)
         return cell
     }
 }
@@ -63,19 +65,19 @@ public extension NKTableView {
         self.clearAll()
         
         if let separateHeight = self.separateHeight {
-            for (index, item) in items.enumerate() {
+            for (index, item) in items.enumerated() {
                 let section = ATTableViewSection()
                 section.headerHeight = separateHeight
                 section.customHeaderView = { (_) in
                     let view = UIView()
-                    view.backgroundColor = UIColor.clearColor()
+                    view.backgroundColor = UIColor.clear
                     return view
                 }
-                self.addSection(section, atIndex: index)
-                self.addItems([item], section: index)
+                self.addSection(section: section, atIndex: index)
+                self.addItems(items: [item], section: index)
             }
         } else {
-            self.addItems(items)
+            self.addItems(items: items)
         }
         
         self.reloadData()
@@ -84,13 +86,13 @@ public extension NKTableView {
 
 //MARK: - Override functions
 public extension NKTableView {
-    public override func layoutSubviews() {
+    open override func layoutSubviews() {
         super.layoutSubviews()
         
         if self.isHeightToFit && self.contentSize.height != self.preHeight{
             self.preHeight = self.contentSize.height
             
-            self.snp_updateConstraints(closure: { (make) -> Void in
+            self.snp.updateConstraints({ (make) -> Void in
                 make.height.equalTo(self.contentSize.height)
             })
         }

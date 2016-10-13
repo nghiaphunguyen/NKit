@@ -11,25 +11,25 @@ import RxSwift
 import NRxSwift
 
 public final class NKTimeChecker: AnyObject {
-    private(set) var latestSuccessfulCheckingTime: NSTimeInterval = 0 {
+    private(set) var latestSuccessfulCheckingTime: TimeInterval = 0 {
         didSet {
             guard let key = self.key else {
                 return
             }
             
-            NSUserDefaults.standardUserDefaults().setDouble(latestSuccessfulCheckingTime, forKey: key)
-            NSUserDefaults.standardUserDefaults().synchronize()
+            UserDefaults.standard.set(latestSuccessfulCheckingTime, forKey: key)
+            UserDefaults.standard.synchronize()
         }
     }
     
-    let timeInterval: NSTimeInterval
+    let timeInterval: TimeInterval
     let key: String?
-    public init(timeInterval: NSTimeInterval, key: String? = nil) {
+    public init(timeInterval: TimeInterval, key: String? = nil) {
         self.timeInterval  = timeInterval
         self.key = key
         
         if let key = self.key {
-            self.latestSuccessfulCheckingTime = NSUserDefaults.standardUserDefaults().doubleForKey(key)
+            self.latestSuccessfulCheckingTime = UserDefaults.standard.double(forKey: key)
         }
     }
     
@@ -44,7 +44,7 @@ public final class NKTimeChecker: AnyObject {
     }
     
     
-    public func updateLatestSuccessfullCheckingTime(time: NSTimeInterval = NSDate().timeIntervalSince1970) -> Void {
+    public func updateLatestSuccessfullCheckingTime(time: TimeInterval = NSDate().timeIntervalSince1970) -> Void {
         self.latestSuccessfulCheckingTime = time
     }
 }

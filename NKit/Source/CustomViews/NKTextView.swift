@@ -8,16 +8,16 @@ import UIKit
 
 public class NKTextView: UITextView, UITextViewDelegate {
     
-    public typealias NKTextViewHandler = (textView: NKTextView) -> Void
+    public typealias NKTextViewHandler = (_ textView: NKTextView) -> Void
     
     public var didBeginEditHandlers = [NKTextViewHandler]()
     public var didEndEditHandlers = [NKTextViewHandler]()
     
-    public func addDidBeginEditHandler(handler: NKTextViewHandler) {
+    public func addDidBeginEditHandler(handler: @escaping NKTextViewHandler) {
         self.didBeginEditHandlers.append(handler)
     }
     
-    public func addDidEndEditHandler(handler: NKTextViewHandler) {
+    public func addDidEndEditHandler(handler: @escaping NKTextViewHandler) {
         self.didEndEditHandlers.append(handler)
     }
     
@@ -98,7 +98,7 @@ public class NKTextView: UITextView, UITextViewDelegate {
         }
         
         self.didBeginEditHandlers.forEach { (handler) -> () in
-            handler(textView: self)
+            handler(self)
         }
     }
     
@@ -106,7 +106,7 @@ public class NKTextView: UITextView, UITextViewDelegate {
         self.checkAndTurnOnPlaceholder()
         
         self.didEndEditHandlers.forEach { (handler) -> () in
-            handler(textView: self)
+            handler(self)
         }
         
     }

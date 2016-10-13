@@ -10,7 +10,7 @@ import UIKit
 
 public class NKCornerView: UIView {
     
-    public var rectCorner: UIRectCorner = .AllCorners {
+    public var rectCorner: UIRectCorner = .allCorners {
         didSet {
             self.layoutIfNeeded()
         }
@@ -22,10 +22,10 @@ public class NKCornerView: UIView {
         }
     }
     
-    public init(frame: CGRect = CGRectZero, rectCorner: UIRectCorner,
+    public init(frame: CGRect = CGRect.zero, rectCorner: UIRectCorner,
          radius: CGFloat) {
         super.init(frame: frame)
-        self.contentMode = .Redraw
+        self.contentMode = .redraw
         self.rectCorner = rectCorner
         self.radius = radius
     }
@@ -34,13 +34,13 @@ public class NKCornerView: UIView {
         super.init(coder: aDecoder)
     }
     
-    public override func drawRect(rect: CGRect) {
+    public override func draw(_ rect: CGRect) {
         let path = UIBezierPath(roundedRect: rect, byRoundingCorners: rectCorner,
-                                cornerRadii: CGSizeMake(self.radius, self.radius))
+                                cornerRadii: CGSize(width: self.radius, height: self.radius))
         
         let shapeLayer = CAShapeLayer()
         shapeLayer.frame = rect
-        shapeLayer.path = path.CGPath
+        shapeLayer.path = path.cgPath
         
         self.layer.mask = shapeLayer
     }

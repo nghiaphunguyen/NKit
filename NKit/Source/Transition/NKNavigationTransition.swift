@@ -11,7 +11,7 @@ import UIKit
 public final class NKNavigationTransition: NSObject {
     public private(set) var animators: [NKNavigationDirection : NKAnimator] = [:]
     
-    private var currentAnimator: NKAnimator? = nil
+    var currentAnimator: NKAnimator? = nil
     
     public subscript(direction: NKNavigationDirection) -> NKAnimator? {
         get {
@@ -53,9 +53,9 @@ extension NKNavigationTransition: UINavigationControllerDelegate {
             }
         }
     
-        public func navigationController(navigationController: UINavigationController, animationControllerForOperation operation: UINavigationControllerOperation, fromViewController fromVC: UIViewController, toViewController toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        public func navigationController(_ animationControllerForfromtonavigationController: UINavigationController, animationControllerFor operation: UINavigationControllerOperation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
     
-            self.currentAnimator = self[NKNavigationDirection(source: fromVC.dynamicType.self, destination: toVC.dynamicType.self, operation: operation)]
+            self.currentAnimator = self[NKNavigationDirection(source: type(of: fromVC), destination: type(of: toVC), operation: operation)]
             
             guard let animator = self.currentAnimator else {
                 return nil

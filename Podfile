@@ -6,11 +6,20 @@ target 'NKit' do
   use_frameworks!
 
   # Pods for NKit
-pod 'SnapKit’, ‘0.22.0’
+pod 'SnapKit'
 pod 'NRxSwift'
-pod 'ATTableView'
-pod 'RxCocoa'
-pod 'NTZStackView'
+pod 'NATTableView', '3.0.3'
+pod 'RxCocoa', '3.0.0-beta.2'
+pod 'TZStackView'
 pod 'OAStackView'
 
+end
+
+post_install do |installer|
+    installer.pods_project.targets.each do |target|
+        target.build_configurations.each do |config|
+            config.build_settings['SWIFT_VERSION'] = '3.0'
+            config.build_settings['MACOSX_DEPLOYMENT_TARGET'] = '10.10'
+        end
+    end
 end

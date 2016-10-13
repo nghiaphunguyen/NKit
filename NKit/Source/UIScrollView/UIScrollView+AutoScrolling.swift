@@ -13,7 +13,7 @@ public extension UIScrollView {
         
         var keyboardPreviousHeight: CGFloat = 0
         
-        NSNotificationCenter.nk_keyboardChangedHeightObservable.bindNext {[unowned self] (height) in
+        NotificationCenter.nk_keyboardChangedHeightObservable.bindNext {[unowned self] (height) in
             var contentInset = self.contentInset
             contentInset.bottom += (height - keyboardPreviousHeight)
             self.contentInset = contentInset
@@ -21,8 +21,8 @@ public extension UIScrollView {
             keyboardPreviousHeight = height
         }.addDisposableTo(self.nk_disposeBag)
         
-        NSNotificationCenter.nk_keyboardWillShowObservable.bindNext {[unowned self] (height) in
-            guard let firstResponse = self.nk_firstSubviewResponse, window = self.window else {
+        NotificationCenter.nk_keyboardWillShowObservable.bindNext {[unowned self] (height) in
+            guard let firstResponse = self.nk_firstSubviewResponse, let window = self.window else {
                 return
             }
             

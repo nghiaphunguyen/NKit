@@ -17,13 +17,13 @@ class FourViewController: UIViewController, NKCollectionViewDataSource {
             .ItemSize(CGSizeMake(NKScreenSize.Current.width - 20, NKScreenSize.Current.height * 0.8)),
             .SectionInset(UIEdgeInsets(top: 30, left: 10, bottom: 30, right: 10)),
             .LineSpace(30),
-            .ScrollDirection(.Vertical)
+            .ScrollDirection(.vertical)
             ]).nk_id("collectionView")
         collectionView.registerView(CollectionViewCell2.self)
         collectionView.nk_dataSource = self
     
         collectionView.nk_paging = true
-        collectionView.backgroundColor = UIColor.brownColor()
+        collectionView.backgroundColor = UIColor.brown
         
         return collectionView
     }()
@@ -33,11 +33,11 @@ class FourViewController: UIViewController, NKCollectionViewDataSource {
         
         self.view
             .nk_config() {
-                $0.backgroundColor = UIColor.greenColor()
+                $0.backgroundColor = UIColor.green
             }
             
             .nk_addSubview(self.collectionView) {
-                $0.snp_makeConstraints(closure: { (make) in
+                $0.snp.makeConstraints({ (make) in
                     make.leading.trailing.equalTo(0)
                     make.top.bottom.equalTo(0).inset(20)
                 })
@@ -59,14 +59,12 @@ class FourViewController: UIViewController, NKCollectionViewDataSource {
 }
 
 class CollectionViewCell2: NKBaseCollectionViewCell, NKCollectionViewItemProtocol {
+    public func collectionView(collectionView: NKCollectionView, configWithModel model: Int, atIndexPath indexPath: IndexPath) {
+    }
+
     typealias CollectionViewItemModel = Int
     
     override func setupView() {
-        self.backgroundColor = UIColor.blueColor()
+        self.backgroundColor = UIColor.blue
     }
-    
-    func collectionView(collectionView: NKCollectionView, configWithModel model: CollectionViewItemModel, atIndexPath indexPath: NSIndexPath) {
-    }
-    
-    
 }

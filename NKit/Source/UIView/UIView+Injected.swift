@@ -14,9 +14,9 @@ public extension UIView {
             return
         }
         
-        if parentViewController.dynamicType == UIViewController.self {
-            if let testable = self as? NKLayoutTestable, let window = UIApplication.sharedApplication().delegate?.window {
-                window?.rootViewController = testable.dynamicType.viewController
+        if type(of: parentViewController) == UIViewController.self {
+            if let testable = self as? NKLayoutTestable, let window = UIApplication.shared.delegate?.window {
+                window?.rootViewController = type(of: testable).viewController
             }
         } else {
             parentViewController.injected()

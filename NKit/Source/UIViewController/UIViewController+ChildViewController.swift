@@ -14,15 +14,15 @@ public extension UIViewController {
         controller.view.frame = frame
         self.view.addSubview(controller.view)
         
-        controller.didMoveToParentViewController(self)
+        controller.didMove(toParentViewController: self)
     }
     
     public func nk_addChildViewController(controller: UIViewController) {
-        self.nk_addChildViewController(controller, frame: self.view.bounds)
+        self.nk_addChildViewController(controller: controller, frame: self.view.bounds)
     }
     
     public func nk_removeFromParentViewController() {
-        self.willMoveToParentViewController(nil)
+        self.willMove(toParentViewController: nil)
         self.view.removeFromSuperview()
         self.removeFromParentViewController()
     }
@@ -31,7 +31,7 @@ public extension UIViewController {
 
 public extension UIViewController {
     public func nk_hideKeyboardWhenTappedOuside() {
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.dynamicType.nk_hideKeyboard))
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.nk_hideKeyboard))
         self.view.addGestureRecognizer(tapGesture)
     }
     

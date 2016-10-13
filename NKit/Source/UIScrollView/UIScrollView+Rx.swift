@@ -11,8 +11,8 @@ import RxSwift
 
 public extension UIScrollView {
     public var nk_scrollViewWillBeginDraggingObservable: Observable<CGPoint> {
-        return self.rx_delegate
-            .observe(#selector(UIScrollViewDelegate.scrollViewWillBeginDragging(_:)))
+        return self.rx.delegate
+            .methodInvoked(#selector(UIScrollViewDelegate.scrollViewWillBeginDragging(_:)))
             .map {_ in return self.contentOffset}
     }
     
@@ -20,29 +20,30 @@ public extension UIScrollView {
         return [self.nk_scrollViewWillBeginDeceleratingObservable,
                 self.nk_scrollViewDidEndDraggingObservable.filter {$0.1 == false}.map {$0.0}]
             .toObservable().merge()
+        
     }
     
     public var nk_scrollViewDidEndDraggingObservable: Observable<(CGPoint, Bool)> {
-        return self.rx_delegate
-            .observe(#selector(UIScrollViewDelegate.scrollViewDidEndDragging(_:willDecelerate:)))
+        return self.rx.delegate
+            .methodInvoked(#selector(UIScrollViewDelegate.scrollViewDidEndDragging(_:willDecelerate:)))
             .map {(self.contentOffset, ($0[1] as? Bool) ?? false)}
     }
     
     public var nk_scrollViewWillEndDraggingObservable: Observable<(CGPoint, CGPoint)> {
-        return self.rx_delegate
-            .observe(#selector(UIScrollViewDelegate.scrollViewWillEndDragging(_:withVelocity:targetContentOffset:)))
+        return self.rx.delegate
+            .methodInvoked(#selector(UIScrollViewDelegate.scrollViewWillEndDragging(_:withVelocity:targetContentOffset:)))
             .map {(self.contentOffset, ($0[1] as? CGPoint) ?? CGPoint.zero)}
     }
     
     public var nk_scrollViewWillBeginDeceleratingObservable: Observable<CGPoint> {
-        return self.rx_delegate
-            .observe(#selector(UIScrollViewDelegate.scrollViewWillBeginDecelerating(_:)))
+        return self.rx.delegate
+            .methodInvoked(#selector(UIScrollViewDelegate.scrollViewWillBeginDecelerating(_:)))
             .map {_ in return self.contentOffset}
     }
     
     public var nk_scrollViewDidEndDeceleratingObservable: Observable<CGPoint> {
-        return self.rx_delegate
-            .observe(#selector(UIScrollViewDelegate.scrollViewDidEndDecelerating(_:)))
+        return self.rx.delegate
+            .methodInvoked(#selector(UIScrollViewDelegate.scrollViewDidEndDecelerating(_:)))
             .map {_ in return self.contentOffset}
     }
 }

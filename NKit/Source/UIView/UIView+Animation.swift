@@ -15,21 +15,21 @@ public enum NKAnimationType {
 
 public extension UIView {
     //MARK: Animation
-    public func nk_animateAutoLayoutWithDuration(duration: NSTimeInterval,
+    public func nk_animateAutoLayoutWithDuration(duration: TimeInterval,
         completion: ((Bool) -> Void)? = nil) {
-            UIView.animateWithDuration(duration, animations: { () -> Void in
+            UIView.animate(withDuration: duration, animations: { () -> Void in
                 self.layoutIfNeeded()
                 }, completion: completion)
             
     }
     
-    public func nk_animateSpringAutoLayoutWithDuration(duration: NSTimeInterval,
-        delay: NSTimeInterval = 0,
+    public func nk_animateSpringAutoLayoutWithDuration(duration: TimeInterval,
+        delay: TimeInterval = 0,
         usingSpringWithDamping damping: CGFloat = 1,
         initialSpringVelocity velocity: CGFloat = 1,
-        options: UIViewAnimationOptions = .CurveEaseOut,
+        options: UIViewAnimationOptions = .curveEaseOut,
         completion: ((Bool) -> Void)? = nil) {
-            UIView.animateWithDuration(duration, delay: delay, usingSpringWithDamping: damping, initialSpringVelocity: velocity, options: options, animations: { () -> Void in
+            UIView.animate(withDuration: duration, delay: delay, usingSpringWithDamping: damping, initialSpringVelocity: velocity, options: options, animations: { () -> Void in
                 self.layoutIfNeeded()
                 }, completion: completion)
     }
@@ -44,9 +44,9 @@ public extension UIView {
         completion: NKAnimationClosure? = nil) -> CAAnimation {
             let animation = CABasicAnimation(keyPath: keyPath)
             animation.duration = duration
-            animation.removedOnCompletion = false
+            animation.isRemovedOnCompletion = false
             
-            let currentValue = (self.layer.presentationLayer()?.valueForKeyPath(keyPath) as? NSNumber)?.floatValue ?? 0
+            let currentValue = (self.layer.presentation()?.value(forKeyPath: keyPath) as? NSNumber)?.floatValue ?? 0
             animation.fromValue = currentValue
             
             switch type {
@@ -64,9 +64,9 @@ public extension UIView {
             animation.fillMode = kCAFillModeForwards
             
             if key == nil || completion == nil {
-                self.layer.addAnimation(animation, forKey: key)
+                self.layer.add(animation, forKey: key)
             } else {
-                self.layer.nk_addAnimation(animation, forKey: key!, completion: completion!)
+                self.layer.nk_addAnimation(animation: animation, forKey: key!, completion: completion!)
             }
             
             return animation

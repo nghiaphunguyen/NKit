@@ -14,7 +14,7 @@ public extension UIViewController {
             return navigationController
         }
         
-        return self.parentViewController?.nk_nearestNavigationController
+        return self.parent?.nk_nearestNavigationController
     }
     
     public var nk_visibleViewController: UIViewController? {
@@ -43,21 +43,21 @@ public extension UIViewController {
     }
     
     public var nk_sourceViewController: UIViewController? {
-        return self.presentingViewController?._nk_sourceViewControllerFromViewController(self)
+        return self.presentingViewController?._nk_sourceViewControllerFromViewController(viewController: self)
     }
     
     private func _nk_sourceViewControllerFromViewController(viewController: UIViewController) -> UIViewController? {
         if let navigationController = self as? UINavigationController {
-            for i in (navigationController.viewControllers.count-1).stride(to: 0, by: -1) {
-                if let sourceViewController = navigationController.viewControllers[i]._nk_sourceViewControllerFromViewController(viewController) {
+            for i in stride(from: navigationController.viewControllers.count - 1, to: 0, by: -1) {
+                if let sourceViewController = navigationController.viewControllers[i]._nk_sourceViewControllerFromViewController(viewController: viewController) {
                     return sourceViewController
                 }
             }
         }
         
-        if let tabController = self as? UITabBarController, viewControllers = tabController.viewControllers {
-            for i in (viewControllers.count-1).stride(to: 0, by: -1) {
-                if let sourceViewController = viewControllers[i]._nk_sourceViewControllerFromViewController(viewController) {
+        if let tabController = self as? UITabBarController, let viewControllers = tabController.viewControllers {
+            for i in stride(from: viewControllers.count - 1, to: 0, by: -1) {
+                if let sourceViewController = viewControllers[i]._nk_sourceViewControllerFromViewController(viewController: viewController) {
                     return sourceViewController
                 }
             }

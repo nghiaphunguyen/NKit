@@ -7,16 +7,16 @@
 //
 
 import UIKit
-import NTZStackView
+import TZStackView
 
 public extension TZStackView {
-    public func nk_addArrangedSubview<T: UIView>(view: T, config: ((T) -> Void)? = nil) -> Self {
+    public func nk_addArrangedSubview<T: UIView>(_ view: T, config: ((T) -> Void)? = nil) -> Self {
         self.addArrangedSubview(view)
         config?(view)
         return self
     }
     
-    public static func nk_create(distribution: TZStackViewDistribution = .Fill, alignment: TZStackViewAlignment = .Fill, spacing: CGFloat = 0, axis: UILayoutConstraintAxis = .Vertical) -> TZStackView {
+    public static func nk_create(_ distribution: TZStackViewDistribution = .fill, alignment: TZStackViewAlignment = .fill, spacing: CGFloat = 0, axis: UILayoutConstraintAxis = .vertical) -> TZStackView {
         let stackView = TZStackView()
         stackView.alignment = alignment
         stackView.distribution = distribution
@@ -25,11 +25,11 @@ public extension TZStackView {
         return stackView
     }
     
-    public static func nk_row(distribution: TZStackViewDistribution = .Fill, alignment: TZStackViewAlignment = .Fill, spacing: CGFloat = 0) -> TZStackView {
-        return self.nk_create(distribution, alignment: alignment, spacing: spacing, axis: .Horizontal)
+    public static func nk_row(_ distribution: TZStackViewDistribution = .fill, alignment: TZStackViewAlignment = .fill, spacing: CGFloat = 0) -> TZStackView {
+        return self.nk_create(distribution, alignment: alignment, spacing: spacing, axis: .horizontal)
     }
     
-    public static func nk_column(distribution: TZStackViewDistribution = .Fill, alignment: TZStackViewAlignment = .Fill, spacing: CGFloat = 0) -> TZStackView {
-        return self.nk_create(distribution, alignment: alignment, spacing: spacing, axis: .Vertical)
+    public static func nk_column(_ distribution: TZStackViewDistribution = .fill, alignment: TZStackViewAlignment = .fill, spacing: CGFloat = 0) -> TZStackView {
+        return self.nk_create(distribution, alignment: alignment, spacing: spacing, axis: .vertical)
     }
 }

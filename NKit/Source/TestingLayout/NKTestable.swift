@@ -23,12 +23,12 @@ public extension NKLayoutTestable where Self: UIView {
         controller.view.backgroundColor = self.backgroundColor
         
         if self.size == CGSize.zero {
-            view.snp_makeConstraints(closure: { (make) in
+            view.snp.makeConstraints({ (make) in
                 make.top.equalTo(0).offset(nk_statusBarHeight)
                 make.leading.trailing.equalTo(0)
             })
         } else {
-            view.snp_makeConstraints(closure: { (make) in
+            view.snp.makeConstraints({ (make) in
                 make.top.equalTo(0).offset(nk_statusBarHeight)
                 make.leading.equalTo(0)
                 make.size.equalTo(self.size)
@@ -47,7 +47,7 @@ public extension NKLayoutTestable where Self: UIView {
     }
     
     public static var backgroundColor: UIColor {
-        return UIColor.whiteColor()
+        return UIColor.white
     }
     
     public static var shouldAddNavigationBar: Bool {
@@ -74,6 +74,6 @@ public extension NKLayoutTestable where Self: UIViewController {
     }
     
     public static var backgroundColor: UIColor {
-        return UIColor.whiteColor()
+        return UIColor.white
     }
 }

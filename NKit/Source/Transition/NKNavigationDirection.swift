@@ -11,35 +11,35 @@ import UIKit
 public typealias NKAnyViewController = UIViewController
 
 public func >>(left: UIViewController, right: UIViewController) -> NKNavigationDirection {
-    return left.dynamicType.self >> right.dynamicType.self
+    return type(of: left).self >> type(of: right).self
 }
 
 public func >>(left: UIViewController, right: UIViewController.Type) -> NKNavigationDirection {
-    return left.dynamicType.self >> right
+    return type(of: left).self >> right
 }
 
 public func >>(left: UIViewController.Type, right: UIViewController) -> NKNavigationDirection {
-    return left >> right.dynamicType.self
+    return left >> type(of: right).self
 }
 
 public func >>(left: UIViewController.Type, right: UIViewController.Type) -> NKNavigationDirection {
-    return NKNavigationDirection(source: left, destination: right, operation: .Push)
+    return NKNavigationDirection(source: left, destination: right, operation: .push)
 }
 
 public func <<(left: UIViewController, right: UIViewController) -> NKNavigationDirection {
-    return left.dynamicType.self << right.dynamicType.self
+    return type(of: left).self << type(of: right).self
 }
 
 public func <<(left: UIViewController.Type, right: UIViewController) -> NKNavigationDirection {
-    return left << right.dynamicType.self
+    return left << type(of: right).self
 }
 
 public func <<(left: UIViewController, right: UIViewController.Type) -> NKNavigationDirection {
-    return left.dynamicType.self << right
+    return type(of: left).self << right
 }
 
 public func <<(left: UIViewController.Type, right: UIViewController.Type) -> NKNavigationDirection {
-    return NKNavigationDirection(source: right, destination: left, operation: .Pop)
+    return NKNavigationDirection(source: right, destination: left, operation: .pop)
 }
 
 public struct NKNavigationDirection {

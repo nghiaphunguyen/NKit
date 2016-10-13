@@ -79,41 +79,41 @@ public func ~(left: CGFloat, right: UInt) -> NKConstraintRelativeItem {
 public func ==(left: NKConstraintItem, right: NKConstraintItem) -> NSLayoutConstraint {
     let relativeItem = NKConstraintRelativeItem(item: right)
     
-    let result = left.constraintWithRelativeItem(relativeItem, relation: .Equal)
-    result.active = true
+    let result = left.constraintWithRelativeItem(right: relativeItem, relation: .equal)
+    result.isActive = true
     return result
 }
 
 public func >=(left: NKConstraintItem, right: NKConstraintItem) -> NSLayoutConstraint {
     let relativeItem = NKConstraintRelativeItem(item: right)
-    let result = left.constraintWithRelativeItem(relativeItem, relation: .GreaterThanOrEqual)
-    result.active = true
+    let result = left.constraintWithRelativeItem(right: relativeItem, relation: .greaterThanOrEqual)
+    result.isActive = true
     return result
 }
 
 public func <=(left: NKConstraintItem, right: NKConstraintItem) -> NSLayoutConstraint {
     let relativeItem = NKConstraintRelativeItem(item: right)
     
-    let result = left.constraintWithRelativeItem(relativeItem, relation: .LessThanOrEqual)
-    result.active = true
+    let result = left.constraintWithRelativeItem(right: relativeItem, relation: .lessThanOrEqual)
+    result.isActive = true
     return result
 }
 
 public func ==(left: NKConstraintItem, right: NKConstraintRelativeItem) -> NSLayoutConstraint {
-    let result = left.constraintWithRelativeItem(right, relation: .Equal)
-    result.active = true
+    let result = left.constraintWithRelativeItem(right: right, relation: .equal)
+    result.isActive = true
     return result
 }
 
 public func >=(left: NKConstraintItem, right: NKConstraintRelativeItem) -> NSLayoutConstraint {
-    let result = left.constraintWithRelativeItem(right, relation: .GreaterThanOrEqual)
-    result.active = true
+    let result = left.constraintWithRelativeItem(right: right, relation: .greaterThanOrEqual)
+    result.isActive = true
     return result
 }
 
 public func <=(left: NKConstraintItem, right: NKConstraintRelativeItem) -> NSLayoutConstraint {
-    let result = left.constraintWithRelativeItem(right, relation: .LessThanOrEqual)
-    result.active = true
+    let result = left.constraintWithRelativeItem(right: right, relation: .lessThanOrEqual)
+    result.isActive = true
     return result
 }
 
@@ -121,23 +121,23 @@ public func ==(left: NKConstraintItem, right: CGFloat) -> NSLayoutConstraint {
     
     let relativeItem = NKConstraintRelativeItem(constant: right)
     
-    let result = left.constraintWithRelativeItem(relativeItem, relation: .Equal)
-    result.active = true
+    let result = left.constraintWithRelativeItem(right: relativeItem, relation: .equal)
+    result.isActive = true
     return result
 }
 
 public func >=(left: NKConstraintItem, right: CGFloat) -> NSLayoutConstraint {
     let relativeItem = NKConstraintRelativeItem(constant: right)
     
-    let result = left.constraintWithRelativeItem(relativeItem, relation: .GreaterThanOrEqual)
-    result.active = true
+    let result = left.constraintWithRelativeItem(right: relativeItem, relation: .greaterThanOrEqual)
+    result.isActive = true
     return result
 }
 
 public func <=(left: NKConstraintItem, right: CGFloat) -> NSLayoutConstraint {
     let relativeItem = NKConstraintRelativeItem(constant: right)
     
-    let result = left.constraintWithRelativeItem(relativeItem, relation: .LessThanOrEqual)
-    result.active = true
+    let result = left.constraintWithRelativeItem(right: relativeItem, relation: .lessThanOrEqual)
+    result.isActive = true
     return result
 }

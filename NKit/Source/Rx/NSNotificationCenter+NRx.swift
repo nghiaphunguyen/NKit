@@ -11,19 +11,23 @@ import UIKit
 import RxSwift
 import NRxSwift
 
-public extension NSNotificationCenter {
+public extension NotificationCenter {
     public static var nk_keyboardWillShowObservable: Observable<CGFloat> {
-        return self.defaultCenter().rx_notification(UIKeyboardWillShowNotification).map({$0.userInfo?[UIKeyboardFrameEndUserInfoKey]?.CGRectValue.height}).nk_unwrap()
+        return self.default.rx.notification(Notification.Name.UIKeyboardWillShow).map({
+            let a = ($0.userInfo?[UIKeyboardFrameEndUserInfoKey] as AnyObject).cgRectValue.height
+            return a
+        })
     }
     
     public static var nk_keyboardWillHideObservable: Observable<CGFloat> {
-        return self.defaultCenter().rx_notification(UIKeyboardWillHideNotification).map({$0.userInfo?[UIKeyboardFrameEndUserInfoKey]?.CGRectValue.height}).nk_unwrap()
+        return self.default.rx.notification(Notification.Name.UIKeyboardWillHide).map({($0.userInfo?[UIKeyboardFrameEndUserInfoKey] as AnyObject).cgRectValue.height})
     }
     
     public static var nk_keyboardChangedHeightObservable: Observable<CGFloat> {
-        let keyboardWillShow = self.defaultCenter().rx_notification(UIKeyboardWillShowNotification).map({$0.userInfo?[UIKeyboardFrameEndUserInfoKey]?.CGRectValue.height}).nk_unwrap()
-        let keyboardWillHide = self.defaultCenter().rx_notification(UIKeyboardWillHideNotification).map {_ in return CGFloat(0)}
         
+        let keyboardWillShow = self.default.rx.notification(Notification.Name.UIKeyboardWillShow).map({($0.userInfo?[UIKeyboardFrameEndUserInfoKey] as AnyObject).cgRectValue.height})
+        let keyboardWillHide = self.default.rx.notification(Notification.Name.UIKeyboardWillHide).map {_ in return CGFloat(0)}
+            
         return [keyboardWillShow, keyboardWillHide].toObservable().merge()
     }
 }

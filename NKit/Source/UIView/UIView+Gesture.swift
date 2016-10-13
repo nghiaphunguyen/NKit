@@ -17,14 +17,14 @@ public extension UIView {
         panGesture.minimumNumberOfTouches = numOfTouches
         self.addGestureRecognizer(panGesture)
         
-        return panGesture.rx_event.asObservable()
+        return panGesture.rx.event.asObservable()
     }
     
     public func rx_pinch() -> Observable<UIPinchGestureRecognizer> {
         let pinchGesture = UIPinchGestureRecognizer()
         self.addGestureRecognizer(pinchGesture)
         
-        return pinchGesture.rx_event.asObservable()
+        return pinchGesture.rx.event.asObservable()
     }
     
     public func rx_tap(numOfTaps: Int = 1) -> Observable<UITapGestureRecognizer> {
@@ -32,7 +32,7 @@ public extension UIView {
         tapGesture.numberOfTapsRequired = numOfTaps
         self.addGestureRecognizer(tapGesture)
         
-        return tapGesture.rx_event.asObservable()
+        return tapGesture.rx.event.asObservable()
     }
     
     public func rx_longPress(numOfTouchs: Int = 1) -> Observable<UILongPressGestureRecognizer> {
@@ -40,7 +40,7 @@ public extension UIView {
         gesture.numberOfTouchesRequired = numOfTouchs
         self.addGestureRecognizer(gesture)
         
-        return gesture.rx_event.asObservable()
+        return gesture.rx.event.asObservable()
     }
     
     public func rx_swipe(numOfTouchs: Int = 1) -> Observable<UISwipeGestureRecognizer> {
@@ -48,13 +48,13 @@ public extension UIView {
         gesture.numberOfTouchesRequired = numOfTouchs
         self.addGestureRecognizer(gesture)
         
-        return gesture.rx_event.asObservable()
+        return gesture.rx.event.asObservable()
     }
     
     public func rx_rotate() -> Observable<UIRotationGestureRecognizer> {
         let gesture = UIRotationGestureRecognizer()
         self.addGestureRecognizer(gesture)
-        return gesture.rx_event.asObservable()
+        return gesture.rx.event.asObservable()
     }
     
     public func rx_edgePan(numOfTouch: Int = 1) -> Observable<UIScreenEdgePanGestureRecognizer> {
@@ -62,6 +62,6 @@ public extension UIView {
         gesture.minimumNumberOfTouches = numOfTouch
         self.addGestureRecognizer(gesture)
         
-        return gesture.rx_event.asObservable()
+        return gesture.rx.event.asObservable()
     }
 }

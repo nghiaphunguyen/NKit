@@ -43,17 +43,17 @@ public protocol NKPullingViewModel: NKLoadable {
     func doSomethingAfterLoadItemsObservable(items: [Any]) -> Observable<[Any]>
     
     func resetPage() // need override
-    func loadItems(page page: Int) -> Observable<[Any]> // need override
+    func loadItems(page: Int) -> Observable<[Any]> // need override
 }
 
-public extension NKPullingViewModel {
+public extension NKPullingViewModel where Self: AnyObject {
     private func updateItems(items: [Any]) {
         self.rx_items.value += items
         self.rx_items.nk_reload()
     }
     
     public func doSomethingBeforeLoadItemsObservable() -> Observable<Void> {
-        return Observable.just()
+        return Observable.just(Void())
     }
     
     public func doSomethingAfterLoadItemsObservable(items: [Any]) -> Observable<[Any]> {
@@ -63,22 +63,26 @@ public extension NKPullingViewModel {
     public func loadMoreObservable() -> Observable<Void> {
         return self.load(self.doSomethingBeforeLoadItemsObservable()
             .flatMapLatest({_ in self.loadItems(page: self.page)})
-            .flatMapLatest({self.doSomethingAfterLoadItemsObservable($0)}))
-            .doOnNext({self.updateItems($0)})
+            .flatMapLatest({self.doSomethingAfterLoadItemsObservable(items: $0)}))
+            .do(onNext: {self.updateItems(items: $0)})
             .map {_ in return}
     }
     
     public mutating func refreshObservable() -> Observable<Void> {
         var page: Int = 0
         
-        return self.load(Observable<Void>.nk_start { () -> Observable<Void> in
+        return self.load(Observable<Void>.nk_start {[unowned self]() -> Observable<Void> in
                 page = self.page
                 self.resetPage()
                 return self.doSomethingBeforeLoadItemsObservable()
             }
-            .flatMapLatest({_ in return self.loadItems(page: self.page)})
-            .flatMapLatest({self.doSomethingAfterLoadItemsObservable($0)}))
-            .doOnError({_ in self.page = page}).map {_ in return}
+            .flatMapLatest({[unowned self] _ in return self.loadItems(page: self.page)})
+            .flatMapLatest({[unowned self] in self.doSomethingAfterLoadItemsObservable(items: $0)}))
+            .do(onError: {[unowned self] _ in
+                var strongSelf = self
+                strongSelf.page = page
+                })
+            .map {_ in return}
     }
 }
 

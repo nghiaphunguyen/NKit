@@ -12,7 +12,7 @@ import RxSwift
 
 public final class NKLocationManager: AnyObject {
     
-    public enum Error: ErrorType {
+    public enum NKError: Error {
         case Unauthorized
         case GPSOff
     }
@@ -31,13 +31,13 @@ public final class NKLocationManager: AnyObject {
         var status: CLAuthorizationStatus {
             switch self {
             case .WhenInUse:
-                return .AuthorizedWhenInUse
+                return .authorizedWhenInUse
             case .Always:
-                return .AuthorizedAlways
+                return .authorizedAlways
             }
         }
         
-        func requestAuthorize(locationManager locationManager: CLLocationManager) -> Void {
+        func requestAuthorize(locationManager: CLLocationManager) -> Void {
             switch self {
             case .WhenInUse:
                 locationManager.requestWhenInUseAuthorization()
@@ -47,20 +47,20 @@ public final class NKLocationManager: AnyObject {
         }
     }
     
-    private lazy var locationManager: CLLocationManager = {
+    lazy var locationManager: CLLocationManager = {
         let manager = CLLocationManager()
         manager.distanceFilter = kCLLocationAccuracyBest
         return manager
     }()
     
     
-    private var latestLocation: CLLocation? = nil
+    var latestLocation: CLLocation? = nil
     
     public private(set) var type: AuthorizeType
-    public private(set) var authorizeTimeout: NSTimeInterval
-    public private(set) var locationTimeout: NSTimeInterval
+    public private(set) var authorizeTimeout: TimeInterval
+    public private(set) var locationTimeout: TimeInterval
     
-    public init(type: AuthorizeType = .WhenInUse, authorizeTimeout: NSTimeInterval = 5, locationTimeout: NSTimeInterval = 5) {
+    public init(type: AuthorizeType = .WhenInUse, authorizeTimeout: TimeInterval = 5, locationTimeout: TimeInterval = 5) {
         self.type = type
         self.authorizeTimeout = authorizeTimeout
         self.locationTimeout = locationTimeout
@@ -93,7 +93,7 @@ public extension NKLocationManager {
             return .Authorized
         }
         
-        if CLLocationManager.authorizationStatus() == .Denied {
+        if CLLocationManager.authorizationStatus() == .denied {
             return .Denied
         }
         
@@ -101,12 +101,13 @@ public extension NKLocationManager {
     }
     
     public var currentLocations: Observable<[CLLocation]> {
-        return self.checkGPS()
-            .flatMapLatest({_ in return self.checkAuthorize() })
-            .doOnNext {self.locationManager.startUpdatingLocation()}
-            .flatMapLatest({ _ in return self.locationManager.rx_didUpdateLocations.timeout(self.locationTimeout, scheduler: MainScheduler.instance)})
-            .doOnNext({self.latestLocation = $0.first})
-            .nk_doOnNextOrError({self.locationManager.stopUpdatingLocation()})
+        return Observable.empty()
+//        return self.checkGPS()
+//            .flatMapLatest({_ in return self.checkAuthorize() })
+//            .doOnNext {self.locationManager.startUpdatingLocation()}
+//            .flatMapLatest({ _ in return self.locationManager.rx.didUpdateLocations.timeout(self.locationTimeout, scheduler: MainScheduler.instance)})
+//            .doOnNext({self.latestLocation = $0.first})
+//            .nk_doOnNextOrError({self.locationManager.stopUpdatingLocation()})
     }
     
     public var currentLocation: Observable<CLLocation> {
@@ -126,7 +127,7 @@ public extension NKLocationManager {
                 if self.isAuthorized {
                     observer.nk_setValue()
                 } else {
-                    observer.nk_setError(Error.Unauthorized)
+                    observer.nk_setError(NKError.Unauthorized)
                 }
             }
         }
@@ -137,7 +138,7 @@ private extension NKLocationManager {
     func checkGPS() -> Observable<Void> {
         return Observable<Void>.nk_baseCreate({ (observer) in
             guard self.isGPSEnabled else {
-                observer.nk_setError(Error.GPSOff)
+                observer.nk_setError(NKError.GPSOff)
                 return
             }
             
@@ -148,7 +149,7 @@ private extension NKLocationManager {
     func checkAuthorize() -> Observable<Void> {
         return Observable<Void>.nk_baseCreate { (observer) in
             if self.isAuthorized {
-                observer.nk_setError(Error.Unauthorized)
+                observer.nk_setError(NKError.Unauthorized)
                 return
             }
             

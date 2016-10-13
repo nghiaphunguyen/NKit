@@ -23,9 +23,9 @@ public extension UIViewController{
     }
     
     public func nk_showLoadingViewWithMessage(message: String,
-        font: UIFont = UIFont.systemFontOfSize(14),
-        textColor: UIColor = UIColor.whiteColor(),
-        backgroundColor: UIColor = UIColor.blackColor().colorWithAlphaComponent(0.3),
+        font: UIFont = UIFont.systemFont(ofSize: 14),
+        textColor: UIColor = UIColor.white,
+        backgroundColor: UIColor = UIColor.black.withAlphaComponent(0.3),
         loadingImage: UIImage? = nil) {
             
             if self.nk_loadingView?.superview != nil {
@@ -33,7 +33,7 @@ public extension UIViewController{
             }
             
             if self.nk_loadingView == nil {
-                self.nk_loadingView = UIView(frame: CGRectMake(0, 0, self.view.nk_width, self.view.nk_height))
+                self.nk_loadingView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.nk_width, height: self.view.nk_height))
             } else {
                 for view in self.nk_loadingView!.subviews {
                     view.removeFromSuperview()
@@ -46,7 +46,7 @@ public extension UIViewController{
             
             self.nk_loadingView?.backgroundColor = backgroundColor
             
-            let label = UILabel(text: message, color: textColor, isSizeToFit: true, alignment: .Center)
+            let label = UILabel(text: message, color: textColor, isSizeToFit: true, alignment: .center)
             
             let loadingImageView = UIImageView(image: loadingImage)
             
@@ -58,7 +58,7 @@ public extension UIViewController{
             loadingImageView.nk_height = loadingImageView.nk_imageHeight
             loadingImageView.nk_centerHorizontalParent().nk_alignBottomView(label, offset: -15)
             
-            loadingImageView.nk_animateWithKeyPath("transform.rotation.z",
+            loadingImageView.nk_animateWithKeyPath(keyPath: "transform.rotation.z",
                 value: CGFloat(M_PI * 2),
                 type: NKAnimationType.ByValue,
                 duration: 1,

@@ -6,27 +6,31 @@
 
 import UIKit
 
+public typealias NKVoidClosure = () -> Void
+
 public class NKPopupView<T: UIView>: NKContainerView<T>, UIGestureRecognizerDelegate {
     
     public var tapOutsideWillDismiss = true
-    public var animationShow: ((completion: () -> Void) -> Void)?
-    public var animationDismiss: ((completion: () -> Void) -> Void)?
     
-    public init(frame: CGRect = CGRectMake(0, 0, NKScreenSize.Current.width, NKScreenSize.Current.height),
-        backgroundColor: UIColor = UIColor.blackColor().colorWithAlphaComponent(0.5),
+    public init(frame: CGRect = CGRect(x: 0, y: 0, width: NKScreenSize.Current.width, height: NKScreenSize.Current.height),
+        backgroundColor: UIColor = UIColor.black.withAlphaComponent(0.5),
         contentView: T? = nil) {
             super.init(frame: frame)
             
-            self.contentView = contentView
-            self.backgroundColor = backgroundColor
-            
-            let tapGesture = UITapGestureRecognizer()
-            tapGesture.delegate = self
-            self.addGestureRecognizer(tapGesture)
+        self.contentView = contentView
+        self.backgroundColor = backgroundColor
+        
+        let tapGesture = UITapGestureRecognizer()
+        tapGesture.delegate = self
+        self.addGestureRecognizer(tapGesture)
     }
     
-    public func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldReceiveTouch touch: UITouch) -> Bool {
-        if let contentView = self.contentView where touch.view?.isDescendantOfView(contentView) == true {
+    public required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        if let contentView = self.contentView , touch.view?.isDescendant(of: contentView) == true {
             return false
         }
         
@@ -39,19 +43,19 @@ public class NKPopupView<T: UIView>: NKContainerView<T>, UIGestureRecognizerDele
     
     public func show(inView view: UIView, completion: (() -> Void)? = nil) {
         view.addSubview(self)
-        self.contentView?.hidden = false
-        self.contentView?.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0, 0)
+        self.contentView?.isHidden = false
+        self.contentView?.transform = CGAffineTransform.identity.scaledBy(x: 0, y: 0)
+//        
+//        if let animationShow = self.animationShow {
+//            animationShow({ () -> Void in
+//                completion?()
+//            })
+//            
+//            return
+//        }
         
-        if let animationShow = self.animationShow {
-            animationShow(completion: { () -> Void in
-                completion?()
-            })
-            
-            return
-        }
-        
-        UIView.animateWithDuration(0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: UIViewAnimationOptions.CurveEaseOut, animations: { () -> Void in
-            self.contentView?.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1, 1)
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: UIViewAnimationOptions.curveEaseOut, animations: { () -> Void in
+            self.contentView?.transform = CGAffineTransform.identity.scaledBy(x: 1, y: 1)
             }, completion: { (result) in
                 completion?()
         })
@@ -60,24 +64,25 @@ public class NKPopupView<T: UIView>: NKContainerView<T>, UIGestureRecognizerDele
     public func dismiss(completion: (() -> Void)? = nil) {
         
         let finish = {
-            self.contentView?.hidden = true
+            self.contentView?.isHidden = true
             self.removeFromSuperview()
             completion?()
         }
         
-        if let animationDismiss = self.animationDismiss {
-            animationDismiss(completion: { () -> Void in
-                finish()
-            })
-            
-            return
-        }
+//        if let animationDismiss = self.animationDismiss {
+//            animationDismiss({ () -> Void in
+//                finish()
+//            })
+//            
+//            return
+//        }
         
         // animation show
-        UIView.animateWithDuration(0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: UIViewAnimationOptions.CurveEaseOut, animations: { () -> Void in
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: UIViewAnimationOptions.curveEaseOut, animations: { () -> Void in
             
-            self.contentView?.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.000001, 0.000001)
+            self.contentView?.transform = CGAffineTransform.identity.scaledBy(x: 0.000001, y: 0.000001)
             }, completion: { (result) in
+                
                 finish()
         })
     }

@@ -19,14 +19,14 @@ class SecondViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor.blueColor()
+        self.view.backgroundColor = UIColor.blue
         
         self.view.addSubview(self.button)
-        self.button.snp_makeConstraints { (make) in
+        self.button.snp.makeConstraints { (make) in
             make.center.equalTo(0)
         }
         
-        self.button.rx_tap.bindNext {
+        self.button.rx.tap.bindNext {
             self.navigationController?.pushViewController(TestingCollectionViewController(), animated: true)
         }.addDisposableTo(self.nk_disposeBag)
     }

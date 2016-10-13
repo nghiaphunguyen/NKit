@@ -19,14 +19,14 @@ public enum NKEdgePos{
 }
 
 public extension UIView {
-    public func nk_addBorder(pos pos: NKEdgePos, lineWidth: Double,
+    public func nk_addBorder(pos: NKEdgePos, lineWidth: Double,
         offset1: Double = 0, offset2: Double = 0, color: UIColor) -> UIView {
         let border = UIView()
         border.backgroundColor = color
         
         self.addSubview(border)
         
-        border.snp_makeConstraints { (make) -> Void in
+        border.snp.makeConstraints { (make) -> Void in
             switch pos {
             case .Top:
                 make.top.equalTo(self)
@@ -62,7 +62,7 @@ public enum NKOrientationType {
 }
 
 public extension UIView {
-    public func nk_divideViews(num num: UInt, type: NKOrientationType) -> [UIView] {
+    public func nk_divideViews(num: UInt, type: NKOrientationType) -> [UIView] {
         var views = [UIView]()
         
         for i in 0..<num {
@@ -71,7 +71,7 @@ public extension UIView {
             
             self.addSubview(view)
             
-            view.snp_makeConstraints(closure: { (make) -> Void in
+            view.snp.makeConstraints({ (make) -> Void in
                 make.bottom.equalTo(self)
                 
                 switch type {
@@ -112,7 +112,7 @@ public extension UIView {
         var source = views.first!
         for i in 1..<views.count {
             let view = views[i]
-            view.snp_makeConstraints(closure: { (make) -> Void in
+            view.snp.makeConstraints({ (make) -> Void in
                 
                 switch type {
                 case .Horizontal:
@@ -134,7 +134,7 @@ public extension UIView {
         let source = views.first!
         for i in 1..<views.count {
             let view = views[i]
-            view.snp_makeConstraints(closure: { (make) -> Void in
+            view.snp.makeConstraints({ (make) -> Void in
                 switch edgePos {
                 case .Bottom:
                     make.bottom.equalTo(source)
@@ -157,7 +157,7 @@ public extension UIView {
         let source = views.first!
         for i in 1..<views.count {
             let view = views[i]
-            view.snp_makeConstraints(closure: { (make) -> Void in
+            view.snp.makeConstraints({ (make) -> Void in
                 make.height.equalTo(source)
             })
         }
@@ -171,7 +171,7 @@ public extension UIView {
         let source = views.first!
         for i in 1..<views.count {
             let view = views[i]
-            view.snp_makeConstraints(closure: { (make) -> Void in
+            view.snp.makeConstraints({ (make) -> Void in
                 make.width.equalTo(source)
             })
         }

@@ -9,7 +9,7 @@ import ObjectiveC
 
 var NKAssociatedAnimationCompletionHandle: UInt8 = 0
 
-public typealias NKAnimationClosure = (animation: CAAnimation, finished: Bool) -> Void
+public typealias NKAnimationClosure = (_ animation: CAAnimation, _ finished: Bool) -> Void
 
 public class NKAnimationClosureWrapper : AnyObject {
     public var closure: NKAnimationClosure?
@@ -21,7 +21,7 @@ public class NKAnimationClosureWrapper : AnyObject {
     }
 }
 
-public extension CALayer {
+extension CALayer: CAAnimationDelegate {
     public var nk_completionClosure: [String: NKAnimationClosureWrapper]? {
         get {
             return objc_getAssociatedObject(self, &NKAssociatedAnimationCompletionHandle) as? [String: NKAnimationClosureWrapper]
@@ -32,7 +32,7 @@ public extension CALayer {
         }
     }
     
-    public func nk_addAnimation(animation: CAAnimation, forKey key: String, completion: NKAnimationClosure) {
+    public func nk_addAnimation(animation: CAAnimation, forKey key: String, completion: @escaping NKAnimationClosure) {
         if self.nk_completionClosure == nil {
             self.nk_completionClosure = [String: NKAnimationClosureWrapper]()
         }
@@ -43,20 +43,20 @@ public extension CALayer {
         
         animation.setValue(key, forKey: "animationID")
         
-        self.addAnimation(animation, forKey: key)
+        self.add(animation, forKey: key)
     }
     
-    public override func animationDidStop(anim: CAAnimation, finished flag: Bool) {
+    public func animationDidStop(anim: CAAnimation, finished flag: Bool) {
         if nk_completionClosure == nil {
             return
         }
         
-        guard let keyAnim = anim.valueForKey("animationID") as? String else {
+        guard let keyAnim = anim.value(forKey: "animationID") as? String else {
             return
         }
         
         if let closureWrapper = self.nk_completionClosure![keyAnim] {
-            closureWrapper.closure?(animation: closureWrapper.animation, finished: flag)
+            closureWrapper.closure?(closureWrapper.animation, flag)
             self.nk_completionClosure![keyAnim] = nil
         }
     }

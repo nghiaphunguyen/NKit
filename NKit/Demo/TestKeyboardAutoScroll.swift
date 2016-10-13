@@ -15,7 +15,7 @@ class TestKeyboardAutoScrollingViewController: UIViewController {
         let view = UIScrollView()
         view.nk_autoSrollWithKeyboardBehaviour()
         view.addSubview(self.stackView)
-        self.stackView.snp_makeConstraints { make in
+        self.stackView.snp.makeConstraints { make in
             make.edges.equalTo(0)
             make.width.equalTo(self.stackView.superview!)
             make.height.equalTo(self.stackView.superview!)
@@ -26,9 +26,9 @@ class TestKeyboardAutoScrollingViewController: UIViewController {
     lazy var stackView: OAStackView = {
         let stackView = OAStackView(arrangedSubviews: [self.textField, self.textField1,
             self.textField2, self.textField3, self.textField4])
-        stackView.alignment = .Fill
-        stackView.distribution = .FillEqually
-        stackView.axis = .Vertical
+        stackView.alignment = .fill
+        stackView.distribution = .fillEqually
+        stackView.axis = .vertical
         stackView.spacing = 30
         return stackView
     }()
@@ -36,57 +36,59 @@ class TestKeyboardAutoScrollingViewController: UIViewController {
     lazy var textField: UITextField = {
         let textField = UITextField()
         textField.accessibilityIdentifier = "textField0"
-        textField.backgroundColor = UIColor.blueColor()
+        textField.backgroundColor = UIColor.blue
         return textField
     }()
     
     lazy var textField1: UITextField = {
         let textField = UITextField()
         textField.accessibilityIdentifier = "textField1"
-        textField.backgroundColor = UIColor.greenColor()
+        textField.backgroundColor = UIColor.green
         return textField
     }()
     
     lazy var textField2: UITextField = {
         let textField = UITextField()
         textField.accessibilityIdentifier = "textField2"
-        textField.backgroundColor = UIColor.grayColor()
+        textField.backgroundColor = UIColor.gray
         return textField
     }()
     
     lazy var textField3: UITextField = {
         let textField = UITextField()
         textField.accessibilityIdentifier = "textField3"
-        textField.backgroundColor = UIColor.yellowColor()
+        textField.backgroundColor = UIColor.yellow
+        
+        
         return textField
     }()
     
     lazy var textField4: UITextField = {
         let textField = UITextField()
         textField.accessibilityIdentifier = "textField4"
-        textField.backgroundColor = UIColor.brownColor()
+        textField.backgroundColor = UIColor.brown
         return textField
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.nk_setBarTintColor(UIColor.whiteColor())
+        _ = self.nk_setBarTintColor(UIColor.white)
         
-        self.view.backgroundColor = UIColor.blackColor()
+        self.view.backgroundColor = UIColor.black
         self.automaticallyAdjustsScrollViewInsets = false
         
         self.view.addSubview(self.scrollView)
-        self.scrollView.snp_makeConstraints { (make) in
+        self.scrollView.snp.makeConstraints { (make) in
             make.leading.trailing.bottom.equalTo(0)
             make.top.equalTo(0)
         }
         self.view.nk_autoHideKeyboardWhenTapOutside()
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.nk_setBarTintColor(UIColor.whiteColor())
+        _ = self.nk_setBarTintColor(UIColor.white)
     }
 }

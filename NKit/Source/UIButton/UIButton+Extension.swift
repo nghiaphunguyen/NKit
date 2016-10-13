@@ -9,17 +9,17 @@ import UIKit
 //MARK: Constructors
 public extension UIButton {
     public convenience init(title: String,
-        textFont: UIFont = UIFont.systemFontOfSize(14),
-        textColor: UIColor = UIColor.blackColor(),
+        textFont: UIFont = UIFont.systemFont(ofSize: 14),
+        textColor: UIColor = UIColor.black,
         backgroundColor: UIColor? = nil,
         highlightColor: UIColor? = nil,
         cornerRadius: CGFloat = 0,
         borderWidth: CGFloat = 0,
-        borderColor: UIColor = UIColor.blackColor()) {
-            self.init(frame: CGRectZero)
+        borderColor: UIColor = UIColor.black) {
+            self.init(frame: CGRect.zero)
             
-            self.setTitle(title, forState: .Normal)
-            self.setTitleColor(textColor, forState: UIControlState.Normal)
+            self.setTitle(title, for: .normal)
+            self.setTitleColor(textColor, for: UIControlState.normal)
             self.titleLabel?.font = textFont
             
             if let bg = backgroundColor {
@@ -28,18 +28,18 @@ public extension UIButton {
             
             if let hi = highlightColor {
                 self.setBackgroundImage(UIImage.nk_fromColor(hi, size: CGSizeMake(1, 1)),
-                    forState: .Highlighted)
+                    for: .highlighted)
             }
             
-            self.nk_addBorder(borderWidth: borderWidth, color: borderColor, cornerRadius: cornerRadius)
+            _ = self.nk_addBorder(borderWidth: borderWidth, color: borderColor, cornerRadius: cornerRadius)
     }
     
     public convenience init(image: UIImage,
         highlightImage: UIImage) {
-        self.init(frame: CGRectZero)
+        self.init(frame: CGRect.zero)
         
-        self.setImage(image, forState: .Normal)
-        self.setImage(highlightImage, forState: .Highlighted)
+        self.setImage(image, for: .normal)
+        self.setImage(highlightImage, for: .highlighted)
     }
     
     public convenience init(title: String,
@@ -49,17 +49,17 @@ public extension UIButton {
         normalImage: UIImage,
         selectedImage: UIImage,
         highlightColor: UIColor? = nil) {
-            self.init(frame: CGRectZero)
+            self.init(frame: CGRect.zero)
             
-            self.setImage(normalImage, forState: UIControlState.Normal)
-            self.setImage(selectedImage, forState: UIControlState.Selected)
+            self.setImage(normalImage, for: UIControlState.normal)
+            self.setImage(selectedImage, for: UIControlState.selected)
             if highlightColor != nil {
-                self.setBackgroundImage(UIImage.nk_fromColor(highlightColor!, size: CGSizeMake(1, 1)), forState: UIControlState.Highlighted)
+                self.setBackgroundImage(UIImage.nk_fromColor(highlightColor!, size: CGSizeMake(1, 1)), for: UIControlState.highlighted)
             }
             
-            self.setTitle(title, forState: .Normal)
-            self.setTitleColor(textColorNormal, forState: .Normal)
-            self.setTitleColor(textColorSelected, forState: .Selected)
+            self.setTitle(title, for: .normal)
+            self.setTitleColor(textColorNormal, for: .normal)
+            self.setTitleColor(textColorSelected, for: .selected)
             self.titleEdgeInsets = UIEdgeInsetsMake(0, -self.nk_imageWidth / 2, -self.nk_imageHeight / 2, 0)
     }
 }

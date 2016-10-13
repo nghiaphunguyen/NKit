@@ -10,13 +10,13 @@ import UIKit
 import OAStackView
 
 public extension OAStackView {
-    public func nk_addArrangedSubview<T: UIView>(view: T, config: ((T) -> Void)? = nil) -> Self {
+    public func nk_addArrangedSubview<T: UIView>(_ view: T, config: ((T) -> Void)? = nil) -> Self {
         self.addArrangedSubview(view)
         config?(view)
         return self
     }
     
-    public static func nk_create(distribution: OAStackViewDistribution = .Fill, alignment: OAStackViewAlignment = .Fill, spacing: CGFloat = 0, axis: UILayoutConstraintAxis = .Vertical) -> OAStackView {
+    public static func nk_create(_ distribution: OAStackViewDistribution = .fill, alignment: OAStackViewAlignment = .fill, spacing: CGFloat = 0, axis: UILayoutConstraintAxis = .vertical) -> OAStackView {
         let stackView = OAStackView()
         stackView.alignment = alignment
         stackView.distribution = distribution
@@ -25,12 +25,12 @@ public extension OAStackView {
         return stackView
     }
     
-    public static func nk_row(distribution: OAStackViewDistribution = .Fill, alignment: OAStackViewAlignment = .Fill, spacing: CGFloat = 0) -> OAStackView {
-        return self.nk_create(distribution, alignment: alignment, spacing: spacing, axis: .Horizontal)
+    public static func nk_row(_ distribution: OAStackViewDistribution = .fill, alignment: OAStackViewAlignment = .fill, spacing: CGFloat = 0) -> OAStackView {
+        return self.nk_create(distribution, alignment: alignment, spacing: spacing, axis: .horizontal)
     }
     
-    public static func nk_column(distribution: OAStackViewDistribution = .Fill, alignment: OAStackViewAlignment = .Fill, spacing: CGFloat = 0) -> OAStackView {
-        return self.nk_create(distribution, alignment: alignment, spacing: spacing, axis: .Vertical)
+    public static func nk_column(_ distribution: OAStackViewDistribution = .fill, alignment: OAStackViewAlignment = .fill, spacing: CGFloat = 0) -> OAStackView {
+        return self.nk_create(distribution, alignment: alignment, spacing: spacing, axis: .vertical)
     }
 }
 

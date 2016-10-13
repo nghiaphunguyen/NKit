@@ -14,11 +14,11 @@ public enum NKScreenType {
 }
 
 public struct NKScreenSize {
-    public static let IP4S = CGSizeMake(320, 480)
-    public static let IP5 = CGSizeMake(320, 568)
-    public static let IP6 = CGSizeMake(375, 667)
-    public static let IP6Plus = CGSizeMake(414, 736)
-    public static let Current = UIScreen.mainScreen().bounds.size
+    public static let IP4S = CGSize(width: 320, height: 480)
+    public static let IP5 = CGSize(width:320, height: 568)
+    public static let IP6 = CGSize(width:375, height: 667)
+    public static let IP6Plus = CGSize(width:414, height: 736)
+    public static let Current = UIScreen.main.bounds.size
     
     public static let CurrentType : NKScreenType = {
         if Current == IP5 {
@@ -36,7 +36,7 @@ public struct NKScreenSize {
         return .IP4S
     }()
     
-    public static var Layout = NKScreenSize.IP6 {
+    static var Layout = NKScreenSize.IP6 {
         didSet {
             LayoutRatio = Current.height / NKScreenSize.Layout.height
             
@@ -46,8 +46,8 @@ public struct NKScreenSize {
         }
     }
     
-    private static var LayoutRatio = NKScreenSize.Current.height / NKScreenSize.Layout.height
-    private static var Ratio: CGFloat = {
+    static var LayoutRatio = NKScreenSize.Current.height / NKScreenSize.Layout.height
+    static var Ratio: CGFloat = {
         let currentRatio = NKScreenSize.Current.height / NKScreenSize.Current.width
         let layoutRatio = NKScreenSize.Layout.height / NKScreenSize.Layout.width
         

@@ -12,7 +12,7 @@ public extension UIView {
     public var nk_parentViewController: UIViewController? {
         var parentResponder: UIResponder? = self
         while parentResponder != nil {
-            parentResponder = parentResponder?.nextResponder()
+            parentResponder = parentResponder?.next
             if let viewController = parentResponder as? UIViewController {
                 return viewController
             }
@@ -21,10 +21,10 @@ public extension UIView {
         return nil
     }
     
-    public func nk_addBorder(borderWidth borderWidth: CGFloat = 1,
-        color: UIColor = UIColor.blackColor(),
+    public func nk_addBorder(borderWidth: CGFloat = 1,
+        color: UIColor = UIColor.black,
         cornerRadius: CGFloat = 0) -> UIView {
-            self.layer.borderColor = color.CGColor
+            self.layer.borderColor = color.cgColor
             self.layer.borderWidth = borderWidth
             
             self.layer.cornerRadius = cornerRadius
@@ -36,25 +36,25 @@ public extension UIView {
     
     public func nk_addAllBorderToSubview() -> UIView {
         for view in self.subviews {
-            view.nk_addBorder(borderWidth: 1, color: UIColor.yellowColor())
+            view.nk_addBorder(borderWidth: 1, color: UIColor.yellow)
             view.nk_addAllBorderToSubview()
         }
         
-        self.nk_addBorder(borderWidth: 1, color: UIColor.yellowColor())
+        self.nk_addBorder(borderWidth: 1, color: UIColor.yellow)
         
         return self
     }
     
     public func nk_snapshot() -> UIImage {
-        UIGraphicsBeginImageContextWithOptions(self.frame.size, false, UIScreen.mainScreen().scale)
+        UIGraphicsBeginImageContextWithOptions(self.frame.size, false, UIScreen.main.scale)
         
         let context = UIGraphicsGetCurrentContext()
-        self.layer.renderInContext(context!)
+        self.layer.render(in: context!)
         
         let image = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
         
-        return image
+        return image!
     }
 }
 
@@ -67,7 +67,7 @@ public extension UIView {
     }
     
     public var nk_firstSubviewResponse: UIView? {
-        if self.isFirstResponder() {
+        if self.isFirstResponder {
             return self
         }
         
@@ -80,10 +80,10 @@ public extension UIView {
         return nil
     }
     
-    public func nk_findAllSubviews(types types: [AnyClass]) -> [UIView] {
+    public func nk_findAllSubviews(types: [AnyClass]) -> [UIView] {
         var result = [UIView]()
         
-        if types.contains({self.isKindOfClass($0) })  {
+        if types.contains(where: {self.isKind(of: $0) })  {
             result += [self]
         }
         

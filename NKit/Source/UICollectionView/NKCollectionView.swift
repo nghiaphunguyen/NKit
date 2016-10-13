@@ -15,7 +15,7 @@ public protocol NKCollectionViewDataSource: class {
 
 public protocol NKCollectionViewItemProtocol: class {
     associatedtype CollectionViewItemModel
-    func collectionView(collectionView: NKCollectionView, configWithModel model: CollectionViewItemModel, atIndexPath indexPath: NSIndexPath)
+    func collectionView(collectionView: NKCollectionView, configWithModel model: CollectionViewItemModel, atIndexPath indexPath: IndexPath)
 }
 
 public class NKCollectionView: UICollectionView {
@@ -34,7 +34,7 @@ public class NKCollectionView: UICollectionView {
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.minimumLineSpacing = 0
         flowLayout.minimumInteritemSpacing = 0
-        flowLayout.sectionInset = UIEdgeInsetsZero
+        flowLayout.sectionInset = UIEdgeInsets.zero
         var dimension: NKDimension? = nil
         for option in options {
             switch option {
@@ -70,7 +70,7 @@ public class NKCollectionView: UICollectionView {
         }
     }
     
-    public lazy var animateFitHeightDuration: NSTimeInterval = 0
+    public lazy var animateFitHeightDuration: TimeInterval = 0
     
     public weak var nk_dataSource: NKCollectionViewDataSource? {
         didSet {
@@ -98,9 +98,9 @@ public class NKCollectionView: UICollectionView {
         
         self.nk_scrollViewWillBeginDraggingObservable
             .takeUntil(self.rx_paging.asObservable().filter({$0 == false}))
-            .subscribeNext { (point) in
+            .subscribe(onNext: { (point) in
                 startedOffset = point
-            }.addDisposableTo(self.nk_disposeBag)
+            }).addDisposableTo(self.nk_disposeBag)
         
         self.nk_scrollViewWillEndScrollingObservable
             .takeUntil(self.rx_paging.asObservable().filter({$0 == false}))
@@ -109,7 +109,7 @@ public class NKCollectionView: UICollectionView {
                     return
                 }
                 
-                let isHorizontal = layout.scrollDirection == .Horizontal
+                let isHorizontal = layout.scrollDirection == .horizontal
                 
                 let value = ((isHorizontal) ? layout.itemSize.width : layout.itemSize.height) + layout.minimumLineSpacing
                 
@@ -117,7 +117,7 @@ public class NKCollectionView: UICollectionView {
                 let xFirstCenter = isHorizontal ? self.nk_width / 2 : self.nk_height / 2
                 let firstValue = value - (xFirstCenter - firstCenter)
                 
-                let sOffset = isHorizontal ? startedOffset?.x : startedOffset?.y
+                let sOffset = (isHorizontal ? startedOffset?.x : startedOffset?.y) ?? 0
                 let offset = isHorizontal ? point.x : point.y
                 let minOffset: CGFloat = 0
                 
@@ -135,7 +135,7 @@ public class NKCollectionView: UICollectionView {
                 let page = currentPage + k
                 
                 let newOffset = max(minOffset, min(CGFloat(page - 1) * value + (page > 0 ? firstValue : 0), maxOffset))
-                let newPoint = isHorizontal ? CGPointMake(newOffset, point.y) : CGPointMake(point.x, newOffset)
+                let newPoint = isHorizontal ? CGPoint(x: newOffset, y: point.y) : CGPoint(x: point.x, y: newOffset)
                 self.setContentOffset(newPoint, animated: true)
             }.addDisposableTo(self.nk_disposeBag)
     }
@@ -146,88 +146,88 @@ public class NKCollectionView: UICollectionView {
         if self.isHeightToFit && self.contentSize.height != self.preHeight{
             self.preHeight = self.contentSize.height
             
-            self.snp_updateConstraints(closure: { (make) -> Void in
+            self.snp.updateConstraints({ (make) -> Void in
                 make.height.equalTo(self.contentSize.height)
             })
             
-            UIView.animateWithDuration(self.animateFitHeightDuration, delay: 0, options: UIViewAnimationOptions.CurveEaseIn, animations: {
+            UIView.animate(withDuration: self.animateFitHeightDuration, delay: 0, options: UIViewAnimationOptions.curveEaseIn, animations: {
                 self.layoutIfNeeded()
                 }, completion: nil)
         }
         
     }
     
-    public var nk_viewForSupplementaryElementClosure: ((collectionView: UICollectionView, kind: String, indexPath: NSIndexPath) -> UICollectionReusableView)? = nil
+    public var nk_viewForSupplementaryElementClosure: ((_ collectionView: UICollectionView, _ kind: String, _ indexPath: IndexPath) -> UICollectionReusableView)? = nil
     
-    public var nk_animateForCellClosure: ((cell: UICollectionViewCell, indexPath: NSIndexPath) -> Void)? = nil
+    public var nk_animateForCellClosure: ((_ cell: UICollectionViewCell, _ indexPath: IndexPath) -> Void)? = nil
     
-    public var nk_moreConfigForCellClosure: ((cell: UICollectionViewCell, indexPath: NSIndexPath) -> Void)? = nil
+    public var nk_moreConfigForCellClosure: ((_ cell: UICollectionViewCell, _ indexPath: IndexPath) -> Void)? = nil
     
-    private typealias ConfigViewBlock = (cell: UIView, model: Any, indexPath: NSIndexPath) -> Void
+    typealias ConfigViewBlock = (_ cell: UIView, _ model: Any, _ indexPath: IndexPath) -> Void
     
-    private lazy var modelViewTypeMapping = [String: (viewType: UIView.Type, configViewBlock: ConfigViewBlock)]()
+    lazy var modelViewTypeMapping = [String: (viewType: UIView.Type, configViewBlock: ConfigViewBlock)]()
 }
 
 public extension NKCollectionView {
-    public func registerView<T: UICollectionViewCell where T: NKCollectionViewItemProtocol>(type: T.Type) {
+    public func registerView<T: UICollectionViewCell>(_ type: T.Type) where T: NKCollectionViewItemProtocol {
         let modelName = "\(type.CollectionViewItemModel.self)"
         
-        self.registerClass(T.self, forCellWithReuseIdentifier: modelName)
+        self.register(T.self, forCellWithReuseIdentifier: modelName)
         self.modelViewTypeMapping[modelName] = (viewType: type, configViewBlock: {[weak self] (view, model, indexPath) in
             guard let strongSelf = self else {
                 return
             }
             
-            if let view = view as? T, model = model as? T.CollectionViewItemModel {
-                view.collectionView(strongSelf, configWithModel: model, atIndexPath: indexPath)
+            if let view = view as? T, let model = model as? T.CollectionViewItemModel {
+                view.collectionView(collectionView: strongSelf, configWithModel: model, atIndexPath: indexPath)
             }
             })
     }
 }
 
 extension NKCollectionView: UICollectionViewDataSource {
-    public func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        guard let items = self.nk_dataSource?.itemsForCollectionView(self) where items.count > section else {
+    public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        guard let items = self.nk_dataSource?.itemsForCollectionView(collectionView: self) , items.count > section else {
             return 0
         }
         
         return items[section].count
     }
     
-    public func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+    public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let section = indexPath.section
         let row = indexPath.row
         
-        guard let items = self.nk_dataSource?.itemsForCollectionView(self) where items.count > section && items[section].count > row else {
+        guard let items = self.nk_dataSource?.itemsForCollectionView(collectionView: self) , items.count > section && items[section].count > row else {
             return UICollectionViewCell()
         }
         
-        let typeName = "\(items[section][row].dynamicType.self)"
+        let typeName = "\(type(of: items[section][row]))"
         guard let mapping = self.modelViewTypeMapping[typeName] else {
             return UICollectionViewCell()
         }
         
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(typeName, forIndexPath: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: typeName, for: indexPath)
         if let cell = cell as? NKBaseCollectionViewCell {
             cell.autoFitDimension = self.autoFitCellDimension
         }
         
-        mapping.configViewBlock(cell: cell, model: items[section][row], indexPath: indexPath)
+        mapping.configViewBlock(cell, items[section][row], indexPath)
         
-        self.nk_animateForCellClosure?(cell: cell, indexPath: indexPath)
-        self.nk_moreConfigForCellClosure?(cell: cell, indexPath: indexPath)
+        self.nk_animateForCellClosure?(cell, indexPath)
+        self.nk_moreConfigForCellClosure?(cell, indexPath)
         return cell
     }
     
-    public func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        return self.nk_dataSource?.itemsForCollectionView(self).count ?? 0
+    public func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return self.nk_dataSource?.itemsForCollectionView(collectionView: self).count ?? 0
     }
     
-    public func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
+    public func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         guard let closure = self.nk_viewForSupplementaryElementClosure else {
             return UICollectionReusableView()
         }
         
-        return closure(collectionView: collectionView, kind: kind, indexPath: indexPath)
+        return closure(collectionView, kind, indexPath)
     }
 }

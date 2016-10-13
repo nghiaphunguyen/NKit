@@ -8,38 +8,42 @@ import UIKit
 
 public extension UIView {
     public var nka_leading: NKConstraintItem {
-        return NKConstraintItem(view: self, attribute: .Leading)
+        return NKConstraintItem(view: self, attribute: .leading)
     }
     
     public var nka_trailing: NKConstraintItem {
-        return NKConstraintItem(view: self, attribute: .Trailing)
+        return NKConstraintItem(view: self, attribute: .trailing)
     }
     
     public var nka_bottom: NKConstraintItem {
-        return NKConstraintItem(view: self, attribute: .Bottom)
+        return NKConstraintItem(view: self, attribute: .bottom)
     }
     
     public var nka_top: NKConstraintItem {
-        return NKConstraintItem(view: self, attribute: .Top)
+        return NKConstraintItem(view: self, attribute: .top)
     }
     
-    public var nka_baseline: NKConstraintItem {
-        return NKConstraintItem(view: self, attribute: .Baseline)
+    public var nka_firstBaseline: NKConstraintItem {
+        return NKConstraintItem(view: self, attribute: .firstBaseline)
+    }
+    
+    public var nka_lastBaseline: NKConstraintItem {
+        return NKConstraintItem(view: self, attribute: .lastBaseline)
     }
     
     public var nka_centerX: NKConstraintItem {
-        return NKConstraintItem(view: self, attribute: .CenterX)
+        return NKConstraintItem(view: self, attribute: .centerX)
     }
     
     public var nka_centerY: NKConstraintItem {
-        return NKConstraintItem(view: self, attribute: .CenterY)
+        return NKConstraintItem(view: self, attribute: .centerY)
     }
     
     public var nka_width: NKConstraintItem {
-        return NKConstraintItem(view: self, attribute: .Width)
+        return NKConstraintItem(view: self, attribute: .width)
     }
     
     public var nka_height: NKConstraintItem {
-        return NKConstraintItem(view: self, attribute: .Height)
+        return NKConstraintItem(view: self, attribute: .height)
     }
 }

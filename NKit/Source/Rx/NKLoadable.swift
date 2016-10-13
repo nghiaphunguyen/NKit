@@ -11,9 +11,9 @@ import RxSwift
 
 public protocol NKLoadable {
     var rx_isLoading: Variable<Bool> {get}
-    var rx_error: Variable<ErrorType?> {get}
+    var rx_error: Variable<Error?> {get}
     
-    var errorObservable: Observable<ErrorType> {get}
+    var errorObservable: Observable<Error> {get}
     var isLoadingObservable: Observable<Bool> {get}
     
     var canLoadDataObservable: Observable<Void> {get}
@@ -21,16 +21,16 @@ public protocol NKLoadable {
     func setupBeforeLoading()
     func resetAfterDone()
     
-    func load<T>(observable: Observable<T>) -> Observable<T>
+    func load<T>(_ observable: Observable<T>) -> Observable<T>
 }
 
 public extension NKLoadable {
     
-    func load<T>(observable: Observable<T>) -> Observable<T> {
+    func load<T>(_ observable: Observable<T>) -> Observable<T> {
         return self.canLoadDataObservable
             .flatMapLatest({_ in observable})
             .nk_doOnNextOrError({self.resetAfterDone()})
-            .doOnError({self.rx_error.value = $0})
+            .do(onError: {self.rx_error.value = $0})
     }
     
     func setupBeforeLoading() {
@@ -45,7 +45,7 @@ public extension NKLoadable {
         return self.rx_isLoading.asObservable()
     }
     
-    var errorObservable: Observable<ErrorType> {
+    var errorObservable: Observable<Error> {
         return self.rx_error.asObservable().nk_unwrap()
     }
     

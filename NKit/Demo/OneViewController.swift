@@ -20,14 +20,14 @@ class OneViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.view.backgroundColor = UIColor.yellowColor()
+        self.view.backgroundColor = UIColor.yellow
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         print("oneViewWillAppear with navigationItem=\(self.navigationController?.navigationItem) leftButton=\(self.navigationController?.navigationItem.leftBarButtonItem)")
-        self.nk_setBarTintColor(UIColor.greenColor()).nk_setRightBarButton("TwoView", selector: #selector(OneViewController.gotoTwoView))
+        self.nk_setBarTintColor(UIColor.green).nk_setRightBarButton("TwoView", selector: #selector(OneViewController.gotoTwoView))
         
         self.nk_setBackBarButton(text: "", color: nil)
         
@@ -35,7 +35,7 @@ class OneViewController: UIViewController {
         self.navigationController?.view.layoutIfNeeded()
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         self.navigationController?.view.layoutIfNeeded()

@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import NTZStackView
+import TZStackView
 import OAStackView
 import SnapKit
 
@@ -18,32 +18,32 @@ public protocol NKViewIdentifier {
 
 public extension NKViewIdentifier {
     var identifier: String {
-        return "\(String(reflecting: self.dynamicType))-\(rawValue)"
+        return "\(String(reflecting: type(of: self)))-\(rawValue)"
     }
 }
 
 public extension NKViewIdentifier {
-    public func view<T: UIView>(fromView: UIView) -> T {
+    public func view<T: UIView>(_ fromView: UIView) -> T {
         return fromView.nk_findViewById(self)
     }
     
-    public func view<T: UIView>(fromView: UIView) -> T? {
+    public func view<T: UIView>(_ fromView: UIView) -> T? {
         return fromView.nk_findViewById(self)
     }
     
-    public func view(fromView: UIView) -> UIView? {
+    public func view(_ fromView: UIView) -> UIView? {
         return fromView.nk_findViewById(self)
     }
     
-    public func view<T: UIView>(fromViewController: UIViewController) -> T {
+    public func view<T: UIView>(_ fromViewController: UIViewController) -> T {
         return fromViewController.view.nk_findViewById(self)
     }
     
-    public func view<T: UIView>(fromViewController: UIViewController) -> T? {
+    public func view<T: UIView>(_ fromViewController: UIViewController) -> T? {
         return fromViewController.view.nk_findViewById(self)
     }
     
-    public func view(fromViewController: UIViewController) -> UIView? {
+    public func view(_ fromViewController: UIViewController) -> UIView? {
         return fromViewController.view.nk_findViewById(self)
     }
 }
@@ -59,7 +59,7 @@ extension String: NKViewIdentifier {
 public protocol NKViewProtocol {}
 
 public extension NKViewProtocol where Self: UIView {
-    public func nk_config(config: Self -> Void) -> Self {
+    @discardableResult public func nk_config(_ config: (Self) -> Void) -> Self {
         config(self)
         return self
     }
@@ -99,35 +99,35 @@ public extension UIView {
         }
     }
     
-    public func nk_addSubview<T: UIView>(view: T, config: ((T) -> Void)? = nil) -> Self {
+    @discardableResult public func nk_addSubview<T: UIView>(_ view: T, config: ((T) -> Void)? = nil) -> Self {
         self.addSubview(view)
         config?(view)
         return self
     }
     
-    public func nk_addToView(view: UIView) -> Self {
+    @discardableResult public func nk_addToView(_ view: UIView) -> Self {
         view.addSubview(self)
         return self
     }
     
-    public func nk_id(id: NKViewIdentifier) -> Self {
+    public func nk_id(_ id: NKViewIdentifier) -> Self {
         self.nk_id = id.identifier
         return self
     }
     
-    public func nk_findViewById<T: UIView>(id: NKViewIdentifier) -> T {
+    public func nk_findViewById<T: UIView>(_ id: NKViewIdentifier) -> T {
         return self.nk_findViewById(id) as! T
     }
     
-    public func nk_findViewById<T: UIView>(id: NKViewIdentifier) -> T? {
+    public func nk_findViewById<T: UIView>(_ id: NKViewIdentifier) -> T? {
         return self.nk_findViewById(id) as? T
     }
     
-    public func nk_findViewById(id: NKViewIdentifier) -> UIView? {
+    public func nk_findViewById(_ id: NKViewIdentifier) -> UIView? {
         return self._nk_findViewById(self, id: id)
     }
     
-    private func _nk_findViewById(root: UIView, id: NKViewIdentifier) -> UIView? {
+    private func _nk_findViewById(_ root: UIView, id: NKViewIdentifier) -> UIView? {
         if let view = self.nk_subviews[id.identifier] {
             return view
         }
@@ -151,12 +151,12 @@ public extension UIView {
         return nil
     }
     
-    public func nk_mapIds() -> Self {
+    @discardableResult public func nk_mapIds() -> Self {
         self._nk_mapIds(self)
         return self
     }
     
-    private func _nk_mapIds(view: UIView) {
+    private func _nk_mapIds(_ view: UIView) {
         if let id = self.nk_id {
             view.nk_subviews[id] = self
         }
@@ -170,9 +170,9 @@ public extension UIView {
 public extension UIView {
     public var nka_weight: CGFloat {
         set {
-            let updateConstraints: (superView: UIView, isVertical: Bool) -> Void = { superView, isVertical in
+            let updateConstraints: (_ superView: UIView, _ isVertical: Bool) -> Void = { superView, isVertical in
                 
-                self.snp_updateConstraints { (make) in
+                self.snp.updateConstraints { (make) in
                     if isVertical {
                         make.height.equalTo(superView).multipliedBy(newValue)
                     } else {
@@ -182,16 +182,16 @@ public extension UIView {
             }
             
             if let superView = self.superview as? TZStackView {
-                updateConstraints(superView: superView, isVertical: superView.axis == .Vertical)
+                updateConstraints(superView, superView.axis == .vertical)
             }
             
             if let superView = self.superview as? OAStackView {
-                updateConstraints(superView: superView, isVertical: superView.axis == .Vertical)
+                updateConstraints(superView, superView.axis == .vertical)
             }
             
             if #available(iOS 9.0, *) {
                 if let superView = self.superview as? UIStackView {
-                    updateConstraints(superView: superView, isVertical: superView.axis == .Vertical)
+                    updateConstraints(superView, superView.axis == .vertical)
                 }
             }
         }
@@ -213,7 +213,7 @@ public func ~ <T: UIView>(left: T, right: NKViewIdentifier) -> T {
 }
 
 infix operator >>> {precedence 150}
-public func >>> <T: UIView>(left: T, right: (T) -> Void) -> NKViewConfiguration<T> {
+public func >>> <T: UIView>(left: T, right: @escaping (T) -> Void) -> NKViewConfiguration<T> {
     return NKViewConfiguration(view: left, config: right)
 }
 

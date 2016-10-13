@@ -23,7 +23,7 @@ public extension UIImageView {
     
     public var nk_imageSize: CGSize {
         get {
-            return CGSizeMake(self.nk_imageWidth, self.nk_imageHeight)
+            return CGSize(width: self.nk_imageWidth, height: self.nk_imageHeight)
         }
     }
 }

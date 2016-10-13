@@ -8,11 +8,11 @@ import UIKit
 
 public extension UILabel {
     public convenience init(text: String?,
-        font: UIFont = UIFont.systemFontOfSize(14),
-        color: UIColor = UIColor.blackColor(),
+        font: UIFont = UIFont.systemFont(ofSize: 14),
+        color: UIColor = UIColor.black,
         isSizeToFit: Bool = true,
-        alignment: NSTextAlignment = .Left) {
-            self.init(frame: CGRectZero)
+        alignment: NSTextAlignment = .left) {
+            self.init(frame: CGRect.zero)
             self.font = font
             self.textColor = color
             self.textAlignment = alignment
@@ -29,13 +29,13 @@ public extension UILabel {
         guard let text = text else {
             return 0
         }
-        return text.nk_heightWithWidth(width, font: font)
+        return text.nk_heightWithWidth(width: width, font: font)
     }
     
     public func nk_heightWithAttributedWidth(width: CGFloat) -> CGFloat {
         guard let attributedText = attributedText else {
             return 0
         }
-        return attributedText.nk_heightWithWidth(width)
+        return attributedText.nk_heightWithWidth(width: width)
     }
 }

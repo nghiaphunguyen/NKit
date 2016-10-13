@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import NTZStackView
+import TZStackView
 
 class ThreeViewController: UIViewController {
     enum ViewIdentifier: String, NKViewIdentifier {
@@ -27,7 +27,7 @@ class ThreeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.button.rx_tap.bindNext {
+        self.button.rx.tap.bindNext {
             print("ok")
             }.addDisposableTo(self.nk_disposeBag)
     }
@@ -41,7 +41,7 @@ extension ThreeViewController {
         
         self.view
             .nk_config() {
-                $0.backgroundColor = UIColor.blackColor()
+                $0.backgroundColor = UIColor.black
             }
 
             .nk_addSubview(UIView()) {
@@ -86,7 +86,7 @@ extension ThreeViewController {
 //                $0.distribution = .Fill
 //                $0.alignment = .Fill
 //                
-//                $0.snp_makeConstraints(closure: { (make) in
+//                $0.snp.makeConstraints(closure: { (make) in
 //                    make.top.equalTo(0).inset(20)
 //                    make.leading.trailing.bottom.equalTo(0).inset(10)
 //                })
@@ -124,13 +124,13 @@ extension ThreeViewController {
 //                        $0.nk_addSubview(UIView().nk_id("TestHangHo")) { view in
 //                            view.backgroundColor = UIColor.grayColor()
 //                            
-//                            view.snp_makeConstraints(closure: { (make) in
+//                            view.snp.makeConstraints(closure: { (make) in
 //                                make.top.leading.bottom.equalTo(0)
 //                                make.width.equalTo(view.superview!).dividedBy(4)
 //                            })
 //                            }.nk_addSubview(UIView()) { (view) in
 //                                view.backgroundColor = UIColor.lightGrayColor()
-//                                view.snp_makeConstraints(closure: { (make) in
+//                                view.snp.makeConstraints(closure: { (make) in
 //                                    make.top.trailing.bottom.equalTo(view.superview!)
 //                                    make.leading.equalTo(view.superview!.nk_findViewById("TestHangHo").snp_trailing)
 //                                })

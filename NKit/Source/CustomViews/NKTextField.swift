@@ -42,14 +42,14 @@ public class NKTextField: UITextField {
         }
     }
     
-    public override func textRectForBounds(bounds: CGRect) -> CGRect {
+    public override func textRect(forBounds bounds: CGRect) -> CGRect {
         return CGRectMake(bounds.origin.x + edgeInset.left,
                           bounds.origin.y + edgeInset.top,
                           bounds.size.width - edgeInset.left - edgeInset.right,
                           bounds.size.height - edgeInset.top - edgeInset.bottom)
     }
     
-    public override func editingRectForBounds(bounds: CGRect) -> CGRect {
+    public override func editingRect(forBounds bounds: CGRect) -> CGRect {
         return CGRectMake(bounds.origin.x + edgeInset.left,
                           bounds.origin.y + edgeInset.top,
                           bounds.size.width - edgeInset.left - edgeInset.right,

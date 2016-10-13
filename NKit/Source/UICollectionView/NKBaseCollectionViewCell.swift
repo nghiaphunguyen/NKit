@@ -29,17 +29,17 @@ public class NKBaseCollectionViewCell: UICollectionViewCell {
     
     public func setupView() {}
     
-    public override func preferredLayoutAttributesFittingAttributes(layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
+    public override func preferredLayoutAttributesFitting(_ layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
         guard let autoFitDimension = self.autoFitDimension else {
             return layoutAttributes
         }
         
-        let attributes = super.preferredLayoutAttributesFittingAttributes(layoutAttributes)
+        let attributes = super.preferredLayoutAttributesFitting(layoutAttributes)
         
         self.setNeedsLayout()
         self.layoutIfNeeded()
         
-        let size = self.contentView.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize)
+        let size = self.contentView.systemLayoutSizeFitting(UILayoutFittingCompressedSize)
         var newFrame = layoutAttributes.frame
         if autoFitDimension.contains(NKDimension.Width) {
             newFrame.size.width = size.width

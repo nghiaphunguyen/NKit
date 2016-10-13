@@ -21,53 +21,39 @@ public func > (lhs: NSDate, rhs: NSDate) -> Bool {
 
 // MARK: - Components
 
-public extension NSDate {
+public extension Date {
   
-  public func nk_components(unit: NSCalendarUnit, retrieval: NSDateComponents -> Int) -> Int {
-    let calendar = NSCalendar.currentCalendar()
-    let components = calendar.components(unit, fromDate: self)
-    return retrieval(components)
+  public func nk_components(_ component: Calendar.Component) -> Int {
+    let calendar = Calendar.current
+    
+    return calendar.component(component, from: self)
   }
   
   public var nk_second: Int {
-    return nk_components(.Second) {
-      return $0.second
-    }
+    return nk_components(.second)
   }
   
   public var nk_minute: Int {
-    return nk_components(.Minute) {
-      return $0.minute
-    }
+    return nk_components(.minute)
   }
   
   public var nk_hour: Int {
-    return nk_components(.Hour) {
-      return $0.hour
-    }
+    return nk_components(.hour)
   }
   
   public var nk_day: Int {
-    return nk_components(.Day) {
-      return $0.day
-    }
+    return nk_components(.day)
   }
   
   public var nk_month: Int {
-    return nk_components(.Month) {
-      return $0.month
-    }
+    return nk_components(.month)
   }
   
   public var nk_year: Int {
-    return nk_components(.Year) {
-      return $0.year
-    }
+    return nk_components(.year)
   }
   
   public var nk_weekday: Int {
-    return nk_components(.Weekday) {
-      return $0.weekday
-    }
+    return nk_components(.weekday)
   }
 }

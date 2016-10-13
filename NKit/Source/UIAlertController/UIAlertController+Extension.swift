@@ -6,7 +6,7 @@
 
 import UIKit
 
-public typealias NKAlertControllerHandler = (index: Int) -> Void
+public typealias NKAlertControllerHandler = (_ index: Int) -> Void
 
 public enum NKAlertAction {
     case Default(String)
@@ -19,7 +19,7 @@ public enum NKAlertAction {
             return title
         case .Cancel(let title):
             return title
-        case Destructive(let title):
+        case .Destructive(let title):
             return title
         }
     }
@@ -27,23 +27,23 @@ public enum NKAlertAction {
     public var style: UIAlertActionStyle {
         switch self {
         case .Default(_):
-            return .Default
+            return .default
         case .Cancel(_):
-            return .Cancel
-        case Destructive(_):
-            return .Destructive
+            return .cancel
+        case .Destructive(_):
+            return .destructive
         }
     }
 }
 
 public extension UIAlertController {
     
-    public static func nk_showAlertController(fromController controller: UIViewController? = nk_topVisibleRootViewController, title: String?, message: String?, actions: [NKAlertAction], type: UIAlertControllerStyle = .Alert, handler: NKAlertControllerHandler? = nil, completion: (() -> Void)? = nil) -> UIAlertController {
+    public static func nk_showAlertController(fromController controller: UIViewController? = nk_topVisibleRootViewController, title: String?, message: String?, actions: [NKAlertAction], type: UIAlertControllerStyle = .alert, handler: NKAlertControllerHandler? = nil, completion: (() -> Void)? = nil) -> UIAlertController {
         
         var alertActions = [UIAlertAction]()
-        for (index, action) in actions.enumerate() {
+        for (index, action) in actions.enumerated() {
             let alertAction = UIAlertAction(title: action.title, style: action.style, handler: { (_) in
-                handler?(index: index)
+                handler?(index)
             })
             alertActions.append(alertAction)
         }
@@ -55,14 +55,14 @@ public extension UIAlertController {
         title: String?,
         message: String?,
         actions: [UIAlertAction],
-        type: UIAlertControllerStyle = .Alert,
+        type: UIAlertControllerStyle = .alert,
         completion: (() -> Void)? = nil) -> UIAlertController {
             let alertController = UIAlertController(title: title, message: message, preferredStyle: type)
             for action in actions {
                 alertController.addAction(action)
             }
             
-            controller?.presentViewController(alertController, animated: true, completion: completion)
+            controller?.present(alertController, animated: true, completion: completion)
             return alertController
     }
 }
