@@ -8,9 +8,9 @@ import UIKit
 
 public typealias NKVoidClosure = () -> Void
 
-public class NKPopupView<T: UIView>: NKContainerView<T>, UIGestureRecognizerDelegate {
+open class NKPopupView<T: UIView>: NKContainerView<T>, UIGestureRecognizerDelegate {
     
-    public var tapOutsideWillDismiss = true
+    open var tapOutsideWillDismiss = true
     
     public init(frame: CGRect = CGRect(x: 0, y: 0, width: NKScreenSize.Current.width, height: NKScreenSize.Current.height),
         backgroundColor: UIColor = UIColor.black.withAlphaComponent(0.5),
@@ -29,7 +29,7 @@ public class NKPopupView<T: UIView>: NKContainerView<T>, UIGestureRecognizerDele
         fatalError("init(coder:) has not been implemented")
     }
     
-    public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+    open func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
         if let contentView = self.contentView , touch.view?.isDescendant(of: contentView) == true {
             return false
         }
@@ -41,7 +41,7 @@ public class NKPopupView<T: UIView>: NKContainerView<T>, UIGestureRecognizerDele
         return true
     }
     
-    public func show(inView view: UIView, completion: (() -> Void)? = nil) {
+    open func show(inView view: UIView, completion: (() -> Void)? = nil) {
         view.addSubview(self)
         self.contentView?.isHidden = false
         self.contentView?.transform = CGAffineTransform.identity.scaledBy(x: 0, y: 0)
@@ -61,7 +61,7 @@ public class NKPopupView<T: UIView>: NKContainerView<T>, UIGestureRecognizerDele
         })
     }
     
-    public func dismiss(completion: (() -> Void)? = nil) {
+    open func dismiss(completion: (() -> Void)? = nil) {
         
         let finish = {
             self.contentView?.isHidden = true

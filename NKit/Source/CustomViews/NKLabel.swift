@@ -8,11 +8,11 @@
 
 import UIKit
 
-public class NKLabel: UILabel {
-    public var edgeInsets: UIEdgeInsets = UIEdgeInsets.zero
-    public var fitBounds: Bool = false
+open class NKLabel: UILabel {
+    open var edgeInsets: UIEdgeInsets = UIEdgeInsets.zero
+    open var fitBounds: Bool = false
     
-    public override func textRect(forBounds bounds: CGRect, limitedToNumberOfLines numberOfLines: Int) -> CGRect {
+    open override func textRect(forBounds bounds: CGRect, limitedToNumberOfLines numberOfLines: Int) -> CGRect {
         var rect = super.textRect(forBounds: bounds, limitedToNumberOfLines: numberOfLines)
         
         if self.fitBounds {
@@ -22,7 +22,7 @@ public class NKLabel: UILabel {
         
     }
     
-    public override func drawText(in rect: CGRect) {
+    open override func drawText(in rect: CGRect) {
         var actualRect = rect
         
         if self.fitBounds {
@@ -37,7 +37,7 @@ public class NKLabel: UILabel {
         return super.drawText(in: UIEdgeInsetsInsetRect(actualRect, self.edgeInsets))
     }
     
-    public override var intrinsicContentSize: CGSize {
+    open override var intrinsicContentSize: CGSize {
         var contentSize = super.intrinsicContentSize
         contentSize.width += self.edgeInsets.left + self.edgeInsets.right
         contentSize.height += self.edgeInsets.top + self.edgeInsets.bottom

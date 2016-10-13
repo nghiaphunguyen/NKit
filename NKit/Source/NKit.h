@@ -14,6 +14,6 @@ FOUNDATION_EXPORT double NKitVersionNumber;
 //! Project version string for NKit.
 FOUNDATION_EXPORT const unsigned char NKitVersionString[];
 
-// In this header, you should import all the public headers of your framework using statements like #import <NKit/PublicHeader.h>
+// In this header, you should import all the open headers of your framework using statements like #import <NKit/openHeader.h>
 
 

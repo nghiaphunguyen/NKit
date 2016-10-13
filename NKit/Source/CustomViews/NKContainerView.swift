@@ -9,9 +9,9 @@
 import UIKit
 import SnapKit
 
-public class NKContainerView<T: UIView>: NKBaseView{
+open class NKContainerView<T: UIView>: NKBaseView{
     
-    public var contentView: T? {
+    open var contentView: T? {
         didSet {
             
             if let oldView = oldValue {
@@ -29,20 +29,20 @@ public class NKContainerView<T: UIView>: NKBaseView{
         }
     }
     
-    public var nk_c_shadowColor = UIColor.gray {
+    open var nk_c_shadowColor = UIColor.gray {
         didSet {
             self.nk_c_shadowView.isHidden = false
             self.nk_c_shadowView.backgroundColor = self.nk_c_shadowColor
         }
     }
-    public var nk_c_shadowRadius: CGFloat = 0 {
+    open var nk_c_shadowRadius: CGFloat = 0 {
         didSet {
             self.nk_c_shadowView.isHidden = false
             self.nk_c_shadowView.clipsToBounds = true
             self.nk_c_shadowView.layer.cornerRadius = self.nk_c_shadowRadius
         }
     }
-    public var nk_c_shadowOffset: CGSize = CGSize(width: 0, height: 0) {
+    open var nk_c_shadowOffset: CGSize = CGSize(width: 0, height: 0) {
         didSet {
             self.nk_c_shadowView.isHidden = false
             self.nk_c_shadowView.snp.remakeConstraints { (make) -> Void in
@@ -65,7 +65,7 @@ public class NKContainerView<T: UIView>: NKBaseView{
         }
     }
     
-    public var nk_c_shadowView: UIView = {
+    open var nk_c_shadowView: UIView = {
         let view = UIView()
         view.isHidden = true
         view.clipsToBounds = true
@@ -73,7 +73,7 @@ public class NKContainerView<T: UIView>: NKBaseView{
         }() {
         didSet {
             if let _ = oldValue.superview {
-                oldValue.snp_removeConstraints()
+                oldValue.snp.removeConstraints()
                 oldValue.removeFromSuperview()
             }
             
@@ -109,7 +109,7 @@ public class NKContainerView<T: UIView>: NKBaseView{
         }
     }
     
-    public func addContentView(contentView: T, withEdges edgeInsets: UIEdgeInsets = UIEdgeInsets.zero) -> Self {
+    open func addContentView(contentView: T, withEdges edgeInsets: UIEdgeInsets = UIEdgeInsets.zero) -> Self {
         self.contentView = contentView
         
         self.contentView?.snp.remakeConstraints({ (make) -> Void in
@@ -119,7 +119,7 @@ public class NKContainerView<T: UIView>: NKBaseView{
         return self
     }
     
-    public static func createContainerViewWithViews(views: [UIView]) -> NKContainerView<UIView> {
+    open static func createContainerViewWithViews(views: [UIView]) -> NKContainerView<UIView> {
         let containerView = UIView()
         for view in views {
             containerView.addSubview(view)

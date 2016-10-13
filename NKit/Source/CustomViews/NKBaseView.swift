@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class NKBaseView: UIView {
+open class NKBaseView: UIView {
     public override init(frame: CGRect) {
         super.init(frame: frame)
         self.setupView()
@@ -21,9 +21,9 @@ public class NKBaseView: UIView {
         self.setupRx()
     }
     
-    public func setupView() {
+    open func setupView() {
     }
     
-    public func setupRx() {
+    open func setupRx() {
     }
 }

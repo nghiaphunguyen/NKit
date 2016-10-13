@@ -18,7 +18,7 @@ public protocol NKCollectionViewItemProtocol: class {
     func collectionView(collectionView: NKCollectionView, configWithModel model: CollectionViewItemModel, atIndexPath indexPath: IndexPath)
 }
 
-public class NKCollectionView: UICollectionView {
+open class NKCollectionView: UICollectionView {
     public enum Option {
         case LineSpace(CGFloat)
         case InterItemSpacing(CGFloat)
@@ -58,28 +58,28 @@ public class NKCollectionView: UICollectionView {
         self.autoFitCellDimension = dimension
     }
     
-    public var isHeightToFit = false {
+    open var isHeightToFit = false {
         didSet {
             self.setNeedsLayout()
         }
     }
     
-    public var autoFitCellDimension: NKDimension? = nil {
+    open var autoFitCellDimension: NKDimension? = nil {
         didSet {
             self.setNeedsLayout()
         }
     }
     
-    public lazy var animateFitHeightDuration: TimeInterval = 0
+    open lazy var animateFitHeightDuration: TimeInterval = 0
     
-    public weak var nk_dataSource: NKCollectionViewDataSource? {
+    open weak var nk_dataSource: NKCollectionViewDataSource? {
         didSet {
             self.dataSource = self
         }
     }
     
     private lazy var rx_paging = Variable<Bool?>(nil)
-    public var nk_paging: Bool {
+    open var nk_paging: Bool {
         get {
             return self.rx_paging.value ?? false
         }
@@ -140,7 +140,7 @@ public class NKCollectionView: UICollectionView {
             }.addDisposableTo(self.nk_disposeBag)
     }
     
-    public override func layoutSubviews() {
+    open override func layoutSubviews() {
         super.layoutSubviews()
         
         if self.isHeightToFit && self.contentSize.height != self.preHeight{
@@ -157,11 +157,11 @@ public class NKCollectionView: UICollectionView {
         
     }
     
-    public var nk_viewForSupplementaryElementClosure: ((_ collectionView: UICollectionView, _ kind: String, _ indexPath: IndexPath) -> UICollectionReusableView)? = nil
+    open var nk_viewForSupplementaryElementClosure: ((_ collectionView: UICollectionView, _ kind: String, _ indexPath: IndexPath) -> UICollectionReusableView)? = nil
     
-    public var nk_animateForCellClosure: ((_ cell: UICollectionViewCell, _ indexPath: IndexPath) -> Void)? = nil
+    open var nk_animateForCellClosure: ((_ cell: UICollectionViewCell, _ indexPath: IndexPath) -> Void)? = nil
     
-    public var nk_moreConfigForCellClosure: ((_ cell: UICollectionViewCell, _ indexPath: IndexPath) -> Void)? = nil
+    open var nk_moreConfigForCellClosure: ((_ cell: UICollectionViewCell, _ indexPath: IndexPath) -> Void)? = nil
     
     typealias ConfigViewBlock = (_ cell: UIView, _ model: Any, _ indexPath: IndexPath) -> Void
     
@@ -186,7 +186,7 @@ public extension NKCollectionView {
 }
 
 extension NKCollectionView: UICollectionViewDataSource {
-    public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    open func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         guard let items = self.nk_dataSource?.itemsForCollectionView(collectionView: self) , items.count > section else {
             return 0
         }
@@ -194,7 +194,7 @@ extension NKCollectionView: UICollectionViewDataSource {
         return items[section].count
     }
     
-    public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    open func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let section = indexPath.section
         let row = indexPath.row
         
@@ -219,11 +219,11 @@ extension NKCollectionView: UICollectionViewDataSource {
         return cell
     }
     
-    public func numberOfSections(in collectionView: UICollectionView) -> Int {
+    open func numberOfSections(in collectionView: UICollectionView) -> Int {
         return self.nk_dataSource?.itemsForCollectionView(collectionView: self).count ?? 0
     }
     
-    public func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+    open func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         guard let closure = self.nk_viewForSupplementaryElementClosure else {
             return UICollectionReusableView()
         }

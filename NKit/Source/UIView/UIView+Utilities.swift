@@ -36,11 +36,11 @@ public extension UIView {
     
     public func nk_addAllBorderToSubview() -> UIView {
         for view in self.subviews {
-            view.nk_addBorder(borderWidth: 1, color: UIColor.yellow)
-            view.nk_addAllBorderToSubview()
+            _ = view.nk_addBorder(borderWidth: 1, color: UIColor.yellow)
+            _ = view.nk_addAllBorderToSubview()
         }
         
-        self.nk_addBorder(borderWidth: 1, color: UIColor.yellow)
+        _ = self.nk_addBorder(borderWidth: 1, color: UIColor.yellow)
         
         return self
     }

@@ -59,7 +59,7 @@ class FourViewController: UIViewController, NKCollectionViewDataSource {
 }
 
 class CollectionViewCell2: NKBaseCollectionViewCell, NKCollectionViewItemProtocol {
-    public func collectionView(collectionView: NKCollectionView, configWithModel model: Int, atIndexPath indexPath: IndexPath) {
+    open func collectionView(collectionView: NKCollectionView, configWithModel model: Int, atIndexPath indexPath: IndexPath) {
     }
 
     typealias CollectionViewItemModel = Int

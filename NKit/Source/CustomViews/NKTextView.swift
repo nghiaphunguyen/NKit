@@ -6,28 +6,28 @@
 
 import UIKit
 
-public class NKTextView: UITextView, UITextViewDelegate {
+open class NKTextView: UITextView, UITextViewDelegate {
     
     public typealias NKTextViewHandler = (_ textView: NKTextView) -> Void
     
-    public var didBeginEditHandlers = [NKTextViewHandler]()
-    public var didEndEditHandlers = [NKTextViewHandler]()
+    open var didBeginEditHandlers = [NKTextViewHandler]()
+    open var didEndEditHandlers = [NKTextViewHandler]()
     
-    public func addDidBeginEditHandler(handler: @escaping NKTextViewHandler) {
+    open func addDidBeginEditHandler(handler: @escaping NKTextViewHandler) {
         self.didBeginEditHandlers.append(handler)
     }
     
-    public func addDidEndEditHandler(handler: @escaping NKTextViewHandler) {
+    open func addDidEndEditHandler(handler: @escaping NKTextViewHandler) {
         self.didEndEditHandlers.append(handler)
     }
     
-    public var placeholder: String? {
+    open var placeholder: String? {
         didSet {
             self.checkAndTurnOnPlaceholder()
         }
     }
     
-    public var placeholderColor: UIColor? {
+    open var placeholderColor: UIColor? {
         didSet {
             if self.isTurnOnPlaceholder {
                 self.textColor = placeholderColor
@@ -35,7 +35,7 @@ public class NKTextView: UITextView, UITextViewDelegate {
         }
     }
     
-    public var contentTextColor: UIColor? {
+    open var contentTextColor: UIColor? {
         didSet {
             if !self.isTurnOnPlaceholder {
                 self.textColor = contentTextColor
@@ -43,9 +43,9 @@ public class NKTextView: UITextView, UITextViewDelegate {
         }
     }
     
-    public var isTurnOnPlaceholder: Bool = false
+    open var isTurnOnPlaceholder: Bool = false
     
-    public func checkAndTurnOnPlaceholder() -> NKTextView {
+    @discardableResult open func checkAndTurnOnPlaceholder() -> NKTextView {
         if self.text == "" {
             self.isTurnOnPlaceholder = true
             self.textColor = self.placeholderColor
@@ -58,7 +58,7 @@ public class NKTextView: UITextView, UITextViewDelegate {
         return self
     }
     
-    override public var text: String? {
+    override open var text: String? {
         didSet {
             if self.text == self.placeholder {
                 self.isTurnOnPlaceholder = true
@@ -90,7 +90,7 @@ public class NKTextView: UITextView, UITextViewDelegate {
     }
     
     //MARK: UITextViewDelegate
-    public func textViewDidBeginEditing(textView: UITextView) {
+    open func textViewDidBeginEditing(_ textView: UITextView) {
         if self.isTurnOnPlaceholder {
             self.isTurnOnPlaceholder = false
             self.text = ""
@@ -102,7 +102,7 @@ public class NKTextView: UITextView, UITextViewDelegate {
         }
     }
     
-    public func textViewDidEndEditing(textView: UITextView) {
+    open func textViewDidEndEditing(_ textView: UITextView) {
         self.checkAndTurnOnPlaceholder()
         
         self.didEndEditHandlers.forEach { (handler) -> () in

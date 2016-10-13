@@ -132,7 +132,7 @@ extension ThreeViewController {
 //                                view.backgroundColor = UIColor.lightGrayColor()
 //                                view.snp.makeConstraints(closure: { (make) in
 //                                    make.top.trailing.bottom.equalTo(view.superview!)
-//                                    make.leading.equalTo(view.superview!.nk_findViewById("TestHangHo").snp_trailing)
+//                                    make.leading.equalTo(view.superview!.nk_findViewById("TestHangHo").snp.trailing)
 //                                })
 //                                
 //                        }

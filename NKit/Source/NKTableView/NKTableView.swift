@@ -24,7 +24,7 @@ open class NKTableView: ATTableView {
     
     lazy var preHeight: CGFloat? = nil
     
-    public var cellHeightToFit = false {
+    open var cellHeightToFit = false {
         didSet {
             self.estimatedRowHeight = Constant.EstimatedRowHeight
             self.rowHeight = UITableViewAutomaticDimension
@@ -32,15 +32,15 @@ open class NKTableView: ATTableView {
         }
     }
     
-    public var isHeightToFit = false {
+    open var isHeightToFit = false {
         didSet {
             self.setNeedsLayout()
         }
     }
     
-    public var addMoreConfigForCell: ((_ cell: UITableViewCell, _ indexPath: IndexPath) -> Void)?
+    open var addMoreConfigForCell: ((_ cell: UITableViewCell, _ indexPath: IndexPath) -> Void)?
     
-    public var separateHeight: CGFloat? //just trick to use separate views
+    open var separateHeight: CGFloat? //just trick to use separate views
     
     open override func initialize() {
         super.initialize()
@@ -57,6 +57,20 @@ open class NKTableView: ATTableView {
         let cell = super.tableView(tableView, cellForRowAt: indexPath)
         self.addMoreConfigForCell?(cell, indexPath)
         return cell
+    }
+    
+    open override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        if self.isHeightToFit && self.contentSize.height != self.preHeight{
+            self.preHeight = self.contentSize.height
+            
+            self.snp.updateConstraints({ (make) -> Void in
+                make.height.equalTo(self.contentSize.height)
+            })
+        }
+        
+        self.layoutIfNeeded()
     }
 }
 
@@ -81,22 +95,5 @@ public extension NKTableView {
         }
         
         self.reloadData()
-    }
-}
-
-//MARK: - Override functions
-public extension NKTableView {
-    open override func layoutSubviews() {
-        super.layoutSubviews()
-        
-        if self.isHeightToFit && self.contentSize.height != self.preHeight{
-            self.preHeight = self.contentSize.height
-            
-            self.snp.updateConstraints({ (make) -> Void in
-                make.height.equalTo(self.contentSize.height)
-            })
-        }
-        
-        self.layoutIfNeeded()
     }
 }

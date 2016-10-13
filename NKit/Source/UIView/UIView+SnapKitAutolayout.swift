@@ -81,7 +81,7 @@ public extension UIView {
                     if (i == 0) {
                         make.leading.equalTo(self)
                     } else {
-                        make.leading.equalTo(views[Int(i)-1].snp_trailing)
+                        make.leading.equalTo(views[Int(i)-1].snp.trailing)
                     }
                     
                 case .Vertical:
@@ -90,7 +90,7 @@ public extension UIView {
                     if (i == 0) {
                         make.top.equalTo(self)
                     } else {
-                        make.top.equalTo(views[Int(i)-1].snp_bottom)
+                        make.top.equalTo(views[Int(i)-1].snp.bottom)
                     }
                 }
             })
@@ -116,9 +116,9 @@ public extension UIView {
                 
                 switch type {
                 case .Horizontal:
-                    make.leading.equalTo(source.snp_trailing).offset(offset)
+                    make.leading.equalTo(source.snp.trailing).offset(offset)
                 case .Vertical:
-                    make.top.equalTo(source.snp_bottom).offset(offset)
+                    make.top.equalTo(source.snp.bottom).offset(offset)
                 }
             })
             

@@ -27,7 +27,7 @@ public extension NotificationCenter {
         
         let keyboardWillShow = self.default.rx.notification(Notification.Name.UIKeyboardWillShow).map({($0.userInfo?[UIKeyboardFrameEndUserInfoKey] as AnyObject).cgRectValue.height})
         let keyboardWillHide = self.default.rx.notification(Notification.Name.UIKeyboardWillHide).map {_ in return CGFloat(0)}
-            
+        
         return [keyboardWillShow, keyboardWillHide].toObservable().merge()
     }
 }

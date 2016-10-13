@@ -12,7 +12,7 @@ extension UICollectionViewCell {
     
 }
 
-public class NKBaseCollectionViewCell: UICollectionViewCell {
+open class NKBaseCollectionViewCell: UICollectionViewCell {
     var autoFitDimension: NKDimension? = nil
     
     public override init(frame: CGRect) {
@@ -27,9 +27,9 @@ public class NKBaseCollectionViewCell: UICollectionViewCell {
         self.setupView()
     }
     
-    public func setupView() {}
+    open func setupView() {}
     
-    public override func preferredLayoutAttributesFitting(_ layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
+    open override func preferredLayoutAttributesFitting(_ layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
         guard let autoFitDimension = self.autoFitDimension else {
             return layoutAttributes
         }

@@ -56,9 +56,9 @@ public extension UIViewController{
             
             loadingImageView.nk_width = loadingImageView.nk_imageWidth
             loadingImageView.nk_height = loadingImageView.nk_imageHeight
-            loadingImageView.nk_centerHorizontalParent().nk_alignBottomView(label, offset: -15)
+            _ = loadingImageView.nk_centerHorizontalParent().nk_alignBottomView(label, offset: -15)
             
-            loadingImageView.nk_animateWithKeyPath(keyPath: "transform.rotation.z",
+            _ = loadingImageView.nk_animateWithKeyPath(keyPath: "transform.rotation.z",
                 value: CGFloat(M_PI * 2),
                 type: NKAnimationType.ByValue,
                 duration: 1,

@@ -9,9 +9,9 @@
 import UIKit
 
 public final class NKPresentationTransition: NSObject {
-    public private(set) var presentAnimator: NKAnimator? = nil
-    public private(set) var dismissAnimator: NKAnimator? = nil
-    public private(set) var controller: UIPresentationController? = nil
+    open private(set) var presentAnimator: NKAnimator? = nil
+    open private(set) var dismissAnimator: NKAnimator? = nil
+    open private(set) var controller: UIPresentationController? = nil
     
     public init(presentAnimator: NKAnimator? = nil, dismissAnimator: NKAnimator?, controller: UIPresentationController?) {
         self.presentAnimator = presentAnimator
@@ -23,31 +23,31 @@ public final class NKPresentationTransition: NSObject {
         super.init()
     }
     
-    public func changePresentAniamtor(animator: NKAnimator?) -> Self {
+    open func changePresentAniamtor(animator: NKAnimator?) -> Self {
         self.presentAnimator = animator
         return self
     }
     
-    public func changeDismissAniamator(animator: NKAnimator?) -> Self {
+    open func changeDismissAniamator(animator: NKAnimator?) -> Self {
         self.dismissAnimator = animator
         return self
     }
     
-    public func changeController(controller: UIPresentationController?) -> Self {
+    open func changeController(controller: UIPresentationController?) -> Self {
         self.controller = controller
         return self
     }
 }
 
 extension NKPresentationTransition: UIViewControllerTransitioningDelegate {
-    public func presentationControllerForPresentedViewController(presented: UIViewController, presentingViewController presenting: UIViewController, sourceViewController source: UIViewController) -> UIPresentationController? {
+    open func presentationControllerForPresentedViewController(presented: UIViewController, presentingViewController presenting: UIViewController, sourceViewController source: UIViewController) -> UIPresentationController? {
         
         self.controller?.setValue(presented, forKey: "presentedViewController")
         self.controller?.setValue(presenting, forKey: "presentingViewController")
         return controller
     }
     
-    public func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    open func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         
         guard let animator = self.presentAnimator else {
             return nil
@@ -71,7 +71,7 @@ extension NKPresentationTransition: UIViewControllerTransitioningDelegate {
         }
     }
     
-    public func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    open func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         
         guard let animator = self.dismissAnimator else {
             return nil
@@ -95,7 +95,7 @@ extension NKPresentationTransition: UIViewControllerTransitioningDelegate {
         }
     }
     
-    public func interactionControllerForPresentation(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+    open func interactionControllerForPresentation(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
         
         guard let animator = self.presentAnimator else {
             return nil
@@ -109,7 +109,7 @@ extension NKPresentationTransition: UIViewControllerTransitioningDelegate {
         }
     }
     
-    public func interactionControllerForDismissal(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+    open func interactionControllerForDismissal(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
         guard let animator = self.dismissAnimator else {
             return nil
         }

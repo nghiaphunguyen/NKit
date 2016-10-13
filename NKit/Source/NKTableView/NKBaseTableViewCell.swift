@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class NKBaseTableViewCell: UITableViewCell {
+open class NKBaseTableViewCell: UITableViewCell {
     public override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.setupView()
@@ -19,5 +19,5 @@ public class NKBaseTableViewCell: UITableViewCell {
         self.setupView()
     }
     
-    public func setupView() {}
+    open func setupView() {}
 }

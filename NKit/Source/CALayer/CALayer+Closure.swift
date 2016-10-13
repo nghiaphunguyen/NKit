@@ -11,9 +11,9 @@ var NKAssociatedAnimationCompletionHandle: UInt8 = 0
 
 public typealias NKAnimationClosure = (_ animation: CAAnimation, _ finished: Bool) -> Void
 
-public class NKAnimationClosureWrapper : AnyObject {
-    public var closure: NKAnimationClosure?
-    public var animation: CAAnimation!
+open class NKAnimationClosureWrapper : AnyObject {
+    open var closure: NKAnimationClosure?
+    open var animation: CAAnimation!
     
     init(animation: CAAnimation, closure: NKAnimationClosure?) {
         self.closure = closure
@@ -22,7 +22,7 @@ public class NKAnimationClosureWrapper : AnyObject {
 }
 
 extension CALayer: CAAnimationDelegate {
-    public var nk_completionClosure: [String: NKAnimationClosureWrapper]? {
+    open var nk_completionClosure: [String: NKAnimationClosureWrapper]? {
         get {
             return objc_getAssociatedObject(self, &NKAssociatedAnimationCompletionHandle) as? [String: NKAnimationClosureWrapper]
         }
@@ -32,7 +32,7 @@ extension CALayer: CAAnimationDelegate {
         }
     }
     
-    public func nk_addAnimation(animation: CAAnimation, forKey key: String, completion: @escaping NKAnimationClosure) {
+    open func nk_addAnimation(animation: CAAnimation, forKey key: String, completion: @escaping NKAnimationClosure) {
         if self.nk_completionClosure == nil {
             self.nk_completionClosure = [String: NKAnimationClosureWrapper]()
         }
@@ -46,7 +46,7 @@ extension CALayer: CAAnimationDelegate {
         self.add(animation, forKey: key)
     }
     
-    public func animationDidStop(anim: CAAnimation, finished flag: Bool) {
+    open func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
         if nk_completionClosure == nil {
             return
         }

@@ -207,24 +207,42 @@ public struct NKViewConfiguration<T> {
     let config: (T) -> Void
 }
 
-infix operator ~ {precedence 160}
+precedencegroup NKOperator160 {
+    higherThan: NKOperator150
+}
+precedencegroup NKOperator151 {
+    higherThan: NKOperator150
+    associativity: left
+}
+
+precedencegroup NKOperator150 {
+    higherThan: NKOperator140
+}
+
+precedencegroup NKOperator140 {
+    associativity: left
+}
+
+precedencegroup NKOperator130 {}
+
+infix operator ~ : NKOperator160
 public func ~ <T: UIView>(left: T, right: NKViewIdentifier) -> T {
     return left.nk_id(right)
 }
 
-infix operator >>> {precedence 150}
+infix operator >>> : NKOperator150
 public func >>> <T: UIView>(left: T, right: @escaping (T) -> Void) -> NKViewConfiguration<T> {
     return NKViewConfiguration(view: left, config: right)
 }
 
-infix operator <> {associativity left precedence 151}
+infix operator <> : NKOperator151
 public func <> <T: UIView>(left: T, right: (T) -> Void) -> T {
     right(left)
     
     return left
 }
 
-infix operator <<< { associativity left precedence 140}
+infix operator <<< : NKOperator140
 public func <<< <T: UIView, U: UIView>(left: T, right: U) -> T {
     return left.nk_addSubview(right)
 }
@@ -266,7 +284,7 @@ public enum NKLayoutMapping {
     case Ids
 }
 
-infix operator <-> {precedence 130}
+infix operator <-> : NKOperator130
 public func <-> <T: UIView>(left: T, right: NKLayoutMapping) -> T {
     return left.nk_mapIds()
 }

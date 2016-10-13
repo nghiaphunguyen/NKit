@@ -8,7 +8,7 @@ import UIKit
 
 var NKTextFieldEdgeInsetToken: UInt8 = 0
 
-public class NKEdgeInsetWrapper: AnyObject {
+open class NKEdgeInsetWrapper: AnyObject {
     var edgeInset: UIEdgeInsets?
     
     init(edgeInset: UIEdgeInsets?) {
@@ -16,7 +16,7 @@ public class NKEdgeInsetWrapper: AnyObject {
     }
 }
 
-public class NKTextField: UITextField {
+open class NKTextField: UITextField {
     
     var edgeInsetWrapper: NKEdgeInsetWrapper? {
         get {
@@ -28,7 +28,7 @@ public class NKTextField: UITextField {
         }
     }
     
-    public var edgeInset: UIEdgeInsets {
+    open var edgeInset: UIEdgeInsets {
         get {
             return self.edgeInsetWrapper?.edgeInset ?? UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         }
@@ -42,14 +42,14 @@ public class NKTextField: UITextField {
         }
     }
     
-    public override func textRect(forBounds bounds: CGRect) -> CGRect {
+    open override func textRect(forBounds bounds: CGRect) -> CGRect {
         return CGRectMake(bounds.origin.x + edgeInset.left,
                           bounds.origin.y + edgeInset.top,
                           bounds.size.width - edgeInset.left - edgeInset.right,
                           bounds.size.height - edgeInset.top - edgeInset.bottom)
     }
     
-    public override func editingRect(forBounds bounds: CGRect) -> CGRect {
+    open override func editingRect(forBounds bounds: CGRect) -> CGRect {
         return CGRectMake(bounds.origin.x + edgeInset.left,
                           bounds.origin.y + edgeInset.top,
                           bounds.size.width - edgeInset.left - edgeInset.right,

@@ -41,12 +41,12 @@ public final class NKAnimator: NSObject {
         }
     }
     
-    public private(set) var animationType: AnimationType
-    public private(set) var duration: TimeInterval
-    public private(set) var animations: (_ context: Context) -> Void
-    public private(set) var transitionType: TransitionType
-    public private(set) var interactive: UIPercentDrivenInteractiveTransition? = nil
-    public private(set) var isInteracting = false
+    open private(set) var animationType: AnimationType
+    open private(set) var duration: TimeInterval
+    open private(set) var animations: (_ context: Context) -> Void
+    open private(set) var transitionType: TransitionType
+    open private(set) var interactive: UIPercentDrivenInteractiveTransition? = nil
+    open private(set) var isInteracting = false
     
     public init(duration: TimeInterval,
                 transitionType: TransitionType,
@@ -58,68 +58,68 @@ public final class NKAnimator: NSObject {
         self.animationType = animationType
     }
     
-    public static func present(duration: TimeInterval, animationType: AnimationType = .Both, animations: @escaping (_ context: Context) -> Void) -> NKAnimator {
+    open static func present(duration: TimeInterval, animationType: AnimationType = .Both, animations: @escaping (_ context: Context) -> Void) -> NKAnimator {
         return NKAnimator(duration: duration, transitionType: .Present, animationType: animationType, animations: animations)
     }
     
-    public static func dismiss(duration: TimeInterval, animationType: AnimationType = .Both, animations: @escaping (_ context: Context) -> Void) -> NKAnimator {
+    open static func dismiss(duration: TimeInterval, animationType: AnimationType = .Both, animations: @escaping (_ context: Context) -> Void) -> NKAnimator {
         return NKAnimator(duration: duration, transitionType: .Dismiss, animationType: animationType, animations: animations)
     }
     
-    public static func push(duration: TimeInterval, animationType: AnimationType = .Both, animations: @escaping (_ context: Context) -> Void) -> NKAnimator {
+    open static func push(duration: TimeInterval, animationType: AnimationType = .Both, animations: @escaping (_ context: Context) -> Void) -> NKAnimator {
         return NKAnimator(duration: duration, transitionType: .Push, animationType: animationType, animations: animations)
     }
     
-    public static func pop(duration: TimeInterval, animationType: AnimationType = .Both, animations: @escaping (_ context: Context) -> Void) -> NKAnimator {
+    open static func pop(duration: TimeInterval, animationType: AnimationType = .Both, animations: @escaping (_ context: Context) -> Void) -> NKAnimator {
         return NKAnimator(duration: duration, transitionType: .Pop, animationType: animationType, animations: animations)
     }
     
-    public func clone() -> NKAnimator {
+    open func clone() -> NKAnimator {
         return NKAnimator(duration: duration, transitionType: transitionType, animationType: animationType, animations: animations)
     }
     
-    public func changeTransitionType(type: TransitionType) -> Self {
+    open func changeTransitionType(type: TransitionType) -> Self {
         self.transitionType = type
         return self
     }
     
-    public func changeAnimationType(type: AnimationType) -> Self {
+    open func changeAnimationType(type: AnimationType) -> Self {
         self.animationType = type
         return self
     }
     
-    public func changeDuration(duration: TimeInterval) -> Self {
+    open func changeDuration(duration: TimeInterval) -> Self {
         self.duration = duration
         return self
     }
     
-    public func startInteractiveTransition() {
+    open func startInteractiveTransition() {
         self.interactive = UIPercentDrivenInteractiveTransition()
         self.isInteracting = true
     }
     
-    public func finishInteractiveTransition() {
+    open func finishInteractiveTransition() {
         self.interactive?.finish()
         self.interactive = nil
         self.isInteracting = false
     }
     
-    public func cancelInteractiveTransition() {
+    open func cancelInteractiveTransition() {
         self.interactive?.cancel()
         self.interactive = nil
         self.isInteracting = false
     }
     
-    public func updateInteractiveTransition(percentComplete: CGFloat) {
+    open func updateInteractiveTransition(percentComplete: CGFloat) {
         self.interactive?.update(percentComplete)
     }
 }
 
 extension NKAnimator: UIViewControllerAnimatedTransitioning {
-    public func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
+    open func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         return self.duration
     }
-    public func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
+    open func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         guard transitionContext.isAnimated else {
             return
         }

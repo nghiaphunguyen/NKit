@@ -7,7 +7,7 @@
 import UIKit
 
 
-public class NKGradientView: UIView {
+open class NKGradientView: UIView {
     
     private lazy var gradientLayer: CAGradientLayer = {
         let layer = CAGradientLayer()
@@ -17,7 +17,7 @@ public class NKGradientView: UIView {
     
     private var cgColors = [CGColor]()
     
-    public var colors = [UIColor]() {
+    open var colors = [UIColor]() {
         didSet {
             cgColors.removeAll()
             for color in self.colors {
@@ -38,7 +38,7 @@ public class NKGradientView: UIView {
         self.backgroundColor = UIColor.clear
     }
     
-    public override func draw(_ rect: CGRect) {
+    open override func draw(_ rect: CGRect) {
         super.draw(rect)
         self.gradientLayer.frame = rect
         self.gradientLayer.colors = self.cgColors

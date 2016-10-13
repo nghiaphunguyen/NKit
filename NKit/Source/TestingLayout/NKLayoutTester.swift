@@ -8,19 +8,19 @@
 
 import UIKit
 
-public class NKLayoutTester: UIResponder {
-    public func injected() {
+open class NKLayoutTester: UIResponder {
+    open func injected() {
         if let delegate = self as? UIApplicationDelegate,
             let window = delegate.window {
             window?.rootViewController = self._rootViewController
         }
     }
     
-    public var testingLayout: NKLayoutTestable.Type? {
+    open var testingLayout: NKLayoutTestable.Type? {
         return nil
     }
     
-    public var rootViewController: UIViewController? {
+    open var rootViewController: UIViewController? {
         return nil
     }
     

@@ -8,15 +8,15 @@
 
 import UIKit
 
-public class NKCornerView: UIView {
+open class NKCornerView: UIView {
     
-    public var rectCorner: UIRectCorner = .allCorners {
+    open var rectCorner: UIRectCorner = .allCorners {
         didSet {
             self.layoutIfNeeded()
         }
     }
     
-    public var radius: CGFloat = 0 {
+    open var radius: CGFloat = 0 {
         didSet {
             self.layoutIfNeeded()
         }
@@ -34,7 +34,7 @@ public class NKCornerView: UIView {
         super.init(coder: aDecoder)
     }
     
-    public override func draw(_ rect: CGRect) {
+    open override func draw(_ rect: CGRect) {
         let path = UIBezierPath(roundedRect: rect, byRoundingCorners: rectCorner,
                                 cornerRadii: CGSize(width: self.radius, height: self.radius))
         
