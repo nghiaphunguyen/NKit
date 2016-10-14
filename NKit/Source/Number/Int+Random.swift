@@ -22,7 +22,7 @@ public extension Int {
     public var nk_dummyNumber: String {
         var result = ""
         for _ in 0..<self {
-            result += "\(rand() % 10)"
+            result += "\(arc4random()  % 10)"
         }
         
         return result

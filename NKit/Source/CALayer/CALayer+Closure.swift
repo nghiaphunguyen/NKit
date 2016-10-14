@@ -21,7 +21,7 @@ public class NKAnimationClosureWrapper : AnyObject {
     }
 }
 
-public extension CALayer {
+extension CALayer: CAAnimationDelegate {
     public var nk_completionClosure: [String: NKAnimationClosureWrapper]? {
         get {
             return objc_getAssociatedObject(self, &NKAssociatedAnimationCompletionHandle) as? [String: NKAnimationClosureWrapper]
@@ -46,7 +46,7 @@ public extension CALayer {
         self.addAnimation(animation, forKey: key)
     }
     
-    public override func animationDidStop(anim: CAAnimation, finished flag: Bool) {
+    public func animationDidStop(anim: CAAnimation, finished flag: Bool) {
         if nk_completionClosure == nil {
             return
         }
@@ -61,4 +61,3 @@ public extension CALayer {
         }
     }
 }
-

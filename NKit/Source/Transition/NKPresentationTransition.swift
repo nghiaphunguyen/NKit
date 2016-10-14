@@ -40,7 +40,7 @@ public final class NKPresentationTransition: NSObject {
 }
 
 extension NKPresentationTransition: UIViewControllerTransitioningDelegate {
-    public func presentationControllerForPresentedViewController(presented: UIViewController, presentingViewController presenting: UIViewController, sourceViewController source: UIViewController) -> UIPresentationController? {
+    public func presentationControllerForPresentedViewController(presented: UIViewController, presentingViewController presenting: UIViewController?, sourceViewController source: UIViewController) -> UIPresentationController? {
         
         self.controller?.setValue(presented, forKey: "presentedViewController")
         self.controller?.setValue(presenting, forKey: "presentingViewController")

@@ -37,7 +37,7 @@ public extension UIImage {
     public func nk_resizeToSize(dstSize: CGSize, scale: CGFloat = 0) -> UIImage {
         UIGraphicsBeginImageContextWithOptions(dstSize, false, scale)
         self.drawInRect(CGRectMake(0, 0, dstSize.width, dstSize.height))
-        let newImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()
+        let newImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
         
         return newImage
@@ -69,7 +69,7 @@ public extension UIImage {
             return self
         }
         
-        if let cgImage = CGImageCreateWithImageInRect(self.CGImage, CGRectMake(startPointX * self.scale, startPointY * self.scale, dstSize.width * self.scale, dstSize.height * self.scale)) {
+        if let cgImage = CGImageCreateWithImageInRect(self.CGImage!, CGRectMake(startPointX * self.scale, startPointY * self.scale, dstSize.width * self.scale, dstSize.height * self.scale)) {
             return UIImage(CGImage: cgImage, scale: self.scale, orientation: self.imageOrientation)
         }
         
@@ -86,8 +86,8 @@ public extension UIImage {
             let imgRef = self.CGImage
             let imageSource = self
             
-            let width = CGFloat(CGImageGetWidth(imgRef))
-            let height = CGFloat(CGImageGetHeight(imgRef))
+            let width = CGFloat(CGImageGetWidth(imgRef!))
+            let height = CGFloat(CGImageGetHeight(imgRef!))
             
             var bounds = CGRectMake(0, 0, width, height)
             
@@ -95,7 +95,7 @@ public extension UIImage {
             
             var transform = CGAffineTransformIdentity
             let orient = imageSource.imageOrientation
-            let imageSize = CGSizeMake(CGFloat(CGImageGetWidth(imgRef)), CGFloat(CGImageGetHeight(imgRef)))
+            let imageSize = CGSizeMake(CGFloat(CGImageGetWidth(imgRef!)), CGFloat(CGImageGetHeight(imgRef!)))
             
             
             switch(imageSource.imageOrientation) {
@@ -148,19 +148,19 @@ public extension UIImage {
             let context = UIGraphicsGetCurrentContext()
             
             if orient == .Right || orient == .Left {
-                CGContextScaleCTM(context, -scaleRatio, scaleRatio)
-                CGContextTranslateCTM(context, -height, 0)
+                CGContextScaleCTM(context!, -scaleRatio, scaleRatio)
+                CGContextTranslateCTM(context!, -height, 0)
             } else {
-                CGContextScaleCTM(context, scaleRatio, -scaleRatio)
-                CGContextTranslateCTM(context, 0, -height)
+                CGContextScaleCTM(context!, scaleRatio, -scaleRatio)
+                CGContextTranslateCTM(context!, 0, -height)
             }
             
-            CGContextConcatCTM(context, transform)
-            CGContextDrawImage(UIGraphicsGetCurrentContext(), CGRectMake(0, 0, width, height), imgRef)
+            CGContextConcatCTM(context!, transform)
+            CGContextDrawImage(UIGraphicsGetCurrentContext()!, CGRectMake(0, 0, width, height), imgRef!)
             
             let imageCopy = UIGraphicsGetImageFromCurrentImageContext()
             UIGraphicsEndImageContext()
             
-            return imageCopy
+            return imageCopy!
         }
 }

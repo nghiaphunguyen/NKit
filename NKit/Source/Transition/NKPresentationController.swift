@@ -42,7 +42,7 @@ public final class NKPresentationController: UIPresentationController {
     }()
     
     public convenience init(options: [Option], frameOfPresentedView frameClousure: (UIPresentationController) -> CGRect) {
-        self.init()
+        self.init(presentedViewController: UIViewController(), presentingViewController: nil)
         
         self.frameOfPresentedView = frameClousure
         

@@ -69,9 +69,9 @@ class NKCircleView : UIView {
         super.drawRect(rect)
         
         let context = UIGraphicsGetCurrentContext()
-        CGContextSetLineWidth(context, self.circleLineWidth)
-        CGContextSetStrokeColorWithColor(context, self.circleColor.CGColor)
-        CGContextAddEllipseInRect(context, rect.insetBy(dx: self.circleLineWidth / 2, dy: self.circleLineWidth / 2))
-        CGContextStrokePath(context)
+        CGContextSetLineWidth(context!, self.circleLineWidth)
+        CGContextSetStrokeColorWithColor(context!, self.circleColor.CGColor)
+        CGContextAddEllipseInRect(context!, rect.insetBy(dx: self.circleLineWidth / 2, dy: self.circleLineWidth / 2))
+        CGContextStrokePath(context!)
     }
 }

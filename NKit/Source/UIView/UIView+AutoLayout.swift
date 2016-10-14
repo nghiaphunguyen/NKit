@@ -24,7 +24,7 @@ public extension UIView {
     }
     
     public var nka_baseline: NKConstraintItem {
-        return NKConstraintItem(view: self, attribute: .Baseline)
+        return NKConstraintItem(view: self, attribute: .LastBaseline)
     }
     
     public var nka_centerX: NKConstraintItem {

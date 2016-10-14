@@ -124,7 +124,8 @@ extension NKAnimator: UIViewControllerAnimatedTransitioning {
             return
         }
         
-        guard let containerView = transitionContext.containerView(), toViewController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey), fromViewController = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey) else {
+        let containerView = transitionContext.containerView()
+        guard let toViewController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey), fromViewController = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey) else {
             return
         }
         
