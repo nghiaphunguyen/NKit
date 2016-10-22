@@ -66,9 +66,7 @@
 		186058C41D9E7A2F0079CE63 /* NKImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186058C31D9E7A2F0079CE63 /* NKImage.swift */; };
 		186058C61D9E7AA00079CE63 /* NKFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186058C51D9E7AA00079CE63 /* NKFont.swift */; };
 		1865A18A1D9980B0005D4C4A /* UIView+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1865A1891D9980B0005D4C4A /* UIView+Layout.swift */; };
-		1865A18C1D9983E7005D4C4A /* TZStackView+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1865A18B1D9983E7005D4C4A /* TZStackView+Layout.swift */; };
 		1865A18E1D9987F6005D4C4A /* ThreeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1865A18D1D9987F6005D4C4A /* ThreeViewController.swift */; };
-		1865A1921D9A29B2005D4C4A /* OAStackView+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1865A1911D9A29B2005D4C4A /* OAStackView+Layout.swift */; };
 		18703F721D75D05200BFB829 /* NSDate+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18703F711D75D05200BFB829 /* NSDate+Extensions.swift */; };
 		188474EC1D93C2FE009F4506 /* NKPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188474EB1D93C2FE009F4506 /* NKPresentationController.swift */; };
 		188474F31D93D570009F4506 /* NKLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188474F01D93D570009F4506 /* NKLoadable.swift */; };
@@ -92,6 +90,7 @@
 		18DD40101D87BA85004B420E /* NKNavigationTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DD400F1D87BA85004B420E /* NKNavigationTransition.swift */; };
 		18DD40121D87DBB3004B420E /* UINavigationController+Transition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DD40111D87DBB3004B420E /* UINavigationController+Transition.swift */; };
 		18DD40161D87FB7E004B420E /* NKPresentationTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DD40151D87FB7E004B420E /* NKPresentationTransition.swift */; };
+		18E990701DBB1A8500761547 /* NKAppConfigManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E9906F1DBB1A8500761547 /* NKAppConfigManager.swift */; };
 		3D578EA8D08338CF2DE88B21 /* Pods_NKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9DD82716755667F163D7FDC /* Pods_NKit.framework */; };
 /* End PBXBuildFile section */
 
@@ -156,9 +155,7 @@
 		186058C31D9E7A2F0079CE63 /* NKImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKImage.swift; sourceTree = "<group>"; };
 		186058C51D9E7AA00079CE63 /* NKFont.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKFont.swift; sourceTree = "<group>"; };
 		1865A1891D9980B0005D4C4A /* UIView+Layout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Layout.swift"; sourceTree = "<group>"; };
-		1865A18B1D9983E7005D4C4A /* TZStackView+Layout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TZStackView+Layout.swift"; sourceTree = "<group>"; };
 		1865A18D1D9987F6005D4C4A /* ThreeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreeViewController.swift; sourceTree = "<group>"; };
-		1865A1911D9A29B2005D4C4A /* OAStackView+Layout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "OAStackView+Layout.swift"; sourceTree = "<group>"; };
 		18703F711D75D05200BFB829 /* NSDate+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+Extensions.swift"; sourceTree = "<group>"; };
 		188474EB1D93C2FE009F4506 /* NKPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKPresentationController.swift; sourceTree = "<group>"; };
 		188474F01D93D570009F4506 /* NKLoadable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKLoadable.swift; sourceTree = "<group>"; };
@@ -184,6 +181,7 @@
 		18DD400F1D87BA85004B420E /* NKNavigationTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKNavigationTransition.swift; sourceTree = "<group>"; };
 		18DD40111D87DBB3004B420E /* UINavigationController+Transition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Transition.swift"; sourceTree = "<group>"; };
 		18DD40151D87FB7E004B420E /* NKPresentationTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKPresentationTransition.swift; sourceTree = "<group>"; };
+		18E9906F1DBB1A8500761547 /* NKAppConfigManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKAppConfigManager.swift; sourceTree = "<group>"; };
 		1FD9F2FD5F689B54EB45FA0B /* Pods-NKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NKit.release.xcconfig"; path = "Pods/Target Support Files/Pods-NKit/Pods-NKit.release.xcconfig"; sourceTree = "<group>"; };
 		A9DD82716755667F163D7FDC /* Pods_NKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6F73E920383493132F39FDD /* Pods-NKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NKit.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NKit/Pods-NKit.debug.xcconfig"; sourceTree = "<group>"; };
@@ -439,6 +437,7 @@
 		183D0DAD1D8505870084754E /* Manager */ = {
 			isa = PBXGroup;
 			children = (
+				18E9906F1DBB1A8500761547 /* NKAppConfigManager.swift */,
 				183D0DAE1D8505930084754E /* NKLocationManager.swift */,
 			);
 			path = Manager;
@@ -448,8 +447,6 @@
 			isa = PBXGroup;
 			children = (
 				1865A1891D9980B0005D4C4A /* UIView+Layout.swift */,
-				1865A18B1D9983E7005D4C4A /* TZStackView+Layout.swift */,
-				1865A1911D9A29B2005D4C4A /* OAStackView+Layout.swift */,
 				184EBA811D9A4CCA00471EF3 /* UIStackView+Layout.swift */,
 				1821A5E31D9AD926004C8FAC /* SnapKit+NKit.swift */,
 				1821A5E71D9B63E6004C8FAC /* NKConstraints.swift */,
@@ -677,14 +674,12 @@
 				1828D0CE1D6F1799007D0933 /* NKPopupView.swift in Sources */,
 				189619621D9908E4006BBA0D /* Int+Random.swift in Sources */,
 				183D0DB11D855D050084754E /* NKPullingViewController.swift in Sources */,
-				1865A1921D9A29B2005D4C4A /* OAStackView+Layout.swift in Sources */,
 				1828D0C51D6F1799007D0933 /* Array+BinaryInsert.swift in Sources */,
 				1828D0C81D6F1799007D0933 /* NKCircleImageView.swift in Sources */,
 				1828D0CA1D6F1799007D0933 /* NKCornerView.swift in Sources */,
 				18CE80761D959A2800D510E4 /* UIView+Injected.swift in Sources */,
 				18DD400E1D87B5FD004B420E /* NKNavigationDirection.swift in Sources */,
 				183D0DAC1D82BF360084754E /* UIScrollView+AutoScrolling.swift in Sources */,
-				1865A18C1D9983E7005D4C4A /* TZStackView+Layout.swift in Sources */,
 				186058C21D9E79C40079CE63 /* NKText.swift in Sources */,
 				1828D0D91D6F1799007D0933 /* NKBaseCollectionViewCell.swift in Sources */,
 				1828D0F51D6FEA96007D0933 /* TestingCollectionViewController.swift in Sources */,
@@ -702,6 +697,7 @@
 				1828D0C71D6F1799007D0933 /* NKBaseView.swift in Sources */,
 				1828D0F71D6FF23D007D0933 /* NKDemension.swift in Sources */,
 				1821A5E41D9AD926004C8FAC /* SnapKit+NKit.swift in Sources */,
+				18E990701DBB1A8500761547 /* NKAppConfigManager.swift in Sources */,
 				18A1DAC81D6F167D00D566C2 /* ViewController.swift in Sources */,
 				1828D0D41D6F1799007D0933 /* NKTableView.swift in Sources */,
 				189C3BE91D7092BE0057F068 /* SecondViewController.swift in Sources */,
@@ -869,7 +865,7 @@
 				GCC_WARN_UNUSED_VALUE = NO;
 				GCC_WARN_UNUSED_VARIABLE = NO;
 				INFOPLIST_FILE = NKit/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cornerteam.NKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -885,7 +881,7 @@
 				GCC_WARN_UNUSED_VALUE = NO;
 				GCC_WARN_UNUSED_VARIABLE = NO;
 				INFOPLIST_FILE = NKit/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cornerteam.NKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";

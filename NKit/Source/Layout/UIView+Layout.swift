@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import TZStackView
-import OAStackView
 import SnapKit
 
 public protocol NKViewIdentifier {
@@ -181,11 +179,11 @@ public extension UIView {
                 }
             }
             
-            if let superView = self.superview as? TZStackView {
+            if let superView = self.superview as? UIStackView {
                 updateConstraints(superView, superView.axis == .vertical)
             }
             
-            if let superView = self.superview as? OAStackView {
+            if let superView = self.superview as? UIStackView {
                 updateConstraints(superView, superView.axis == .vertical)
             }
             
@@ -247,17 +245,7 @@ public func <<< <T: UIView, U: UIView>(left: T, right: U) -> T {
     return left.nk_addSubview(right)
 }
 
-public func <<< <T: TZStackView, U: UIView>(left: T, right: U) -> T {
-    return left.nk_addArrangedSubview(right)
-}
-
-public func <<< <T: OAStackView, U: UIView>(left: T, right: U) -> T {
-    return left.nk_addArrangedSubview(right)
-}
-
-@available(iOS 9.0, *)
-public func <<< <T: UIStackView
-    , U: UIView>(left: T, right: U) -> T {
+public func <<< <T: UIStackView, U: UIView>(left: T, right: U) -> T {
     return left.nk_addArrangedSubview(right)
 }
 
@@ -265,15 +253,6 @@ public func <<< <T: UIView, U: UIView>(left: T, right: NKViewConfiguration<U>) -
     return left.nk_addSubview(right.view, config: right.config)
 }
 
-public func <<< <T: TZStackView, U: UIView>(left: T, right: NKViewConfiguration<U>) -> T {
-    return left.nk_addArrangedSubview(right.view, config: right.config)
-}
-
-public func <<< <T: OAStackView, U: UIView>(left: T, right: NKViewConfiguration<U>) -> T {
-    return left.nk_addArrangedSubview(right.view, config: right.config)
-}
-
-@available(iOS 9.0, *)
 public func <<< <T: UIStackView
     , U: UIView>(left: T, right: NKViewConfiguration<U>) -> T {
     return left.nk_addArrangedSubview(right.view, config: right.config)

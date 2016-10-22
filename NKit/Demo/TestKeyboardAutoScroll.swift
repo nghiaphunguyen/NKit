@@ -8,7 +8,6 @@
 
 import UIKit
 import SnapKit
-import OAStackView
 
 class TestKeyboardAutoScrollingViewController: UIViewController {
     lazy var scrollView: UIScrollView = {
@@ -23,8 +22,8 @@ class TestKeyboardAutoScrollingViewController: UIViewController {
         return view
     }()
     
-    lazy var stackView: OAStackView = {
-        let stackView = OAStackView(arrangedSubviews: [self.textField, self.textField1,
+    lazy var stackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [self.textField, self.textField1,
             self.textField2, self.textField3, self.textField4])
         stackView.alignment = .fill
         stackView.distribution = .fillEqually

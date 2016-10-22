@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import TZStackView
+
 
 class ThreeViewController: UIViewController {
     enum ViewIdentifier: String, NKViewIdentifier {
@@ -18,7 +18,7 @@ class ThreeViewController: UIViewController {
         case Button
     }
     
-    var stackView: TZStackView {return ViewIdentifier.StackView.view(self) }
+    var stackView: UIStackView {return ViewIdentifier.StackView.view(self) }
     var firstLabel: UILabel {return ViewIdentifier.FirstLabel.view(self) }
     var secondLabel: UILabel {return ViewIdentifier.SecondLabel.view(self) }
     var thirdLabel: UILabel {return ViewIdentifier.ThirdLabel.view(self) }
@@ -82,7 +82,7 @@ extension ThreeViewController {
         
 //        self.view.nk_config {
 //                $0.backgroundColor = UIColor.yellowColor()
-//            }.add_subviews()TZStackView.nk_column().nk_id(ViewIdentifier.StackView) >>> {
+//            }.add_subviews()UIStackView.nk_column().nk_id(ViewIdentifier.StackView) >>> {
 //                $0.distribution = .Fill
 //                $0.alignment = .Fill
 //                
