@@ -11,7 +11,7 @@ import UIKit
 
 public typealias NKAppConfig = UIApplicationDelegate
 
-public final class NKAppConfigManager: NSObject, UIApplicationDelegate {
+public class NKAppConfigManager: NSObject, UIApplicationDelegate {
     
     private let configs: [NKAppConfig]
     
@@ -57,7 +57,15 @@ public final class NKAppConfigManager: NSObject, UIApplicationDelegate {
         }
     }
     
-    
+    public func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+        for appConfig in self.configs {
+            if appConfig.application?(application, open: url, sourceApplication: sourceApplication, annotation: annotation) == true {
+                return true
+            }
+
+        }
+        return false
+    }
     
     public func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
         for appConfig in self.configs {
