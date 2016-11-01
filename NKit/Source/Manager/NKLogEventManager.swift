@@ -8,11 +8,11 @@
 
 import Foundation
 
-protocol NKLogEventManagerProtocol {
+public protocol NKLogEventManagerProtocol {
     func logEvent(_ name: String, extraInfo: [String : NSObject]?)
 }
 
-class NKLogEventManager: AnyObject {
+public final class NKLogEventManager: AnyObject {
     static let sharedInstance = NKLogEventManager()
     
     fileprivate var eventManagers = [NKLogEventManagerProtocol]()
@@ -28,4 +28,4 @@ class NKLogEventManager: AnyObject {
     }
 }
 
-let NKEVENT = NKLogEventManager.sharedInstance
+public let NKEVENT = NKLogEventManager.sharedInstance
