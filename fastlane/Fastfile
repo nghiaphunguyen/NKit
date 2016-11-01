@@ -19,4 +19,12 @@ lane :release do
   push_to_git_remote(force: false, tags: true)
   pod_push(allow_warnings: true, verbose: true)
 
+  github_release = set_github_release(
+    repository_name: ENV['REPO'],
+    api_token: ENV['TOKEN'],
+    name: version,
+    tag_name: version,
+    description: changelog
+  )
+
 end
