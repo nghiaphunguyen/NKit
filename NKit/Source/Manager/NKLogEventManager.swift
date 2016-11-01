@@ -9,21 +9,21 @@
 import Foundation
 
 public protocol NKLogEventManagerProtocol {
-    func logEvent(_ name: String, extraInfo: [String : NSObject]?)
+    func logEvent(name: String, extraInfo: [String : NSObject]?)
 }
 
 public final class NKLogEventManager: AnyObject {
-    static let sharedInstance = NKLogEventManager()
+    public static let sharedInstance = NKLogEventManager()
     
     fileprivate var eventManagers = [NKLogEventManagerProtocol]()
     
-    func registerEventManager(_ eventManager: NKLogEventManagerProtocol) {
+    public func registerEventManager(_ eventManager: NKLogEventManagerProtocol) {
         self.eventManagers.append(eventManager)
     }
     
-    func log(_ name: String,_ extraInfo: [String : NSObject]? = nil) {
+    public func log(name: String,_ extraInfo: [String : NSObject]? = nil) {
         for eventManager in self.eventManagers {
-            eventManager.logEvent(name, extraInfo: extraInfo)
+            eventManager.logEvent(name: name, extraInfo: extraInfo)
         }
     }
 }
