@@ -17,10 +17,8 @@ public extension UIScrollView {
     }
     
     public var nk_scrollViewWillEndScrollingObservable: Observable<CGPoint> {
-        return [self.nk_scrollViewWillBeginDeceleratingObservable,
-                self.nk_scrollViewDidEndDraggingObservable.filter {$0.1 == false}.map {$0.0}]
-            .toObservable().merge()
-        
+        return Observable.from([self.nk_scrollViewWillBeginDeceleratingObservable,
+                                self.nk_scrollViewDidEndDraggingObservable.filter {$0.1 == false}.map {$0.0}]).merge()
     }
     
     public var nk_scrollViewDidEndDraggingObservable: Observable<(CGPoint, Bool)> {

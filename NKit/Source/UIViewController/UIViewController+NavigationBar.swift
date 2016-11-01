@@ -209,10 +209,6 @@ public extension UIViewController {
     @discardableResult public func nk_turnStatusBarLight(on: Bool) -> UIViewController {
         UIApplication.shared.setStatusBarStyle(on ? .lightContent : .default, animated: false)
         return self
-        
-        
-        
-        
     }
 }
 
