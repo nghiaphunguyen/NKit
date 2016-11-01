@@ -9,7 +9,7 @@ target 'NKit' do
 pod 'SnapKit'
 pod 'NRxSwift'
 pod 'NATTableView', '3.0.3'
-pod 'RxCocoa', '3.0.0-beta.2'
+pod 'RxCocoa’, ‘3.0.0’
 
 end
 
