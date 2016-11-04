@@ -70,6 +70,7 @@
 		1865A18A1D9980B0005D4C4A /* UIView+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1865A1891D9980B0005D4C4A /* UIView+Layout.swift */; };
 		1865A18E1D9987F6005D4C4A /* ThreeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1865A18D1D9987F6005D4C4A /* ThreeViewController.swift */; };
 		18703F721D75D05200BFB829 /* NSDate+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18703F711D75D05200BFB829 /* NSDate+Extensions.swift */; };
+		187674891DCB873000BE089E /* CLLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187674881DCB873000BE089E /* CLLocationManager.swift */; };
 		188474EC1D93C2FE009F4506 /* NKPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188474EB1D93C2FE009F4506 /* NKPresentationController.swift */; };
 		188474F31D93D570009F4506 /* NKLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188474F01D93D570009F4506 /* NKLoadable.swift */; };
 		188474F41D93D570009F4506 /* NSNotificationCenter+NRx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188474F11D93D570009F4506 /* NSNotificationCenter+NRx.swift */; };
@@ -161,6 +162,7 @@
 		1865A1891D9980B0005D4C4A /* UIView+Layout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Layout.swift"; sourceTree = "<group>"; };
 		1865A18D1D9987F6005D4C4A /* ThreeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreeViewController.swift; sourceTree = "<group>"; };
 		18703F711D75D05200BFB829 /* NSDate+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+Extensions.swift"; sourceTree = "<group>"; };
+		187674881DCB873000BE089E /* CLLocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLLocationManager.swift; sourceTree = "<group>"; };
 		188474EB1D93C2FE009F4506 /* NKPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKPresentationController.swift; sourceTree = "<group>"; };
 		188474F01D93D570009F4506 /* NKLoadable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKLoadable.swift; sourceTree = "<group>"; };
 		188474F11D93D570009F4506 /* NSNotificationCenter+NRx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSNotificationCenter+NRx.swift"; sourceTree = "<group>"; };
@@ -474,6 +476,7 @@
 				188474F01D93D570009F4506 /* NKLoadable.swift */,
 				188474F11D93D570009F4506 /* NSNotificationCenter+NRx.swift */,
 				188474F21D93D570009F4506 /* NSObject+NRx.swift */,
+				187674881DCB873000BE089E /* CLLocationManager.swift */,
 			);
 			path = Rx;
 			sourceTree = "<group>";
@@ -734,6 +737,7 @@
 				1828D0D71D6F1799007D0933 /* UIBarButtonItem+Extension.swift in Sources */,
 				1865A18E1D9987F6005D4C4A /* ThreeViewController.swift in Sources */,
 				183D0DBB1D86472E0084754E /* UIView+Gesture.swift in Sources */,
+				187674891DCB873000BE089E /* CLLocationManager.swift in Sources */,
 				18DD40101D87BA85004B420E /* NKNavigationTransition.swift in Sources */,
 				1828D0DB1D6F1799007D0933 /* UIColor+Extension.swift in Sources */,
 				184F79C11D9284010087B6AF /* UIScrollView+Rx.swift in Sources */,

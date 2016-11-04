@@ -101,13 +101,13 @@ public extension NKLocationManager {
     }
     
     public var currentLocations: Observable<[CLLocation]> {
-        return Observable.empty()
-//        return self.checkGPS()
-//            .flatMapLatest({_ in return self.checkAuthorize() })
-//            .doOnNext {self.locationManager.startUpdatingLocation()}
-//            .flatMapLatest({ _ in return self.locationManager.rx.didUpdateLocations.timeout(self.locationTimeout, scheduler: MainScheduler.instance)})
-//            .doOnNext({self.latestLocation = $0.first})
-//            .nk_doOnNextOrError({self.locationManager.stopUpdatingLocation()})
+        
+        return self.checkGPS()
+            .flatMapLatest({_ in return self.checkAuthorize() })
+            .do(onNext: {self.locationManager.startUpdatingLocation()})
+            .flatMapLatest({ _ in return self.locationManager.rx_didUpdateLocations.timeout(self.locationTimeout, scheduler: MainScheduler.instance)})
+            .do(onNext: {self.latestLocation = $0.first})
+            .nk_doOnNextOrError({self.locationManager.stopUpdatingLocation()})
     }
     
     public var currentLocation: Observable<CLLocation> {
