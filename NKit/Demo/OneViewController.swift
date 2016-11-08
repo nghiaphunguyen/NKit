@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import RxSwift
+import SnapKit
 
 class OneViewController: UIViewController {
     
@@ -20,6 +21,15 @@ class OneViewController: UIViewController {
         super.viewDidLoad()
         
         self.view.backgroundColor = UIColor.yellow
+        
+        self.view
+            .nk_addSubview(UITextView()) {
+                $0.isScrollEnabled = false
+//                $0.text = "Nghia"
+                $0.snp.makeConstraints({ (make) in
+                    make.top.leading.trailing.equalToSuperview()
+                })
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
