@@ -43,12 +43,6 @@ public class NKTableView: ATTableView {
     
     public override func initialize() {
         super.initialize()
-        
-        if self.isHeightToFit {
-            self.snp_updateConstraints(closure: { (make) -> Void in
-                make.height.equalTo(Constant.EstimatedRowHeight)
-            })
-        }
     }
     
     public override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -88,11 +82,15 @@ public extension NKTableView {
         super.layoutSubviews()
         
         if self.isHeightToFit && self.contentSize.height != self.preHeight{
-            self.preHeight = self.contentSize.height
-            
             self.snp_updateConstraints(closure: { (make) -> Void in
                 make.height.equalTo(self.contentSize.height)
             })
+            
+            if self.preHeight == nil || self.preHeight <= 0 {
+                self.reloadData()
+            }
+            
+            self.preHeight = self.contentSize.height
         }
         
         self.layoutIfNeeded()
