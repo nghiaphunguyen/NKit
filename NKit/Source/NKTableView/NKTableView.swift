@@ -42,16 +42,6 @@ open class NKTableView: ATTableView {
     
     open var separateHeight: CGFloat? //just trick to use separate views
     
-    open override func initialize() {
-        super.initialize()
-        
-        if self.isHeightToFit {
-            self.snp.updateConstraints({ (make) in
-                make.height.equalTo(Constant.EstimatedRowHeight)
-            })
-        }
-    }
-    
     open override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = super.tableView(tableView, cellForRowAt: indexPath)
@@ -63,11 +53,15 @@ open class NKTableView: ATTableView {
         super.layoutSubviews()
         
         if self.isHeightToFit && self.contentSize.height != self.preHeight{
-            self.preHeight = self.contentSize.height
-            
             self.snp.updateConstraints({ (make) -> Void in
                 make.height.equalTo(self.contentSize.height)
             })
+            
+            if self.preHeight == nil || self.preHeight <= 0 {
+                self.reloadData()
+            }
+            
+            self.preHeight = self.contentSize.height
         }
         
         self.layoutIfNeeded()
