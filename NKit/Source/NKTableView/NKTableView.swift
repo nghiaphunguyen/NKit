@@ -57,7 +57,7 @@ open class NKTableView: ATTableView {
                 make.height.equalTo(self.contentSize.height)
             })
             
-            if self.preHeight == nil || self.preHeight <= 0 {
+            if self.preHeight == nil || self.preHeight! <= 0 {
                 self.reloadData()
             }
             

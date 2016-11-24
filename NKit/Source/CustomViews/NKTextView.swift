@@ -5,73 +5,65 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 open class NKTextView: UITextView, UITextViewDelegate {
     
-    public typealias NKTextViewHandler = (_ textView: NKTextView) -> Void
+    private var _rx_didBeginEdit = Variable<Void>()
+    private var _rx_didEndEdit = Variable<Void>()
     
-    open var didBeginEditHandlers = [NKTextViewHandler]()
-    open var didEndEditHandlers = [NKTextViewHandler]()
-    
-    open func addDidBeginEditHandler(handler: @escaping NKTextViewHandler) {
-        self.didBeginEditHandlers.append(handler)
+    public var rx_didBeginEdit: Observable<Void> {
+        return self._rx_didBeginEdit.asObservable()
     }
     
-    open func addDidEndEditHandler(handler: @escaping NKTextViewHandler) {
-        self.didEndEditHandlers.append(handler)
+    public var rx_didEndEdit: Observable<Void> {
+        return self._rx_didEndEdit.asObservable()
     }
     
-    open var placeholder: String? {
+    public var nk_text: String? = nil {
         didSet {
-            self.checkAndTurnOnPlaceholder()
+            self.updateText()
         }
     }
     
-    open var placeholderColor: UIColor? {
+    open var nk_placeholder: String? {
         didSet {
-            if self.isTurnOnPlaceholder {
-                self.textColor = placeholderColor
-            }
+            self.updateText()
         }
     }
     
-    open var contentTextColor: UIColor? {
+    open var nk_placeholderColor: UIColor? {
         didSet {
-            if !self.isTurnOnPlaceholder {
-                self.textColor = contentTextColor
-            }
+            self.updateText()
         }
     }
     
-    open var isTurnOnPlaceholder: Bool = false
+    open var nk_contentTextColor: UIColor? {
+        didSet {
+            self.updateText()
+        }
+    }
     
-    @discardableResult open func checkAndTurnOnPlaceholder() -> NKTextView {
-        if self.text == "" {
-            self.isTurnOnPlaceholder = true
-            self.textColor = self.placeholderColor
-            self.text = self.placeholder
+    private var nk_isEditingMode: Bool = false
+    
+    private var nk_isTurnOnPlaceholder: Bool {
+        return !self.nk_isEditingMode && self.nk_text?.isEmpty == true
+    }
+    
+    open func updateText() {
+        if self.nk_isTurnOnPlaceholder {
+            self.text = self.nk_placeholder
+            self.textColor = self.nk_placeholderColor
         } else {
-            self.isTurnOnPlaceholder = false
-            self.textColor = self.contentTextColor
-        }
-        
-        return self
-    }
-    
-    override open var text: String? {
-        didSet {
-            if self.text == self.placeholder {
-                self.isTurnOnPlaceholder = true
-                self.textColor = self.placeholderColor
-            } else {
-                self.isTurnOnPlaceholder = false
-                self.textColor = self.contentTextColor
-            }
+            self.text = self.nk_text
+            self.textColor = self.nk_contentTextColor
         }
     }
     
     convenience init() {
         self.init(frame: CGRect.zero, textContainer: nil)
+        self.setupView()
     }
     
     public override init(frame: CGRect, textContainer: NSTextContainer?) {
@@ -86,28 +78,29 @@ open class NKTextView: UITextView, UITextViewDelegate {
     
     func setupView() {
         self.delegate = self
-        self.checkAndTurnOnPlaceholder()
+        self.rx.text.subscribe(onNext: { [unowned self] in
+            if self.nk_text != $0 && !self.nk_isTurnOnPlaceholder {
+                self.nk_text = $0
+            }
+        }).addDisposableTo(self.nk_disposeBag)
+        
+        self.updateText()
     }
     
     //MARK: UITextViewDelegate
     open func textViewDidBeginEditing(_ textView: UITextView) {
-        if self.isTurnOnPlaceholder {
-            self.isTurnOnPlaceholder = false
-            self.text = ""
-            self.textColor = self.contentTextColor
-        }
+        self.nk_isEditingMode = true
         
-        self.didBeginEditHandlers.forEach { (handler) -> () in
-            handler(self)
-        }
+        self.updateText()
+        
+        self._rx_didBeginEdit.nk_reload()
     }
     
     open func textViewDidEndEditing(_ textView: UITextView) {
-        self.checkAndTurnOnPlaceholder()
+        self.nk_isEditingMode = false
         
-        self.didEndEditHandlers.forEach { (handler) -> () in
-            handler(self)
-        }
+        self.updateText()
         
+        self._rx_didEndEdit.nk_reload()
     }
 }

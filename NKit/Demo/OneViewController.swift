@@ -20,14 +20,19 @@ class OneViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.view.backgroundColor = UIColor.yellow
-        
         self.view
-            .nk_addSubview(UITextView()) {
-                $0.isScrollEnabled = false
-//                $0.text = "Nghia"
+            .nk_config() {
+                $0.backgroundColor = UIColor.green
+                $0.nk_autoHideKeyboardWhenTapOutside()
+            }
+            
+            .nk_addSubview(NKTextView()) {
+                $0.nk_placeholder = "Placeholder"
+                
                 $0.snp.makeConstraints({ (make) in
-                    make.top.leading.trailing.equalToSuperview()
+                    make.top.leading.equalToSuperview()
+                    make.height.equalTo(100)
+                    make.width.equalTo(100)
                 })
         }
     }

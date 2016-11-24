@@ -36,13 +36,15 @@ class FourViewController: UIViewController, NKCollectionViewDataSource {
                 $0.backgroundColor = UIColor.green
             }
             
-            .nk_addSubview(self.collectionView) {
-                $0.snp.makeConstraints({ (make) in
-                    make.leading.trailing.equalTo(0)
-                    make.top.bottom.equalTo(0).inset(20)
+            .nk_addSubview(NKTextView()) {
+                $0.nk_placeholder = ""
+                
+                $0.snp_makeConstraints({ (make) in
+                    make.top.leading.equalToSuperview()
+                    make.height.equalTo(100)
+                    make.width.equalTo(100)
                 })
-            }
-        
+        }
         nk_delay(5) {
             print("Stop paging")
             self.collectionView.nk_paging = false
