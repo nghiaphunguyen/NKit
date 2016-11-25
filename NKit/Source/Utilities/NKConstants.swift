@@ -10,7 +10,7 @@ import Foundation
 
 public struct NKAppInfo {
     public static let Name = (Bundle.main.infoDictionary?["CFBundleName"] as? String) ?? ""
-    public static let Build = (Bundle.main.infoDictionary?["CFBundleVersion"] as? Int) ?? 0
+    public static let Build = Int(Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? "") ?? 0
     public static let Version = (Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String) ?? "0.0"
     public static let Identifier = (Bundle.main.infoDictionary?["CFBundleIdentifier"] as? String) ?? ""
 }

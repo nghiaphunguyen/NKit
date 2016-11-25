@@ -21,6 +21,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window?.rootViewController = UINavigationController(rootViewController: OneViewController())
         
         self.window?.makeKeyAndVisible()
+        
+        print("App version = \(NKAppInfo.Version) build = \(NKAppInfo.Build)")
         return true
     }
 
