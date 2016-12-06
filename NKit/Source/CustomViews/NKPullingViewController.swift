@@ -27,7 +27,8 @@ public extension NKPullingViewControllerProtocol where Self: UIViewController {
     }
     
     public func refresh() {
-        self.model.refreshObservable().subscribe().addDisposableTo(self.nk_disposeBag)
+        var model = self.model
+        model.refreshObservable().subscribe().addDisposableTo(self.nk_disposeBag)
     }
 }
 
@@ -37,7 +38,7 @@ public protocol NKPullingViewModel: NKLoadable {
     var page: Int {get set}
     
     func loadMoreObservable() -> Observable<Void>
-    func refreshObservable() -> Observable<Void>
+    mutating func refreshObservable() -> Observable<Void>
     
     func doSomethingBeforeLoadItemsObservable() -> Observable<Void>
     func doSomethingAfterLoadItemsObservable(items: [Any]) -> Observable<[Any]>

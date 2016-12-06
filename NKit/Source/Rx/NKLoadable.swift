@@ -26,30 +26,30 @@ public protocol NKLoadable {
 
 public extension NKLoadable {
     
-    func load<T>(observable: Observable<T>) -> Observable<T> {
+    public func load<T>(observable: Observable<T>) -> Observable<T> {
         return self.canLoadDataObservable
             .flatMapLatest({_ in observable})
             .nk_doOnNextOrError({self.resetAfterDone()})
             .doOnError({self.rx_error.value = $0})
     }
     
-    func setupBeforeLoading() {
+    public func setupBeforeLoading() {
         self.rx_isLoading.value = true
     }
     
-    func resetAfterDone() {
+    public func resetAfterDone() {
         self.rx_isLoading.value = false
     }
     
-    var isLoadingObservable: Observable<Bool> {
+    public var isLoadingObservable: Observable<Bool> {
         return self.rx_isLoading.asObservable()
     }
     
-    var errorObservable: Observable<ErrorType> {
+    public var errorObservable: Observable<ErrorType> {
         return self.rx_error.asObservable().nk_unwrap()
     }
     
-    var canLoadDataObservable: Observable<Void> {
+    public var canLoadDataObservable: Observable<Void> {
         return self.isLoadingObservable
             .take(1)
             .filter({$0 == false})
