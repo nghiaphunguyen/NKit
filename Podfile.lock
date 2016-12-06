@@ -1,0 +1,32 @@
+PODS:
+  - ATTableView (1.2)
+  - NRxSwift (0.2.10):
+    - RxSwift
+  - NTZStackView (1.2.2)
+  - OAStackView (1.0.1)
+  - RxCocoa (2.6.0):
+    - RxSwift (~> 2.5)
+  - RxSwift (2.6.0)
+  - SnapKit (0.22.0)
+
+DEPENDENCIES:
+  - ATTableView
+  - NRxSwift (= 0.2.10)
+  - NTZStackView
+  - OAStackView
+  - RxCocoa (= 2.6.0)
+  - RxSwift (= 2.6.0)
+  - SnapKit (= 0.22.0)
+
+SPEC CHECKSUMS:
+  ATTableView: 740edbddf105f8ca0ff4b13c0a1c849e3d4095ed
+  NRxSwift: 6b73e02cf67b4f238f878ac644600e872501b7b0
+  NTZStackView: 7e7bf0cd41cf849c63847174d2154c0bd68a7f06
+  OAStackView: 95e7cb79cbea25c2342f496a44bdbe8bd4c8d510
+  RxCocoa: 89ab00d5753502520227940e3a0e0a0413683c6b
+  RxSwift: 77f3a0b15324baa7a1c9bfa9f199648a82424e26
+  SnapKit: 0dd2fd157330f1ea11fd84da13e6be8a7a22bae0
+
+PODFILE CHECKSUM: 90500ebeefcedaedc1ce79fe5165050c3a448ea1
+
+COCOAPODS: 1.1.0.rc.2
