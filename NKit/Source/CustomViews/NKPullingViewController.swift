@@ -36,22 +36,11 @@ public class NKPullingViewModelImp: NSObject, NKPullingViewModel {
     public let rx_items = Variable<[Any]>([])
     public let rx_error = Variable<ErrorType?>(nil)
     public let rx_isLoading = Variable<Bool>(false)
-    public var page: Int
-    public let initPage: Int
-    private let loadItemsBlock: ((page: Int) -> Observable<[Any]>)
-  
-    public init(initPage: Int, loadItemsBlock: (page: Int) -> Observable<[Any]>) {
-        self.initPage = initPage
-        self.page = self.initPage
-        self.loadItemsBlock = loadItemsBlock
-    }
-    
-    public func resetPage() {
-        self.page = self.initPage
-    }
+    public var page: Int = 0
+    public let initPage: Int = 0
     
     public func loadItems(page page: Int) -> Observable<[Any]> {
-        return self.loadItemsBlock(page: page)
+        return Observable.empty()
     }
 }
 
@@ -59,6 +48,7 @@ public protocol NKPullingViewModel: NKLoadable {
     var rx_items: Variable<[Any]> {get}
     
     var page: Int {get set}
+    var initPage: Int {get}
     
     func loadMoreObservable() -> Observable<Void>
     mutating func refreshObservable() -> Observable<Void>
@@ -66,7 +56,6 @@ public protocol NKPullingViewModel: NKLoadable {
     func doSomethingBeforeLoadItemsObservable() -> Observable<Void>
     func doSomethingAfterLoadItemsObservable(items: [Any]) -> Observable<[Any]>
     
-    func resetPage() // need override
     func loadItems(page page: Int) -> Observable<[Any]> // need override
 }
 
@@ -74,6 +63,10 @@ public extension NKPullingViewModel {
     private func updateItems(items: [Any]) {
         self.rx_items.value += items
         self.rx_items.nk_reload()
+    }
+    
+    private mutating func resetPage(page: Int) {
+        self.page = page
     }
     
     public func doSomethingBeforeLoadItemsObservable() -> Observable<Void> {
@@ -97,12 +90,12 @@ public extension NKPullingViewModel {
         
         return self.load(Observable<Void>.nk_start { () -> Observable<Void> in
                 page = self.page
-                self.resetPage()
+                self.resetPage(self.initPage)
                 return self.doSomethingBeforeLoadItemsObservable()
             }
             .flatMapLatest({_ in return self.loadItems(page: self.page)})
             .flatMapLatest({self.doSomethingAfterLoadItemsObservable($0)}))
-            .doOnError({_ in self.page = page}).map {_ in return}
+            .doOnError({_ in self.resetPage(page)}).map {_ in return}
     }
 }
 
