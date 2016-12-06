@@ -32,15 +32,14 @@ public extension NKPullingViewControllerProtocol where Self: UIViewController {
     }
 }
 
-public class NKPullingViewModelImp: NSObject, NKPullingViewModel {
-    public let rx_items = Variable<[Any]>([])
-    public let rx_error = Variable<Error?>(nil)
-    public let rx_isLoading = Variable<Bool>(false)
-
-    public var page: Int = 0
-    public let initPage: Int = 0
+open class NKPullingViewModelImp: NSObject, NKPullingViewModel {
+    open let rx_items = Variable<[Any]>([])
+    open let rx_error = Variable<Error?>(nil)
+    open let rx_isLoading = Variable<Bool>(false)
+    open lazy var page: Int = {return self.initPage}()
+    open let initPage: Int = 0
     
-    public func loadItems(page: Int) -> Observable<[Any]> {
+    open func loadItems(page: Int) -> Observable<[Any]> {
         return Observable.empty()
     }
 }
