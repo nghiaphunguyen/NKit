@@ -69,6 +69,14 @@ public extension NKPullingViewModel {
         self.page = page
     }
     
+    public var items: [Any] {
+        return self.rx_items.value
+    }
+    
+    public func getItems<T>() -> [T] {
+        return self.rx_items.value.nk_cast()
+    }
+    
     public func doSomethingBeforeLoadItemsObservable() -> Observable<Void> {
         return Observable.just()
     }

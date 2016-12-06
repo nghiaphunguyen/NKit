@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		181D798B1DF6F981004825D8 /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181D798A1DF6F981004825D8 /* Array+Extension.swift */; };
 		1821A5E41D9AD926004C8FAC /* SnapKit+NKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1821A5E31D9AD926004C8FAC /* SnapKit+NKit.swift */; };
 		1821A5E61D9ADABC004C8FAC /* Mirror+NKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1821A5E51D9ADABC004C8FAC /* Mirror+NKit.swift */; };
 		1821A5E81D9B63E6004C8FAC /* NKConstraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1821A5E71D9B63E6004C8FAC /* NKConstraints.swift */; };
@@ -96,6 +97,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		181D798A1DF6F981004825D8 /* Array+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Extension.swift"; sourceTree = "<group>"; };
 		1821A5E31D9AD926004C8FAC /* SnapKit+NKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SnapKit+NKit.swift"; sourceTree = "<group>"; };
 		1821A5E51D9ADABC004C8FAC /* Mirror+NKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Mirror+NKit.swift"; sourceTree = "<group>"; };
 		1821A5E71D9B63E6004C8FAC /* NKConstraints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKConstraints.swift; sourceTree = "<group>"; };
@@ -247,6 +249,7 @@
 			isa = PBXGroup;
 			children = (
 				1828D0851D6F1799007D0933 /* Array+BinaryInsert.swift */,
+				181D798A1DF6F981004825D8 /* Array+Extension.swift */,
 			);
 			path = Array;
 			sourceTree = "<group>";
@@ -707,6 +710,7 @@
 				189C3BE91D7092BE0057F068 /* SecondViewController.swift in Sources */,
 				189DF1C01D97F22D00266E12 /* NKTestable.swift in Sources */,
 				1828D0EA1D6F1799007D0933 /* UIViewController+NavigationBar.swift in Sources */,
+				181D798B1DF6F981004825D8 /* Array+Extension.swift in Sources */,
 				1828D0E91D6F1799007D0933 /* UIViewController+Loading.swift in Sources */,
 				1828D0DE1D6F1799007D0933 /* UIImageView+Extension.swift in Sources */,
 				1828D0EF1D6F1799007D0933 /* NKUtilities.swift in Sources */,
