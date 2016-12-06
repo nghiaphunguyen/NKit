@@ -36,7 +36,7 @@ public class NKPullingViewModelImp: NSObject, NKPullingViewModel {
     public let rx_items = Variable<[Any]>([])
     public let rx_error = Variable<ErrorType?>(nil)
     public let rx_isLoading = Variable<Bool>(false)
-    public var page: Int = 0
+    public lazy var page: Int = {return self.initPage}()
     public let initPage: Int = 0
     
     public func loadItems(page page: Int) -> Observable<[Any]> {
