@@ -33,15 +33,15 @@ public extension NKLoadable {
             .do(onError: {self.rx_error.value = $0})
     }
     
-    func setupBeforeLoading() {
+    public func setupBeforeLoading() {
         self.rx_isLoading.value = true
     }
     
-    func resetAfterDone() {
+    public func resetAfterDone() {
         self.rx_isLoading.value = false
     }
     
-    var isLoadingObservable: Observable<Bool> {
+    public var isLoadingObservable: Observable<Bool> {
         return self.rx_isLoading.asObservable()
     }
     
@@ -49,7 +49,7 @@ public extension NKLoadable {
         return self.rx_error.asObservable().nk_unwrap()
     }
     
-    var canLoadDataObservable: Observable<Void> {
+    public var canLoadDataObservable: Observable<Void> {
         return self.isLoadingObservable
             .take(1)
             .filter({$0 == false})
