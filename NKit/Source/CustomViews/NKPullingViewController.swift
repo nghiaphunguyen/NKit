@@ -32,8 +32,32 @@ public extension NKPullingViewControllerProtocol where Self: UIViewController {
     }
 }
 
+public class NKPullingViewModelImp: NSObject, NKPullingViewModel {
+    public let rx_items = Variable<[Any]>([])
+    public let rx_error = Variable<Error?>(nil)
+    public let rx_isLoading = Variable<Bool>(false)
+    public var page: Int
+    public let initPage: Int
+    private let loadItemsBlock: ((Int) -> Observable<[Any]>)
+  
+    public init(initPage: Int, loadItemsBlock: @escaping (Int) -> Observable<[Any]>) {
+        self.initPage = initPage
+        self.page = self.initPage
+        self.loadItemsBlock = loadItemsBlock
+    }
+    
+    public func resetPage() {
+        self.page = self.initPage
+    }
+    
+    public func loadItems(page: Int) -> Observable<[Any]> {
+        return self.loadItemsBlock(page)
+        
+    }
+}
+
 public protocol NKPullingViewModel: NKLoadable {
-    var rx_items: Variable<[Any]> {get set}
+    var rx_items: Variable<[Any]> {get}
     
     var page: Int {get set}
     
