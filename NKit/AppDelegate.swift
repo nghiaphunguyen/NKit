@@ -9,8 +9,16 @@
 import UIKit
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: NKLayoutTester, UIApplicationDelegate {
 
+    override var testingLayout: NKLayoutTestable.Type? {
+        return TestView.self
+    }
+    
+    override var rootViewController: UIViewController? {
+        return UINavigationController(rootViewController: OneViewController())
+    }
+    
     var window: UIWindow?
 
 
@@ -18,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
-        self.window?.rootViewController = UINavigationController(rootViewController: OneViewController())
+        self.window?.rootViewController = self._rootViewController
         
         self.window?.makeKeyAndVisible()
         return true
