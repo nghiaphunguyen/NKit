@@ -1,3 +1,4 @@
+
 //
 //  NKLayoutTestable.swift
 //  NKit
@@ -105,7 +106,7 @@ public extension NKLayoutTestable where Self: UIView, Self: NKLayoutModelable {
             
             $0
                 .nk_addArrangedSubview(UIButton()) {
-                    $0.setTitle("<-", forState: .Normal)
+                    $0.setTitle("<-", for: .normal)
                     $0.contentEdgeInsets = UIEdgeInsets.init(top: 10, left: 10, bottom: 10, right: 10)
                     $0.titleLabel?.font = UIFont.systemFont(ofSize: 20)
                     $0.setTitleColor(UIColor.black, for: .normal)
@@ -116,7 +117,7 @@ public extension NKLayoutTestable where Self: UIView, Self: NKLayoutModelable {
                     }).addDisposableTo(controller.nk_disposeBag)
                 }
                 .nk_addArrangedSubview(UIButton()) {
-                    $0.setTitle("->", forState: .Normal)
+                    $0.setTitle("->", for: .normal)
                     $0.contentEdgeInsets = UIEdgeInsets.init(top: 10, left: 10, bottom: 10, right: 10)
                     $0.titleLabel?.font = UIFont.systemFont(ofSize: 20)
                     $0.setTitleColor(UIColor.black, for: .normal)
