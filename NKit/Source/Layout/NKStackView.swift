@@ -19,6 +19,7 @@ public class NKStackView: UIStackView {
     private lazy var backgroundLayer: CAShapeLayer = {
         let layer = CAShapeLayer()
         self.layer.insertSublayer(layer, at: 0)
+        layer.fillColor = UIColor.clear.cgColor
         return layer
     }()
     

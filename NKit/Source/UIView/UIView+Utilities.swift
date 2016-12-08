@@ -21,7 +21,7 @@ public extension UIView {
         return nil
     }
     
-    public func nk_addBorder(borderWidth: CGFloat = 1,
+    @discardableResult public func nk_addBorder(borderWidth: CGFloat = 1,
         color: UIColor = UIColor.black,
         cornerRadius: CGFloat = 0) -> UIView {
             self.layer.borderColor = color.cgColor
@@ -34,13 +34,45 @@ public extension UIView {
             return self
     }
     
-    public func nk_addAllBorderToSubview() -> UIView {
+    @discardableResult public func nk_setBorderForAllSubviews() -> UIView {
+        self.nk_addBorder(borderWidth: 1, color: UIColor.yellow)
+        
         for view in self.subviews {
-            _ = view.nk_addBorder(borderWidth: 1, color: UIColor.yellow)
-            _ = view.nk_addAllBorderToSubview()
+            view.nk_setBorderForAllSubviews()
         }
         
-        _ = self.nk_addBorder(borderWidth: 1, color: UIColor.yellow)
+        return self
+    }
+    
+    
+    private static var materialBackgroundColors: [UIColor] { return [
+        UIColor(hex: 0xF44336), UIColor(hex: 0xE91E63),
+        UIColor(hex: 0x9C27B0), UIColor(hex: 0x673AB7),
+        UIColor(hex: 0x3F51B5), UIColor(hex: 0x2196F3),
+        UIColor(hex: 0x03A9F4), UIColor(hex: 0x00BCD4),
+        UIColor(hex: 0x009688), UIColor(hex: 0x4CAF50),
+        UIColor(hex: 0x8BC34A), UIColor(hex: 0xCDDC39),
+        UIColor(hex: 0xFFEB3B), UIColor(hex: 0xFFC107),
+        UIColor(hex: 0xFF9800), UIColor(hex: 0xFF5722),
+        UIColor(hex: 0x795548), UIColor(hex: 0x9E9E9E)] }
+    
+    public func nk_setBackgroundColorForAllSubviews() -> UIView {
+        
+        let colors = type(of: self).materialBackgroundColors
+        var index = 0
+        var k = 0
+        let max = colors.count / 2
+        func setBackgroundColor(view: UIView) {
+            view.backgroundColor = colors[index + max * k]
+            k = k ^ 1
+            index = (index + 1) % max
+            
+            for subview in view.subviews {
+                setBackgroundColor(view: subview)
+            }
+        }
+        
+        setBackgroundColor(view: self)
         
         return self
     }
