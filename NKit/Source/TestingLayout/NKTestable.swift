@@ -18,6 +18,10 @@ public protocol NKLayoutTestable {
     static var backgroundColor: UIColor {get}
 }
 
+private extension NKLayoutTestable where Self: NKLayoutModelable {
+    
+}
+
 public protocol NKLayoutModelable {
     associatedtype Model
     func config(model: Model)
@@ -25,30 +29,34 @@ public protocol NKLayoutModelable {
 }
 
 public extension NKLayoutTestable where Self: UIView {
-    public static var viewController: UIViewController {
+    
+    private static func createViewAndController() -> (Self, UIViewController) {
         let controller = UIViewController()
         let view = self.init()
         controller.view.addSubview(view)
         controller.view.backgroundColor = self.backgroundColor
-        
+        let offset: CGFloat = (self.shouldAddNavigationBar ? 44 : 0) + nk_statusBarHeight
         if self.size == CGSize.zero {
             view.snp_makeConstraints(closure: { (make) in
-                make.top.equalTo(0).offset(nk_statusBarHeight)
+                make.top.equalTo(0).offset(offset)
                 make.leading.trailing.equalTo(0)
             })
         } else {
             view.snp_makeConstraints(closure: { (make) in
-                make.top.equalTo(0).offset(nk_statusBarHeight)
+                make.top.equalTo(0).offset(offset)
                 make.leading.equalTo(0)
                 make.size.equalTo(self.size)
             })
         }
         
         if self.shouldAddNavigationBar {
-            return UINavigationController(rootViewController: controller)
+            return (view, UINavigationController(rootViewController: controller))
         }
-        
-        return controller
+        return (view, controller)
+    }
+    
+    public static var viewController: UIViewController {
+        return self.createViewAndController().1
     }
     
     public static var size: CGSize {
@@ -64,36 +72,14 @@ public extension NKLayoutTestable where Self: UIView {
     }
 }
 
-public extension NKLayoutTestable where Self: UIView, Self: NKLayoutModelable {
-    public static var viewController: UIViewController {
-        let controller = UIViewController()
-        let view = self.init()
-        controller.view.addSubview(view)
-        controller.view.backgroundColor = self.backgroundColor
-        
-        if self.size == CGSize.zero {
-            view.snp_makeConstraints(closure: { (make) in
-                make.top.equalTo(0).offset(nk_statusBarHeight)
-                make.leading.trailing.equalTo(0)
-            })
-        } else {
-            view.snp_makeConstraints(closure: { (make) in
-                make.top.equalTo(0).offset(nk_statusBarHeight)
-                make.leading.equalTo(0)
-                make.size.equalTo(self.size)
-            })
-        }
-        
-        if self.shouldAddNavigationBar {
-            return UINavigationController(rootViewController: controller)
-        }
-        
-        let models = self.models
+private extension NKLayoutTestable where Self: NKLayoutModelable {
+    func setupButtons(controller: UIViewController) {
+        let models = self.dynamicType.models
         var i = 0
         func setConfig(index: Int) {
             if (0..<models.count) ~= index {
                 i = index
-                view.config(models[i])
+                self.config(models[i])
             }
         }
         
@@ -111,7 +97,7 @@ public extension NKLayoutTestable where Self: UIView, Self: NKLayoutModelable {
                     $0.titleLabel?.font = UIFont.systemFontOfSize(20)
                     $0.setTitleColor(UIColor.blackColor(), forState: .Normal)
                     $0.setBackgroundImage(UIImage.nk_fromColor(UIColor.blueColor()), forState: .Highlighted)
-                    $0.rx_tap.bindNext({ 
+                    $0.rx_tap.bindNext({
                         setConfig(i - 1)
                     }).addDisposableTo(controller.nk_disposeBag)
                 }
@@ -129,21 +115,15 @@ public extension NKLayoutTestable where Self: UIView, Self: NKLayoutModelable {
         }
         
         setConfig(0)
+    }
+}
+
+public extension NKLayoutTestable where Self: UIView, Self: NKLayoutModelable {
+    public static var viewController: UIViewController {
+        let viewAndController = self.createViewAndController()
+        viewAndController.0.setupButtons(viewAndController.1)
         
-        
-        return controller
-    }
-    
-    public static var size: CGSize {
-        return CGSize.zero
-    }
-    
-    public static var backgroundColor: UIColor {
-        return UIColor.whiteColor()
-    }
-    
-    public static var shouldAddNavigationBar: Bool {
-        return false
+        return viewAndController.1
     }
 }
 
@@ -167,5 +147,18 @@ public extension NKLayoutTestable where Self: UIViewController {
     
     public static var backgroundColor: UIColor {
         return UIColor.whiteColor()
+    }
+}
+
+public extension NKLayoutTestable where Self: UIViewController, Self: NKLayoutModelable {
+    public static var viewController: UIViewController {
+        
+        if self.shouldAddNavigationBar {
+            return UINavigationController(rootViewController: self.init())
+        }
+        
+        let controller = self.init()
+        controller.setupButtons(controller)
+        return controller
     }
 }

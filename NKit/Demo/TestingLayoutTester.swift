@@ -28,11 +28,13 @@ class TestView: NKBaseView {
             
             $0
             .nk_addArrangedSubview(UIView())
-            .nk_addArrangedSubview(UIView())
+            .nk_addArrangedSubview(UIView()) {
+                $0.backgroundColor = UIColor.blueColor()
+                }
             .nk_addArrangedSubview(UIView())
         }
         
-        self.nk_setBackgroundColorForAllSubviews()
+//        self.nk_setBackgroundColorForAllSubviews()
         
 //        self.nk_addSubview(UILabel(text: nil, isSizeToFit: true, alignment: .Center).nk_id(Id.titleLabel)) {
 //            $0.textColor = UIColor.blackColor()
