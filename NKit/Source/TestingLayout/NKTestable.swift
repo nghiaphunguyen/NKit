@@ -98,6 +98,19 @@ private extension NKLayoutTestable where Self: NKLayoutModelable {
                 guard let off = offset else {return}
 
                 let delta = CGPointMake(location.x - off.x, location.y - off.y)
+                
+                let newLeading = v.nk_x + delta.x
+                let newTrailing = newLeading + v.nk_width
+                let newTop = v.nk_y + delta.y
+                let newBottom = newTop + v.nk_height
+                
+                guard newLeading >= 0
+                    && newTrailing <= controller.view.nk_width
+                    && newTop >= 0
+                    && newBottom <= controller.view.nk_height else {
+                    return
+                }
+                
                 v.snp.remakeConstraints({ (make) in
                     make.leading.equalTo(0).offset(v.nk_x + delta.x)
                     make.top.equalTo(0).offset(v.nk_y + delta.y)
