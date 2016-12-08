@@ -14,20 +14,39 @@ class TestView: NKBaseView {
         case titleLabel
     }
     
-    private lazy var titleLabel: UILabel = Id.titleLabel.view(self)
+//    private lazy var titleLabel: UILabel = Id.titleLabel.view(self)
     
     override func setupView() {
-        self.nk_addSubview(UILabel(text: nil, isSizeToFit: true, alignment: .Center).nk_id(Id.titleLabel)) {
-            $0.textColor = UIColor.blackColor()
+        
+        self.nk_addSubview(NKStackView()) {
             $0.snp_makeConstraints(closure: { (make) in
                 make.edges.equalTo(0)
             })
+            
+            $0.distribution = .FillEqually
+            $0.alignment = .Fill
+            
+            $0
+            .nk_addArrangedSubview(UIView())
+            .nk_addArrangedSubview(UIView())
+            .nk_addArrangedSubview(UIView())
         }
+        
+        self.nk_setBackgroundColorForAllSubviews()
+        
+//        self.nk_addSubview(UILabel(text: nil, isSizeToFit: true, alignment: .Center).nk_id(Id.titleLabel)) {
+//            $0.textColor = UIColor.blackColor()
+//            $0.snp_makeConstraints(closure: { (make) in
+//                make.edges.equalTo(0)
+//            })
+//        }
     }
 }
 
 
-extension TestView: NKLayoutTestable {}
+extension TestView: NKLayoutTestable {
+    static var size: CGSize {return CGSize.init(width: 300, height: 100)}
+}
 
 extension TestView: NKLayoutModelable {
     typealias Model = String
@@ -36,6 +55,6 @@ extension TestView: NKLayoutModelable {
     }
     
     func config(model: Model) {
-        self.titleLabel.text = model
+//        self.titleLabel.text = model
     }
 }
