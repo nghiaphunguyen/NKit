@@ -84,6 +84,29 @@ private extension NKLayoutTestable where Self: NKLayoutModelable {
         controller.view.nk_addSubview(UIStackView.nk_row()) {
             $0.backgroundColor = UIColor.gray
             $0.alpha = 0.3
+            
+            let v = $0
+            var offset: CGPoint?
+            $0.rx_pan().bindNext({
+                let location = $0.location(in: controller.view)
+                
+                if offset == nil {
+                    offset = location
+                    return
+                }
+                
+                guard let off = offset else {return}
+
+                let delta = CGPointMake(location.x - off.x, location.y - off.y)
+                v.snp.remakeConstraints({ (make) in
+                    make.leading.equalTo(0).offset(v.nk_x + delta.x)
+                    make.top.equalTo(0).offset(v.nk_y + delta.y)
+                })
+                v.layoutIfNeeded()
+                
+                offset = location
+            }).addDisposableTo(controller.nk_disposeBag)
+            
             $0.snp.makeConstraints({ (make) in
                 make.bottom.trailing.equalTo(0).inset(20)
             })
@@ -151,12 +174,13 @@ public extension NKLayoutTestable where Self: UIViewController {
 public extension NKLayoutTestable where Self: UIViewController, Self: NKLayoutModelable {
     public static var viewController: UIViewController {
         
-        if self.shouldAddNavigationBar {
-            return UINavigationController(rootViewController: self.init())
-        }
-        
         let controller = self.init()
         controller.setupButtons(controller: controller)
+        
+        if self.shouldAddNavigationBar {
+            return UINavigationController(rootViewController: controller)
+        }
+        
         return controller
     }
 }
