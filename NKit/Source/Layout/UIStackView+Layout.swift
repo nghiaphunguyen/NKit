@@ -16,8 +16,8 @@ public extension UIStackView {
         return self
     }
     
-    public static func nk_create(distribution: UIStackViewDistribution = .Fill, alignment: UIStackViewAlignment = .Fill, spacing: CGFloat = 0, axis: UILayoutConstraintAxis = .Vertical) -> UIStackView {
-        let stackView = UIStackView()
+    public static func nk_create(distribution: UIStackViewDistribution = .Fill, alignment: UIStackViewAlignment = .Fill, spacing: CGFloat = 0, axis: UILayoutConstraintAxis = .Vertical) -> Self {
+        let stackView = self.init()
         stackView.alignment = alignment
         stackView.distribution = distribution
         stackView.spacing = spacing
@@ -25,11 +25,11 @@ public extension UIStackView {
         return stackView
     }
     
-    public static func nk_row(distribution: UIStackViewDistribution = .Fill, alignment: UIStackViewAlignment = .Fill, spacing: CGFloat = 0) -> UIStackView {
+    public static func nk_row(distribution: UIStackViewDistribution = .Fill, alignment: UIStackViewAlignment = .Fill, spacing: CGFloat = 0) -> Self {
         return self.nk_create(distribution, alignment: alignment, spacing: spacing, axis: .Horizontal)
     }
     
-    public static func nk_column(distribution: UIStackViewDistribution = .Fill, alignment: UIStackViewAlignment = .Fill, spacing: CGFloat = 0) -> UIStackView {
+    public static func nk_column(distribution: UIStackViewDistribution = .Fill, alignment: UIStackViewAlignment = .Fill, spacing: CGFloat = 0) -> Self {
         return self.nk_create(distribution, alignment: alignment, spacing: spacing, axis: .Vertical)
     }
 }

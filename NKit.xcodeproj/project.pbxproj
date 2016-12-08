@@ -62,6 +62,7 @@
 		183D0DB11D855D050084754E /* NKPullingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183D0DB01D855D050084754E /* NKPullingViewController.swift */; };
 		183D0DB51D8595E50084754E /* OneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183D0DB41D8595E50084754E /* OneViewController.swift */; };
 		183D0DBB1D86472E0084754E /* UIView+Gesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183D0DBA1D86472E0084754E /* UIView+Gesture.swift */; };
+		18478A111DF9002B0077E457 /* NKStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18478A101DF9002B0077E457 /* NKStackView.swift */; };
 		184EBA821D9A4CCA00471EF3 /* UIStackView+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184EBA811D9A4CCA00471EF3 /* UIStackView+Layout.swift */; };
 		184F79C11D9284010087B6AF /* UIScrollView+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184F79C01D9284010087B6AF /* UIScrollView+Rx.swift */; };
 		186058C01D9E5D830079CE63 /* ForurViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186058BF1D9E5D830079CE63 /* ForurViewController.swift */; };
@@ -155,6 +156,7 @@
 		183D0DB01D855D050084754E /* NKPullingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKPullingViewController.swift; sourceTree = "<group>"; };
 		183D0DB41D8595E50084754E /* OneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OneViewController.swift; sourceTree = "<group>"; };
 		183D0DBA1D86472E0084754E /* UIView+Gesture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Gesture.swift"; sourceTree = "<group>"; };
+		18478A101DF9002B0077E457 /* NKStackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKStackView.swift; sourceTree = "<group>"; };
 		184EBA811D9A4CCA00471EF3 /* UIStackView+Layout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIStackView+Layout.swift"; sourceTree = "<group>"; };
 		184F79C01D9284010087B6AF /* UIScrollView+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIScrollView+Rx.swift"; sourceTree = "<group>"; };
 		186058BF1D9E5D830079CE63 /* ForurViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForurViewController.swift; sourceTree = "<group>"; };
@@ -245,6 +247,7 @@
 				1828D0B21D6F1799007D0933 /* UIView */,
 				1828D0B91D6F1799007D0933 /* UIViewController */,
 				1828D0C01D6F1799007D0933 /* Utilities */,
+				18478A101DF9002B0077E457 /* NKStackView.swift */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -762,6 +765,7 @@
 				18A1DAC61D6F167D00D566C2 /* AppDelegate.swift in Sources */,
 				188474F31D93D570009F4506 /* NKLoadable.swift in Sources */,
 				181D79931DF8093B004825D8 /* String+UI.swift in Sources */,
+				18478A111DF9002B0077E457 /* NKStackView.swift in Sources */,
 				1828D0D81D6F1799007D0933 /* UIButton+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
