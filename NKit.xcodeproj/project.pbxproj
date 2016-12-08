@@ -63,6 +63,7 @@
 		183F9B261DC87C0F00D9C7B9 /* Optional+NKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183F9B251DC87C0F00D9C7B9 /* Optional+NKit.swift */; };
 		183F9B281DC8AA8400D9C7B9 /* NKLogEventManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183F9B271DC8AA8400D9C7B9 /* NKLogEventManager.swift */; };
 		18478A171DF9B30B0077E457 /* String+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18478A161DF9B30B0077E457 /* String+UI.swift */; };
+		18478A191DF9B4570077E457 /* NKStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18478A181DF9B4570077E457 /* NKStackView.swift */; };
 		184EBA821D9A4CCA00471EF3 /* UIStackView+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184EBA811D9A4CCA00471EF3 /* UIStackView+Layout.swift */; };
 		184F79C11D9284010087B6AF /* UIScrollView+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184F79C01D9284010087B6AF /* UIScrollView+Rx.swift */; };
 		186058C01D9E5D830079CE63 /* ForurViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186058BF1D9E5D830079CE63 /* ForurViewController.swift */; };
@@ -157,6 +158,7 @@
 		183F9B251DC87C0F00D9C7B9 /* Optional+NKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Optional+NKit.swift"; sourceTree = "<group>"; };
 		183F9B271DC8AA8400D9C7B9 /* NKLogEventManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKLogEventManager.swift; sourceTree = "<group>"; };
 		18478A161DF9B30B0077E457 /* String+UI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+UI.swift"; sourceTree = "<group>"; };
+		18478A181DF9B4570077E457 /* NKStackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKStackView.swift; sourceTree = "<group>"; };
 		184EBA811D9A4CCA00471EF3 /* UIStackView+Layout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIStackView+Layout.swift"; sourceTree = "<group>"; };
 		184F79C01D9284010087B6AF /* UIScrollView+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIScrollView+Rx.swift"; sourceTree = "<group>"; };
 		186058BF1D9E5D830079CE63 /* ForurViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForurViewController.swift; sourceTree = "<group>"; };
@@ -460,6 +462,7 @@
 		1865A1881D997DEF005D4C4A /* Layout */ = {
 			isa = PBXGroup;
 			children = (
+				18478A181DF9B4570077E457 /* NKStackView.swift */,
 				1865A1891D9980B0005D4C4A /* UIView+Layout.swift */,
 				184EBA811D9A4CCA00471EF3 /* UIStackView+Layout.swift */,
 				1821A5E31D9AD926004C8FAC /* SnapKit+NKit.swift */,
@@ -716,6 +719,7 @@
 				18A1DAC81D6F167D00D566C2 /* ViewController.swift in Sources */,
 				1828D0D41D6F1799007D0933 /* NKTableView.swift in Sources */,
 				189C3BE91D7092BE0057F068 /* SecondViewController.swift in Sources */,
+				18478A191DF9B4570077E457 /* NKStackView.swift in Sources */,
 				189DF1C01D97F22D00266E12 /* NKTestable.swift in Sources */,
 				1828D0EA1D6F1799007D0933 /* UIViewController+NavigationBar.swift in Sources */,
 				181D798B1DF6F981004825D8 /* Array+Extension.swift in Sources */,
