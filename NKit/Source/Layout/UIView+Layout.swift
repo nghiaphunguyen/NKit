@@ -156,6 +156,15 @@ public extension UIView {
         return self
     }
     
+    public func nk_keepSize(num: Float = 1, axis: UILayoutConstraintAxis = .Horizontal) -> Self {
+        let huggingPriority: Float = 250 + num * 10
+        self.setContentHuggingPriority(huggingPriority, forAxis: axis)
+        
+        let resistancePriority: Float = 750 + num * 10
+        self.setContentCompressionResistancePriority(resistancePriority, forAxis: axis)
+        return self
+    }
+    
     private func _nk_mapIds(view: UIView) {
         if let id = self.nk_id {
             view.nk_subviews[id] = self
