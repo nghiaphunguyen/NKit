@@ -10,13 +10,13 @@ import UIKit
 
 @available(iOS 9.0, *)
 public extension UIStackView {
-    public func nk_addArrangedSubview<T: UIView>(_ view: T, config: ((T) -> Void)? = nil) -> Self {
+    @discardableResult public func nk_addArrangedSubview<T: UIView>(_ view: T, config: ((T) -> Void)? = nil) -> Self {
         self.addArrangedSubview(view)
         config?(view)
         return self
     }
     
-    public static func nk_create(_ distribution: UIStackViewDistribution = .fill, alignment: UIStackViewAlignment = .fill, spacing: CGFloat = 0, axis: UILayoutConstraintAxis = .vertical) -> UIStackView {
+    @discardableResult public static func nk_create(_ distribution: UIStackViewDistribution = .fill, alignment: UIStackViewAlignment = .fill, spacing: CGFloat = 0, axis: UILayoutConstraintAxis = .vertical) -> UIStackView {
         let stackView = UIStackView()
         stackView.alignment = alignment
         stackView.distribution = distribution
@@ -25,11 +25,11 @@ public extension UIStackView {
         return stackView
     }
     
-    public static func nk_row(_ distribution: UIStackViewDistribution = .fill, alignment: UIStackViewAlignment = .fill, spacing: CGFloat = 0) -> UIStackView {
+    @discardableResult public static func nk_row(_ distribution: UIStackViewDistribution = .fill, alignment: UIStackViewAlignment = .fill, spacing: CGFloat = 0) -> UIStackView {
         return self.nk_create(distribution, alignment: alignment, spacing: spacing, axis: .horizontal)
     }
     
-    public static func nk_column(_ distribution: UIStackViewDistribution = .fill, alignment: UIStackViewAlignment = .fill, spacing: CGFloat = 0) -> UIStackView {
+    @discardableResult public static func nk_column(_ distribution: UIStackViewDistribution = .fill, alignment: UIStackViewAlignment = .fill, spacing: CGFloat = 0) -> UIStackView {
         return self.nk_create(distribution, alignment: alignment, spacing: spacing, axis: .vertical)
     }
 }

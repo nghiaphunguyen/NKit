@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import NTZStackView
 import RxSwift
 import RxCocoa
 
@@ -20,7 +19,7 @@ public protocol NKLayoutTestable {
 
 public protocol NKLayoutModelable {
     associatedtype Model
-    func config(model: Model)
+    func config(_ model: Model)
     static var models: [Model] {get}
 }
 
@@ -72,12 +71,12 @@ public extension NKLayoutTestable where Self: UIView, Self: NKLayoutModelable {
         controller.view.backgroundColor = self.backgroundColor
         
         if self.size == CGSize.zero {
-            view.snp_makeConstraints(closure: { (make) in
+            view.snp.makeConstraints({ (make) in
                 make.top.equalTo(0).offset(nk_statusBarHeight)
                 make.leading.trailing.equalTo(0)
             })
         } else {
-            view.snp_makeConstraints(closure: { (make) in
+            view.snp.makeConstraints({ (make) in
                 make.top.equalTo(0).offset(nk_statusBarHeight)
                 make.leading.equalTo(0)
                 make.size.equalTo(self.size)
@@ -90,38 +89,39 @@ public extension NKLayoutTestable where Self: UIView, Self: NKLayoutModelable {
         
         let models = self.models
         var i = 0
-        func setConfig(index: Int) {
+        func setConfig(_ index: Int) {
             if (0..<models.count) ~= index {
                 i = index
                 view.config(models[i])
             }
         }
         
-        controller.view.nk_addSubview(TZStackView.nk_row()) {
-            $0.backgroundColor = UIColor.grayColor()
+        controller.view.nk_addSubview(UIStackView.nk_row()) {
+            $0.backgroundColor = UIColor.gray
             $0.alpha = 0.3
-            $0.snp_makeConstraints(closure: { (make) in
+            $0.snp.makeConstraints( { (make) in
                 make.bottom.trailing.equalTo(0).inset(20)
             })
             
             $0
                 .nk_addArrangedSubview(UIButton()) {
-                    $0.setTitle("-", forState: .Normal)
+                    $0.setTitle("-", for: .normal)
                     $0.contentEdgeInsets = UIEdgeInsets.init(top: 10, left: 10, bottom: 10, right: 10)
-                    $0.titleLabel?.font = UIFont.systemFontOfSize(20)
-                    $0.setTitleColor(UIColor.blackColor(), forState: .Normal)
-                    $0.setBackgroundImage(UIImage.nk_fromColor(UIColor.blueColor()), forState: .Highlighted)
-                    $0.rx_tap.bindNext({ 
+                    $0.titleLabel?.font = UIFont.systemFont(ofSize: 20)
+                    $0.setTitleColor(UIColor.black, for: .normal)
+                    $0.setBackgroundImage(UIImage.nk_fromColor(UIColor.blue), for: .highlighted)
+                    
+                    $0.rx.tap.bindNext({
                         setConfig(i - 1)
                     }).addDisposableTo(controller.nk_disposeBag)
                 }
                 .nk_addArrangedSubview(UIButton()) {
-                    $0.setTitle("+", forState: .Normal)
+                    $0.setTitle("+", for: .normal)
                     $0.contentEdgeInsets = UIEdgeInsets.init(top: 10, left: 10, bottom: 10, right: 10)
-                    $0.titleLabel?.font = UIFont.systemFontOfSize(20)
-                    $0.setTitleColor(UIColor.blackColor(), forState: .Normal)
-                    $0.setBackgroundImage(UIImage.nk_fromColor(UIColor.blueColor()), forState: .Highlighted)
-                    $0.rx_tap.bindNext({
+                    $0.titleLabel?.font = UIFont.systemFont(ofSize: 20)
+                    $0.setTitleColor(UIColor.black, for: .normal)
+                    $0.setBackgroundImage(UIImage.nk_fromColor(UIColor.blue), for: .highlighted)
+                    $0.rx.tap.bindNext({
                         setConfig(i + 1)
                     }).addDisposableTo(controller.nk_disposeBag)
             }
@@ -139,7 +139,7 @@ public extension NKLayoutTestable where Self: UIView, Self: NKLayoutModelable {
     }
     
     public static var backgroundColor: UIColor {
-        return UIColor.whiteColor()
+        return UIColor.white
     }
     
     public static var shouldAddNavigationBar: Bool {
