@@ -108,6 +108,13 @@ public extension UIViewController {
         return self
     }
     
+    @discardableResult public func nk_setLeftBarButtons(actionTitleButtons: [ActionTitleButton]) -> UIViewController {
+        
+        self.navigationItem.setLeftBarButtonItems(self.barButtonItems(with: actionTitleButtons), animated: false)
+        
+        return self
+    }
+    
     @discardableResult public func nk_setRightBarButton(_ text: String,
                                      color: UIColor = UIColor.black,
                                      highlightColor: UIColor = UIColor.lightGray,
@@ -149,20 +156,25 @@ public extension UIViewController {
         
         return self
     }
-    typealias ActionTitleButton = (title: String, font: UIFont, selector: Selector)
+    typealias ActionTitleButton = (title: String, color: UIColor, font: UIFont, selector: Selector)
     @discardableResult public func nk_setRightBarButtons(actionTitleButtons: [ActionTitleButton]) -> UIViewController {
+        
+        self.navigationItem.setRightBarButtonItems(self.barButtonItems(with: actionTitleButtons), animated: false)
+        
+        return self
+    }
+    
+    private func barButtonItems(with actionTitleButtons: [ActionTitleButton]) -> [UIBarButtonItem] {
         var buttons = [UIBarButtonItem]()
         
         actionTitleButtons.forEach({
-            let textAttributes = [NSFontAttributeName: $0.font]
+            let textAttributes = [NSFontAttributeName: $0.font, NSForegroundColorAttributeName: $0.color]
             let buttonItem = UIBarButtonItem(title: $0.title, style: .plain, target: self, action: $0.selector)
             buttonItem.setTitleTextAttributes(textAttributes, for: .normal)
             buttons.append(buttonItem)
         })
         
-        self.navigationItem.setRightBarButtonItems(buttons, animated: false)
-        
-        return self
+        return buttons
     }
     
     @discardableResult public func nk_setRightBarButton(system: UIBarButtonSystemItem, selector: Selector) -> UIViewController {
