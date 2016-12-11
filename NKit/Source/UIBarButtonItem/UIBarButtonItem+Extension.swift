@@ -14,12 +14,26 @@ public struct ActionTitleButton {
     let font: UIFont
     let target: Any
     let selector: Selector
+    
+    public init(title: String, color: UIColor, font: UIFont, target: Any, selector: Selector) {
+        self.title = title
+        self.color = color
+        self.font = font
+        self.target = target
+        self.selector = selector
+    }
 }
 
 public struct ActionImageButton {
     let image: UIImage
     let target: Any
     let selector: Selector
+    
+    public init(image: UIImage, target: Any, selector: Selector) {
+        self.image = image
+        self.target = target
+        self.selector = selector
+    }
 }
 
 public extension UIBarButtonItem {
