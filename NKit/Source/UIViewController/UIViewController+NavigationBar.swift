@@ -110,7 +110,7 @@ public extension UIViewController {
     
     @discardableResult public func nk_setLeftBarButtons(actionTitleButtons: [ActionTitleButton]) -> UIViewController {
         
-        self.navigationItem.setLeftBarButtonItems(self.barButtonItems(with: actionTitleButtons), animated: false)
+        self.navigationItem.setLeftBarButtonItems(actionTitleButtons.map {UIBarButtonItem.nk_create(with: $0)}, animated: false)
         
         return self
     }
@@ -144,37 +144,23 @@ public extension UIViewController {
         return self
     }
     
-    typealias ActionImageButton = (image: UIImage, selector: Selector)
     @discardableResult public func nk_setRightBarButtons(actionImageButtons: [ActionImageButton], animated: Bool = false) -> UIViewController {
         var buttons = [UIBarButtonItem]()
         
         actionImageButtons.forEach({
-            buttons.append(UIBarButtonItem(image: $0.image, style: UIBarButtonItemStyle.plain, target: self, action: $0.selector))
+            buttons.append(UIBarButtonItem.nk_create(with: $0))
         })
         
         self.navigationItem.setRightBarButtonItems(buttons, animated: animated)
         
         return self
     }
-    typealias ActionTitleButton = (title: String, color: UIColor, font: UIFont, selector: Selector)
+    
     @discardableResult public func nk_setRightBarButtons(actionTitleButtons: [ActionTitleButton]) -> UIViewController {
         
-        self.navigationItem.setRightBarButtonItems(self.barButtonItems(with: actionTitleButtons), animated: false)
+        self.navigationItem.setRightBarButtonItems(actionTitleButtons.map {UIBarButtonItem.nk_create(with: $0)}, animated: false)
         
         return self
-    }
-    
-    private func barButtonItems(with actionTitleButtons: [ActionTitleButton]) -> [UIBarButtonItem] {
-        var buttons = [UIBarButtonItem]()
-        
-        actionTitleButtons.forEach({
-            let textAttributes = [NSFontAttributeName: $0.font, NSForegroundColorAttributeName: $0.color]
-            let buttonItem = UIBarButtonItem(title: $0.title, style: .plain, target: self, action: $0.selector)
-            buttonItem.setTitleTextAttributes(textAttributes, for: .normal)
-            buttons.append(buttonItem)
-        })
-        
-        return buttons
     }
     
     @discardableResult public func nk_setRightBarButton(system: UIBarButtonSystemItem, selector: Selector) -> UIViewController {
