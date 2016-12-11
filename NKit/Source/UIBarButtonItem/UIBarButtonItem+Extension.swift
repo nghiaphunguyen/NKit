@@ -7,8 +7,20 @@
 //
 
 import UIKit
-public typealias ActionTitleButton = (title: String, color: UIColor, font: UIFont, selector: Selector)
-public typealias ActionImageButton = (image: UIImage, selector: Selector)
+
+public struct ActionTitleButton {
+    let title: String
+    let color: UIColor
+    let font: UIFont
+    let target: Any
+    let selector: Selector
+}
+
+public struct ActionImageButton {
+    let image: UIImage
+    let target: Any
+    let selector: Selector
+}
 
 public extension UIBarButtonItem {
     public var nk_view: UIView? {
@@ -17,13 +29,13 @@ public extension UIBarButtonItem {
     
     public static func nk_create(with actionTitleButton: ActionTitleButton) -> UIBarButtonItem {
         let textAttributes = [NSFontAttributeName: actionTitleButton.font, NSForegroundColorAttributeName: actionTitleButton.color]
-        let buttonItem = UIBarButtonItem(title: actionTitleButton.title, style: .plain, target: self, action: actionTitleButton.selector)
+        let buttonItem = UIBarButtonItem(title: actionTitleButton.title, style: .plain, target: actionTitleButton.target, action: actionTitleButton.selector)
         buttonItem.setTitleTextAttributes(textAttributes, for: .normal)
         return buttonItem
     }
     
     public static func nk_create(with actionImageButton: ActionImageButton) -> UIBarButtonItem {
-        return UIBarButtonItem(image: actionImageButton.image, style: UIBarButtonItemStyle.plain, target: self, action: actionImageButton.selector)
+        return UIBarButtonItem(image: actionImageButton.image, style: UIBarButtonItemStyle.plain, target: actionImageButton.target, action: actionImageButton.selector)
     }
 }
 
