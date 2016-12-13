@@ -163,9 +163,7 @@ open class NKCollectionView: UICollectionView {
     
     open var nk_moreConfigForCellClosure: ((_ cell: UICollectionViewCell, _ indexPath: IndexPath) -> Void)? = nil
     
-    typealias ConfigViewBlock = (_ cell: UIView, _ model: Any, _ indexPath: IndexPath) -> Void
-    
-    lazy var modelViewTypeMapping = [String: (viewType: UIView.Type, configViewBlock: ConfigViewBlock)]()
+    lazy var modelViewCellConfigs = [NKCollectionViewCellConfigurable]()
 }
 
 public extension NKCollectionView {
@@ -173,15 +171,8 @@ public extension NKCollectionView {
         let modelName = "\(type.CollectionViewItemModel.self)"
         
         self.register(T.self, forCellWithReuseIdentifier: modelName)
-        self.modelViewTypeMapping[modelName] = (viewType: type, configViewBlock: {[weak self] (view, model, indexPath) in
-            guard let strongSelf = self else {
-                return
-            }
-            
-            if let view = view as? T, let model = model as? T.CollectionViewItemModel {
-                view.collectionView(collectionView: strongSelf, configWithModel: model, atIndexPath: indexPath)
-            }
-            })
+        
+        self.modelViewCellConfigs.append(NKCollectionViewCellConfigure<T>(reuseIdentifier: modelName))
     }
 }
 
@@ -202,17 +193,17 @@ extension NKCollectionView: UICollectionViewDataSource {
             return UICollectionViewCell()
         }
         
-        let typeName = "\(type(of: items[section][row]))"
-        guard let mapping = self.modelViewTypeMapping[typeName] else {
+        let model = items[section][row]
+        guard let mapping = (self.modelViewCellConfigs.nk_firstMap({$0.isMe(model: model)})) else {
             return UICollectionViewCell()
         }
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: typeName, for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: mapping.reuseIdentifier, for: indexPath)
         if let cell = cell as? NKBaseCollectionViewCell {
             cell.autoFitDimension = self.autoFitCellDimension
         }
         
-        mapping.configViewBlock(cell, items[section][row], indexPath)
+        mapping.config(collectionView: self, cell: cell, model: model, indexPath: indexPath)
         
         self.nk_animateForCellClosure?(cell, indexPath)
         self.nk_moreConfigForCellClosure?(cell, indexPath)

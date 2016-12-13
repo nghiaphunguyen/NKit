@@ -19,6 +19,16 @@ public extension Array {
     public var nk_any: [Any] {
         return self.map {$0 as Any}
     }
+    
+    public func nk_firstMap(_ condition: (Element) -> Bool) -> Element? {
+        for e in self {
+            if condition(e) {
+                return e
+            }
+        }
+        
+        return nil
+    }
 }
 
 public extension Array where Element: Any {
