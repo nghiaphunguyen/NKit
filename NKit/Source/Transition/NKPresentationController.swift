@@ -85,16 +85,16 @@ public final class NKPresentationController: UIPresentationController {
         self.containerView?.addSubview(self.closeButton)
         
         self.dimView.snp.makeConstraints { (make) in
-            make.edges.equalTo(0)
+            make.edges.equalToSuperview()
         }
         
         self.blurView.snp.makeConstraints { (make) in
-            make.edges.equalTo(0)
+            make.edges.equalToSuperview()
         }
         
         self.closeButton.snp.makeConstraints { (make) in
-            make.top.equalTo(0).offset(Layout.ButtonTopMargin)
-            make.leading.equalTo(0).offset(Layout.ButtonLeadingMargin)
+            make.top.equalToSuperview().offset(Layout.ButtonTopMargin)
+            make.leading.equalToSuperview().offset(Layout.ButtonLeadingMargin)
         }
         
         super.presentationTransitionWillBegin()

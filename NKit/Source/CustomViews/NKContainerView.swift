@@ -47,19 +47,19 @@ open class NKContainerView<T: UIView>: NKBaseView{
             self.nk_c_shadowView.isHidden = false
             self.nk_c_shadowView.snp.remakeConstraints { (make) -> Void in
                 if self.nk_c_shadowOffset.width < 0 {
-                    make.leading.equalTo(0).offset(self.nk_c_shadowOffset.width)
-                    make.trailing.equalTo(0)
+                    make.leading.equalToSuperview().offset(self.nk_c_shadowOffset.width)
+                    make.trailing.equalToSuperview()
                 } else {
-                    make.trailing.equalTo(0).offset(self.nk_c_shadowOffset.width)
-                    make.leading.equalTo(0)
+                    make.trailing.equalToSuperview().offset(self.nk_c_shadowOffset.width)
+                    make.leading.equalToSuperview()
                 }
                 
                 if self.nk_c_shadowOffset.height < 0 {
-                    make.top.equalTo(0).offset(self.nk_c_shadowOffset.height)
-                    make.bottom.equalTo(0)
+                    make.top.equalToSuperview().offset(self.nk_c_shadowOffset.height)
+                    make.bottom.equalToSuperview()
                 } else {
-                    make.top.equalTo(0)
-                    make.bottom.equalTo(0).offset(self.nk_c_shadowOffset.height)
+                    make.top.equalToSuperview()
+                    make.bottom.equalToSuperview().offset(self.nk_c_shadowOffset.height)
                 }
             }
         }
@@ -105,7 +105,7 @@ open class NKContainerView<T: UIView>: NKBaseView{
         self.addSubview(self.nk_c_shadowView)
         self.sendSubview(toBack: self.nk_c_shadowView)
         self.nk_c_shadowView.snp.makeConstraints { (make) -> Void in
-            make.edges.equalTo(0)
+            make.edges.equalToSuperview()
         }
     }
     

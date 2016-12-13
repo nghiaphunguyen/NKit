@@ -40,14 +40,14 @@ class NKCircleImageView: UIView {
         self.addSubview(self.circleView)
         
         self.imageView.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(0).offset(1)
-            make.leading.equalTo(0).offset(1)
-            make.trailing.equalTo(0).offset(-1)
-            make.bottom.equalTo(0).offset(-1)
+            make.top.equalToSuperview().offset(1)
+            make.leading.equalToSuperview().offset(1)
+            make.trailing.equalToSuperview().offset(-1)
+            make.bottom.equalToSuperview().offset(-1)
         }
         
         self.circleView.snp.makeConstraints { (make) -> Void in
-            make.edges.equalTo(0)
+            make.edges.equalToSuperview()
         }
     }
     

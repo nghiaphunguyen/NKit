@@ -87,8 +87,8 @@ extension ThreeViewController {
 //                $0.alignment = .Fill
 //                
 //                $0.snp.makeConstraints(closure: { (make) in
-//                    make.top.equalTo(0).inset(20)
-//                    make.leading.trailing.bottom.equalTo(0).inset(10)
+//                    make.top.equalToSuperview().inset(20)
+//                    make.leading.trailing.bottom.equalToSuperview().inset(10)
 //                })
 //                
 //                $0
@@ -125,7 +125,7 @@ extension ThreeViewController {
 //                            view.backgroundColor = UIColor.grayColor()
 //                            
 //                            view.snp.makeConstraints(closure: { (make) in
-//                                make.top.leading.bottom.equalTo(0)
+//                                make.top.leading.bottom.equalToSuperview()
 //                                make.width.equalTo(view.superview!).dividedBy(4)
 //                            })
 //                            }.nk_addSubview(UIView()) { (view) in

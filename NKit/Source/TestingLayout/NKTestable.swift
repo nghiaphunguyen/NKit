@@ -36,13 +36,13 @@ public extension NKLayoutTestable where Self: UIView {
         let offset: CGFloat = (self.shouldAddNavigationBar ? 44 : 0) + nk_statusBarHeight
         if self.size == CGSize.zero {
             view.snp.makeConstraints({ (make) in
-                make.top.equalTo(0).offset(offset)
-                make.leading.trailing.equalTo(0)
+                make.top.equalToSuperview().offset(offset)
+                make.leading.trailing.equalToSuperview()
             })
         } else {
             view.snp.makeConstraints({ (make) in
-                make.top.equalTo(0).offset(offset)
-                make.leading.equalTo(0)
+                make.top.equalToSuperview().offset(offset)
+                make.leading.equalToSuperview()
                 make.size.equalTo(self.size)
             })
         }
@@ -112,8 +112,8 @@ private extension NKLayoutTestable where Self: NKLayoutModelable {
                 }
                 
                 v.snp.remakeConstraints({ (make) in
-                    make.leading.equalTo(0).offset(v.nk_x + delta.x)
-                    make.top.equalTo(0).offset(v.nk_y + delta.y)
+                    make.leading.equalToSuperview().offset(v.nk_x + delta.x)
+                    make.top.equalToSuperview().offset(v.nk_y + delta.y)
                 })
                 v.layoutIfNeeded()
                 
@@ -121,7 +121,7 @@ private extension NKLayoutTestable where Self: NKLayoutModelable {
             }).addDisposableTo(controller.nk_disposeBag)
             
             $0.snp.makeConstraints({ (make) in
-                make.bottom.trailing.equalTo(0).inset(20)
+                make.bottom.trailing.equalToSuperview().inset(20)
             })
             
             $0

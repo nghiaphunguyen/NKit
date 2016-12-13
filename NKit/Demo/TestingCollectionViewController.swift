@@ -29,7 +29,7 @@ final class TestingCollectionViewController: UIViewController {
         
         self.view.addSubview(self.collectionView)
         self.collectionView.snp.makeConstraints { (make) in
-            make.edges.equalTo(0)
+            make.edges.equalToSuperview()
         }
         
         self.collectionView.nk_dataSource = self
@@ -59,7 +59,7 @@ final class CollectionViewCell: NKBaseCollectionViewCell {
         self.backgroundColor = UIColor.blue
         self.contentView.addSubview(self.titleLabel)
         self.titleLabel.snp.makeConstraints { (make) in
-            make.edges.equalTo(0)
+            make.edges.equalToSuperview()
         }
     }
 }

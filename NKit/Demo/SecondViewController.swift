@@ -23,7 +23,7 @@ class SecondViewController: UIViewController {
         
         self.view.addSubview(self.button)
         self.button.snp.makeConstraints { (make) in
-            make.center.equalTo(0)
+            make.center.equalToSuperview()
         }
         
         self.button.rx.tap.bindNext {

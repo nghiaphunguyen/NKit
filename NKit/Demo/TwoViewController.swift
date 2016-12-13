@@ -39,12 +39,12 @@ final class TwoViewController: UIViewController {
             }
             .nk_addSubview(UIScrollView().nk_id(Id.scrollView)) {
             $0.snp.makeConstraints({ (make) in
-                make.edges.equalTo(0)
+                make.edges.equalToSuperview()
             })
             
             $0.nk_addSubview(UIView()) {
                 $0.snp.makeConstraints({ (make) in
-                    make.edges.equalTo(0)
+                    make.edges.equalToSuperview()
                     make.height.equalTo(make.nk_view.superview!).multipliedBy(2)
                     make.width.equalTo(make.nk_view.superview!)
                 })

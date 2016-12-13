@@ -15,7 +15,7 @@ class TestKeyboardAutoScrollingViewController: UIViewController {
         view.nk_autoSrollWithKeyboardBehaviour()
         view.addSubview(self.stackView)
         self.stackView.snp.makeConstraints { make in
-            make.edges.equalTo(0)
+            make.edges.equalToSuperview()
             make.width.equalTo(self.stackView.superview!)
             make.height.equalTo(self.stackView.superview!)
         }
@@ -79,8 +79,8 @@ class TestKeyboardAutoScrollingViewController: UIViewController {
         
         self.view.addSubview(self.scrollView)
         self.scrollView.snp.makeConstraints { (make) in
-            make.leading.trailing.bottom.equalTo(0)
-            make.top.equalTo(0)
+            make.leading.trailing.bottom.equalToSuperview()
+            make.top.equalToSuperview()
         }
         self.view.nk_autoHideKeyboardWhenTapOutside()
     }
