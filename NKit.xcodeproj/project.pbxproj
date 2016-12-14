@@ -99,6 +99,7 @@
 		18DD40121D87DBB3004B420E /* UINavigationController+Transition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DD40111D87DBB3004B420E /* UINavigationController+Transition.swift */; };
 		18DD40161D87FB7E004B420E /* NKPresentationTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DD40151D87FB7E004B420E /* NKPresentationTransition.swift */; };
 		18E990701DBB1A8500761547 /* NKAppConfigManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E9906F1DBB1A8500761547 /* NKAppConfigManager.swift */; };
+		18FBB00A1E00E3110055C606 /* UIViewController+Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FBB0091E00E3110055C606 /* UIViewController+Analytics.swift */; };
 		3D578EA8D08338CF2DE88B21 /* Pods_NKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9DD82716755667F163D7FDC /* Pods_NKit.framework */; };
 /* End PBXBuildFile section */
 
@@ -198,6 +199,7 @@
 		18DD40111D87DBB3004B420E /* UINavigationController+Transition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Transition.swift"; sourceTree = "<group>"; };
 		18DD40151D87FB7E004B420E /* NKPresentationTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKPresentationTransition.swift; sourceTree = "<group>"; };
 		18E9906F1DBB1A8500761547 /* NKAppConfigManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKAppConfigManager.swift; sourceTree = "<group>"; };
+		18FBB0091E00E3110055C606 /* UIViewController+Analytics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Analytics.swift"; sourceTree = "<group>"; };
 		1FD9F2FD5F689B54EB45FA0B /* Pods-NKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NKit.release.xcconfig"; path = "Pods/Target Support Files/Pods-NKit/Pods-NKit.release.xcconfig"; sourceTree = "<group>"; };
 		A9DD82716755667F163D7FDC /* Pods_NKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6F73E920383493132F39FDD /* Pods-NKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NKit.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NKit/Pods-NKit.debug.xcconfig"; sourceTree = "<group>"; };
@@ -408,6 +410,7 @@
 				1828D0BC1D6F1799007D0933 /* UIViewController+Loading.swift */,
 				1828D0BD1D6F1799007D0933 /* UIViewController+NavigationBar.swift */,
 				1828D0BF1D6F1799007D0933 /* UIViewController+Utils.swift */,
+				18FBB0091E00E3110055C606 /* UIViewController+Analytics.swift */,
 			);
 			path = UIViewController;
 			sourceTree = "<group>";
@@ -746,6 +749,7 @@
 				1828D0E01D6F1799007D0933 /* UINavigationController+Animation.swift in Sources */,
 				1828D0E11D6F1799007D0933 /* UIView+Animation.swift in Sources */,
 				189DF1BF1D97F22D00266E12 /* NKLayoutTester.swift in Sources */,
+				18FBB00A1E00E3110055C606 /* UIViewController+Analytics.swift in Sources */,
 				1821A5E61D9ADABC004C8FAC /* Mirror+NKit.swift in Sources */,
 				183F9B261DC87C0F00D9C7B9 /* Optional+NKit.swift in Sources */,
 				186058C41D9E7A2F0079CE63 /* NKImage.swift in Sources */,

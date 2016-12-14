@@ -8,8 +8,13 @@
 
 import Foundation
 
+public enum NKEventType {
+    case screen
+    case normal
+}
+
 public protocol NKLogEventManagerProtocol {
-    func logEvent(name: String, extraInfo: [String : NSObject]?)
+    func logEvent(name: String, type: NKEventType, extraInfo: [String : NSObject]?)
 }
 
 public final class NKLogEventManager: AnyObject {
@@ -21,9 +26,9 @@ public final class NKLogEventManager: AnyObject {
         self.eventManagers.append(eventManager)
     }
     
-    public func log(name: String,_ extraInfo: [String : NSObject]? = nil) {
+    public func log(name: String, type: NKEventType = .normal, extraInfo: [String : NSObject]? = nil) {
         for eventManager in self.eventManagers {
-            eventManager.logEvent(name: name, extraInfo: extraInfo)
+            eventManager.logEvent(name: name, type: type, extraInfo: extraInfo)
         }
     }
 }
