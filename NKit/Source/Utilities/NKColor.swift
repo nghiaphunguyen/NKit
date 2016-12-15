@@ -13,8 +13,8 @@ public protocol NKColor {
     var color: UIColor {get}
 }
 
-extension NKColor {
-    var color: UIColor {
+public extension NKColor {
+    public var color: UIColor {
         return UIColor.init(hex: self.rawValue)
     }
 }
