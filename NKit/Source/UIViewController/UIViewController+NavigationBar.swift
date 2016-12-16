@@ -168,19 +168,11 @@ public extension UIViewController {
         return self
     }
     
-    @discardableResult public func nk_setTitleBarButtonStyle(              color: UIColor = UIColor.black,
+    @discardableResult public func nk_setTitleStyle(              color: UIColor = UIColor.black,
                                                         font: UIFont = UIFont.systemFont(ofSize: 14)) -> UIViewController {
         let textAttributes = [NSForegroundColorAttributeName : color,
                               NSFontAttributeName : font]
         self.navigationController?.navigationBar.titleTextAttributes = textAttributes
-        return self
-    }
-    
-    @discardableResult public func nk_setTitleBarButton(text: String = "",
-                                     color: UIColor = UIColor.black,
-                                     font: UIFont = UIFont.systemFont(ofSize: 14)) -> UIViewController {
-        self.navigationItem.title = text
-        self.nk_setTitleBarButtonStyle(color: color, font: font)
         return self
     }
     
@@ -198,7 +190,7 @@ public extension UIViewController {
     
     @discardableResult public func nk_setTitle(title: String, color: UIColor, font: UIFont) -> UIViewController {
         self.title = title
-        self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName : font, NSForegroundColorAttributeName: color]
+        self.nk_setTitleStyle(color: color, font: font)
         
         return self
     }
