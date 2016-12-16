@@ -168,13 +168,19 @@ public extension UIViewController {
         return self
     }
     
+    @discardableResult public func nk_setTitleBarButtonStyle(              color: UIColor = UIColor.black,
+                                                        font: UIFont = UIFont.systemFont(ofSize: 14)) -> UIViewController {
+        let textAttributes = [NSForegroundColorAttributeName : color,
+                              NSFontAttributeName : font]
+        self.navigationController?.navigationBar.titleTextAttributes = textAttributes
+        return self
+    }
+    
     @discardableResult public func nk_setTitleBarButton(text: String = "",
                                      color: UIColor = UIColor.black,
                                      font: UIFont = UIFont.systemFont(ofSize: 14)) -> UIViewController {
-        let textAttributes = [NSForegroundColorAttributeName : color,
-                              NSFontAttributeName : font]
         self.navigationItem.title = text
-        self.navigationController?.navigationBar.titleTextAttributes = textAttributes
+        self.nk_setTitleBarButtonStyle(color: color, font: font)
         return self
     }
     
