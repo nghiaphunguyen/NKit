@@ -20,7 +20,7 @@ struct NKCollectionViewCellConfigure<T: NKCollectionViewItemProtocol>: NKCollect
     let reuseIdentifier: String
     
     func isMe(model: Any) -> Bool {
-        return (model as? T) != nil
+        return (model as? T.CollectionViewItemModel) != nil
     }
     
     func config(collectionView: NKCollectionView, cell: UICollectionViewCell, model: Any, indexPath: IndexPath) {
