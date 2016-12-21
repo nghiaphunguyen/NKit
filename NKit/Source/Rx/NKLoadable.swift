@@ -46,11 +46,11 @@ public extension NKLoadable {
         self.rx_isLoading.value = false
     }
     
-    public var isLoadingObservable: NKVariable<Bool> {
+    public var isLoading: NKVariable<Bool> {
         return self.rx_isLoading.nk_variable
     }
     
-    public var errorObservable: NKVariable<Error?> {
+    public var error: NKVariable<Error?> {
         return self.rx_error.nk_variable
     }
     
