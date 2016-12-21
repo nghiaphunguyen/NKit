@@ -56,7 +56,7 @@ public extension NKLoadable {
     
     private var canLoadDataObservable: Observable<Void> {
         return Observable.nk_baseCreate({ (observer) in
-            if self.rx_isLoading.value == true {
+            if self.rx_isLoading.value == false {
                 observer.nk_setValue()
             }
         })

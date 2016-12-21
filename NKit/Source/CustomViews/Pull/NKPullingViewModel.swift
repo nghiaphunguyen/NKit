@@ -18,7 +18,7 @@ public protocol NKPullingViewModel: NKLoadable, NKPullingReactor {
     
     var page: Int {get set}
     var initPage: Int {get}
-    var isCanLoadMore: Bool {get set}
+    var isLoadMore: Bool {get set}
     
     func loadMore()
     func refresh()
@@ -63,13 +63,13 @@ public extension NKPullingViewModel where Self: NSObject {
     private func resetModel() {
         var strongSelf = self
         strongSelf.rx_loadingModels.value = []
-        strongSelf.isCanLoadMore = true
+        strongSelf.isLoadMore = true
         strongSelf.page = self.initPage
     }
     
     private func canLoadMore() -> Observable<Void> {
         return Observable.nk_baseCreate({ (observer ) in
-            if self.isCanLoadMore {
+            if self.isLoadMore {
                 observer.nk_setValue()
             }
         })
@@ -84,7 +84,7 @@ public extension NKPullingViewModel where Self: NSObject {
             .flatMapLatest({strongSelf.doSomethingAfterLoadLoadingModels(models: $0)})
             .do(onNext: {
                 let value = strongSelf.map(value: $0)
-                strongSelf.isCanLoadMore = !(value.count == 0)
+                strongSelf.isLoadMore = !(value.count == 0)
                 strongSelf.changeLoadingModels(value: $0)
                 strongSelf.page = strongSelf.page + 1
             })

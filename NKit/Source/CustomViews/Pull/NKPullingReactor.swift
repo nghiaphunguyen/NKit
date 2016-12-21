@@ -20,6 +20,7 @@ public protocol NKPullingState {
     var loadingModels: NKVariable<[StateLoadingModel]> {get}
     var error: NKVariable<Error?> {get}
     var isLoading: NKVariable<Bool> {get}
+    var isLoadMore: Bool {get}
 }
 
 public typealias NKPullingReactor = NKPullingAction & NKPullingState
