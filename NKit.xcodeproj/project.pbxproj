@@ -57,7 +57,6 @@
 		183D0DA91D82ADCC0084754E /* TestKeyboardAutoScroll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183D0DA81D82ADCC0084754E /* TestKeyboardAutoScroll.swift */; };
 		183D0DAC1D82BF360084754E /* UIScrollView+AutoScrolling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183D0DAB1D82BF360084754E /* UIScrollView+AutoScrolling.swift */; };
 		183D0DAF1D8505930084754E /* NKLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183D0DAE1D8505930084754E /* NKLocationManager.swift */; };
-		183D0DB11D855D050084754E /* NKPullingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183D0DB01D855D050084754E /* NKPullingViewController.swift */; };
 		183D0DB51D8595E50084754E /* OneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183D0DB41D8595E50084754E /* OneViewController.swift */; };
 		183D0DBB1D86472E0084754E /* UIView+Gesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183D0DBA1D86472E0084754E /* UIView+Gesture.swift */; };
 		183F9B261DC87C0F00D9C7B9 /* Optional+NKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183F9B251DC87C0F00D9C7B9 /* Optional+NKit.swift */; };
@@ -89,6 +88,8 @@
 		18A1DACB1D6F167D00D566C2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18A1DAC91D6F167D00D566C2 /* Main.storyboard */; };
 		18A1DACD1D6F167E00D566C2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18A1DACC1D6F167E00D566C2 /* Assets.xcassets */; };
 		18A1DAD01D6F167E00D566C2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18A1DACE1D6F167E00D566C2 /* LaunchScreen.storyboard */; };
+		18AF25941E09501A005C9158 /* NKPullingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AF25931E09501A005C9158 /* NKPullingViewModel.swift */; };
+		18AF25981E095CE8005C9158 /* NKPullingReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AF25971E095CE8005C9158 /* NKPullingReactor.swift */; };
 		18CD79CE1E004D500078E694 /* NKColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CD79CD1E004D500078E694 /* NKColor.swift */; };
 		18CD79D01E004E1E0078E694 /* NKCollectionViewCellConfigurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CD79CF1E004E1E0078E694 /* NKCollectionViewCellConfigurable.swift */; };
 		18CE80761D959A2800D510E4 /* UIView+Injected.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CE80751D959A2800D510E4 /* UIView+Injected.swift */; };
@@ -155,7 +156,6 @@
 		183D0DA81D82ADCC0084754E /* TestKeyboardAutoScroll.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestKeyboardAutoScroll.swift; sourceTree = "<group>"; };
 		183D0DAB1D82BF360084754E /* UIScrollView+AutoScrolling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIScrollView+AutoScrolling.swift"; sourceTree = "<group>"; };
 		183D0DAE1D8505930084754E /* NKLocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKLocationManager.swift; sourceTree = "<group>"; };
-		183D0DB01D855D050084754E /* NKPullingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKPullingViewController.swift; sourceTree = "<group>"; };
 		183D0DB41D8595E50084754E /* OneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OneViewController.swift; sourceTree = "<group>"; };
 		183D0DBA1D86472E0084754E /* UIView+Gesture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Gesture.swift"; sourceTree = "<group>"; };
 		183F9B251DC87C0F00D9C7B9 /* Optional+NKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Optional+NKit.swift"; sourceTree = "<group>"; };
@@ -189,6 +189,8 @@
 		18A1DACC1D6F167E00D566C2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		18A1DACF1D6F167E00D566C2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		18A1DAD11D6F167E00D566C2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		18AF25931E09501A005C9158 /* NKPullingViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKPullingViewModel.swift; sourceTree = "<group>"; };
+		18AF25971E095CE8005C9158 /* NKPullingReactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKPullingReactor.swift; sourceTree = "<group>"; };
 		18CD79CD1E004D500078E694 /* NKColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKColor.swift; sourceTree = "<group>"; };
 		18CD79CF1E004E1E0078E694 /* NKCollectionViewCellConfigurable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKCollectionViewCellConfigurable.swift; sourceTree = "<group>"; };
 		18CE80751D959A2800D510E4 /* UIView+Injected.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Injected.swift"; sourceTree = "<group>"; };
@@ -279,6 +281,7 @@
 		1828D0881D6F1799007D0933 /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
+				18AF25921E09501A005C9158 /* Pull */,
 				1828D0891D6F1799007D0933 /* NKBaseView.swift */,
 				1828D08A1D6F1799007D0933 /* NKCircleImageView.swift */,
 				1828D08B1D6F1799007D0933 /* NKContainerView.swift */,
@@ -289,7 +292,6 @@
 				1828D0901D6F1799007D0933 /* NKPopupView.swift */,
 				1828D0911D6F1799007D0933 /* NKTextField.swift */,
 				1828D0921D6F1799007D0933 /* NKTextView.swift */,
-				183D0DB01D855D050084754E /* NKPullingViewController.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -549,6 +551,15 @@
 			path = NKit;
 			sourceTree = "<group>";
 		};
+		18AF25921E09501A005C9158 /* Pull */ = {
+			isa = PBXGroup;
+			children = (
+				18AF25931E09501A005C9158 /* NKPullingViewModel.swift */,
+				18AF25971E095CE8005C9158 /* NKPullingReactor.swift */,
+			);
+			path = Pull;
+			sourceTree = "<group>";
+		};
 		18DD40061D87B17C004B420E /* Transition */ = {
 			isa = PBXGroup;
 			children = (
@@ -700,7 +711,6 @@
 				1828D0E71D6F1799007D0933 /* UIViewController+ChildViewController.swift in Sources */,
 				1828D0CE1D6F1799007D0933 /* NKPopupView.swift in Sources */,
 				189619621D9908E4006BBA0D /* Int+Random.swift in Sources */,
-				183D0DB11D855D050084754E /* NKPullingViewController.swift in Sources */,
 				1828D0C51D6F1799007D0933 /* Array+BinaryInsert.swift in Sources */,
 				1828D0C81D6F1799007D0933 /* NKCircleImageView.swift in Sources */,
 				1828D0CA1D6F1799007D0933 /* NKCornerView.swift in Sources */,
@@ -719,6 +729,7 @@
 				1828D0CC1D6F1799007D0933 /* NKGradientView.swift in Sources */,
 				1828D0EE1D6F1799007D0933 /* NKScreenSize.swift in Sources */,
 				18DD40161D87FB7E004B420E /* NKPresentationTransition.swift in Sources */,
+				18AF25941E09501A005C9158 /* NKPullingViewModel.swift in Sources */,
 				18CD79CE1E004D500078E694 /* NKColor.swift in Sources */,
 				1828D0C61D6F1799007D0933 /* CALayer+Closure.swift in Sources */,
 				188474EC1D93C2FE009F4506 /* NKPresentationController.swift in Sources */,
@@ -776,6 +787,7 @@
 				1828D0CB1D6F1799007D0933 /* NKDrawView.swift in Sources */,
 				1828D0CF1D6F1799007D0933 /* NKTextField.swift in Sources */,
 				1828D0D61D6F1799007D0933 /* UIAlertController+Extension.swift in Sources */,
+				18AF25981E095CE8005C9158 /* NKPullingReactor.swift in Sources */,
 				1828D0DF1D6F1799007D0933 /* UILabel+Extension.swift in Sources */,
 				183D0DAF1D8505930084754E /* NKLocationManager.swift in Sources */,
 				1828D0E31D6F1799007D0933 /* UIView+Frame.swift in Sources */,

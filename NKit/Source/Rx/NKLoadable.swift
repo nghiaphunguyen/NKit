@@ -8,15 +8,16 @@
 
 import Foundation
 import RxSwift
+import NRxSwift
 
 public protocol NKLoadable {
     var rx_isLoading: Variable<Bool> {get}
+    var isLoading: NKVariable<Bool> {get}
+    
     var rx_error: Variable<Error?> {get}
+    var error: NKVariable<Error?> {get}
     
-    var errorObservable: Observable<Error> {get}
-    var isLoadingObservable: Observable<Bool> {get}
-    
-    var canLoadDataObservable: Observable<Void> {get}
+    func clearError()
     
     func setupBeforeLoading()
     func resetAfterDone()
@@ -26,7 +27,11 @@ public protocol NKLoadable {
 
 public extension NKLoadable {
     
-    func load<T>(_ observable: Observable<T>) -> Observable<T> {
+    public func clearError() {
+        self.rx_error.value = nil
+    }
+    
+    public func load<T>(_ observable: Observable<T>) -> Observable<T> {
         return self.canLoadDataObservable
             .flatMapLatest({_ in observable})
             .nk_doOnNextOrError({self.resetAfterDone()})
@@ -41,18 +46,19 @@ public extension NKLoadable {
         self.rx_isLoading.value = false
     }
     
-    public var isLoadingObservable: Observable<Bool> {
-        return self.rx_isLoading.asObservable()
+    public var isLoadingObservable: NKVariable<Bool> {
+        return self.rx_isLoading.nk_variable
     }
     
-    var errorObservable: Observable<Error> {
-        return self.rx_error.asObservable().nk_unwrap()
+    public var errorObservable: NKVariable<Error?> {
+        return self.rx_error.nk_variable
     }
     
-    public var canLoadDataObservable: Observable<Void> {
-        return self.isLoadingObservable
-            .take(1)
-            .filter({$0 == false})
-            .map {_ in return}
+    private var canLoadDataObservable: Observable<Void> {
+        return Observable.nk_baseCreate({ (observer) in
+            if self.rx_isLoading.value == true {
+                observer.nk_setValue()
+            }
+        })
     }
 }
