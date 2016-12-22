@@ -33,6 +33,7 @@ public extension NKLoadable {
     
     public func load<T>(_ observable: Observable<T>) -> Observable<T> {
         return self.canLoadDataObservable
+            .do(onNext: {self.setupBeforeLoading()})
             .flatMapLatest({_ in observable})
             .nk_doOnNextOrError({self.resetAfterDone()})
             .do(onError: {self.rx_error.value = $0})
