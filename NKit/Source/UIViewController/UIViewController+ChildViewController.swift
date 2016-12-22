@@ -9,16 +9,9 @@
 import UIKit
 
 public extension UIViewController {
-    public func nk_addChildViewController(controller: UIViewController, frame: CGRect) {
-        self.addChildViewController(controller)
-        controller.view.frame = frame
-        self.view.addSubview(controller.view)
-        
-        controller.didMove(toParentViewController: self)
-    }
-    
     public func nk_addChildViewController(controller: UIViewController) {
-        self.nk_addChildViewController(controller: controller, frame: self.view.bounds)
+        self.addChildViewController(controller)
+        controller.didMove(toParentViewController: self)
     }
     
     public func nk_removeFromParentViewController() {
