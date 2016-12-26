@@ -8,6 +8,35 @@
 
 import UIKit
 
+protocol Check {
+    associatedtype State
+    associatedtype Action
+    
+    var state: State {get}
+    var action: Action {get}
+}
+
+protocol CheckState {
+    var a: Int {get}
+    
+}
+
+protocol CheckAction {
+    
+}
+
+
+class CheckReactor<A, B> {
+    typealias State = A
+    typealias Action = B
+
+    var state: State!
+    var action: Action!
+}
+
+let b = CheckReactor<CheckState, CheckAction>()
+
+
 public extension UIViewController {
     public func nk_addChildViewController(controller: UIViewController) {
         self.addChildViewController(controller)
