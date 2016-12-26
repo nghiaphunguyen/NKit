@@ -81,7 +81,7 @@ private extension NKLayoutTestable where Self: NKLayoutModelable {
             }
         }
         
-        controller.view.nk_addSubview(UIStackView.nk_row()) {
+        controller.view.nk_addSubview(NKStackView.nk_row()) {
             $0.backgroundColor = UIColor.gray
             $0.alpha = 0.3
             
