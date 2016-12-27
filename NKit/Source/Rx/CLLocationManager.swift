@@ -13,6 +13,10 @@ import CoreLocation
 
 public extension CLLocationManager {
     public var rx_didUpdateLocations: Observable<[CLLocation]> {
-        return self.rx.methodInvoked(#selector(CLLocationManagerDelegate.locationManager(_:didUpdateLocations:))).map { $0.map {$0 as! CLLocation} }
+        return self.rx.methodInvoked(#selector(CLLocationManagerDelegate.locationManager(_:didUpdateLocations:))).map { $0[1] as! [CLLocation]}
+    }
+    
+    public var rx_changeAuthorizationStatus: Observable<CLAuthorizationStatus> {
+        return self.rx.methodInvoked(#selector(CLLocationManagerDelegate.locationManager(_:didChangeAuthorization:))).map { $0[1] as! CLAuthorizationStatus }
     }
 }

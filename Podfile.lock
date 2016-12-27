@@ -1,6 +1,6 @@
 PODS:
   - NATTableView (3.0.3)
-  - NRxSwift (1.0.14):
+  - NRxSwift (1.0.16):
     - RxSwift
   - RxCocoa (3.0.0):
     - RxSwift (~> 3.0)
@@ -15,7 +15,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   NATTableView: f61f7e3d85270134734a059f6eb4f106eed7930c
-  NRxSwift: d38051092d051593e5af0bfd58ee875dd1a643e3
+  NRxSwift: e29eeafc582a1acc5ff4c199698df0f77001e123
   RxCocoa: 0a2f3ae381cf16f4021a4cee7a4420f83058a965
   RxSwift: af5680055c4ad04480189c52d28385b1029493a6
   SnapKit: 2e456761aa92d4d4067a7a5594c18769d451a8ad

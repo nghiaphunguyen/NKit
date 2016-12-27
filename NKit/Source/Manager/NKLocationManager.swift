@@ -9,151 +9,175 @@
 import Foundation
 import CoreLocation
 import RxSwift
+import NRxSwift
 
-public final class NKLocationManager: AnyObject {
-    
-    public enum NKError: Error {
-        case Unauthorized
-        case GPSOff
+public protocol NKLocationState {
+    var status: NKVariable<NKLocationStatus> {get}
+    var currentLocations: NKVariable<[CLLocation]> {get}
+}
+
+public extension NKLocationState {
+    public var currentLocation: NKVariable<CLLocation?> {
+        return self.currentLocations.map { $0.first }
     }
+}
+
+public protocol NKLocationAction {
+    func authorize()
+    func getCurrentLocations() -> Observable<[CLLocation]>
+}
+
+public extension NKLocationAction {
+    public func getCurrentLocation() -> Observable<CLLocation?> {
+        return self.getCurrentLocations().map {$0.first}
+    }
+}
+
+public protocol NKLocationReactable {
+    var state: NKLocationState {get}
+    var action: NKLocationAction {get}
+}
+
+public enum NKLocationStatus {
+    case authorized
+    case denied
+    case notDetermined
+    case off
+}
+
+public final class NKLocationManager: NSObject, NKLocationReactable, NKLocationAction, NKLocationState {
+
     
-    public enum Status {
-        case Authorized
-        case Denied
-        case NotDetermined
-        case GPSOff
+    public enum Err: Error {
+        case unauthorized
     }
     
     public enum AuthorizeType {
-        case WhenInUse
-        case Always
+        case whenInUse
+        case always
         
         var status: CLAuthorizationStatus {
             switch self {
-            case .WhenInUse:
+            case .whenInUse:
                 return .authorizedWhenInUse
-            case .Always:
+            case .always:
                 return .authorizedAlways
-            }
-        }
-        
-        func requestAuthorize(locationManager: CLLocationManager) -> Void {
-            switch self {
-            case .WhenInUse:
-                locationManager.requestWhenInUseAuthorization()
-            case .Always:
-                locationManager.requestAlwaysAuthorization()
             }
         }
     }
     
-    lazy var locationManager: CLLocationManager = {
+    fileprivate lazy var locationManager: CLLocationManager = {
         let manager = CLLocationManager()
         manager.distanceFilter = kCLLocationAccuracyBest
         return manager
     }()
     
     
-    var latestLocation: CLLocation? = nil
+    fileprivate var rx_currentLocations = Variable<[CLLocation]>([])
+    fileprivate lazy var rx_status: Variable<NKLocationStatus> = {
+       return Variable<NKLocationStatus>(self.authStatus)
+    }()
     
     public private(set) var type: AuthorizeType
-    public private(set) var authorizeTimeout: TimeInterval
     public private(set) var locationTimeout: TimeInterval
     
-    public init(type: AuthorizeType = .WhenInUse, authorizeTimeout: TimeInterval = 5, locationTimeout: TimeInterval = 5) {
+    public init(type: AuthorizeType = .whenInUse, locationTimeout: TimeInterval = 5) {
         self.type = type
-        self.authorizeTimeout = authorizeTimeout
         self.locationTimeout = locationTimeout
+        
+        super.init()
+        
+        self.locationManager.rx_changeAuthorizationStatus.map { (status) -> NKLocationStatus in
+            switch status {
+            case .denied, .restricted:
+                return NKLocationStatus.denied
+            case .notDetermined:
+                return NKLocationStatus.notDetermined
+            case .authorizedAlways:
+                return self.type == .always ? NKLocationStatus.authorized : NKLocationStatus.denied
+            case .authorizedWhenInUse:
+                return self.type == .whenInUse ? NKLocationStatus.authorized : NKLocationStatus.denied
+            }
+            
+        }.bindTo(self.rx_status).addDisposableTo(self.nk_disposeBag)
     }
 }
 
 public extension NKLocationManager {
-    public var nearestLocation: CLLocation? {
-        if self.latestLocation == nil {
-            return self.locationManager.location
-        }
-        
-        return self.latestLocation
+    public var status: NKVariable<NKLocationStatus> {
+        return self.rx_status.nk_variable
     }
     
-    public var isAuthorized: Bool {
-        return CLLocationManager.authorizationStatus() == self.type.status
+    public var currentLocations: NKVariable<[CLLocation]> {
+        return self.rx_currentLocations.nk_variable
     }
     
-    public var isGPSEnabled: Bool {
-        return CLLocationManager.locationServicesEnabled()
+    public var state: NKLocationState {
+        return self
     }
     
-    public var status: Status {
-        if self.isGPSEnabled == false {
-            return .GPSOff
-        }
-        
-        if self.isAuthorized {
-            return .Authorized
-        }
-        
-        if CLLocationManager.authorizationStatus() == .denied {
-            return .Denied
-        }
-        
-        return .NotDetermined
+    public var action: NKLocationAction {
+        return self
     }
     
-    public var currentLocations: Observable<[CLLocation]> {
-        
-        return self.checkGPS()
-            .flatMapLatest({_ in return self.checkAuthorize() })
+    public func getCurrentLocations() -> Observable<[CLLocation]> {
+        return self.checkAuthorize()
             .do(onNext: {self.locationManager.startUpdatingLocation()})
             .flatMapLatest({ _ in return self.locationManager.rx_didUpdateLocations.timeout(self.locationTimeout, scheduler: MainScheduler.instance)})
-            .do(onNext: {self.latestLocation = $0.first})
+            .do(onNext: {self.rx_currentLocations.value = $0})
             .nk_doOnNextOrError({self.locationManager.stopUpdatingLocation()})
     }
     
-    public var currentLocation: Observable<CLLocation> {
-        return self.currentLocations.map {$0.first}.nk_unwrap()
-    }
-    
-    public func authorize() -> Observable<Void> {
-        return Observable<Void>.nk_baseCreate { (observer) in
-            if self.isAuthorized {
-                observer.nk_setValue()
-                return
-            }
-            
-            self.type.requestAuthorize(locationManager: self.locationManager)
-            
-            nk_delay(self.authorizeTimeout) {
-                if self.isAuthorized {
-                    observer.nk_setValue()
-                } else {
-                    observer.nk_setError(NKError.Unauthorized)
-                }
-            }
+    public func authorize() {
+        if self.status.value == .notDetermined {
+            self.requestAuthorize()
         }
     }
 }
 
-private extension NKLocationManager {
-    func checkGPS() -> Observable<Void> {
-        return Observable<Void>.nk_baseCreate({ (observer) in
-            guard self.isGPSEnabled else {
-                observer.nk_setError(NKError.GPSOff)
-                return
-            }
-            
-            observer.nk_setValue()
-        })
+fileprivate extension NKLocationManager {
+    
+    var isAuthorized: Bool {
+        return CLLocationManager.authorizationStatus() == self.type.status
+    }
+    
+    var isGPSEnabled: Bool {
+        return CLLocationManager.locationServicesEnabled()
+    }
+    
+    var authStatus: NKLocationStatus {
+        if self.isGPSEnabled == false {
+            return .off
+        }
+        
+        if self.isAuthorized {
+            return .authorized
+        }
+        
+        if CLLocationManager.authorizationStatus() == .denied {
+            return .denied
+        }
+        
+        return .notDetermined
+    }
+    
+    func requestAuthorize(){
+        switch self.type {
+        case .whenInUse:
+            locationManager.requestWhenInUseAuthorization()
+        case .always:
+            locationManager.requestAlwaysAuthorization()
+        }
     }
     
     func checkAuthorize() -> Observable<Void> {
         return Observable<Void>.nk_baseCreate { (observer) in
-            if self.isAuthorized {
-                observer.nk_setError(NKError.Unauthorized)
+            if self.status.value == .authorized {
+                observer.nk_setValue()
                 return
             }
             
-            observer.nk_setValue()
+            observer.nk_setError(Err.unauthorized)
         }
     }
 }
