@@ -74,9 +74,7 @@ public final class NKLocationManager: NSObject, NKLocationReactable, NKLocationA
     
     
     fileprivate var rx_currentLocations = Variable<[CLLocation]>([])
-    fileprivate lazy var rx_status: Variable<NKLocationStatus> = {
-       return Variable<NKLocationStatus>(self.authStatus)
-    }()
+    fileprivate var rx_status: Variable<NKLocationStatus>!
     
     public private(set) var type: AuthorizeType
     public private(set) var locationTimeout: TimeInterval
@@ -84,8 +82,9 @@ public final class NKLocationManager: NSObject, NKLocationReactable, NKLocationA
     public init(type: AuthorizeType = .whenInUse, locationTimeout: TimeInterval = 5) {
         self.type = type
         self.locationTimeout = locationTimeout
-        
         super.init()
+        
+        self.rx_status = Variable<NKLocationStatus>(self.authStatus)
         
         self.locationManager.rx_changeAuthorizationStatus.map { (status) -> NKLocationStatus in
             switch status {
