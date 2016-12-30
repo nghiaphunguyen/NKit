@@ -12,11 +12,15 @@ import RxSwift
 import CoreLocation
 
 public extension CLLocationManager {
+    public var rx_delegate: DelegateProxy {
+        return RxCLLocationManagerDelegate.proxyForObject(self)
+    }
+    
     public var rx_didUpdateLocations: Observable<[CLLocation]> {
-        return self.rx.methodInvoked(#selector(CLLocationManagerDelegate.locationManager(_:didUpdateLocations:))).map { $0[1] as! [CLLocation]}
+        return self.rx_delegate.methodInvoked(#selector(CLLocationManagerDelegate.locationManager(_:didUpdateLocations:))).map { $0[1] as? [CLLocation]}.nk_unwrap()
     }
     
     public var rx_changeAuthorizationStatus: Observable<CLAuthorizationStatus> {
-        return self.rx.methodInvoked(#selector(CLLocationManagerDelegate.locationManager(_:didChangeAuthorization:))).map { $0[1] as! CLAuthorizationStatus }
+        return self.rx_delegate.methodInvoked(#selector(CLLocationManagerDelegate.locationManager(_:didChangeAuthorization:))).map { ($0[1] as? Int32).flatMap {CLAuthorizationStatus.init(rawValue: $0)} }.nk_unwrap()
     }
 }

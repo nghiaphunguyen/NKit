@@ -10,6 +10,7 @@ import Foundation
 import CoreLocation
 import RxSwift
 import NRxSwift
+import RxCocoa
 
 public protocol NKLocationState {
     var status: NKVariable<NKLocationStatus> {get}
@@ -45,6 +46,16 @@ public enum NKLocationStatus {
     case off
 }
 
+public final class RxCLLocationManagerDelegate: DelegateProxy, DelegateProxyType, CLLocationManagerDelegate {
+    public static func currentDelegateFor(_ object: AnyObject) -> AnyObject? {
+        return (object as? CLLocationManager)?.delegate
+    }
+    
+    public static func setCurrentDelegate(_ delegate: AnyObject?, toObject object: AnyObject) {
+        (object as? CLLocationManager)?.delegate = delegate as? CLLocationManagerDelegate
+    }
+}
+
 public final class NKLocationManager: NSObject, NKLocationReactable, NKLocationAction, NKLocationState {
 
     
@@ -74,7 +85,9 @@ public final class NKLocationManager: NSObject, NKLocationReactable, NKLocationA
     
     
     fileprivate var rx_currentLocations = Variable<[CLLocation]>([])
-    fileprivate var rx_status: Variable<NKLocationStatus>!
+    fileprivate lazy var rx_status: Variable<NKLocationStatus> = {
+        return Variable<NKLocationStatus>(self.authStatus)
+    }()
     
     public private(set) var type: AuthorizeType
     public private(set) var locationTimeout: TimeInterval
@@ -83,8 +96,6 @@ public final class NKLocationManager: NSObject, NKLocationReactable, NKLocationA
         self.type = type
         self.locationTimeout = locationTimeout
         super.init()
-        
-        self.rx_status = Variable<NKLocationStatus>(self.authStatus)
         
         self.locationManager.rx_changeAuthorizationStatus.map { (status) -> NKLocationStatus in
             switch status {
