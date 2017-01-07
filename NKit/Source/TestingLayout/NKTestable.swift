@@ -37,7 +37,7 @@ public extension NKLayoutTestable where Self: UIView {
         if self.size == CGSize.zero {
             view.snp.makeConstraints({ (make) in
                 make.top.equalToSuperview().offset(offset)
-                make.leading.trailing.equalToSuperview()
+                make.leading.equalToSuperview()
             })
         } else {
             view.snp.makeConstraints({ (make) in
