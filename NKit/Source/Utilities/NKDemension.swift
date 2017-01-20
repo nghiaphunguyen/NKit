@@ -8,13 +8,13 @@
 
 import Foundation
 
-public struct NKDimension: OptionSet {
-    public let rawValue: Int
-    
-    public static let Width = NKDimension(rawValue: 1)
-    public static let Height = NKDimension(rawValue: 2)
-    
-    public init(rawValue: Int) {
-        self.rawValue = rawValue
-    }
-}
+//public struct NKDimension: OptionSet {
+//    public let rawValue: Int
+//    
+//    public static let Width = NKDimension(rawValue: 1)
+//    public static let Height = NKDimension(rawValue: 2)
+//    
+//    public init(rawValue: Int) {
+//        self.rawValue = rawValue
+//    }
+//}

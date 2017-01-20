@@ -9,6 +9,8 @@
 import UIKit
 import RxSwift
 
+public let NKCollectionViewAutoDimension = CGSize.init(width: 1, height: 1)
+
 public protocol NKCollectionViewDataSource: class {
     func itemsForCollectionView(collectionView: NKCollectionView) -> [[Any]]
 }
@@ -25,7 +27,6 @@ open class NKCollectionView: UICollectionView {
         case ItemSize(CGSize)
         case ScrollDirection(UICollectionViewScrollDirection)
         case SectionInset(UIEdgeInsets)
-        case AutoFitCell(CGSize, NKDimension)
     }
     
     private lazy var preHeight: CGFloat? = nil
@@ -35,7 +36,7 @@ open class NKCollectionView: UICollectionView {
         flowLayout.minimumLineSpacing = 0
         flowLayout.minimumInteritemSpacing = 0
         flowLayout.sectionInset = UIEdgeInsets.zero
-        var dimension: NKDimension? = nil
+        flowLayout.estimatedItemSize = NKCollectionViewAutoDimension
         for option in options {
             switch option {
             case .LineSpace(let value):
@@ -43,28 +44,23 @@ open class NKCollectionView: UICollectionView {
             case .InterItemSpacing(let value):
                 flowLayout.minimumInteritemSpacing = value
             case .ItemSize(let value):
-                flowLayout.itemSize = value
+                if value == NKCollectionViewAutoDimension {
+                    flowLayout.estimatedItemSize = NKCollectionViewAutoDimension
+                } else {
+                    flowLayout.estimatedItemSize = .zero
+                    flowLayout.itemSize = value
+                }
             case .ScrollDirection(let value):
                 flowLayout.scrollDirection = value
             case .SectionInset(let value):
                 flowLayout.sectionInset = value
-            case .AutoFitCell(let size, let value):
-                flowLayout.estimatedItemSize = size
-                dimension = value
             }
         }
         
         self.init(frame: CGRect.zero, collectionViewLayout: flowLayout)
-        self.autoFitCellDimension = dimension
     }
     
     open var isHeightToFit = false {
-        didSet {
-            self.setNeedsLayout()
-        }
-    }
-    
-    open var autoFitCellDimension: NKDimension? = nil {
         didSet {
             self.setNeedsLayout()
         }
@@ -199,9 +195,6 @@ extension NKCollectionView: UICollectionViewDataSource {
         }
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: mapping.reuseIdentifier, for: indexPath)
-        if let cell = cell as? NKBaseCollectionViewCell {
-            cell.autoFitDimension = self.autoFitCellDimension
-        }
         
         mapping.config(collectionView: self, cell: cell, model: model, indexPath: indexPath)
         

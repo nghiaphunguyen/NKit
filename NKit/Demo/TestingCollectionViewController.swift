@@ -13,8 +13,7 @@ final class TestingCollectionViewController: UIViewController {
     let model: [String] = ["Nghia" * 10, "Nghia" * 15, "Nghia" * 20, "Nghia" * 25, "Nghia" * 30, "Nghia" * 35, "Nghia" * 100, "Nghia" * 100, "Nghia" * 100, "Nghia" * 100, "Nghia" * 100, "Nghia" * 100]
     
     let collectionView: NKCollectionView = {
-       let collectionView = NKCollectionView(options: [
-        .AutoFitCell(CGSize(width: NKScreenSize.Current.width, height: 1),  .Height)
+       let collectionView = NKCollectionView(options: [.ItemSize(NKCollectionViewAutoDimension)
         ])
         
         collectionView.registerView(CollectionViewCell.self)
