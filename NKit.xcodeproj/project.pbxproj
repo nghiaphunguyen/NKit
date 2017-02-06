@@ -111,6 +111,8 @@
 		4271A8C71E46D35600C686BB /* NKBaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4271A8C61E46D35600C686BB /* NKBaseCollectionViewCell.swift */; };
 		4271A8C91E46D3E100C686BB /* Dwifft.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4271A8C81E46D3E100C686BB /* Dwifft.swift */; };
 		4271A8CB1E46E40500C686BB /* NKCollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4271A8CA1E46E40500C686BB /* NKCollectionViewDelegate.swift */; };
+		4271A8E11E48AA4300C686BB /* Dwifft+BasicType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4271A8E01E48AA4300C686BB /* Dwifft+BasicType.swift */; };
+		4271A8E31E48AAC800C686BB /* String+Number.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4271A8E21E48AAC800C686BB /* String+Number.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -221,6 +223,8 @@
 		4271A8C61E46D35600C686BB /* NKBaseCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKBaseCollectionViewCell.swift; sourceTree = "<group>"; };
 		4271A8C81E46D3E100C686BB /* Dwifft.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dwifft.swift; sourceTree = "<group>"; };
 		4271A8CA1E46E40500C686BB /* NKCollectionViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKCollectionViewDelegate.swift; sourceTree = "<group>"; };
+		4271A8E01E48AA4300C686BB /* Dwifft+BasicType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dwifft+BasicType.swift"; sourceTree = "<group>"; };
+		4271A8E21E48AAC800C686BB /* String+Number.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Number.swift"; sourceTree = "<group>"; };
 		A9DD82716755667F163D7FDC /* Pods_NKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6F73E920383493132F39FDD /* Pods-NKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NKit.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NKit/Pods-NKit.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -441,6 +445,7 @@
 				186058C51D9E7AA00079CE63 /* NKFont.swift */,
 				183F9B251DC87C0F00D9C7B9 /* Optional+NKit.swift */,
 				18CD79CD1E004D500078E694 /* NKColor.swift */,
+				4271A8E21E48AAC800C686BB /* String+Number.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -595,6 +600,7 @@
 				4271A8B91E46D23700C686BB /* NKIdentifier.swift */,
 				4271A8BA1E46D23700C686BB /* NKReusableIdentifier.swift */,
 				4271A8CA1E46E40500C686BB /* NKCollectionViewDelegate.swift */,
+				4271A8E01E48AA4300C686BB /* Dwifft+BasicType.swift */,
 			);
 			path = NKCollectionView;
 			sourceTree = "<group>";
@@ -732,6 +738,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4271A8E11E48AA4300C686BB /* Dwifft+BasicType.swift in Sources */,
 				1821A5E81D9B63E6004C8FAC /* NKConstraints.swift in Sources */,
 				1828D0ED1D6F1799007D0933 /* NKConstants.swift in Sources */,
 				188474F41D93D570009F4506 /* NSNotificationCenter+NRx.swift in Sources */,
@@ -774,6 +781,7 @@
 				1828D0D41D6F1799007D0933 /* NKTableView.swift in Sources */,
 				189C3BE91D7092BE0057F068 /* SecondViewController.swift in Sources */,
 				4271A8BC1E46D23700C686BB /* NKClassable.swift in Sources */,
+				4271A8E31E48AAC800C686BB /* String+Number.swift in Sources */,
 				18478A191DF9B4570077E457 /* NKStackView.swift in Sources */,
 				189DF1C01D97F22D00266E12 /* NKTestable.swift in Sources */,
 				1828D0EA1D6F1799007D0933 /* UIViewController+NavigationBar.swift in Sources */,
