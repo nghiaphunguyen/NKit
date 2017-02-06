@@ -39,13 +39,7 @@ open class NKCollectionView: UICollectionView {
     }
     
     public weak var nk_delegate: NKCollectionViewDelegate? = nil
-    
-    public convenience init(sectionOptions: [[NKBaseCollectionSectionOption]]) {
-        self.init(frame: .zero, collectionViewLayout: UICollectionViewLayout())
-        
-        self.addSections(sectionOptions.map { NKBaseCollectionSection.init(options: $0) })
-    }
-    
+
     public func addSection(_ section: NKCollectionSection) {
         self.sections.append(section)
         
@@ -122,6 +116,13 @@ open class NKCollectionView: UICollectionView {
         let configuration = NKCollectionViewCellWrapperConfiguration<T>(reuseIdentifier: identifier)
         self.register(cellType, forCellWithReuseIdentifier: identifier)
         self.cellConfigurations.append(configuration)
+    }
+    
+    //MARK: Constructor
+    public convenience init(sectionOptions: [[NKBaseCollectionSectionOption]]) {
+        self.init(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+        
+        self.addSections(sectionOptions.map { NKBaseCollectionSection.init(options: $0) })
     }
     
     public override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {

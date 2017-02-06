@@ -8,10 +8,6 @@
 
 import UIKit
 
-extension UICollectionViewCell {
-    
-}
-
 open class NKBaseCollectionViewCell: UICollectionViewCell {
     public override init(frame: CGRect) {
         super.init(frame: frame)

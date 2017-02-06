@@ -113,6 +113,7 @@
 		4271A8CB1E46E40500C686BB /* NKCollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4271A8CA1E46E40500C686BB /* NKCollectionViewDelegate.swift */; };
 		4271A8E11E48AA4300C686BB /* Dwifft+BasicType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4271A8E01E48AA4300C686BB /* Dwifft+BasicType.swift */; };
 		4271A8E31E48AAC800C686BB /* String+Number.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4271A8E21E48AAC800C686BB /* String+Number.swift */; };
+		4271A8E51E48D12100C686BB /* CollectionViewTesting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4271A8E41E48D12100C686BB /* CollectionViewTesting.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -225,6 +226,7 @@
 		4271A8CA1E46E40500C686BB /* NKCollectionViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKCollectionViewDelegate.swift; sourceTree = "<group>"; };
 		4271A8E01E48AA4300C686BB /* Dwifft+BasicType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dwifft+BasicType.swift"; sourceTree = "<group>"; };
 		4271A8E21E48AAC800C686BB /* String+Number.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Number.swift"; sourceTree = "<group>"; };
+		4271A8E41E48D12100C686BB /* CollectionViewTesting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewTesting.swift; sourceTree = "<group>"; };
 		A9DD82716755667F163D7FDC /* Pods_NKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6F73E920383493132F39FDD /* Pods-NKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NKit.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NKit/Pods-NKit.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -458,6 +460,7 @@
 				183D0DB41D8595E50084754E /* OneViewController.swift */,
 				18DD40001D870055004B420E /* TwoViewController.swift */,
 				1865A18D1D9987F6005D4C4A /* ThreeViewController.swift */,
+				4271A8E41E48D12100C686BB /* CollectionViewTesting.swift */,
 			);
 			path = Demo;
 			sourceTree = "<group>";
@@ -803,6 +806,7 @@
 				1828D0E11D6F1799007D0933 /* UIView+Animation.swift in Sources */,
 				189DF1BF1D97F22D00266E12 /* NKLayoutTester.swift in Sources */,
 				18FBB00A1E00E3110055C606 /* UIViewController+Analytics.swift in Sources */,
+				4271A8E51E48D12100C686BB /* CollectionViewTesting.swift in Sources */,
 				1821A5E61D9ADABC004C8FAC /* Mirror+NKit.swift in Sources */,
 				183F9B261DC87C0F00D9C7B9 /* Optional+NKit.swift in Sources */,
 				186058C41D9E7A2F0079CE63 /* NKImage.swift in Sources */,
