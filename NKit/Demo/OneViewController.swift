@@ -40,7 +40,7 @@ class OneViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        print("oneViewWillAppear with navigationItem=\(self.navigationController?.navigationItem) leftButton=\(self.navigationController?.navigationItem.leftBarButtonItem)")
+        //print("oneViewWillAppear with navigationItem=\(self.navigationController?.navigationItem) leftButton=\(self.navigationController?.navigationItem.leftBarButtonItem)")
         self.nk_setBarTintColor(UIColor.green).nk_setRightBarButton("TwoView", selector: #selector(OneViewController.gotoTwoView))
         
         self.nk_setBackBarButton(text: "", color: nil)

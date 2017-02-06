@@ -28,7 +28,7 @@ class ThreeViewController: UIViewController {
         super.viewDidLoad()
         
         self.button.rx.tap.bindNext {
-            print("ok")
+            //print("ok")
             }.addDisposableTo(self.nk_disposeBag)
     }
 }

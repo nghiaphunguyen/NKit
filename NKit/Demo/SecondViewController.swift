@@ -27,7 +27,7 @@ class SecondViewController: UIViewController {
         }
         
         self.button.rx.tap.bindNext {
-            self.navigationController?.pushViewController(TestingCollectionViewController(), animated: true)
+            self.navigationController?.pushViewController(UICollectionViewController(), animated: true)
         }.addDisposableTo(self.nk_disposeBag)
     }
 }

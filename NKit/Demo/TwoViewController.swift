@@ -67,7 +67,7 @@ final class TwoViewController: UIViewController {
         
         self.nk_setBarTintColor(UIColor.clear).nk_setLeftBarButton("back")
         self.navigationItem.hidesBackButton = true
-                print("twoViewWillAppear with navigationItem=\(self.navigationController?.navigationItem) leftButton=\(self.navigationController?.navigationItem.leftBarButtonItem)")
+                //print("twoViewWillAppear with navigationItem=\(self.navigationController?.navigationItem) leftButton=\(self.navigationController?.navigationItem.leftBarButtonItem)")
         self.navigationController?.view.layoutIfNeeded()
     }
     
@@ -87,7 +87,7 @@ final class TwoViewController: UIViewController {
             switch gesture.state {
             case .began, .changed:
                 
-                print("Pan gesture change: \(position.y)")
+                //print("Pan gesture change: \(position.y)")
                 let contentOffsetY = self.scrollView.contentOffset.y
                 let maxContentOffsetY = self.scrollView.contentSize.height - self.scrollView.nk_height
                 
@@ -96,20 +96,20 @@ final class TwoViewController: UIViewController {
                 }
                 
                 if startPan == -1 {
-                    print("Start pop: \(position.y)")
+                    //print("Start pop: \(position.y)")
                     self.popAnimator.startInteractiveTransition()
                     startPan = position.y
                     _ = self.navigationController?.popViewController(animated: true)
                 }
                 
-                print("Change pop interactive percent: \(percent)")
+                //print("Change pop interactive percent: \(percent)")
                 self.popAnimator.updateInteractiveTransition(percentComplete: percent)
             case .cancelled:
-                print("Cancel pan gesture")
+                //print("Cancel pan gesture")
                 self.popAnimator.cancelInteractiveTransition()
                 startPan = -1
             case .ended:
-                print("End pan gesture")
+                //print("End pan gesture")
                 let velocity = gesture.velocity(in: self.view.window!)
                 if percent >= 1 || percent > 0.3 && velocity.y < -100 {
                     self.popAnimator.finishInteractiveTransition()
