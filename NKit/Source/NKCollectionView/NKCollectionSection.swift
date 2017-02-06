@@ -124,6 +124,17 @@ public extension NKCollectionSection {
     }
 }
 
+//MARK: Internal functions
+extension NKCollectionSection {
+    final func update(header: NKCollectionSupplementaryViewConfigurable.Type?) {
+        self.headerConfiguarationType = header
+    }
+    
+    final func update(footer: NKCollectionSupplementaryViewConfigurable.Type?) {
+        self.footerConfiguarationType = footer
+    }
+}
+
 //MARK: private functions
 extension NKCollectionSection {
     func invalidteSupplementaryView(of kind: String, of collectionView: UICollectionView, at section: Int) {

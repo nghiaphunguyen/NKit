@@ -12,7 +12,7 @@ import RxCocoa
 
 open class NKCollectionView: UICollectionView {
     fileprivate var cellConfigurations: [NKCollectionViewCellWrapperConfigurable] = []
-    fileprivate var sections: [NKCollectionSection] = []
+    public fileprivate(set) var sections: [NKCollectionSection] = []
     
     //MARK: paging
     fileprivate var scrollViewWillBeginDraggingSubject = PublishSubject<CGPoint>()
@@ -40,12 +40,26 @@ open class NKCollectionView: UICollectionView {
     
     public weak var nk_delegate: NKCollectionViewDelegate? = nil
     
+    public convenience init(sectionOptions: [[NKBaseCollectionSectionOption]]) {
+        self.init(frame: .zero, collectionViewLayout: UICollectionViewLayout())
+        
+        self.addSections(sectionOptions.map { NKBaseCollectionSection.init(options: $0) })
+    }
+    
     public func addSection(_ section: NKCollectionSection) {
         self.sections.append(section)
+        
+        if let header = section.headerConfiguarationType {
+            self.register(header, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: header.identifier)
+        }
+        
+        if let footer = section.footerConfiguarationType {
+            self.register(footer, forSupplementaryViewOfKind: UICollectionElementKindSectionFooter, withReuseIdentifier: footer.identifier)
+        }
     }
     
     public func addSections(_ sections: [NKCollectionSection]) {
-        self.sections += sections
+        sections.forEach { self.addSection($0)}
     }
     
     public func removeSection(at index: Int) {

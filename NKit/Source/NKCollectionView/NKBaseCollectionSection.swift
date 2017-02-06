@@ -12,14 +12,16 @@ public enum NKBaseCollectionSectionOption {
     case inset(UIEdgeInsets)
     case lineSpacing(CGFloat)
     case interitemSpacing(CGFloat)
+    case header(NKCollectionSupplementaryViewConfigurable.Type)
+    case footer(NKCollectionSupplementaryViewConfigurable.Type)
 }
 
 open class NKBaseCollectionSection: NKCollectionSection {
-    private var inset: UIEdgeInsets = .zero
-    private var minimumLineSpacing: CGFloat = 0
-    private var minimumInteritemSpacing: CGFloat = 0
+    public private(set) var inset: UIEdgeInsets = .zero
+    public private(set) var minimumLineSpacing: CGFloat = 0
+    public private(set) var minimumInteritemSpacing: CGFloat = 0
     
-    init(options: [NKBaseCollectionSectionOption]) {
+    public init(options: [NKBaseCollectionSectionOption]) {
         super.init()
         
         options.forEach {
@@ -30,6 +32,10 @@ open class NKBaseCollectionSection: NKCollectionSection {
                 self.minimumLineSpacing = lineSpacing
             case .interitemSpacing(let interitemSpacing):
                 self.minimumInteritemSpacing = interitemSpacing
+            case .header(let headerType):
+                self.update(header: headerType)
+            case .footer(let footerType):
+                self.update(footer: footerType)
             }
         }
     }
