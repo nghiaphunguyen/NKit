@@ -25,7 +25,7 @@ class CollectionTestingViewController: UIViewController {
             $0.backgroundColor = UIColor.white
         }
             .nk_addSubview(NKCollectionView.init(sectionOptions: [[.inset(UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)), .lineSpacing(10)]]).nk_id(Id.collectionView)) {
-                ($0.collectionViewLayout as! UICollectionViewFlowLayout).estimatedItemSize = CGSize(width: 1, height: 1)
+//                ($0.collectionViewLayout as! UICollectionViewFlowLayout).estimatedItemSize = CGSize(width: 1, height: 1)
                 $0.registerCell(cellType: StringCell.self)
                 
                 $0.backgroundColor = UIColor.white
@@ -48,8 +48,8 @@ class CollectionTestingViewController: UIViewController {
     }
 }
 
-class StringCell: NKBaseCollectionViewCell, NKCollectionViewCellConfigurable {
-    typealias CollectionViewItemModel = String
+class StringCell: NKBaseCollectionViewCell, NKListViewCellConfigurable {
+    typealias ViewCellModel = String
     
     enum Id: String, NKViewIdentifier {
         case label
@@ -68,16 +68,15 @@ class StringCell: NKBaseCollectionViewCell, NKCollectionViewCellConfigurable {
         }
     }
     
-    static func size(with collectionView: UICollectionView, section: NKCollectionSection, model: String) -> CGSize {
-        
+    func collectionView(_ collectionView: NKCollectionView, configWithModel model: String, atIndexPath indexPath: IndexPath) {
+        self.label.text = model
+    }
+    
+    static func size(withCollectionView collectionView: NKCollectionView, section: NKCollectionSection, model: String) -> CGSize {
         let inset = section.inset(with: collectionView)
         let width = collectionView.nk_width - inset.left - inset.right
         
-        return CGSize(width: 1, height: 1)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, configWithModel model: String, atIndexPath indexPath: IndexPath) {
-        self.label.text = model
+        return CGSize(width: width, height: 50)
     }
 }
 

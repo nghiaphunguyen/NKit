@@ -11,8 +11,8 @@ import RxSwift
 import RxCocoa
 
 open class NKCollectionView: UICollectionView {
-    fileprivate var cellConfigurations: [NKCollectionViewCellWrapperConfigurable] = []
-    public fileprivate(set) var sections: [NKCollectionSection] = []
+    internal var cellConfigurations: [NKListViewCellWrapperConfigurable] = []
+    public internal(set) var sections: [NKListSection] = []
     
     //MARK: paging
     fileprivate var scrollViewWillBeginDraggingSubject = PublishSubject<CGPoint>()
@@ -40,84 +40,6 @@ open class NKCollectionView: UICollectionView {
     
     public weak var nk_delegate: NKCollectionViewDelegate? = nil
 
-    public func addSection(_ section: NKCollectionSection) {
-        self.sections.append(section)
-        
-        if let header = section.headerConfiguarationType {
-            self.register(header, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: header.identifier)
-        }
-        
-        if let footer = section.footerConfiguarationType {
-            self.register(footer, forSupplementaryViewOfKind: UICollectionElementKindSectionFooter, withReuseIdentifier: footer.identifier)
-        }
-    }
-    
-    public func addSections(_ sections: [NKCollectionSection]) {
-        sections.forEach { self.addSection($0)}
-    }
-    
-    public func removeSection(at index: Int) {
-        self.sections.remove(at: index)
-    }
-    
-    public func removeAllSections() {
-        self.sections = []
-    }
-    
-    public func updateSection(at section: Int, with models: [NKDiffable]) {
-        let s = self.getSection(with: section)
-        s.update(models: models, for: self, at: section)
-    }
-    
-    public func update(header: NKCollectionSupplementaryViewConfigurable.Type?, at section: Int) {
-        let s = self.getSection(with: section)
-        s.update(header: header, for: self, at: section)
-    }
-    
-    public func update(headerModel model: Any?, at section: Int) {
-        let s = self.getSection(with: section)
-        
-        s.update(headerModel: model, for: self, at: section)
-    }
-    
-    public func update(footer: NKCollectionSupplementaryViewConfigurable.Type?, at section: Int) {
-        let s = self.getSection(with: section)
-        s.update(footer: footer, for: self, at: section)
-    }
-    
-    public func update(footerModel model: Any?, at section: Int) {
-        let s = self.getSection(with: section)
-        
-        s.update(footerModel: model, for: self, at: section)
-    }
-    
-    public func updateFirstSection(withModels models: [NKDiffable]) {
-        self.updateSection(at: 0, with: models)
-    }
-    
-    public func updateFirstSection(withHeader header: NKCollectionSupplementaryViewConfigurable.Type?) {
-        self.update(header: header, at: 0)
-    }
-    
-    public func updateFirstSection(withFooter footer: NKCollectionSupplementaryViewConfigurable.Type?) {
-        self.update(footer: footer, at: 0)
-    }
-    
-    public func updateFirstSection(withHeaderModel headerModel: Any?) {
-        self.update(headerModel: headerModel, at: 0)
-    }
-    
-    public func updateFirstSection(withFooterModel footerModel: Any?) {
-        self.update(footerModel: footerModel, at: 0)
-    }
-    
-    public func registerCell<T: UICollectionViewCell>(cellType: T.Type) where T: NKCollectionViewCellConfigurable {
-        let identifier = cellType.identifier
-        let configuration = NKCollectionViewCellWrapperConfiguration<T>(reuseIdentifier: identifier)
-        self.register(cellType, forCellWithReuseIdentifier: identifier)
-        self.cellConfigurations.append(configuration)
-    }
-    
     //MARK: Constructor
     public convenience init(sectionOptions: [[NKBaseCollectionSectionOption]]) {
         self.init(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
@@ -157,7 +79,7 @@ extension NKCollectionView: UICollectionViewDataSource {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellConfiguration.reuseIdentifier, for: indexPath)
         
-        cellConfiguration.config(collectionView: collectionView, cell: cell, model: model, indexPath: indexPath)
+        cellConfiguration.config(listView: self, cell: cell, model: model, indexPath: indexPath)
         
         //NPN TODO: more config fore cell
         //print("config for cell: \(cellConfiguration.reuseIdentifier) at indexPath: \(indexPath)")
@@ -175,8 +97,8 @@ extension NKCollectionView: UICollectionViewDataSource {
             
             let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerConfigurationType.identifier, for: indexPath)
             
-            if let headerModel = section.headerModel, let header = header as? NKCollectionSupplementaryViewConfigurable {
-                header.collectionView(collectionView, configWithModel: headerModel, at: indexPath)
+            if let headerModel = section.headerModel, let header = header as? NKListSupplementaryViewConfigurable {
+                header.listView(self, configWithModel: headerModel, at: indexPath.section)
             }
             
             //print("setup header: \(headerConfigurationType.identifier) with model: \(section.headerModel)")
@@ -187,8 +109,8 @@ extension NKCollectionView: UICollectionViewDataSource {
             }
             
             let footer = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: footerConfigurationType.identifier, for: indexPath)
-            if let footerModel = section.footerModel, let footer = footer as? NKCollectionSupplementaryViewConfigurable {
-                footer.collectionView(collectionView, configWithModel: footerModel, at: indexPath)
+            if let footerModel = section.footerModel, let footer = footer as? NKListSupplementaryViewConfigurable {
+                footer.listView(self, configWithModel: footerModel, at: indexPath.section)
             }
             
             //print("setup footer: \(footerConfigurationType.identifier) with model: \(section.footerModel)")
@@ -204,24 +126,26 @@ extension NKCollectionView: UICollectionViewDelegateFlowLayout {
         let model = self.getModel(withSection: section, row: indexPath.row)
         let cellConfiguration = self.getCellConfiguration(withModel: model)
         
-        let result = cellConfiguration.size(with: collectionView, section: section, model: model)
+        let result = cellConfiguration.size(with: self, section: section, model: model)
         
-        //print("size of item: \(cellConfiguration.reuseIdentifier) at indexPath:\(indexPath) is: \(result)")
+        print("size of item: \(cellConfiguration.reuseIdentifier) at indexPath:\(indexPath) is: \(result)")
         
-        return result
+        return result.size
     }    
     
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        let section = self.getSection(with: section)
+        if let section = self.getSection(with: section) as? NKCollectionSection {
+            return section.inset(with: collectionView)
+        }
         
-        let result = section.inset(with: collectionView)
-        
-        //print("inset: \(result) for section:\(section)")
-        return result
+        return .zero
     }
     
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        let section = self.getSection(with: section)
+        guard let section = self.getSection(with: section) as? NKCollectionSection else {
+            return 0
+        }
+        
         let result = section.minimumLineSpacing(with: collectionView)
         
         //print("minimumLineSpacing: \(result) for section:\(section)")
@@ -229,7 +153,9 @@ extension NKCollectionView: UICollectionViewDelegateFlowLayout {
     }
     
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        let section = self.getSection(with: section)
+        guard let section = self.getSection(with: section) as? NKCollectionSection else {
+            return 0
+        }
         
         let result = section.minimumInteritemSpacing(with: collectionView)
         //print("minimumInteritemSpacing: \(result) for section:\(section)")
@@ -240,11 +166,11 @@ extension NKCollectionView: UICollectionViewDelegateFlowLayout {
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         let section = self.getSection(with: section)
         if let headerConfiguration = section.headerConfiguarationType {
-            let result = headerConfiguration.size(with: collectionView, section: section, model: section.headerModel)
+            let result = headerConfiguration.size(with: self, section: section, model: section.headerModel)
             
             //print("referenceSizeForHeader: \(result) for section:\(section)")
             
-            return result
+            return result.size
         }
         
         return .zero
@@ -253,11 +179,11 @@ extension NKCollectionView: UICollectionViewDelegateFlowLayout {
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
         let section = self.getSection(with: section)
         if let footerConfiguration = section.footerConfiguarationType {
-            let result = footerConfiguration.size(with: collectionView, section: section, model: section.footerModel)
+            let result = footerConfiguration.size(with: self, section: section, model: section.footerModel)
             
             //print("referenceSizeForFooter: \(result) for section:\(section)")
             
-            return result
+            return result.size
         }
         
         return .zero
@@ -277,6 +203,7 @@ public extension NKCollectionView {
     
     // called on start of dragging (may require some time and or distance to move)
     public func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        self.scrollViewWillBeginDraggingSubject.onNext(scrollView.contentOffset)
         self.nk_delegate?.scrollViewWillBeginDragging?(scrollView)
     }
     
@@ -418,48 +345,6 @@ public extension NKCollectionView {
     
     public func collectionView(_ collectionView: UICollectionView, targetContentOffsetForProposedContentOffset proposedContentOffset: CGPoint) -> CGPoint {
         return self.nk_delegate?.collectionView?(collectionView, targetContentOffsetForProposedContentOffset: proposedContentOffset) ?? proposedContentOffset
-    }
-}
-
-//MARK: internal functions
-extension NKCollectionView {
-    func getCellConfiguration(withModel model: NKDiffable) -> NKCollectionViewCellWrapperConfigurable {
-        guard let cellConfiguration = self.cellConfigurations.nk_firstMap({$0.isMe(model: model)}) else {
-            fatalError("Can't find cell configuration with model: \(model)")
-        }
-        
-        return cellConfiguration
-    }
-    
-    func getCellConfiguration(with indexPath: IndexPath) -> NKCollectionViewCellWrapperConfigurable {
-        let model = self.getModel(with: indexPath)
-        return self.getCellConfiguration(withModel: model)
-    }
-    
-    func getSection(with sectionIndex: Int) -> NKCollectionSection {
-        guard 0..<self.sections.count ~= sectionIndex else {
-            fatalError("Out of section range: [0..\(self.sections.count - 1)] indexPath:\(indexPath)")
-        }
-        
-        let section = self.sections[sectionIndex]
-        return section
-    }
-    
-    func getModel(with indexPath: IndexPath) -> NKDiffable {
-        
-        let section = self.getSection(with: indexPath.section)
-        
-        return self.getModel(withSection: section, row: indexPath.row)
-    }
-    
-    func getModel(withSection section: NKCollectionSection, row: Int) -> NKDiffable {
-        guard 0..<section.models.count ~= row else {
-            fatalError("Out of row range: [0..\(section.models.count - 1)] indexPath:\(indexPath)")
-        }
-        
-        let model = section.models[row]
-        
-        return model
     }
 }
 

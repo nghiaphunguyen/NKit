@@ -8,6 +8,10 @@
 //
 import Foundation
 
+public protocol NKDiffable {
+    var diffIdentifier: String {get}
+}
+
 public struct Diff {
     public let results: [DiffStep]
     public var insertions: [DiffStep] {

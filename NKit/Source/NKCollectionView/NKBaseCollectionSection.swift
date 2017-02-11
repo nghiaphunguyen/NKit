@@ -12,8 +12,8 @@ public enum NKBaseCollectionSectionOption {
     case inset(UIEdgeInsets)
     case lineSpacing(CGFloat)
     case interitemSpacing(CGFloat)
-    case header(NKCollectionSupplementaryViewConfigurable.Type)
-    case footer(NKCollectionSupplementaryViewConfigurable.Type)
+    case header(NKListSupplementaryViewConfigurable.Type)
+    case footer(NKListSupplementaryViewConfigurable.Type)
 }
 
 open class NKBaseCollectionSection: NKCollectionSection {
