@@ -25,7 +25,11 @@ class CollectionTestingViewController: UIViewController {
             $0.backgroundColor = UIColor.white
         }
             .nk_addSubview(NKCollectionView.init(sectionOptions: [[.inset(UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)), .lineSpacing(10)]]).nk_id(Id.collectionView)) {
-//                ($0.collectionViewLayout as! UICollectionViewFlowLayout).estimatedItemSize = CGSize(width: 1, height: 1)
+                $0.paging = true
+                let layout = ($0.collectionViewLayout as! UICollectionViewFlowLayout)
+                layout.itemSize = CGSize(width: NKScreenSize.Current.width
+                    , height: 50)
+                layout.sectionInset = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
                 $0.registerCell(cellType: StringCell.self)
                 
                 $0.backgroundColor = UIColor.white
@@ -39,12 +43,12 @@ class CollectionTestingViewController: UIViewController {
         super.viewDidLoad()
         
         nk_delay(3) {
-            self.collectionView.updateFirstSection(withModels: ["Nghia", "Duyen"])
+            self.collectionView.updateFirstSection(withModels: ["Nghia", "Duyen", "Duyen", "Duyen", "Duyen", "Duyen", "Duyen", "Duyen", "Duyen", "Duyen", "Duyen", "Duyen", "Duyen", "Duyen", "Duyen", "Duyen", "Duyen", "Duyen", "Duyen", "Duyen", "Duyen", "Duyen", "Duyen", "Duyen", "Duyen", "Duyen", "Duyen", "Duyen", "Duyen", "Duyen", "Duyen", "Duyen", "Duyen", "Duyen", "Duyen", "Duyen", "Duyen", "Duyen", "Duyen", "Duyen", "Duyen", "Duyen", "Duyen", "Duyen", "Duyen", "Duyen", "Duyen", "Duyen", "Duyen", "Duyen", "Duyen", "Duyen", "Duyen", "Duyen", "Duyen", "Duyen", "Duyen", "Duyen", "Duyen", "Duyen", "Duyen", "Duyen", "Duyen", "Duyen", "Duyen", "Duyen", "Duyen", "Duyen", "Duyen", "Duyen", "Duyen", "Duyen", "Duyen", "Duyen", "Duyen", "Duyen", "Duyen", "Duyen", "Duyen", "Duyen", "Duyen", "Duyen", "Duyen", "Duyen", "Duyen", "Duyen", "Duyen", "Duyen"])
         }
         
-        nk_delay(6) {
-            self.collectionView.updateFirstSection(withModels: ["Nghia", "Hieu", "Ha"])
-        }
+//        nk_delay(6) {
+//            self.collectionView.updateFirstSection(withModels: ["Nghia", "Hieu", "Ha"])
+//        }
     }
 }
 

@@ -368,7 +368,8 @@ fileprivate extension NKCollectionView {
                 
                 let isHorizontal = layout.scrollDirection == .horizontal
                 
-                let value = ((isHorizontal) ? layout.itemSize.width : layout.itemSize.height) + layout.minimumLineSpacing
+                let value = ((isHorizontal) ? layout.itemSize.width + layout.minimumInteritemSpacing : layout.itemSize.height) + layout.minimumLineSpacing
+                
                 
                 let firstCenter = isHorizontal ? layout.sectionInset.left + layout.itemSize.width / 2 : layout.sectionInset.top + layout.itemSize.height / 2
                 let xFirstCenter = isHorizontal ? self.nk_width / 2 : self.nk_height / 2
