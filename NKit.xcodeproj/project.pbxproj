@@ -97,6 +97,7 @@
 		18E990701DBB1A8500761547 /* NKAppConfigManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E9906F1DBB1A8500761547 /* NKAppConfigManager.swift */; };
 		18FBB00A1E00E3110055C606 /* UIViewController+Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FBB0091E00E3110055C606 /* UIViewController+Analytics.swift */; };
 		3D578EA8D08338CF2DE88B21 /* Pods_NKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9DD82716755667F163D7FDC /* Pods_NKit.framework */; };
+		423391501E51BE7E0049470F /* NKEnumCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4233914F1E51BE7E0049470F /* NKEnumCollection.swift */; };
 		4271A8BB1E46D23700C686BB /* NKBaseCollectionSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4271A8B01E46D23700C686BB /* NKBaseCollectionSection.swift */; };
 		4271A8BC1E46D23700C686BB /* NKClassable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4271A8B11E46D23700C686BB /* NKClassable.swift */; };
 		4271A8BD1E46D23700C686BB /* NKCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4271A8B21E46D23700C686BB /* NKCollectionReusableView.swift */; };
@@ -220,6 +221,7 @@
 		18E9906F1DBB1A8500761547 /* NKAppConfigManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKAppConfigManager.swift; sourceTree = "<group>"; };
 		18FBB0091E00E3110055C606 /* UIViewController+Analytics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Analytics.swift"; sourceTree = "<group>"; };
 		1FD9F2FD5F689B54EB45FA0B /* Pods-NKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NKit.release.xcconfig"; path = "Pods/Target Support Files/Pods-NKit/Pods-NKit.release.xcconfig"; sourceTree = "<group>"; };
+		4233914F1E51BE7E0049470F /* NKEnumCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKEnumCollection.swift; sourceTree = "<group>"; };
 		4271A8B01E46D23700C686BB /* NKBaseCollectionSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKBaseCollectionSection.swift; sourceTree = "<group>"; };
 		4271A8B11E46D23700C686BB /* NKClassable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKClassable.swift; sourceTree = "<group>"; };
 		4271A8B21E46D23700C686BB /* NKCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKCollectionReusableView.swift; sourceTree = "<group>"; };
@@ -475,6 +477,7 @@
 				183F9B251DC87C0F00D9C7B9 /* Optional+NKit.swift */,
 				18CD79CD1E004D500078E694 /* NKColor.swift */,
 				4271A8E21E48AAC800C686BB /* String+Number.swift */,
+				4233914F1E51BE7E0049470F /* NKEnumCollection.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -868,6 +871,7 @@
 				184F79C11D9284010087B6AF /* UIScrollView+Rx.swift in Sources */,
 				1865A18A1D9980B0005D4C4A /* UIView+Layout.swift in Sources */,
 				18DD400A1D87B17C004B420E /* NKAnimator.swift in Sources */,
+				423391501E51BE7E0049470F /* NKEnumCollection.swift in Sources */,
 				4271A92B1E4DB88600C686BB /* NKTableViewDelegate.swift in Sources */,
 				184EBA821D9A4CCA00471EF3 /* UIStackView+Layout.swift in Sources */,
 				1828D0E21D6F1799007D0933 /* UIView+AutoLayout.swift in Sources */,

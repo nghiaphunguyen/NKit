@@ -107,7 +107,7 @@ public extension NKListView {
         self.update(footerModel: footerModel, at: 0)
     }
     
-    public func registerCell<T: UIView>(cellType: T.Type) where T: NKListViewCellConfigurable {
+    public func register<T: UIView>(cellType: T.Type) where T: NKListViewCellConfigurable {
         let identifier = cellType.identifier
         let configuration = NKListViewCellWrapperConfiguration<T>(reuseIdentifier: identifier)
         self.register(cellType, forCellWithReuseIdentifier: identifier)

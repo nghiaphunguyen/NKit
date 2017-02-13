@@ -19,7 +19,7 @@ class TestTableViewController: UIViewController {
         self.view.nk_config {
             $0.backgroundColor = UIColor.white
             }.nk_addSubview(self.tableView) {
-                $0.registerCell(cellType: TestCell.self)
+                $0.register(cellType: TestCell.self)
                 $0.addSection(NKBaseTableSection.init(options: []))
                 $0.backgroundColor = UIColor.white
                 $0.estimatedRowHeight = 2

@@ -89,11 +89,11 @@ public extension UIView {
     //NPN TODO: Some views is still be stored instead id is invalid
     public var nk_id: String? {
         get {
-            return objc_getAssociatedObject(self, &NKAssociatedKeyId) as? String
+            return self.accessibilityIdentifier
         }
         
         set {
-            objc_setAssociatedObject(self, &NKAssociatedKeyId, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+            self.accessibilityIdentifier = newValue
         }
     }
     

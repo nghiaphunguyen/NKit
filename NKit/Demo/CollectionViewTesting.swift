@@ -30,7 +30,7 @@ class CollectionTestingViewController: UIViewController {
                 layout.itemSize = CGSize(width: NKScreenSize.Current.width
                     , height: 50)
                 layout.sectionInset = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
-                $0.registerCell(cellType: StringCell.self)
+                $0.register(cellType: StringCell.self)
                 
                 $0.backgroundColor = UIColor.white
                 $0.snp.makeConstraints({ (make) in
