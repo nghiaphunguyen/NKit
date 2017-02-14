@@ -9,6 +9,16 @@ import RxSwift
 import RxCocoa
 
 public extension UIView {
+    public func nk_addTarget(_ target: Any, action: Selector, for event: UIControlEvents) {
+        self.nk_addSubview(UIButton()) {
+            $0.snp.makeConstraints({ (make) in
+                make.edges.equalToSuperview()
+            })
+            
+            $0.addTarget(target, action: action, for: event)
+        }
+    }
+    
     public var nk_parentViewController: UIViewController? {
         var parentResponder: UIResponder? = self
         while parentResponder != nil {

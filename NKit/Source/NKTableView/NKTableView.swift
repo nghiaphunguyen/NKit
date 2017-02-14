@@ -10,6 +10,8 @@ import UIKit
 import RxSwift
 import NRxSwift
 
+public var NKTableViewAutomaticHeight: CGFloat { return 2 }
+
 open class NKTableView: UITableView {
     internal var cellConfigurations: [NKListViewCellWrapperConfigurable] = []
     public internal(set) var sections: [NKListSection] = []

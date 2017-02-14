@@ -10,6 +10,8 @@ import UIKit
 import RxSwift
 import RxCocoa
 
+public var NKCollectionViewAutomaticSize: CGSize { return CGSize(width: 1, height: 1) }
+
 open class NKCollectionView: UICollectionView {
     internal var cellConfigurations: [NKListViewCellWrapperConfigurable] = []
     public internal(set) var sections: [NKListSection] = []
