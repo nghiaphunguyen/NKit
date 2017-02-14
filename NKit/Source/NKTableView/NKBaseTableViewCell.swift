@@ -21,7 +21,7 @@ open class NKBaseTableViewCell: UITableViewCell {
         self.setupRx()
     }
     
-    open func setupView() {}
+    dynamic open func setupView() {}
     
-    open func setupRx() {}
+    dynamic open func setupRx() {}
 }

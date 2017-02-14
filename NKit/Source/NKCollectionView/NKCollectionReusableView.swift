@@ -11,14 +11,17 @@ import UIKit
 open class NKCollectionReusableView: UICollectionReusableView {
     public override init(frame: CGRect) {
         super.init(frame: frame)
-        
         self.setupView()
+        self.setupRx()
     }
     
     public required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: aDecoder)
+        self.setupView()
+        self.setupRx()
     }
     
     
-    open func setupView() {}
+    dynamic open func setupView() {}
+    dynamic open func setupRx() {}
 }

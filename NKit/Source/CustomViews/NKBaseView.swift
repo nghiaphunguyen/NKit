@@ -21,9 +21,9 @@ open class NKBaseView: UIView {
         self.setupRx()
     }
     
-    open func setupView() {
+    dynamic open func setupView() {
     }
     
-    open func setupRx() {
+    dynamic open func setupRx() {
     }
 }

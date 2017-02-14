@@ -12,13 +12,15 @@ open class NKTableHeaderFooterView: UITableViewHeaderFooterView {
     public override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
         self.setupView()
+        self.setupRx()
     }
     
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        
         self.setupView()
+        self.setupRx()
     }
     
-    open func setupView() {}
+    dynamic open func setupView() {}
+    dynamic open func setupRx() {}
 }
