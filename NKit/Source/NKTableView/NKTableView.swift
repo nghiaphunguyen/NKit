@@ -186,7 +186,7 @@ extension NKTableView: UITableViewDelegate {
     }
     
     public func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
-        return self.nk_delegate?.tableView?(tableView, shouldHighlightRowAt: indexPath) ?? false
+        return self.nk_delegate?.tableView?(tableView, shouldHighlightRowAt: indexPath) ?? true
     }
     
     public func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {

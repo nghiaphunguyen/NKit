@@ -12,11 +12,13 @@ open class NKBaseCollectionViewCell: UICollectionViewCell {
     public override init(frame: CGRect) {
         super.init(frame: frame)
         self.setupView()
+        self.setupRx()
     }
     
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         self.setupView()
+        self.setupRx()
     }
     
     open func setupView() {}

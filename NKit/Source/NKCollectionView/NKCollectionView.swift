@@ -269,7 +269,7 @@ public extension NKCollectionView {
     }
     
     public func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-        return self.nk_delegate?.collectionView?(collectionView, shouldHighlightItemAt: indexPath) ?? false
+        return self.nk_delegate?.collectionView?(collectionView, shouldHighlightItemAt: indexPath) ?? true
     }
     
     public func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {
