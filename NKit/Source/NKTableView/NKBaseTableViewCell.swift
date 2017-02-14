@@ -20,4 +20,6 @@ open class NKBaseTableViewCell: UITableViewCell {
     }
     
     open func setupView() {}
+    
+    open func setupRx() {}
 }
