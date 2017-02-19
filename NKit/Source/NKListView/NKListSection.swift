@@ -49,7 +49,6 @@ public extension NKListSection {
     
     public final func update(footerModel model: Any?, for listView: NKListView, at section: Int) {
         self.footerModel = model
-        
         listView.invalidateSupplementaryView(of: UICollectionElementKindSectionFooter, at: section)
         //print("update footerModel: \(model)")
     }

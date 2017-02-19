@@ -222,6 +222,9 @@ extension NKTableView: NKListView {
     }
     
     public func invalidateSupplementaryView(of kind: String, at section: Int) {
+        let s = self.getSection(with: section)
+        
+        self.reloadSections(IndexSet.init(integer: section), with: s.insertAnimation ?? .automatic)
         //NPN TODO: implement later
     }
     

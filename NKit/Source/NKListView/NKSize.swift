@@ -15,6 +15,21 @@ public protocol NKSize {
     var size: CGSize {get}
 }
 
+extension Float: NKSize {
+    public var width: CGFloat {
+        return 0
+    }
+    
+    public var height: CGFloat {
+        return CGFloat(self)
+    }
+    
+    public var size: CGSize {
+        return CGSize(width: self.width, height: self.height)
+    }
+
+}
+
 extension CGFloat: NKSize {
     public var width: CGFloat {
         return 0

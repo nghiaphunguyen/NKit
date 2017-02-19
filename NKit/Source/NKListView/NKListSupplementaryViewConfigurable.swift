@@ -60,7 +60,7 @@ extension NKListSupplementaryViewConfigurable where Self: UITableViewHeaderFoote
 //        return (0 as CGFloat)
         let result = self.height(withTableView: tableView, section: section, model: model)
         
-        return result as! NKSize
+        return result
     }
     
     public func collectionView(_ collectionView: NKCollectionView, configWithModel model: Any, at section: Int) {

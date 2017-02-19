@@ -10,39 +10,63 @@ import UIKit
 import RxSwift
 import NRxSwift
 
-public protocol NKPullingViewModel: NKLoadable, NKPullingReactor {
-    associatedtype LoadingModel
-    associatedtype StateLoadingModel
-    
-    var rx_loadingModels: Variable<[StateLoadingModel]> {get}
-    
+public protocol NKPullingViewModelable: NKLoadable, NKPullingState, NKPullingAction {
+    //MARK: need override
+    var rx_items: Variable<[NKDiffable]> {get}
+    var rx_isLoadMore: Variable<Bool> {get}
     var page: Int {get set}
     var initPage: Int {get}
-    var isLoadMore: Bool {get set}
     
-    func loadMore()
-    func refresh()
+    // pull items from ouside source
+    func pull(page: Int) -> Observable<[Any]>
     
+    // Mapping from pulling items to view model items
+    func map(value: [Any]) -> [NKDiffable]
+    
+    //MARK: Optional
     func doSomethingBeforeLoadingModels() -> Observable<Void>
-    func doSomethingAfterLoadLoadingModels(models: [LoadingModel]) -> Observable<[LoadingModel]>
-    
-    func pull(page: Int) -> Observable<[LoadingModel]> // need override
-    func map(value: [LoadingModel]) -> [StateLoadingModel] //need override
+    func doSomethingAfterLoadLoadingModels(models: [Any]) -> Observable<[Any]>
 }
 
-public extension NKPullingViewModel where Self: NSObject {
-    public var loadingModels: NKVariable<[StateLoadingModel]> {
-        return self.rx_loadingModels.nk_variable
+public extension NKPullingViewModelable where Self: NSObject {
+    //MARK: NKPullingState
+    public var items: NKVariable<[NKDiffable]> {
+        return self.rx_items.nk_variable
     }
     
-    public func doSomethingBeforeLoadingModels() -> Observable<Void>{
-        return Observable.just(Void())
+    public var isLoadMore: NKVariable<Bool> {
+        return self.rx_isLoadMore.nk_variable
     }
     
-    public func doSomethingAfterLoadLoadingModels(models: [LoadingModel]) -> Observable<[LoadingModel]> {
-        return Observable.just(models)
+    public var shouldShowLoadingObseravble: Observable<Bool> {
+        return Observable.combineLatest(self.rx_items.asObservable(), self.rx_isLoading.asObservable(), resultSelector: { (item, loading) -> Bool in
+            return item.count == 0 && loading == true
+        })
     }
     
+    public var shouldShowEmptyViewObservable: Observable<Bool> {
+        return Observable.combineLatest(self.rx_items.asObservable(), self.rx_isLoading.asObservable(), self.rx_error.asObservable(), resultSelector: { (items, loading, error) -> Bool in
+            return items.count == 0 && loading == false && error == nil
+        })
+    }
+    
+    public var shouldShowErrorViewObservable: Observable<Bool> {
+        return Observable.combineLatest(self.rx_items.asObservable(), self.rx_isLoading.asObservable(), self.rx_error.asObservable(), resultSelector: { (items, loading, error) -> Bool in
+            return items.count == 0 && loading == false && error != nil
+        })
+    }
+    
+    public var shouldShowErrorPopupViewObservable: Observable<Bool> {
+        return Observable.combineLatest(self.rx_items.asObservable(), self.rx_isLoading.asObservable(), self.rx_error.asObservable(), resultSelector: { (items, loading, error) -> Bool in
+            return items.count != 0 && loading == false && error != nil
+        })
+    }
+    
+    public var shouldShowListViewObservable: Observable<Bool> {
+        return self.rx_items.asObservable().map {$0.count > 0}
+    }
+    
+    //MARK: NKPullingAction
     public func loadMore() {
         let strongSelf = self
         strongSelf.load(self.pullData())
@@ -60,22 +84,30 @@ public extension NKPullingViewModel where Self: NSObject {
             .addDisposableTo(self.nk_disposeBag)
     }
     
+    public func clearError() {
+        self.rx_error.value = nil
+    }
+    
+    public func doSomethingBeforeLoadingModels() -> Observable<Void>{
+        return Observable.just(Void())
+    }
+    
+    public func doSomethingAfterLoadLoadingModels(models: [Any]) -> Observable<[Any]> {
+        return Observable.just(models)
+    }
+    
     private func resetModel() {
         var strongSelf = self
-        strongSelf.rx_loadingModels.value = []
-        strongSelf.isLoadMore = true
+        strongSelf.rx_items.value = []
+        strongSelf.rx_isLoadMore.value = true
         strongSelf.page = self.initPage
     }
     
     private func canLoadMore() -> Observable<Void> {
-        return Observable.nk_baseCreate({ (observer ) in
-            if self.isLoadMore {
-                observer.nk_setValue()
-            }
-        })
+        return self.rx_isLoadMore.asObservable().take(1).filter {$0}.map { _ in return}
     }
     
-    private func pullData() -> Observable<[LoadingModel]> {
+    private func pullData() -> Observable<[Any]> {
         var strongSelf = self
         return strongSelf
             .canLoadMore()
@@ -84,16 +116,11 @@ public extension NKPullingViewModel where Self: NSObject {
             .flatMapLatest({strongSelf.doSomethingAfterLoadLoadingModels(models: $0)})
             .do(onNext: {
                 let value = strongSelf.map(value: $0)
-                strongSelf.isLoadMore = !(value.count == 0)
-                strongSelf.changeLoadingModels(value: $0)
+                strongSelf.rx_isLoadMore.value = !(value.count == 0)
+                strongSelf.rx_items.value += value
                 strongSelf.page = strongSelf.page + 1
             })
         
-    }
-    
-    private func changeLoadingModels(value: [LoadingModel]) {
-        let value = map(value: value)
-        self.rx_loadingModels.value += value
     }
 }
 
