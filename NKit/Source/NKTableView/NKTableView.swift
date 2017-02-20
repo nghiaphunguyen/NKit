@@ -17,15 +17,6 @@ open class NKTableView: UITableView {
     public internal(set) var sections: [NKListSection] = []
     
     //MARK: paging
-    fileprivate var scrollViewWillBeginDraggingSubject = PublishSubject<CGPoint>()
-    fileprivate var scrollViewWillEndScrollingObservable: Observable<CGPoint> {
-        return Observable.from([self.scrollViewWillBeginDeceleratingSubject.asObservable() ,
-                                self.scrollViewDidEndDraggingSubject.filter {$0.1 == false}.map {$0.0}]).merge()
-    }
-    
-    fileprivate var scrollViewWillBeginDeceleratingSubject = PublishSubject<CGPoint>()
-    fileprivate var scrollViewDidEndDraggingSubject = PublishSubject<(CGPoint, Bool)>()
-    
     fileprivate lazy var rx_paging = Variable<Bool>(false)
     public var paging: Bool {
         get {
@@ -40,6 +31,11 @@ open class NKTableView: UITableView {
         }
     }
     
+    fileprivate var rx_currentPage = Variable<Int>(0)
+    public var currentPage: NKVariable<Int> {
+        return self.rx_currentPage.nk_variable
+    }
+    
     public var nk_delegate: NKTableViewDelegate? = nil
     
     public override init(frame: CGRect, style: UITableViewStyle) {
@@ -51,6 +47,27 @@ open class NKTableView: UITableView {
     
     required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    public func setCurrentPage(_ page: Int) {
+        let itemSize = self.rowHeight
+        let spacing: CGFloat = 0
+        let inset = self.contentInset.top
+        let viewSize = self.nk_height
+        let value = itemSize + spacing
+        let firstValue = 3 * itemSize / 2 + spacing + inset - viewSize / 2
+        
+        let page = max(0, min(page, self.sections.first?.models.count ?? 0))
+        let minOffset: CGFloat = 0
+        
+        let maxOffset = self.contentSize.height - self.nk_height
+        
+        let newOffset = max(minOffset, min(CGFloat(page - 1) * value + (page > 0 ? firstValue : 0), maxOffset))
+        let newPoint = CGPoint(x: 0, y: newOffset)
+        
+        //print("Page=\(page) newOffset=\(newOffset) value=\(value) firstvalue=\(value) itemSize:\(itemSize) viewSize:\(viewSize)")
+        self.setContentOffset(newPoint, animated: true)
+        self.rx_currentPage.value = page
     }
 }
 
@@ -299,7 +316,6 @@ extension NKTableView: UITableViewDelegate {
     
     // called on start of dragging (may require some time and or distance to move)
     public func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        self.scrollViewWillBeginDraggingSubject.onNext(scrollView.contentOffset)
         self.nk_delegate?.scrollViewWillBeginDragging?(scrollView)
     }
     
@@ -310,13 +326,10 @@ extension NKTableView: UITableViewDelegate {
     
     // called on finger up if the user dragged. decelerate is true if it will continue moving afterwards
     public func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        self.scrollViewDidEndDraggingSubject.onNext((scrollView.contentOffset, decelerate))
-        
         self.nk_delegate?.scrollViewDidEndDragging?(scrollView, willDecelerate: decelerate)
     }
     
     public func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
-        self.scrollViewWillBeginDeceleratingSubject.onNext(scrollView.contentOffset)
         self.nk_delegate?.scrollViewWillBeginDecelerating?(scrollView)
     }// called on finger up as we are moving
     
@@ -464,21 +477,19 @@ fileprivate extension NKTableView {
                 startedOffset = point
             }).addDisposableTo(self.nk_disposeBag)
         
-        self.nk_scrollViewWillEndScrollingObservable
+        self.nk_scrollViewDidEndScrollingObservable
             .takeUntil(self.rx_paging.asObservable().filter({$0 == false}))
             .bindNext { [unowned self] (point) in
                 //NPN TODO: recheck
-                let value = self.rowHeight
-                
-                let firstCenter = self.contentInset.top + self.rowHeight / 2
-                let xFirstCenter = self.rowHeight / 2
-                let firstValue = value - (xFirstCenter - firstCenter)
+                let itemSize = self.rowHeight
+                let spacing: CGFloat = 0
+                let inset = self.contentInset.top
+                let viewSize = self.nk_height
+                let value = itemSize + spacing
+                let firstValue = 3 * itemSize / 2 + spacing + inset - viewSize / 2
                 
                 let sOffset = startedOffset?.y ?? 0
                 let offset = point.y
-                let minOffset: CGFloat = 0
-                
-                let maxOffset = self.contentSize.height - self.nk_height
                 
                 let currentPage: Int
                 if offset >= firstValue {
@@ -491,9 +502,7 @@ fileprivate extension NKTableView {
                 
                 let page = currentPage + k
                 
-                let newOffset = max(minOffset, min(CGFloat(page - 1) * value + (page > 0 ? firstValue : 0), maxOffset))
-                let newPoint = CGPoint(x: point.x, y: newOffset)
-                self.setContentOffset(newPoint, animated: true)
+                self.setCurrentPage(page)
             }.addDisposableTo(self.nk_disposeBag)
     }
 }

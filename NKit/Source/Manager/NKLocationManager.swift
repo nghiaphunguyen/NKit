@@ -135,7 +135,7 @@ public extension NKLocationManager {
             .do(onNext: {self.locationManager.startUpdatingLocation()})
             .flatMapLatest({ _ in return self.locationManager.rx_didUpdateLocations.timeout(self.locationTimeout, scheduler: MainScheduler.instance).take(1)})
             .do(onNext: {self.rx_currentLocations.value = $0})
-            .nk_doOnNextOrError({self.locationManager.stopUpdatingLocation()})
+            .nk_doOnNextOrCompleteOrError({self.locationManager.stopUpdatingLocation()})
     }
     
     public func authorize() {

@@ -8,6 +8,7 @@
 
 import UIKit
 import RxSwift
+import NRxSwift
 import RxCocoa
 
 public var NKCollectionViewAutomaticSize: CGSize { return CGSize(width: 1, height: 1) }
@@ -17,15 +18,6 @@ open class NKCollectionView: UICollectionView {
     public internal(set) var sections: [NKListSection] = []
     
     //MARK: paging
-    fileprivate var scrollViewWillBeginDraggingSubject = PublishSubject<CGPoint>()
-    fileprivate var scrollViewWillEndScrollingObservable: Observable<CGPoint> {
-        return Observable.from([self.scrollViewWillBeginDeceleratingSubject.asObservable() ,
-                                self.scrollViewDidEndDraggingSubject.filter {$0.1 == false}.map {$0.0}]).merge()
-    }
-    
-    fileprivate var scrollViewWillBeginDeceleratingSubject = PublishSubject<CGPoint>()
-    fileprivate var scrollViewDidEndDraggingSubject = PublishSubject<(CGPoint, Bool)>()
-    
     fileprivate lazy var rx_paging = Variable<Bool>(false)
     public var paging: Bool {
         get {
@@ -40,11 +32,19 @@ open class NKCollectionView: UICollectionView {
         }
     }
     
+    fileprivate var rx_currentPage = Variable<Int>(0)
+    public var currentPage: NKVariable<Int> {
+        return self.rx_currentPage.nk_variable
+    }
+    
     public weak var nk_delegate: NKCollectionViewDelegate? = nil
-
+    
     //MARK: Constructor
     public convenience init(sectionOptions: [[NKBaseCollectionSectionOption]]) {
-        self.init(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+        let collectionViewLayout = UICollectionViewFlowLayout()
+        collectionViewLayout.minimumLineSpacing = 0
+        collectionViewLayout.minimumInteritemSpacing = 0
+        self.init(frame: .zero, collectionViewLayout: collectionViewLayout)
         
         self.addSections(sectionOptions.map { NKBaseCollectionSection.init(options: $0) })
     }
@@ -59,19 +59,46 @@ open class NKCollectionView: UICollectionView {
     public required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    public func setCurrentPage(_ page: Int) {
+        guard let layout = self.collectionViewLayout as? UICollectionViewFlowLayout else {
+            return
+        }
+        
+        let isHorizontal = layout.scrollDirection == .horizontal
+        
+        let page = max(0, min(page, self.sections.first?.models.count ?? 0))
+        let minOffset: CGFloat = 0
+        
+        let maxOffset = isHorizontal ? self.contentSize.width - self.nk_width : self.contentSize.height - self.nk_height
+        
+        let itemSize = isHorizontal ? layout.itemSize.width : layout.itemSize.height
+        let spacing = isHorizontal ? layout.minimumInteritemSpacing : layout.minimumLineSpacing
+        let inset = isHorizontal ? layout.sectionInset.left : layout.sectionInset.top
+        let viewSize = isHorizontal ? self.nk_width : self.nk_height
+        let value = itemSize + spacing
+        let firstValue = 3 * itemSize / 2 + spacing + inset - viewSize / 2
+        
+        let newOffset = max(minOffset, min(CGFloat(page - 1) * value + (page > 0 ? firstValue : 0), maxOffset))
+        let newPoint = isHorizontal ? CGPoint(x: newOffset, y: 0) : CGPoint(x: 0, y: newOffset)
+        
+        //print("Page=\(page) newOffset=\(newOffset) value=\(value) firstvalue=\(value) itemSize:\(itemSize) viewSize:\(viewSize)")
+        self.setContentOffset(newPoint, animated: true)
+        self.rx_currentPage.value = page
+    }
 }
 
 //MARK: Datasource
 extension NKCollectionView: UICollectionViewDataSource {
     public func numberOfSections(in collectionView: UICollectionView) -> Int {
-        //print("num of sections: \(self.sections.count)")
+        ////print("num of sections: \(self.sections.count)")
         return self.sections.count
     }
     
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         guard 0..<self.sections.count ~= section else {return 0}
         
-        //print("in section: \(section) numItems: \(self.sections[section].models.count)")
+        ////print("in section: \(section) numItems: \(self.sections[section].models.count)")
         return self.sections[section].models.count
     }
     
@@ -84,7 +111,7 @@ extension NKCollectionView: UICollectionViewDataSource {
         cellConfiguration.config(listView: self, cell: cell, model: model, indexPath: indexPath)
         
         //NPN TODO: more config fore cell
-        //print("config for cell: \(cellConfiguration.reuseIdentifier) at indexPath: \(indexPath)")
+        ////print("config for cell: \(cellConfiguration.reuseIdentifier) at indexPath: \(indexPath)")
         return cell
     }
     
@@ -103,7 +130,7 @@ extension NKCollectionView: UICollectionViewDataSource {
                 header.listView(self, configWithModel: headerModel, at: indexPath.section)
             }
             
-            //print("setup header: \(headerConfigurationType.identifier) with model: \(section.headerModel)")
+            ////print("setup header: \(headerConfigurationType.identifier) with model: \(section.headerModel)")
             return header
         default:
             guard let footerConfigurationType = section.footerConfiguarationType else {
@@ -115,7 +142,7 @@ extension NKCollectionView: UICollectionViewDataSource {
                 footer.listView(self, configWithModel: footerModel, at: indexPath.section)
             }
             
-            //print("setup footer: \(footerConfigurationType.identifier) with model: \(section.footerModel)")
+            ////print("setup footer: \(footerConfigurationType.identifier) with model: \(section.footerModel)")
             return footer
         }
     }
@@ -130,10 +157,10 @@ extension NKCollectionView: UICollectionViewDelegateFlowLayout {
         
         let result = cellConfiguration.size(with: self, section: section, model: model)
         
-        print("size of item: \(cellConfiguration.reuseIdentifier) at indexPath:\(indexPath) is: \(result)")
+        //print("size of item: \(cellConfiguration.reuseIdentifier) at indexPath:\(indexPath) is: \(result)")
         
         return result.size
-    }    
+    }
     
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         if let section = self.getSection(with: section) as? NKCollectionSection {
@@ -150,7 +177,7 @@ extension NKCollectionView: UICollectionViewDelegateFlowLayout {
         
         let result = section.minimumLineSpacing(with: collectionView)
         
-        //print("minimumLineSpacing: \(result) for section:\(section)")
+        ////print("minimumLineSpacing: \(result) for section:\(section)")
         return result
     }
     
@@ -160,7 +187,7 @@ extension NKCollectionView: UICollectionViewDelegateFlowLayout {
         }
         
         let result = section.minimumInteritemSpacing(with: collectionView)
-        //print("minimumInteritemSpacing: \(result) for section:\(section)")
+        ////print("minimumInteritemSpacing: \(result) for section:\(section)")
         
         return result
     }
@@ -170,7 +197,7 @@ extension NKCollectionView: UICollectionViewDelegateFlowLayout {
         if let headerConfiguration = section.headerConfiguarationType {
             let result = headerConfiguration.size(with: self, section: section, model: section.headerModel)
             
-            //print("referenceSizeForHeader: \(result) for section:\(section)")
+            ////print("referenceSizeForHeader: \(result) for section:\(section)")
             
             return result.size
         }
@@ -183,7 +210,7 @@ extension NKCollectionView: UICollectionViewDelegateFlowLayout {
         if let footerConfiguration = section.footerConfiguarationType {
             let result = footerConfiguration.size(with: self, section: section, model: section.footerModel)
             
-            //print("referenceSizeForFooter: \(result) for section:\(section)")
+            ////print("referenceSizeForFooter: \(result) for section:\(section)")
             
             return result.size
         }
@@ -205,7 +232,6 @@ public extension NKCollectionView {
     
     // called on start of dragging (may require some time and or distance to move)
     public func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        self.scrollViewWillBeginDraggingSubject.onNext(scrollView.contentOffset)
         self.nk_delegate?.scrollViewWillBeginDragging?(scrollView)
     }
     
@@ -217,13 +243,10 @@ public extension NKCollectionView {
     // called on finger up if the user dragged. decelerate is true if it will continue moving afterwards
     public func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         
-        self.scrollViewDidEndDraggingSubject.onNext((scrollView.contentOffset, decelerate))
-        
         self.nk_delegate?.scrollViewDidEndDragging?(scrollView, willDecelerate: decelerate)
     }
     
     public func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
-        self.scrollViewWillBeginDeceleratingSubject.onNext(scrollView.contentOffset)
         self.nk_delegate?.scrollViewWillBeginDecelerating?(scrollView)
     }
     
@@ -285,13 +308,13 @@ public extension NKCollectionView {
     }
     
     public func collectionView(_ collectionView: UICollectionView, shouldDeselectItemAt indexPath: IndexPath) -> Bool {
-            return self.nk_delegate?.collectionView?(collectionView, shouldDeselectItemAt: indexPath) ?? false
+        return self.nk_delegate?.collectionView?(collectionView, shouldDeselectItemAt: indexPath) ?? false
     }
     
     public func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         self.nk_delegate?.collectionView?(collectionView, didDeselectItemAt: indexPath)
     }
-
+    
     public func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         self.nk_delegate?.collectionView?(collectionView, willDisplay: cell, forItemAt: indexPath)
     }
@@ -361,7 +384,7 @@ fileprivate extension NKCollectionView {
                 startedOffset = point
             }).addDisposableTo(self.nk_disposeBag)
         
-        self.nk_scrollViewWillEndScrollingObservable
+        self.nk_scrollViewDidEndScrollingObservable
             .takeUntil(self.rx_paging.asObservable().filter({$0 == false}))
             .bindNext { [unowned self] (point) in
                 guard let layout = self.collectionViewLayout as? UICollectionViewFlowLayout else {
@@ -370,18 +393,15 @@ fileprivate extension NKCollectionView {
                 
                 let isHorizontal = layout.scrollDirection == .horizontal
                 
-                let value = ((isHorizontal) ? layout.itemSize.width + layout.minimumInteritemSpacing : layout.itemSize.height) + layout.minimumLineSpacing
-                
-                
-                let firstCenter = isHorizontal ? layout.sectionInset.left + layout.itemSize.width / 2 : layout.sectionInset.top + layout.itemSize.height / 2
-                let xFirstCenter = isHorizontal ? self.nk_width / 2 : self.nk_height / 2
-                let firstValue = value - (xFirstCenter - firstCenter)
+                let itemSize = isHorizontal ? layout.itemSize.width : layout.itemSize.height
+                let spacing = isHorizontal ? layout.minimumInteritemSpacing : layout.minimumLineSpacing
+                let inset = isHorizontal ? layout.sectionInset.left : layout.sectionInset.top
+                let viewSize = isHorizontal ? self.nk_width : self.nk_height
+                let value = itemSize + spacing
+                let firstValue = 3 * itemSize / 2 + spacing + inset - viewSize / 2
                 
                 let sOffset = (isHorizontal ? startedOffset?.x : startedOffset?.y) ?? 0
                 let offset = isHorizontal ? point.x : point.y
-                let minOffset: CGFloat = 0
-                
-                let maxOffset = isHorizontal ? self.contentSize.width - self.nk_width : self.contentSize.height - self.nk_height
                 
                 let currentPage: Int
                 if offset >= firstValue {
@@ -394,9 +414,7 @@ fileprivate extension NKCollectionView {
                 
                 let page = currentPage + k
                 
-                let newOffset = max(minOffset, min(CGFloat(page - 1) * value + (page > 0 ? firstValue : 0), maxOffset))
-                let newPoint = isHorizontal ? CGPoint(x: newOffset, y: point.y) : CGPoint(x: point.x, y: newOffset)
-                self.setContentOffset(newPoint, animated: true)
+                self.setCurrentPage(page)
             }.addDisposableTo(self.nk_disposeBag)
     }
 }

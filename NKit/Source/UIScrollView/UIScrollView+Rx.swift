@@ -16,8 +16,8 @@ public extension UIScrollView {
             .map {_ in return self.contentOffset}
     }
     
-    public var nk_scrollViewWillEndScrollingObservable: Observable<CGPoint> {
-        return Observable.from([self.nk_scrollViewWillBeginDeceleratingObservable,
+    public var nk_scrollViewDidEndScrollingObservable: Observable<CGPoint> {
+        return Observable.from([self.nk_scrollViewDidEndDeceleratingObservable,
                                 self.nk_scrollViewDidEndDraggingObservable.filter {$0.1 == false}.map {$0.0}]).merge()
     }
     

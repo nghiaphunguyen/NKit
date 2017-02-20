@@ -35,16 +35,19 @@ public extension NKLoadable {
         return self.canLoadDataObservable
             .do(onNext: {self.setupBeforeLoading()})
             .flatMapLatest({_ in observable})
-            .nk_doOnNextOrError({self.resetAfterDone()})
+            .debug("Loaded data", trimOutput: true)
+            .nk_doOnNextOrCompleteOrError({self.resetAfterDone()})
             .do(onError: {self.rx_error.value = $0})
     }
     
     public func setupBeforeLoading() {
         self.rx_isLoading.value = true
+        print("set loading value: \(self.rx_isLoading.value)")
     }
     
     public func resetAfterDone() {
         self.rx_isLoading.value = false
+        print("reset loading value: \(self.rx_isLoading.value)")
     }
     
     public var isLoading: NKVariable<Bool> {
@@ -56,10 +59,12 @@ public extension NKLoadable {
     }
     
     private var canLoadDataObservable: Observable<Void> {
-        return Observable.nk_baseCreate({ (observer) in
-            if self.rx_isLoading.value == false {
-                observer.nk_setValue()
-            }
-        })
+        return self.rx_isLoading.asObservable().take(1).filter({$0 == false}).map {_ in return}
+//        return Observable.nk_baseCreate({ (observer) in
+//            print("Loading = \(self.rx_isLoading.value)")
+//            if self.rx_isLoading.value == false {
+//                observer.nk_setValue()
+//            }
+//        })
     }
 }

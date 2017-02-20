@@ -141,7 +141,7 @@ fileprivate extension NKBasePullingViewController {
         
         viewModel.shouldShowListViewObservable.map{!$0}.bindTo(self.listView.view.rx.isHidden).addDisposableTo(self.nk_disposeBag)
         //Actions
-        self.refreshControl.rx.controlEvent(UIControlEvents.valueChanged).bindNext {
+        self.refreshControl.rx.controlEvent(UIControlEvents.valueChanged).throttle(1, scheduler: MainScheduler.instance).bindNext {
             viewModel.refresh()
         }.addDisposableTo(self.nk_disposeBag)
         

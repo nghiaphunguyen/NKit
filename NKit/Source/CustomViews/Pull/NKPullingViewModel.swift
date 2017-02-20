@@ -111,10 +111,15 @@ public extension NKPullingViewModelable where Self: NSObject {
         var strongSelf = self
         return strongSelf
             .canLoadMore()
+            .debug("Can load more", trimOutput: true)
             .flatMapLatest({_ in strongSelf.doSomethingBeforeLoadingModels()})
+            .debug("Did somthing before loading model, loading...", trimOutput: true)
             .flatMapLatest({_ in strongSelf.pull(page: strongSelf.page)})
+            .debug("Pull successfully", trimOutput: true)
             .flatMapLatest({strongSelf.doSomethingAfterLoadLoadingModels(models: $0)})
+            .debug("Did somthing after loading model", trimOutput: true)
             .do(onNext: {
+                
                 let value = strongSelf.map(value: $0)
                 strongSelf.rx_isLoadMore.value = !(value.count == 0)
                 strongSelf.rx_items.value += value
