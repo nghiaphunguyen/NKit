@@ -26,7 +26,7 @@ open class NKBasePullingViewModel: NSObject, NKPullingViewModelable {
         fatalError()
     }
     
-    public func pull(page: Int) -> Observable<[Any]> {
+    open func pull(page: Int) -> Observable<[Any]> {
         fatalError()
     }
     
