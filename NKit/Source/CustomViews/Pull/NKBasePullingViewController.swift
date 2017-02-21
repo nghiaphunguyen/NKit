@@ -41,7 +41,7 @@ public protocol NKPullingRetryView: NKViewShowAndHidable {
 
 //MARK: Properties
 open class NKBasePullingViewController: UIViewController {
-    fileprivate(set) var pullingViewModel: NKPullingViewModelable? = nil
+    public fileprivate(set) var pullingViewModel: NKPullingViewModelable? = nil
     
     public lazy var listView: NKListView = { self.getListView() }()
     public lazy var footerLoadingView: NKListSupplementaryViewConfigurable.Type = {return self.getFooterLoadingView() }()
