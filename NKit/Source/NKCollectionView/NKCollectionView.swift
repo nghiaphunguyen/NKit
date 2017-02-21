@@ -304,11 +304,11 @@ public extension NKCollectionView {
     }
     
     public func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-        return self.nk_delegate?.collectionView?(collectionView, shouldSelectItemAt: indexPath) ?? false
+        return self.nk_delegate?.collectionView?(collectionView, shouldSelectItemAt: indexPath) ?? true
     }
     
     public func collectionView(_ collectionView: UICollectionView, shouldDeselectItemAt indexPath: IndexPath) -> Bool {
-        return self.nk_delegate?.collectionView?(collectionView, shouldDeselectItemAt: indexPath) ?? false
+        return self.nk_delegate?.collectionView?(collectionView, shouldDeselectItemAt: indexPath) ?? true
     }
     
     public func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
@@ -336,7 +336,7 @@ public extension NKCollectionView {
     }
     
     public func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-        return self.nk_delegate?.collectionView?(collectionView, canPerformAction: action, forItemAt: indexPath, withSender: sender) ?? false
+        return self.nk_delegate?.collectionView?(collectionView, canPerformAction: action, forItemAt: indexPath, withSender: sender) ?? true
     }
     
     public func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
@@ -349,11 +349,11 @@ public extension NKCollectionView {
     }
     
     public func collectionView(_ collectionView: UICollectionView, canFocusItemAt indexPath: IndexPath) -> Bool {
-        return self.nk_delegate?.collectionView?(collectionView, canFocusItemAt: indexPath) ?? false
+        return self.nk_delegate?.collectionView?(collectionView, canFocusItemAt: indexPath) ?? true
     }
     
     public func collectionView(_ collectionView: UICollectionView, shouldUpdateFocusIn context: UICollectionViewFocusUpdateContext) -> Bool {
-        return self.nk_delegate?.collectionView?(collectionView, shouldUpdateFocusIn: context) ?? false
+        return self.nk_delegate?.collectionView?(collectionView, shouldUpdateFocusIn: context) ?? true
     }
     
     public func collectionView(_ collectionView: UICollectionView, didUpdateFocusIn context: UICollectionViewFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {

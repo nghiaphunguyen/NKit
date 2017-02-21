@@ -92,11 +92,11 @@ extension NKTableView: UITableViewDataSource {
     }
     
     public func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return self.nk_delegate?.tableView?(tableView, canEditRowAt: indexPath) ?? false
+        return self.nk_delegate?.tableView?(tableView, canEditRowAt: indexPath) ?? true
     }
     
     public func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        return self.nk_delegate?.tableView?(tableView, canMoveRowAt: indexPath) ?? false
+        return self.nk_delegate?.tableView?(tableView, canMoveRowAt: indexPath) ?? true
     }
     
     public func sectionIndexTitles(for tableView: UITableView) -> [String]? {
