@@ -57,7 +57,7 @@ open class NKTableView: UITableView {
         let value = itemSize + spacing
         let firstValue = 3 * itemSize / 2 + spacing + inset - viewSize / 2
         
-        let page = max(0, min(page, self.sections.first?.models.count ?? 0))
+        let page = max(0, min(page, (self.sections.first?.models.count ?? 0) - 1))
         let minOffset: CGFloat = 0
         
         let maxOffset = self.contentSize.height - self.nk_height

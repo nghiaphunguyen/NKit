@@ -67,7 +67,7 @@ open class NKCollectionView: UICollectionView {
         
         let isHorizontal = layout.scrollDirection == .horizontal
         
-        let page = max(0, min(page, self.sections.first?.models.count ?? 0))
+        let page = max(0, min(page, (self.sections.first?.models.count ?? 0) - 1))
         let minOffset: CGFloat = 0
         
         let maxOffset = isHorizontal ? self.contentSize.width - self.nk_width : self.contentSize.height - self.nk_height
