@@ -9,6 +9,6 @@
 import UIKit
 
 public protocol NKNotificationHandlable {
-    static func instance(withJSON json: [String: Any]) -> NKNotificationHandlable?
+    init?(json: [String: Any])
     func execute()
 }

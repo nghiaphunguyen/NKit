@@ -29,7 +29,7 @@ public struct NKNotificationProxy: NKNotificationProxyable {
     
     public func getNotificationHandler(withJSON json: [String : Any]) -> NKNotificationHandlable? {
         for handler in self.handlers {
-            if let handler = handler.instance(withJSON: json) {
+            if let handler = handler.init(json: json) {
                 return handler
             }
         }
