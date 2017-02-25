@@ -11,5 +11,5 @@ import UIKit
 public protocol NKNotificationProxyable {
     mutating func add(handler: NKNotificationHandlable.Type)
     mutating func remove(handler: NKNotificationHandlable.Type)
-    func getNotificationHandler(withJSON json: [String: Any]) -> NKNotificationHandlable?
+    func getNotificationHandler(withJSON json: [AnyHashable: Any]) -> NKNotificationHandlable?
 }
