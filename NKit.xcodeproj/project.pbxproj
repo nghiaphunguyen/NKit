@@ -99,6 +99,9 @@
 		3D578EA8D08338CF2DE88B21 /* Pods_NKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9DD82716755667F163D7FDC /* Pods_NKit.framework */; };
 		420196D21E5AE1BE002CB2F1 /* UIApplicationState+NKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 420196D11E5AE1BE002CB2F1 /* UIApplicationState+NKit.swift */; };
 		423391501E51BE7E0049470F /* NKEnumCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4233914F1E51BE7E0049470F /* NKEnumCollection.swift */; };
+		423672091E61952D009BB55C /* NKNotificationProxyable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 423672081E61952D009BB55C /* NKNotificationProxyable.swift */; };
+		4236720B1E619729009BB55C /* NKNotificationHandlable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4236720A1E619729009BB55C /* NKNotificationHandlable.swift */; };
+		4236720D1E6197B0009BB55C /* NKNotificationProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4236720C1E6197B0009BB55C /* NKNotificationProxy.swift */; };
 		4271A8BB1E46D23700C686BB /* NKBaseCollectionSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4271A8B01E46D23700C686BB /* NKBaseCollectionSection.swift */; };
 		4271A8BC1E46D23700C686BB /* NKClassable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4271A8B11E46D23700C686BB /* NKClassable.swift */; };
 		4271A8BD1E46D23700C686BB /* NKCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4271A8B21E46D23700C686BB /* NKCollectionReusableView.swift */; };
@@ -231,6 +234,9 @@
 		1FD9F2FD5F689B54EB45FA0B /* Pods-NKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NKit.release.xcconfig"; path = "Pods/Target Support Files/Pods-NKit/Pods-NKit.release.xcconfig"; sourceTree = "<group>"; };
 		420196D11E5AE1BE002CB2F1 /* UIApplicationState+NKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIApplicationState+NKit.swift"; sourceTree = "<group>"; };
 		4233914F1E51BE7E0049470F /* NKEnumCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKEnumCollection.swift; sourceTree = "<group>"; };
+		423672081E61952D009BB55C /* NKNotificationProxyable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKNotificationProxyable.swift; sourceTree = "<group>"; };
+		4236720A1E619729009BB55C /* NKNotificationHandlable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKNotificationHandlable.swift; sourceTree = "<group>"; };
+		4236720C1E6197B0009BB55C /* NKNotificationProxy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKNotificationProxy.swift; sourceTree = "<group>"; };
 		4271A8B01E46D23700C686BB /* NKBaseCollectionSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKBaseCollectionSection.swift; sourceTree = "<group>"; };
 		4271A8B11E46D23700C686BB /* NKClassable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKClassable.swift; sourceTree = "<group>"; };
 		4271A8B21E46D23700C686BB /* NKCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKCollectionReusableView.swift; sourceTree = "<group>"; };
@@ -292,6 +298,7 @@
 		1828D0831D6F1799007D0933 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				423672071E619514009BB55C /* NKNotificationHandler */,
 				4271A91D1E4D52ED00C686BB /* NKListView */,
 				1828D0991D6F1799007D0933 /* NKTableView */,
 				4271A8AF1E46D23700C686BB /* NKCollectionView */,
@@ -637,6 +644,16 @@
 			path = Transition;
 			sourceTree = "<group>";
 		};
+		423672071E619514009BB55C /* NKNotificationHandler */ = {
+			isa = PBXGroup;
+			children = (
+				423672081E61952D009BB55C /* NKNotificationProxyable.swift */,
+				4236720A1E619729009BB55C /* NKNotificationHandlable.swift */,
+				4236720C1E6197B0009BB55C /* NKNotificationProxy.swift */,
+			);
+			path = NKNotificationHandler;
+			sourceTree = "<group>";
+		};
 		4271A8AF1E46D23700C686BB /* NKCollectionView */ = {
 			isa = PBXGroup;
 			children = (
@@ -844,6 +861,7 @@
 				1828D0EE1D6F1799007D0933 /* NKScreenSize.swift in Sources */,
 				18DD40161D87FB7E004B420E /* NKPresentationTransition.swift in Sources */,
 				18AF25941E09501A005C9158 /* NKPullingViewModel.swift in Sources */,
+				4236720D1E6197B0009BB55C /* NKNotificationProxy.swift in Sources */,
 				18CD79CE1E004D500078E694 /* NKColor.swift in Sources */,
 				1828D0C61D6F1799007D0933 /* CALayer+Closure.swift in Sources */,
 				4271A91F1E4D52F600C686BB /* NKListView.swift in Sources */,
@@ -884,6 +902,7 @@
 				1828D0E01D6F1799007D0933 /* UINavigationController+Animation.swift in Sources */,
 				1828D0E11D6F1799007D0933 /* UIView+Animation.swift in Sources */,
 				428B78EA1E599B9300929CC7 /* DemoPullingViewController.swift in Sources */,
+				423672091E61952D009BB55C /* NKNotificationProxyable.swift in Sources */,
 				189DF1BF1D97F22D00266E12 /* NKLayoutTester.swift in Sources */,
 				18FBB00A1E00E3110055C606 /* UIViewController+Analytics.swift in Sources */,
 				4271A8E51E48D12100C686BB /* CollectionViewTesting.swift in Sources */,
@@ -927,6 +946,7 @@
 				18AF25981E095CE8005C9158 /* NKPullingReactable.swift in Sources */,
 				1828D0DF1D6F1799007D0933 /* UILabel+Extension.swift in Sources */,
 				183D0DAF1D8505930084754E /* NKLocationManager.swift in Sources */,
+				4236720B1E619729009BB55C /* NKNotificationHandlable.swift in Sources */,
 				4271A8C41E46D23700C686BB /* NKIdentifier.swift in Sources */,
 				1828D0E31D6F1799007D0933 /* UIView+Frame.swift in Sources */,
 				4271A8C31E46D23700C686BB /* NKDetechable.swift in Sources */,
