@@ -135,7 +135,7 @@ fileprivate extension NKBasePullingViewController {
             self.listView.updateFirstSection(withModels: $0)
         }).addDisposableTo(self.nk_disposeBag)
         
-        viewModel.isLoadMore.observable.subscribe(onNext: { [unowned self] in
+        viewModel.isLoadMore.observable.distinctUntilChanged().subscribe(onNext: { [unowned self] in
             self.listView.updateFirstSection(withFooterModel: $0)
         }).addDisposableTo(self.nk_disposeBag)
         
