@@ -128,7 +128,9 @@ fileprivate extension NKBasePullingViewController {
         }).addDisposableTo(self.nk_disposeBag)
         
         viewModel.shouldShowErrorPopupViewObservable.subscribe(onNext: { [unowned self] in
-            $0 ? self.popupErrorView.show(payload: viewModel.errorString.value, withCompletion: nil) : self.popupErrorView.hide(withCompletion: nil)
+            $0 ? self.popupErrorView.show(payload: viewModel.errorString.value, withCompletion: nil) : self.popupErrorView.hide(withCompletion: {
+                viewModel.clearError()
+            })
         }).addDisposableTo(self.nk_disposeBag)
         
         viewModel.items.observable.subscribe(onNext: { [unowned self] in
