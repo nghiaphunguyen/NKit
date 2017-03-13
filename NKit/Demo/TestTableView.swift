@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import NKit
 
 class TestTableViewController: UIViewController {
     

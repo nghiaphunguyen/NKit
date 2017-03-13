@@ -348,26 +348,32 @@ public extension NKCollectionView {
         return self.nk_delegate?.collectionView?(collectionView, transitionLayoutForOldLayout: fromLayout, newLayout: toLayout) ?? UICollectionViewTransitionLayout(currentLayout: fromLayout, nextLayout: toLayout)
     }
     
+    @available(iOS 9.0, *)
     public func collectionView(_ collectionView: UICollectionView, canFocusItemAt indexPath: IndexPath) -> Bool {
         return self.nk_delegate?.collectionView?(collectionView, canFocusItemAt: indexPath) ?? true
     }
     
+    @available(iOS 9.0, *)
     public func collectionView(_ collectionView: UICollectionView, shouldUpdateFocusIn context: UICollectionViewFocusUpdateContext) -> Bool {
         return self.nk_delegate?.collectionView?(collectionView, shouldUpdateFocusIn: context) ?? true
     }
     
+    @available(iOS 9.0, *)
     public func collectionView(_ collectionView: UICollectionView, didUpdateFocusIn context: UICollectionViewFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
         self.nk_delegate?.collectionView?(collectionView, didUpdateFocusIn: context, with: coordinator)
     }
     
+    @available(iOS 9.0, *)
     public func indexPathForPreferredFocusedView(in collectionView: UICollectionView) -> IndexPath? {
         return self.nk_delegate?.indexPathForPreferredFocusedView?(in: collectionView)
     }
     
+    @available(iOS 9.0, *)
     public func collectionView(_ collectionView: UICollectionView, targetIndexPathForMoveFromItemAt originalIndexPath: IndexPath, toProposedIndexPath proposedIndexPath: IndexPath) -> IndexPath {
         return self.nk_delegate?.collectionView?(collectionView, targetIndexPathForMoveFromItemAt: originalIndexPath, toProposedIndexPath: proposedIndexPath) ?? proposedIndexPath
     }
     
+    @available(iOS 9.0, *)
     public func collectionView(_ collectionView: UICollectionView, targetContentOffsetForProposedContentOffset proposedContentOffset: CGPoint) -> CGPoint {
         return self.nk_delegate?.collectionView?(collectionView, targetContentOffsetForProposedContentOffset: proposedContentOffset) ?? proposedContentOffset
     }

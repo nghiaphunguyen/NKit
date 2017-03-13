@@ -85,8 +85,10 @@ import UIKit
     // Focus
     @objc optional func tableView(_ tableView: UITableView, canFocusRowAt indexPath: IndexPath) -> Bool
     
+    @available(iOS 9.0, *)
     @objc optional func tableView(_ tableView: UITableView, shouldUpdateFocusIn context: UITableViewFocusUpdateContext) -> Bool
     
+    @available(iOS 9.0, *)
     @objc optional func tableView(_ tableView: UITableView, didUpdateFocusIn context: UITableViewFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator)
     
     @objc optional func indexPathForPreferredFocusedView(in tableView: UITableView) -> IndexPath?

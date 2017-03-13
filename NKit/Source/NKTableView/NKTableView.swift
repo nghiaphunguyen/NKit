@@ -292,10 +292,12 @@ extension NKTableView: UITableViewDelegate {
         return self.nk_delegate?.tableView?(tableView, canFocusRowAt: indexPath) ?? false
     }
     
+    @available(iOS 9.0, *)
     public func tableView(_ tableView: UITableView, shouldUpdateFocusIn context: UITableViewFocusUpdateContext) -> Bool {
         return self.nk_delegate?.tableView?(tableView, shouldUpdateFocusIn: context) ?? false
     }
     
+    @available(iOS 9.0, *)
     public func tableView(_ tableView: UITableView, didUpdateFocusIn context: UITableViewFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
         self.nk_delegate?.tableView?(tableView, didUpdateFocusIn: context, with: coordinator)
     }

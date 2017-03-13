@@ -8,6 +8,7 @@
 
 import UIKit
 import SnapKit
+import OAStackView
 
 public protocol NKViewIdentifier {
     var rawValue: String {get}
@@ -190,11 +191,7 @@ public extension UIView {
                 }
             }
             
-            if let superView = self.superview as? UIStackView {
-                updateConstraints(superView, superView.axis == .vertical)
-            }
-            
-            if let superView = self.superview as? UIStackView {
+            if let superView = self.superview as? OAStackView {
                 updateConstraints(superView, superView.axis == .vertical)
             }
             
@@ -256,14 +253,17 @@ public func <<< <T: UIView, U: UIView>(left: T, right: U) -> T {
     return left.nk_addSubview(right)
 }
 
+@available(iOS 9.0, *)
 public func <<< <T: UIStackView, U: UIView>(left: T, right: U) -> T {
     return left.nk_addArrangedSubview(right)
 }
 
+@available(iOS 9.0, *)
 public func <<< <T: UIView, U: UIView>(left: T, right: NKViewConfiguration<U>) -> T {
     return left.nk_addSubview(right.view, config: right.config)
 }
 
+@available(iOS 9.0, *)
 public func <<< <T: UIStackView
     , U: UIView>(left: T, right: NKViewConfiguration<U>) -> T {
     return left.nk_addArrangedSubview(right.view, config: right.config)

@@ -18,6 +18,7 @@ class ThreeViewController: UIViewController {
         case Button
     }
     
+    @available(iOS 9.0, *)
     var stackView: UIStackView {return ViewIdentifier.StackView.view(self) }
     var firstLabel: UILabel {return ViewIdentifier.FirstLabel.view(self) }
     var secondLabel: UILabel {return ViewIdentifier.SecondLabel.view(self) }
