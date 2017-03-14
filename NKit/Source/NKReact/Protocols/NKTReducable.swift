@@ -10,7 +10,7 @@ import UIKit
 
 public protocol NKTReducable: NKReducable {
     associatedtype T: NKState
-    func handleTAction<T: NKState>(_ action: NKAction, withState: T) -> T
+    func handleTAction(_ action: NKAction, withState state: T) -> T
 }
 
 public extension NKTReducable {

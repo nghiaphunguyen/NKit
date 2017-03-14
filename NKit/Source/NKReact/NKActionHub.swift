@@ -13,6 +13,8 @@ public final class NKActionHub: NKActionDelegable {
     
     private var handleActionSubject = PublishSubject<NKAction>()
     
+    public init() {}
+    
     public var handleActionObservable: Observable<NKAction> {
         return self.handleActionSubject.asObservable()
     }
