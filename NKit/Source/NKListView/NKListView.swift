@@ -13,8 +13,8 @@ public protocol NKListView {
     
     func performBatchUpdates(_ updates: (() -> Swift.Void)?, completion: ((Bool) -> Swift.Void)?)
     
-    func insertItems(at indexPaths: [IndexPath], animation: UITableViewRowAnimation?)
-    func deleteItems(at indexPaths: [IndexPath], animation: UITableViewRowAnimation?)
+    func insertItems(at indexPaths: [IndexPath], animation: UITableViewRowAnimation)
+    func deleteItems(at indexPaths: [IndexPath], animation: UITableViewRowAnimation)
     
     func invalidateSupplementaryView(of kind: String, at section: Int)
     
@@ -168,12 +168,25 @@ extension NKCollectionView: NKListView {
         return self
     }
     
-    public func insertItems(at indexPaths: [IndexPath], animation: UITableViewRowAnimation?) {
-        self.insertItems(at: indexPaths)
+    public func insertItems(at indexPaths: [IndexPath], animation: UITableViewRowAnimation) {
+        if animation == .none {
+            UIView.performWithoutAnimation {
+                self.insertItems(at: indexPaths)
+            }
+        } else {
+            self.insertItems(at: indexPaths)
+        }
+        
     }
     
-    public func deleteItems(at indexPaths: [IndexPath], animation: UITableViewRowAnimation?) {
-        self.deleteItems(at: indexPaths)
+    public func deleteItems(at indexPaths: [IndexPath], animation: UITableViewRowAnimation) {
+        if animation == .none {
+            UIView.performWithoutAnimation {
+                self.deleteItems(at: indexPaths)
+            }
+        } else {
+            self.deleteItems(at: indexPaths)
+        }
     }
     
     public func invalidateSupplementaryView(of kind: String, at section: Int) {
@@ -211,13 +224,11 @@ extension NKTableView: NKListView {
         self.endUpdates()
     }
     
-    public func insertItems(at indexPaths: [IndexPath], animation: UITableViewRowAnimation?) {
-        let animation = animation ?? .automatic
+    public func insertItems(at indexPaths: [IndexPath], animation: UITableViewRowAnimation) {
         self.insertRows(at: indexPaths, with: animation)
     }
     
-    public func deleteItems(at indexPaths: [IndexPath], animation: UITableViewRowAnimation?) {
-        let animation = animation ?? .automatic
+    public func deleteItems(at indexPaths: [IndexPath], animation: UITableViewRowAnimation) {
         self.deleteRows(at: indexPaths, with: animation)
     }
     
