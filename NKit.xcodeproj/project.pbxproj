@@ -148,8 +148,6 @@
 		42FE62D31E7776A40096E6BB /* NKReducable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42FE62D21E7776A40096E6BB /* NKReducable.swift */; };
 		42FE62D51E7777230096E6BB /* NKActionHub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42FE62D41E7777230096E6BB /* NKActionHub.swift */; };
 		42FE62D71E7777650096E6BB /* NKStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42FE62D61E7777650096E6BB /* NKStore.swift */; };
-		42FE63781E7811C00096E6BB /* NKMiniReducable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42FE63771E7811C00096E6BB /* NKMiniReducable.swift */; };
-		42FE637A1E78F0010096E6BB /* NKAnyMiniReducable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42FE63791E78F0010096E6BB /* NKAnyMiniReducable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -297,8 +295,6 @@
 		42FE62D21E7776A40096E6BB /* NKReducable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKReducable.swift; sourceTree = "<group>"; };
 		42FE62D41E7777230096E6BB /* NKActionHub.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKActionHub.swift; sourceTree = "<group>"; };
 		42FE62D61E7777650096E6BB /* NKStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKStore.swift; sourceTree = "<group>"; };
-		42FE63771E7811C00096E6BB /* NKMiniReducable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKMiniReducable.swift; sourceTree = "<group>"; };
-		42FE63791E78F0010096E6BB /* NKAnyMiniReducable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKAnyMiniReducable.swift; sourceTree = "<group>"; };
 		A9DD82716755667F163D7FDC /* Pods_NKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6F73E920383493132F39FDD /* Pods-NKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NKit.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NKit/Pods-NKit.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -766,8 +762,6 @@
 				42FE62CE1E7776440096E6BB /* NKStorable.swift */,
 				42FE62D01E7776980096E6BB /* NKAnyReducable.swift */,
 				42FE62D21E7776A40096E6BB /* NKReducable.swift */,
-				42FE63771E7811C00096E6BB /* NKMiniReducable.swift */,
-				42FE63791E78F0010096E6BB /* NKAnyMiniReducable.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -997,7 +991,6 @@
 				42FE62D51E7777230096E6BB /* NKActionHub.swift in Sources */,
 				188474F51D93D570009F4506 /* NSObject+NRx.swift in Sources */,
 				428B78E71E59997800929CC7 /* PullingTestingViewController+Creator.swift in Sources */,
-				42FE637A1E78F0010096E6BB /* NKAnyMiniReducable.swift in Sources */,
 				1828D0E51D6F1799007D0933 /* UIView+SnapKitAutolayout.swift in Sources */,
 				18DD40011D870055004B420E /* TwoViewController.swift in Sources */,
 				1828D0D71D6F1799007D0933 /* UIBarButtonItem+Extension.swift in Sources */,
@@ -1012,7 +1005,6 @@
 				4271A9161E4C6E4D00C686BB /* TestTableView.swift in Sources */,
 				428B78E61E59997800929CC7 /* PullingTestingReactor.swift in Sources */,
 				184F79C11D9284010087B6AF /* UIScrollView+Rx.swift in Sources */,
-				42FE63781E7811C00096E6BB /* NKMiniReducable.swift in Sources */,
 				1865A18A1D9980B0005D4C4A /* UIView+Layout.swift in Sources */,
 				18DD400A1D87B17C004B420E /* NKAnimator.swift in Sources */,
 				423391501E51BE7E0049470F /* NKEnumCollection.swift in Sources */,

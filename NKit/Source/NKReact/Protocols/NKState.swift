@@ -22,3 +22,14 @@ public extension NKState {
         return T()
     }
 }
+
+public extension Optional where Wrapped: NKState {
+    public func nk_unwrap() -> Wrapped {
+        switch self {
+        case .none:
+            return Wrapped()
+        case .some(let value):
+            return value
+        }
+    }
+}
