@@ -9,17 +9,17 @@
 import UIKit
 
 public protocol NKReducable: NKAnyReducable {
-    associatedtype T: NKState
-    func handleAction(_ action: NKAction, withState state: T?) -> T
+    associatedtype T
+    func handle(action: NKAction, state: T) -> T
 }
 
 public extension NKReducable {
     
-    public func _handleAction(_ action: NKAction, withState state: NKState?) -> NKState {
+    public func _handle(action: NKAction, state: Any) -> Any {
         if let state = state as? T {
-            return self.handleAction(action, withState: state)
+            return self.handle(action: action, state: state)
         }
         
-        return T()
+        return state
     }
 }

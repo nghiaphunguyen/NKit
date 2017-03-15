@@ -23,7 +23,7 @@ public final class NKStore<StateType: NKState>: NKStorable {
     }
     
     public func `do`(action: NKAction) {
-        if let state = self.reducer._handleAction(action, withState: self.rx_state.value) as? StateType {
+        if let state = self.reducer._handle(action: action, state: self.rx_state.value) as? StateType {
             self.rx_state.value = state
         }
     }

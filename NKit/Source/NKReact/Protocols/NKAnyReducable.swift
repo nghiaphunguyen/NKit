@@ -9,5 +9,5 @@
 import UIKit
 
 public protocol NKAnyReducable {
-    func _handleAction(_ action: NKAction, withState state: NKState?) -> NKState
+    func _handle(action: NKAction, state: Any) -> Any
 }
