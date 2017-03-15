@@ -13,6 +13,6 @@ import RxSwift
 public protocol NKStorable {
     associatedtype StateType
     var state: NKVariable<StateType> {get}
-    var reducer: NKReducable {get}
+    var reducer: NKAnyReducable {get}
     func `do`(action: NKAction)
 }

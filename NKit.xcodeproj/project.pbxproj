@@ -144,10 +144,11 @@
 		42FE62CB1E7776120096E6BB /* NKState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42FE62C91E7776120096E6BB /* NKState.swift */; };
 		42FE62CD1E77761E0096E6BB /* NKActionDelegable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42FE62CC1E77761E0096E6BB /* NKActionDelegable.swift */; };
 		42FE62CF1E7776440096E6BB /* NKStorable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42FE62CE1E7776440096E6BB /* NKStorable.swift */; };
-		42FE62D11E7776980096E6BB /* NKReducable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42FE62D01E7776980096E6BB /* NKReducable.swift */; };
-		42FE62D31E7776A40096E6BB /* NKTReducable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42FE62D21E7776A40096E6BB /* NKTReducable.swift */; };
+		42FE62D11E7776980096E6BB /* NKAnyReducable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42FE62D01E7776980096E6BB /* NKAnyReducable.swift */; };
+		42FE62D31E7776A40096E6BB /* NKReducable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42FE62D21E7776A40096E6BB /* NKReducable.swift */; };
 		42FE62D51E7777230096E6BB /* NKActionHub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42FE62D41E7777230096E6BB /* NKActionHub.swift */; };
 		42FE62D71E7777650096E6BB /* NKStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42FE62D61E7777650096E6BB /* NKStore.swift */; };
+		42FE63781E7811C00096E6BB /* NKMiniReducable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42FE63771E7811C00096E6BB /* NKMiniReducable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -291,10 +292,11 @@
 		42FE62C91E7776120096E6BB /* NKState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKState.swift; sourceTree = "<group>"; };
 		42FE62CC1E77761E0096E6BB /* NKActionDelegable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKActionDelegable.swift; sourceTree = "<group>"; };
 		42FE62CE1E7776440096E6BB /* NKStorable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKStorable.swift; sourceTree = "<group>"; };
-		42FE62D01E7776980096E6BB /* NKReducable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKReducable.swift; sourceTree = "<group>"; };
-		42FE62D21E7776A40096E6BB /* NKTReducable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKTReducable.swift; sourceTree = "<group>"; };
+		42FE62D01E7776980096E6BB /* NKAnyReducable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKAnyReducable.swift; sourceTree = "<group>"; };
+		42FE62D21E7776A40096E6BB /* NKReducable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKReducable.swift; sourceTree = "<group>"; };
 		42FE62D41E7777230096E6BB /* NKActionHub.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKActionHub.swift; sourceTree = "<group>"; };
 		42FE62D61E7777650096E6BB /* NKStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKStore.swift; sourceTree = "<group>"; };
+		42FE63771E7811C00096E6BB /* NKMiniReducable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKMiniReducable.swift; sourceTree = "<group>"; };
 		A9DD82716755667F163D7FDC /* Pods_NKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6F73E920383493132F39FDD /* Pods-NKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NKit.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NKit/Pods-NKit.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -760,8 +762,9 @@
 				42FE62C91E7776120096E6BB /* NKState.swift */,
 				42FE62CC1E77761E0096E6BB /* NKActionDelegable.swift */,
 				42FE62CE1E7776440096E6BB /* NKStorable.swift */,
-				42FE62D01E7776980096E6BB /* NKReducable.swift */,
-				42FE62D21E7776A40096E6BB /* NKTReducable.swift */,
+				42FE62D01E7776980096E6BB /* NKAnyReducable.swift */,
+				42FE62D21E7776A40096E6BB /* NKReducable.swift */,
+				42FE63771E7811C00096E6BB /* NKMiniReducable.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -986,7 +989,7 @@
 				183F9B261DC87C0F00D9C7B9 /* Optional+NKit.swift in Sources */,
 				186058C41D9E7A2F0079CE63 /* NKImage.swift in Sources */,
 				4271A91A1E4C8DE200C686BB /* NKTableViewCellConfigurable.swift in Sources */,
-				42FE62D31E7776A40096E6BB /* NKTReducable.swift in Sources */,
+				42FE62D31E7776A40096E6BB /* NKReducable.swift in Sources */,
 				4271A9291E4D669C00C686BB /* NKListViewCellWrapperConfigurable.swift in Sources */,
 				42FE62D51E7777230096E6BB /* NKActionHub.swift in Sources */,
 				188474F51D93D570009F4506 /* NSObject+NRx.swift in Sources */,
@@ -1005,6 +1008,7 @@
 				4271A9161E4C6E4D00C686BB /* TestTableView.swift in Sources */,
 				428B78E61E59997800929CC7 /* PullingTestingReactor.swift in Sources */,
 				184F79C11D9284010087B6AF /* UIScrollView+Rx.swift in Sources */,
+				42FE63781E7811C00096E6BB /* NKMiniReducable.swift in Sources */,
 				1865A18A1D9980B0005D4C4A /* UIView+Layout.swift in Sources */,
 				18DD400A1D87B17C004B420E /* NKAnimator.swift in Sources */,
 				423391501E51BE7E0049470F /* NKEnumCollection.swift in Sources */,
@@ -1026,7 +1030,7 @@
 				183D0DAF1D8505930084754E /* NKLocationManager.swift in Sources */,
 				4236720B1E619729009BB55C /* NKNotificationHandlable.swift in Sources */,
 				4271A8C41E46D23700C686BB /* NKIdentifier.swift in Sources */,
-				42FE62D11E7776980096E6BB /* NKReducable.swift in Sources */,
+				42FE62D11E7776980096E6BB /* NKAnyReducable.swift in Sources */,
 				1828D0E31D6F1799007D0933 /* UIView+Frame.swift in Sources */,
 				4271A8C31E46D23700C686BB /* NKDetechable.swift in Sources */,
 				1828D0D01D6F1799007D0933 /* NKTextView.swift in Sources */,

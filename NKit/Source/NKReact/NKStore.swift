@@ -16,14 +16,14 @@ public final class NKStore<StateType: NKState>: NKStorable {
         return self.rx_state.nk_variable
     }
     
-    public let reducer: NKReducable
+    public let reducer: NKAnyReducable
     
-    public init(reducer: NKReducable) {
+    public init(reducer: NKAnyReducable) {
         self.reducer = reducer
     }
     
     public func `do`(action: NKAction) {
-        if let state = self.reducer.handleAction(action, withState: self.rx_state.value) as? StateType {
+        if let state = self.reducer._handleAction(action, withState: self.rx_state.value) as? StateType {
             self.rx_state.value = state
         }
     }
