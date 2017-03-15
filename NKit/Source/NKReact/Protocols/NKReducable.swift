@@ -14,6 +14,7 @@ public protocol NKReducable: NKAnyReducable {
 }
 
 public extension NKReducable {
+    
     public func _handleAction(_ action: NKAction, withState state: NKState?) -> NKState {
         if let state = state as? T {
             return self.handleAction(action, withState: state)
