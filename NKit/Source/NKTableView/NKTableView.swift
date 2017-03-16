@@ -49,7 +49,7 @@ open class NKTableView: UITableView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public func setCurrentPage(_ page: Int) {
+    dynamic open func setCurrentPage(_ page: Int) {
         let itemSize = self.rowHeight
         let spacing: CGFloat = 0
         let inset = self.contentInset.top
@@ -72,17 +72,17 @@ open class NKTableView: UITableView {
 }
 
 extension NKTableView: UITableViewDataSource {
-    public func numberOfSections(in tableView: UITableView) -> Int {
+    dynamic open func numberOfSections(in tableView: UITableView) -> Int {
         return self.sections.count
     }
     
-    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    dynamic open func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard 0..<self.sections.count ~= section else {return 0}
         
         return self.sections[section].models.count
     }
     
-    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    dynamic open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let model = self.getModel(with: indexPath)
         let cellConfiguartion = self.getCellConfiguration(with: indexPath)
         let cell = tableView.dequeueReusableCell(withIdentifier: cellConfiguartion.reuseIdentifier, for: indexPath)
@@ -91,58 +91,58 @@ extension NKTableView: UITableViewDataSource {
         return cell
     }
     
-    public func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+    dynamic open func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return self.nk_delegate?.tableView?(tableView, canEditRowAt: indexPath) ?? true
     }
     
-    public func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+    dynamic open func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
         return self.nk_delegate?.tableView?(tableView, canMoveRowAt: indexPath) ?? false
     }
     
-    public func sectionIndexTitles(for tableView: UITableView) -> [String]? {
+    dynamic open func sectionIndexTitles(for tableView: UITableView) -> [String]? {
         return self.nk_delegate?.sectionIndexTitles?(for: tableView) ?? nil
     }
     
-    public func tableView(_ tableView: UITableView, sectionForSectionIndexTitle title: String, at index: Int) -> Int {
+    dynamic open func tableView(_ tableView: UITableView, sectionForSectionIndexTitle title: String, at index: Int) -> Int {
         return self.nk_delegate?.tableView?(tableView, sectionForSectionIndexTitle: title, at: index) ?? 0
     }
     
-    public func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    dynamic open func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         self.nk_delegate?.tableView?(tableView, commit: editingStyle, forRowAt: indexPath)
     }
     
-    public func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+    dynamic open func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
         self.nk_delegate?.tableView?(tableView, moveRowAt: sourceIndexPath, to: destinationIndexPath)
     }
 }
 
 extension NKTableView: UITableViewDelegate {
-    public func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+    dynamic open func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         self.nk_delegate?.tableView?(tableView, willDisplay: cell, forRowAt: indexPath)
     }
     
-    public func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+    dynamic open func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         self.nk_delegate?.tableView?(tableView, willDisplayHeaderView: view, forSection: section)
     }
     
-    public func tableView(_ tableView: UITableView, willDisplayFooterView view: UIView, forSection section: Int) {
+    dynamic open func tableView(_ tableView: UITableView, willDisplayFooterView view: UIView, forSection section: Int) {
         self.nk_delegate?.tableView?(tableView, willDisplayFooterView: view, forSection: section)
     }
     
-    public func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+    dynamic open func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         self.nk_delegate?.tableView?(tableView, didEndDisplaying: cell, forRowAt: indexPath)
     }
     
-    public func tableView(_ tableView: UITableView, didEndDisplayingHeaderView view: UIView, forSection section: Int) {
+    dynamic open func tableView(_ tableView: UITableView, didEndDisplayingHeaderView view: UIView, forSection section: Int) {
         self.nk_delegate?.tableView?(tableView, didEndDisplayingHeaderView: view, forSection: section)
     }
     
-    public func tableView(_ tableView: UITableView, didEndDisplayingFooterView view: UIView, forSection section: Int) {
+    dynamic open func tableView(_ tableView: UITableView, didEndDisplayingFooterView view: UIView, forSection section: Int) {
         self.nk_delegate?.tableView?(tableView, didEndDisplayingFooterView: view, forSection: section)
     }
     
     // Variable height support
-    public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    dynamic open func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let section = self.getSection(with: indexPath.section)
         let model = self.getModel(withSection: section, row: indexPath.row)
         let cellConfiguration = self.getCellConfiguration(withModel: model)
@@ -150,7 +150,7 @@ extension NKTableView: UITableViewDelegate {
         return result.height
     }
     
-    public func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    dynamic open func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         let section = self.getSection(with: section)
         if let headerConfiguration = section.headerConfiguarationType {
             let result = headerConfiguration.size(with: self, section: section, model: section.headerModel)
@@ -161,7 +161,7 @@ extension NKTableView: UITableViewDelegate {
         return 0
     }
     
-    public func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+    dynamic open func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         let section = self.getSection(with: section)
         if let footerConfiguration = section.footerConfiguarationType {
             let result = footerConfiguration.size(with: self, section: section, model: section.footerModel)
@@ -172,7 +172,7 @@ extension NKTableView: UITableViewDelegate {
         return 0
     }
     
-    public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    dynamic open func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let s = self.getSection(with: section)
         guard let configurationType = s.headerConfiguarationType else {return nil}
         
@@ -185,7 +185,7 @@ extension NKTableView: UITableViewDelegate {
         return view
     }// custom view for header. will be adjusted to default or specified header height
     
-    public func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+    dynamic open func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let s = self.getSection(with: section)
         guard let configurationType = s.footerConfiguarationType else {return nil}
         
@@ -198,66 +198,66 @@ extension NKTableView: UITableViewDelegate {
         return view
     }// custom view for footer. will be adjusted to default or
     
-    public func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
+    dynamic open func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
         self.nk_delegate?.tableView?(tableView, accessoryButtonTappedForRowWith: indexPath)
     }
     
-    public func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
+    dynamic open func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
         return self.nk_delegate?.tableView?(tableView, shouldHighlightRowAt: indexPath) ?? true
     }
     
-    public func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
+    dynamic open func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
         self.nk_delegate?.tableView?(tableView, didHighlightRowAt: indexPath)
     }
     
-    public func tableView(_ tableView: UITableView, didUnhighlightRowAt indexPath: IndexPath) {
+    dynamic open func tableView(_ tableView: UITableView, didUnhighlightRowAt indexPath: IndexPath) {
         self.nk_delegate?.tableView?(tableView, didUnhighlightRowAt: indexPath)
     }
     
-    public func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+    dynamic open func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         return self.nk_delegate?.tableView?(tableView, willSelectRowAt: indexPath) ?? indexPath
     }
     
-    public func tableView(_ tableView: UITableView, willDeselectRowAt indexPath: IndexPath) -> IndexPath? {
+    dynamic open func tableView(_ tableView: UITableView, willDeselectRowAt indexPath: IndexPath) -> IndexPath? {
         return self.nk_delegate?.tableView?(tableView, willDeselectRowAt: indexPath) ?? indexPath
     }
     
     // Called after the user changes the selection.
-    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    dynamic open func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.nk_delegate?.tableView?(tableView, didSelectRowAt: indexPath)
     }
     
-    public func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+    dynamic open func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         self.nk_delegate?.tableView?(tableView, didDeselectRowAt: indexPath)
     }
     
     // Editing
     
     // Allows customization of the editingStyle for a particular cell located at 'indexPath'. If not implemented, all editable cells will have UITableViewCellEditingStyleDelete set for them when the table has editing property set to YES.
-    public func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+    dynamic open func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
         return self.nk_delegate?.tableView?(tableView, editingStyleForRowAt: indexPath) ?? .none
     }
     
-    public func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
+    dynamic open func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
         return self.nk_delegate?.tableView?(tableView, titleForDeleteConfirmationButtonForRowAt: indexPath) ?? nil
     }
     
-    public func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+    dynamic open func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         return self.nk_delegate?.tableView?(tableView, editActionsForRowAt: indexPath) ?? nil
     }// supercedes -tableView:titleForDeleteConfirmationButtonForRowAtIndexPath: if return value is non-nil
     
     
     // Controls whether the background is indented while editing.  If not implemented, the default is YES.  This is unrelated to the indentation level below.  This method only applies to grouped style table views.
-    public func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
+    dynamic open func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
         return self.nk_delegate?.tableView?(tableView, shouldIndentWhileEditingRowAt: indexPath) ?? false
     }
     
     // The willBegin/didEnd methods are called whenever the 'editing' property is automatically changed by the table (allowing insert/delete/move). This is done by a swipe activating a single row
-    public func tableView(_ tableView: UITableView, willBeginEditingRowAt indexPath: IndexPath) {
+    dynamic open func tableView(_ tableView: UITableView, willBeginEditingRowAt indexPath: IndexPath) {
         self.nk_delegate?.tableView?(tableView, willBeginEditingRowAt: indexPath)
     }
     
-    public func tableView(_ tableView: UITableView, didEndEditingRowAt indexPath: IndexPath?) {
+    dynamic open func tableView(_ tableView: UITableView, didEndEditingRowAt indexPath: IndexPath?) {
         self.nk_delegate?.tableView?(tableView, didEndEditingRowAt: indexPath)
     }
     
@@ -265,101 +265,100 @@ extension NKTableView: UITableViewDelegate {
     // Moving/reordering
     
     // Allows customization of the target row for a particular row as it is being moved/reordered
-    public func tableView(_ tableView: UITableView, targetIndexPathForMoveFromRowAt sourceIndexPath: IndexPath, toProposedIndexPath proposedDestinationIndexPath: IndexPath) -> IndexPath {
+    dynamic open func tableView(_ tableView: UITableView, targetIndexPathForMoveFromRowAt sourceIndexPath: IndexPath, toProposedIndexPath proposedDestinationIndexPath: IndexPath) -> IndexPath {
         return self.nk_delegate?.tableView?(tableView, targetIndexPathForMoveFromRowAt: sourceIndexPath, toProposedIndexPath: proposedDestinationIndexPath) ?? proposedDestinationIndexPath
     }
     
     // Indentation
-    public func tableView(_ tableView: UITableView, indentationLevelForRowAt indexPath: IndexPath) -> Int {
+    dynamic open func tableView(_ tableView: UITableView, indentationLevelForRowAt indexPath: IndexPath) -> Int {
         return self.nk_delegate?.tableView?(tableView, indentationLevelForRowAt: indexPath) ?? 0
         //NPN TODO: check this
     }// return 'depth' of row for hierarchies
     
-    public func tableView(_ tableView: UITableView, shouldShowMenuForRowAt indexPath: IndexPath) -> Bool {
+    dynamic open func tableView(_ tableView: UITableView, shouldShowMenuForRowAt indexPath: IndexPath) -> Bool {
         return self.nk_delegate?.tableView?(tableView, shouldShowMenuForRowAt: indexPath) ?? false
     }
     
-    public func tableView(_ tableView: UITableView, canPerformAction action: Selector, forRowAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
+    dynamic open func tableView(_ tableView: UITableView, canPerformAction action: Selector, forRowAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
         return self.nk_delegate?.tableView?(tableView, canPerformAction: action, forRowAt: indexPath, withSender: sender) ?? false
     }
     
-    public func tableView(_ tableView: UITableView, performAction action: Selector, forRowAt indexPath: IndexPath, withSender sender: Any?) {
+    dynamic open func tableView(_ tableView: UITableView, performAction action: Selector, forRowAt indexPath: IndexPath, withSender sender: Any?) {
         self.nk_delegate?.tableView?(tableView, performAction: action, forRowAt: indexPath, withSender: sender)
     }
     
     // Focus
-    public func tableView(_ tableView: UITableView, canFocusRowAt indexPath: IndexPath) -> Bool {
+    dynamic open func tableView(_ tableView: UITableView, canFocusRowAt indexPath: IndexPath) -> Bool {
         return self.nk_delegate?.tableView?(tableView, canFocusRowAt: indexPath) ?? false
     }
     
     @available(iOS 9.0, *)
-    public func tableView(_ tableView: UITableView, shouldUpdateFocusIn context: UITableViewFocusUpdateContext) -> Bool {
+    dynamic open func tableView(_ tableView: UITableView, shouldUpdateFocusIn context: UITableViewFocusUpdateContext) -> Bool {
         return self.nk_delegate?.tableView?(tableView, shouldUpdateFocusIn: context) ?? false
     }
     
     @available(iOS 9.0, *)
-    public func tableView(_ tableView: UITableView, didUpdateFocusIn context: UITableViewFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
+    dynamic open func tableView(_ tableView: UITableView, didUpdateFocusIn context: UITableViewFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
         self.nk_delegate?.tableView?(tableView, didUpdateFocusIn: context, with: coordinator)
     }
     
-    public func indexPathForPreferredFocusedView(in tableView: UITableView) -> IndexPath? {
+    dynamic open func indexPathForPreferredFocusedView(in tableView: UITableView) -> IndexPath? {
         return self.nk_delegate?.indexPathForPreferredFocusedView?(in: tableView) ?? nil
     }
     
-    
-    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    dynamic open func scrollViewDidScroll(_ scrollView: UIScrollView) {
         self.nk_delegate?.scrollViewDidScroll?(scrollView)
     }// any offset changes
     
-    public func scrollViewDidZoom(_ scrollView: UIScrollView) {
+    dynamic open func scrollViewDidZoom(_ scrollView: UIScrollView) {
         self.nk_delegate?.scrollViewDidZoom?(scrollView)
     }// any zoom scale changes
     
     
     // called on start of dragging (may require some time and or distance to move)
-    public func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+    dynamic open func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         self.nk_delegate?.scrollViewWillBeginDragging?(scrollView)
     }
     
     // called on finger up if the user dragged. velocity is in points/millisecond. targetContentOffset may be changed to adjust where the scroll view comes to rest
-    public func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+    dynamic open func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         self.nk_delegate?.scrollViewWillEndDragging?(scrollView, withVelocity: velocity, targetContentOffset: targetContentOffset)
     }
     
     // called on finger up if the user dragged. decelerate is true if it will continue moving afterwards
-    public func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+    dynamic open func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         self.nk_delegate?.scrollViewDidEndDragging?(scrollView, willDecelerate: decelerate)
     }
     
-    public func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
+    dynamic open func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
         self.nk_delegate?.scrollViewWillBeginDecelerating?(scrollView)
     }// called on finger up as we are moving
     
-    public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+    dynamic open func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         self.nk_delegate?.scrollViewDidEndDecelerating?(scrollView)
     }// called when scroll view grinds to a halt
     
-    public func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
+    dynamic open func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
         self.nk_delegate?.scrollViewDidEndScrollingAnimation?(scrollView)
     }// called when setContentOffset/scrollRectVisible:animated: finishes. not called if not animating
 
-    public func viewForZooming(in scrollView: UIScrollView) -> UIView? {
+    dynamic open func viewForZooming(in scrollView: UIScrollView) -> UIView? {
         return self.nk_delegate?.viewForZooming?(in: scrollView) ?? nil
     }// return a view that will be scaled. if delegate returns nil, nothing happens
     
-    public func scrollViewWillBeginZooming(_ scrollView: UIScrollView, with view: UIView?) {
+    dynamic open func scrollViewWillBeginZooming(_ scrollView: UIScrollView, with view: UIView?) {
         self.nk_delegate?.scrollViewWillBeginZooming?(scrollView, with: view)
     }// called before the scroll view begins zooming its content
     
-    public func scrollViewDidEndZooming(_ scrollView: UIScrollView, with view: UIView?, atScale scale: CGFloat) {
+    dynamic open func scrollViewDidEndZooming(_ scrollView: UIScrollView, with view: UIView?, atScale scale: CGFloat) {
         self.nk_delegate?.scrollViewDidEndZooming?(scrollView, with: view, atScale: scale)
     }// scale between minimum and maximum. called after any 'bounce' animations
     
-    public func scrollViewShouldScrollToTop(_ scrollView: UIScrollView) -> Bool {
+    dynamic open func scrollViewShouldScrollToTop(_ scrollView: UIScrollView) -> Bool {
         return self.nk_delegate?.scrollViewShouldScrollToTop?(scrollView) ?? true
     }// return a yes if you want to scroll to the top. if not defined, assumes YES
     
-    public func scrollViewDidScrollToTop(_ scrollView: UIScrollView) {
+    dynamic open func scrollViewDidScrollToTop(_ scrollView: UIScrollView) {
         self.nk_delegate?.scrollViewDidScrollToTop?(scrollView)
     }
 }
@@ -373,7 +372,7 @@ extension NKTableView: UITableViewDelegate {
 //}
 //
 //extension NKTableView: UITableViewDataSource {
-//    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//    dynamic open func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 //        
 //    }
 //}
@@ -444,7 +443,7 @@ extension NKTableView: UITableViewDelegate {
 //}
 //
 //public extension NKTableView {
-//    public func reloadWithItems(items: [Any]) {
+//    dynamic open func reloadWithItems(items: [Any]) {
 //        self.clearAll()
 //        
 //        if let separateHeight = self.separateHeight {
