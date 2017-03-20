@@ -16,9 +16,11 @@ public protocol NKPullingViewModelable: NKLoadable, NKPullingState, NKPullingAct
     var rx_isLoadMore: Variable<Bool> {get}
     var page: Int {get set}
     var initPage: Int {get}
+    var offset: Int {get set}
+    var limit: Int {get}
     
     // pull items from ouside source
-    func pull(page: Int) -> Observable<[Any]>
+    func pull() -> Observable<[Any]>
     
     // Mapping from pulling items to view model items
     func map(value: [Any]) -> [NKDiffable]
@@ -29,6 +31,7 @@ public protocol NKPullingViewModelable: NKLoadable, NKPullingState, NKPullingAct
 }
 
 public extension NKPullingViewModelable where Self: NSObject {
+    
     //MARK: NKPullingState
     public var items: NKVariable<[NKDiffable]> {
         return self.rx_items.nk_variable
@@ -96,11 +99,12 @@ public extension NKPullingViewModelable where Self: NSObject {
         return Observable.just(models)
     }
     
-    private func resetModel() {
+    public func resetModel() {
         var strongSelf = self
         strongSelf.rx_items.value = []
         strongSelf.rx_isLoadMore.value = true
         strongSelf.page = self.initPage
+        strongSelf.offset = 0
     }
     
     private func canLoadMore() -> Observable<Void> {
@@ -112,14 +116,16 @@ public extension NKPullingViewModelable where Self: NSObject {
         return strongSelf
             .canLoadMore()
             .flatMapLatest({_ in strongSelf.doSomethingBeforeLoadingModels()})
-            .flatMapLatest({_ in strongSelf.pull(page: strongSelf.page)})
+            .flatMapLatest({_ in strongSelf.pull()})
+            .do(onNext: {
+                strongSelf.page = strongSelf.page + 1
+                strongSelf.offset += $0.count
+            })
             .flatMapLatest({strongSelf.doSomethingAfterLoadLoadingModels(models: $0)})
             .do(onNext: {
-                
                 let value = strongSelf.map(value: $0)
                 strongSelf.rx_isLoadMore.value = !(value.count == 0)
                 strongSelf.rx_items.value += value
-                strongSelf.page = strongSelf.page + 1
             })
         
     }

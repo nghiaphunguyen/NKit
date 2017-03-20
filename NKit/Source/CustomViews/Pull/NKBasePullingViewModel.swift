@@ -17,16 +17,26 @@ open class NKBasePullingViewModel: NSObject, NKPullingViewModelable {
     public var rx_error = Variable<Error?>(nil)
     public lazy var page: Int = {return self.getInitPage()}()
     public lazy var initPage: Int = {return self.getInitPage()}()
+    public lazy var limit: Int = {return self.getLimit()}()
+    public lazy var offset: Int = {return self.getOffset()}()
     
     public var errorString: NKVariable<String?> {
         return self.rx_error.nk_variable.map({ $0.map {self.errorString(error: $0)} })
+    }
+    
+    open func getOffset() -> Int {
+        return 0
     }
     
     open func getInitPage() -> Int {
         fatalError()
     }
     
-    open func pull(page: Int) -> Observable<[Any]> {
+    open func getLimit() -> Int {
+        fatalError()
+    }
+    
+    open func pull() -> Observable<[Any]> {
         fatalError()
     }
     
