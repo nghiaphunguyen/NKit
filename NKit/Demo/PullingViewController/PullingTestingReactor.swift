@@ -12,7 +12,7 @@ import NRxSwift
 
 final class PullingTestingReactor: NKBasePullingViewModel {
     
-    override func pull(page: Int) -> Observable<[Any]> {
+    override func pull() -> Observable<[Any]> {
         if page < 3 {
         return Observable<[String]>.nk_baseCreate({ (observer) in
             nk_delay(3) {

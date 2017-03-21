@@ -33,7 +33,7 @@ class FooterLoadingView: NKTableHeaderFooterView, NKListSupplementaryViewConfigu
         }
     }
     
-    static func height(withTableView tableView: NKTableView, section: NKTableSection, model: Any?) -> CFloat {
+    static func height(withTableView tableView: NKTableView, section: NKTableSection, model: Any?) -> CGFloat {
         return 50
     }
 }

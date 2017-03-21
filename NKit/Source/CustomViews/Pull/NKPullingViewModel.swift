@@ -88,7 +88,9 @@ public extension NKPullingViewModelable where Self: NSObject {
     }
     
     public func clearError() {
-        self.rx_error.value = nil
+        if self.rx_error.value != nil {
+            self.rx_error.value = nil
+        }
     }
     
     public func doSomethingBeforeLoadingModels() -> Observable<Void>{

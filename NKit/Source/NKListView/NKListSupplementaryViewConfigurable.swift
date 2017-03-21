@@ -20,7 +20,7 @@ public protocol NKListSupplementaryViewConfigurable: class, NKIdentifier {
     
     func tableView(_ tableView: NKTableView, configWithModel model: Any, at section: Int)
     
-    static func height(withTableView tableView: NKTableView, section: NKTableSection, model: Any?) -> CFloat
+    static func height(withTableView tableView: NKTableView, section: NKTableSection, model: Any?) -> CGFloat
 }
 
 extension NKListSupplementaryViewConfigurable where Self: UICollectionReusableView {
@@ -41,7 +41,7 @@ extension NKListSupplementaryViewConfigurable where Self: UICollectionReusableVi
     public func tableView(_ tableView: NKTableView, configWithModel model: Any, at section: Int) {
     }
     
-    public static func height(withTableView tableView: NKTableView, section: NKTableSection, model: Any?) -> CFloat {
+    public static func height(withTableView tableView: NKTableView, section: NKTableSection, model: Any?) -> CGFloat {
         return 0
     }
 }
