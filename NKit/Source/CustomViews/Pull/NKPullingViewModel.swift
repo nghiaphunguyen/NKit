@@ -28,6 +28,7 @@ public protocol NKPullingViewModelable: NKLoadable, NKPullingState, NKPullingAct
     //MARK: Optional
     func doSomethingBeforeLoadingModels() -> Observable<Void>
     func doSomethingAfterLoadLoadingModels(models: [Any]) -> Observable<[Any]>
+    func resetModel()
 }
 
 public extension NKPullingViewModelable where Self: NSObject {

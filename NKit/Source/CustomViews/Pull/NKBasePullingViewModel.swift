@@ -24,6 +24,18 @@ open class NKBasePullingViewModel: NSObject, NKPullingViewModelable {
         return self.rx_error.nk_variable.map({ $0.map {self.errorString(error: $0)} })
     }
     
+    open func resetModel() {
+        let strongSelf = self
+        strongSelf.rx_items.value = []
+        strongSelf.rx_isLoadMore.value = true
+        strongSelf.page = self.initPage
+        strongSelf.offset = 0
+    }
+    
+    open var items: NKVariable<[NKDiffable]> {
+        return self.rx_items.nk_variable
+    }
+    
     open func getOffset() -> Int {
         return 0
     }
