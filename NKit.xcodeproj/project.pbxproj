@@ -138,6 +138,7 @@
 		428B78E81E59997800929CC7 /* PullingTestingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 428B78E41E59997800929CC7 /* PullingTestingViewController.swift */; };
 		428B78EA1E599B9300929CC7 /* DemoPullingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 428B78E91E599B9300929CC7 /* DemoPullingViewController.swift */; };
 		428B78EC1E59A56D00929CC7 /* NKBasePullingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 428B78EB1E59A56D00929CC7 /* NKBasePullingViewModel.swift */; };
+		42EBDE281E82409F009C79D8 /* TestTransitionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42EBDE271E82409F009C79D8 /* TestTransitionViewController.swift */; };
 		42F5BA5B1E6EC67C00FD27EB /* Array+NKStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F5BA5A1E6EC67C00FD27EB /* Array+NKStyle.swift */; };
 		42FE62BB1E769DDD0096E6BB /* OAStackView+NKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42FE62BA1E769DDD0096E6BB /* OAStackView+NKit.swift */; };
 		42FE62CA1E7776120096E6BB /* NKAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42FE62C81E7776120096E6BB /* NKAction.swift */; };
@@ -285,6 +286,7 @@
 		428B78E41E59997800929CC7 /* PullingTestingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PullingTestingViewController.swift; sourceTree = "<group>"; };
 		428B78E91E599B9300929CC7 /* DemoPullingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoPullingViewController.swift; sourceTree = "<group>"; };
 		428B78EB1E59A56D00929CC7 /* NKBasePullingViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKBasePullingViewModel.swift; sourceTree = "<group>"; };
+		42EBDE271E82409F009C79D8 /* TestTransitionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestTransitionViewController.swift; sourceTree = "<group>"; };
 		42F5BA5A1E6EC67C00FD27EB /* Array+NKStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+NKStyle.swift"; sourceTree = "<group>"; };
 		42FE62BA1E769DDD0096E6BB /* OAStackView+NKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "OAStackView+NKit.swift"; sourceTree = "<group>"; };
 		42FE62C81E7776120096E6BB /* NKAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKAction.swift; sourceTree = "<group>"; };
@@ -542,6 +544,7 @@
 				1865A18D1D9987F6005D4C4A /* ThreeViewController.swift */,
 				4271A8E41E48D12100C686BB /* CollectionViewTesting.swift */,
 				4271A9151E4C6E4D00C686BB /* TestTableView.swift */,
+				42EBDE271E82409F009C79D8 /* TestTransitionViewController.swift */,
 			);
 			path = Demo;
 			sourceTree = "<group>";
@@ -955,6 +958,7 @@
 				42FE62BB1E769DDD0096E6BB /* OAStackView+NKit.swift in Sources */,
 				42FE62CD1E77761E0096E6BB /* NKActionDelegable.swift in Sources */,
 				189DF1C01D97F22D00266E12 /* NKTestable.swift in Sources */,
+				42EBDE281E82409F009C79D8 /* TestTransitionViewController.swift in Sources */,
 				1828D0EA1D6F1799007D0933 /* UIViewController+NavigationBar.swift in Sources */,
 				181D798B1DF6F981004825D8 /* Array+Extension.swift in Sources */,
 				4271A8C91E46D3E100C686BB /* Dwifft.swift in Sources */,

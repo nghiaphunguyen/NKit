@@ -40,15 +40,14 @@ public final class NKPresentationTransition: NSObject {
 }
 
 extension NKPresentationTransition: UIViewControllerTransitioningDelegate {
-    open func presentationControllerForPresentedViewController(presented: UIViewController, presentingViewController presenting: UIViewController, sourceViewController source: UIViewController) -> UIPresentationController? {
-        
+    
+    dynamic open func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
         self.controller?.setValue(presented, forKey: "presentedViewController")
         self.controller?.setValue(presenting, forKey: "presentingViewController")
         return controller
     }
     
-    open func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        
+    public func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         guard let animator = self.presentAnimator else {
             return nil
         }
@@ -71,8 +70,7 @@ extension NKPresentationTransition: UIViewControllerTransitioningDelegate {
         }
     }
     
-    open func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        
+    public func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         guard let animator = self.dismissAnimator else {
             return nil
         }
@@ -95,9 +93,9 @@ extension NKPresentationTransition: UIViewControllerTransitioningDelegate {
         }
     }
     
-    open func interactionControllerForPresentation(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
-        
-        guard let animator = self.presentAnimator else {
+    
+    public func interactionControllerForDismissal(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+        guard let animator = self.dismissAnimator else {
             return nil
         }
         
@@ -109,8 +107,9 @@ extension NKPresentationTransition: UIViewControllerTransitioningDelegate {
         }
     }
     
-    open func interactionControllerForDismissal(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
-        guard let animator = self.dismissAnimator else {
+    public func interactionControllerForPresentation(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+        
+        guard let animator = self.presentAnimator else {
             return nil
         }
         

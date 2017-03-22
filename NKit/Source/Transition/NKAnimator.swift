@@ -116,6 +116,8 @@ public final class NKAnimator: NSObject {
 }
 
 extension NKAnimator: UIViewControllerAnimatedTransitioning {
+    
+    
     open func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         return self.duration
     }
