@@ -11,7 +11,8 @@ import RxSwift
 import NRxSwift
 
 open class NKBasePullingViewModel: NSObject, NKPullingViewModelable {
-    public var rx_items = Variable<[NKDiffable]>([])
+    public var rx_items = Variable<[Any]>([])
+    public var rx_viewModels = Variable<[NKDiffable]>([])
     public var rx_isLoadMore = Variable<Bool>(true)
     public var rx_isLoading = Variable<Bool>(false)
     public var rx_error = Variable<Error?>(nil)
@@ -32,8 +33,8 @@ open class NKBasePullingViewModel: NSObject, NKPullingViewModelable {
         strongSelf.offset = 0
     }
     
-    open var items: NKVariable<[NKDiffable]> {
-        return self.rx_items.nk_variable
+    open var viewModels: NKVariable<[NKDiffable]> {
+        return self.rx_viewModels.nk_variable
     }
     
     open func getOffset() -> Int {

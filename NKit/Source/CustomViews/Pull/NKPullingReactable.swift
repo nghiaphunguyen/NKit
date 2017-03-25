@@ -17,7 +17,7 @@ public protocol NKPullingAction {
 }
 
 public protocol NKPullingState {
-    var items: NKVariable<[NKDiffable]> {get}
+    var viewModels: NKVariable<[NKDiffable]> {get}
     var errorString: NKVariable<String?> {get}
     var isLoadMore: NKVariable<Bool> {get}
     
