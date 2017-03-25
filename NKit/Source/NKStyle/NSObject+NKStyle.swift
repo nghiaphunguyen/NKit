@@ -25,3 +25,13 @@ public extension NSObject {
         return self.configStyles(styles)
     }
 }
+
+//MARK: StyleCreatable
+extension NSObject: NKStyleCreatable {}
+
+public protocol NKStyleCreatable {}
+public extension NKStyleCreatable {
+    public static func nk_style(config: @escaping (Self) -> Void) -> NKStylable {
+        return NKStyle<Self>.init(config: config)
+    }
+}

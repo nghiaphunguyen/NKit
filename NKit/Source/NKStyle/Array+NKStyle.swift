@@ -19,7 +19,7 @@ struct NKArrayStylable: NKStylable {
 }
 
 public extension Array where Element: NKStylable {
-    public func nk_merge() -> NKStylable {
+    public func nk_union() -> NKStylable {
         return NKArrayStylable(array: self)
     }
 }

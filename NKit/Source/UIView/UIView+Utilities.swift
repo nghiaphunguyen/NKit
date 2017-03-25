@@ -32,16 +32,16 @@ public extension UIView {
     }
     
     @discardableResult public func nk_addBorder(borderWidth: CGFloat = 1,
-        color: UIColor = UIColor.black,
-        cornerRadius: CGFloat = 0) -> UIView {
-            self.layer.borderColor = color.cgColor
-            self.layer.borderWidth = borderWidth
-            
-            self.layer.cornerRadius = cornerRadius
-            
-            self.clipsToBounds = true
-            
-            return self
+                                                color: UIColor = UIColor.black,
+                                                cornerRadius: CGFloat = 0) -> UIView {
+        self.layer.borderColor = color.cgColor
+        self.layer.borderWidth = borderWidth
+        
+        self.layer.cornerRadius = cornerRadius
+        
+        self.clipsToBounds = true
+        
+        return self
     }
     
     @discardableResult public func nk_setBorderForAllSubviews() -> UIView {
@@ -97,6 +97,24 @@ public extension UIView {
         UIGraphicsEndImageContext();
         
         return image!
+    }
+    
+    public var nk_tableView: UITableView? {
+        var view = self.superview
+        while view != nil && view?.isKind(of: UITableView.self) != true {
+            view = view?.superview
+        }
+        
+        return view as? UITableView
+    }
+    
+    public var nk_collectionView: UICollectionView? {
+        var view = self.superview
+        while view != nil && view?.isKind(of: UICollectionView.self) != true {
+            view = view?.superview
+        }
+        
+        return view as? UICollectionView
     }
 }
 

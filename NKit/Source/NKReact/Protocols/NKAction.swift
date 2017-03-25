@@ -8,4 +8,16 @@
 
 import UIKit
 
-public protocol NKAction {}
+public protocol NKAction {
+    var sender: AnyObject? {get}
+}
+
+public extension NKAction {
+    public var sender: AnyObject? {
+        return nil
+    }
+    
+    public func isEqualSender(_ sender: AnyObject?) -> Bool {
+        return self.sender != nil && self.sender === sender
+    }
+}
