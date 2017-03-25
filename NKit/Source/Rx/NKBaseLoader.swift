@@ -9,10 +9,9 @@
 import UIKit
 import RxSwift
 
-open class NKBaseLoader: NKLoadable {
+open class NKBaseLoader: NSObject, NKLoadable {
     open var rx_error = Variable<Error?>(nil)
     open var rx_isLoading = Variable<Bool>(false)
-    
     
     open func clearError() {
         if self.rx_error.value != nil {
