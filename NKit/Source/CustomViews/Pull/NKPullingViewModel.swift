@@ -14,7 +14,6 @@ public protocol NKPullingViewModelable: NKLoadable, NKPullingState, NKPullingAct
     //MARK: need override
     
     var rx_items: Variable<[Any]> {get}
-    var rx_viewModels: Variable<[NKDiffable]> {get}
     var rx_isLoadMore: Variable<Bool> {get}
     var page: Int {get set}
     var initPage: Int {get}
@@ -25,7 +24,7 @@ public protocol NKPullingViewModelable: NKLoadable, NKPullingState, NKPullingAct
     func pull() -> Observable<[Any]>
     
     // Mapping from pulling items to view model items
-    func map(value: [Any]) -> [NKDiffable]
+    func map(value: Any) -> NKDiffable
     
     //MARK: Optional
     func doSomethingBeforeLoadingModels() -> Observable<Void>
@@ -36,8 +35,12 @@ public protocol NKPullingViewModelable: NKLoadable, NKPullingState, NKPullingAct
 public extension NKPullingViewModelable where Self: NSObject {
     
     //MARK: NKPullingState
-    public var viewModels: NKVariable<[NKDiffable]> {
-        return self.rx_viewModels.nk_variable
+    public var viewModelsObservable: Observable<[NKDiffable]> {
+        return self.rx_items.asObservable().map {$0.map {self.map(value: $0)}}
+    }
+    
+    public var items: NKVariable<[Any]> {
+        return self.rx_items.nk_variable
     }
     
     public var isLoadMore: NKVariable<Bool> {
@@ -107,7 +110,6 @@ public extension NKPullingViewModelable where Self: NSObject {
     public func resetModel() {
         var strongSelf = self
         strongSelf.rx_items.value = []
-        strongSelf.rx_viewModels.value = []
         strongSelf.rx_isLoadMore.value = true
         strongSelf.page = self.initPage
         strongSelf.offset = 0
@@ -130,9 +132,7 @@ public extension NKPullingViewModelable where Self: NSObject {
             .flatMapLatest({strongSelf.doSomethingAfterLoadLoadingModels(models: $0)})
             .do(onNext: {
                 strongSelf.rx_items.value += $0
-                let value = strongSelf.map(value: $0)
-                strongSelf.rx_isLoadMore.value = !(value.count == 0)
-                strongSelf.rx_viewModels.value += value
+                strongSelf.rx_isLoadMore.value = !(strongSelf.rx_items.value.count == 0)
             })
         
     }

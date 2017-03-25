@@ -24,8 +24,8 @@ final class PullingTestingReactor: NKBasePullingViewModel {
         return Observable.just([])
     }
     
-    override func map(value: [Any]) -> [NKDiffable] {
-        return value.map {$0 as! NKDiffable}
+    override func map(value: Any) -> NKDiffable {
+        return value as! NKDiffable
     }
     
     override func getInitPage() -> Int {
