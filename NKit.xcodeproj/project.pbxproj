@@ -16,6 +16,8 @@
 		1806973A1E8691680040F6F3 /* NKPresentSelectionRowType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180697371E8691680040F6F3 /* NKPresentSelectionRowType.swift */; };
 		1806973B1E8691680040F6F3 /* NKSelectionRowType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180697381E8691680040F6F3 /* NKSelectionRowType.swift */; };
 		1806973D1E8691D20040F6F3 /* NKCallbackable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1806973C1E8691D20040F6F3 /* NKCallbackable.swift */; };
+		1806973F1E8695010040F6F3 /* NKErrorConvertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1806973E1E8695010040F6F3 /* NKErrorConvertable.swift */; };
+		180697411E8695500040F6F3 /* NKMessagable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180697401E8695500040F6F3 /* NKMessagable.swift */; };
 		181D798B1DF6F981004825D8 /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181D798A1DF6F981004825D8 /* Array+Extension.swift */; };
 		1821A5E41D9AD926004C8FAC /* SnapKit+NKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1821A5E31D9AD926004C8FAC /* SnapKit+NKit.swift */; };
 		1821A5E61D9ADABC004C8FAC /* Mirror+NKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1821A5E51D9ADABC004C8FAC /* Mirror+NKit.swift */; };
@@ -170,6 +172,8 @@
 		180697371E8691680040F6F3 /* NKPresentSelectionRowType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKPresentSelectionRowType.swift; sourceTree = "<group>"; };
 		180697381E8691680040F6F3 /* NKSelectionRowType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKSelectionRowType.swift; sourceTree = "<group>"; };
 		1806973C1E8691D20040F6F3 /* NKCallbackable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKCallbackable.swift; sourceTree = "<group>"; };
+		1806973E1E8695010040F6F3 /* NKErrorConvertable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKErrorConvertable.swift; sourceTree = "<group>"; };
+		180697401E8695500040F6F3 /* NKMessagable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKMessagable.swift; sourceTree = "<group>"; };
 		181D798A1DF6F981004825D8 /* Array+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Extension.swift"; sourceTree = "<group>"; };
 		1821A5E31D9AD926004C8FAC /* SnapKit+NKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SnapKit+NKit.swift"; sourceTree = "<group>"; };
 		1821A5E51D9ADABC004C8FAC /* Mirror+NKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Mirror+NKit.swift"; sourceTree = "<group>"; };
@@ -565,6 +569,8 @@
 				4271A8E21E48AAC800C686BB /* String+Number.swift */,
 				4233914F1E51BE7E0049470F /* NKEnumCollection.swift */,
 				420196D11E5AE1BE002CB2F1 /* UIApplicationState+NKit.swift */,
+				1806973E1E8695010040F6F3 /* NKErrorConvertable.swift */,
+				180697401E8695500040F6F3 /* NKMessagable.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -961,6 +967,7 @@
 				18DD400E1D87B5FD004B420E /* NKNavigationDirection.swift in Sources */,
 				183D0DAC1D82BF360084754E /* UIScrollView+AutoScrolling.swift in Sources */,
 				186058C21D9E79C40079CE63 /* NKText.swift in Sources */,
+				1806973F1E8695010040F6F3 /* NKErrorConvertable.swift in Sources */,
 				1828D0E81D6F1799007D0933 /* UIViewController+Injected.swift in Sources */,
 				1828D0EC1D6F1799007D0933 /* UIViewController+Utils.swift in Sources */,
 				18703F721D75D05200BFB829 /* NSDate+Extensions.swift in Sources */,
@@ -1022,6 +1029,7 @@
 				1828D0E01D6F1799007D0933 /* UINavigationController+Animation.swift in Sources */,
 				1828D0E11D6F1799007D0933 /* UIView+Animation.swift in Sources */,
 				428B78EA1E599B9300929CC7 /* DemoPullingViewController.swift in Sources */,
+				180697411E8695500040F6F3 /* NKMessagable.swift in Sources */,
 				423672091E61952D009BB55C /* NKNotificationProxyable.swift in Sources */,
 				189DF1BF1D97F22D00266E12 /* NKLayoutTester.swift in Sources */,
 				18FBB00A1E00E3110055C606 /* UIViewController+Analytics.swift in Sources */,
