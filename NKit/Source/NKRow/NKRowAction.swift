@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class RowAction<T>: NKBaseRowAction {
+public class NKRowAction<T>: NKBaseRowAction {
     public let sender: AnyObject
     public let indexPath: IndexPath
     public let value: T
