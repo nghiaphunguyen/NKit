@@ -21,7 +21,11 @@ open class NKBasePullingViewModel: NSObject, NKPullingViewModelable {
     public lazy var limit: Int = {return self.getLimit()}()
     public lazy var offset: Int = {return self.getOffset()}()
     
-    public var errorString: NKVariable<String?> {
+    open var viewModelsObservable: Observable<[NKDiffable]> {
+        return self.rx_items.asObservable().map { $0.map {[unowned self] in self.map(value: $0)} }
+    }
+    
+    open var errorString: NKVariable<String?> {
         return self.rx_error.nk_variable.map({ $0.map {self.errorString(error: $0)} })
     }
     

@@ -14,6 +14,7 @@ public protocol NKPullingViewModelable: NKLoadable, NKPullingState, NKPullingAct
     //MARK: need override
     
     var rx_items: Variable<[Any]> {get}
+    var viewModelsObservable: Observable<[NKDiffable]> {get}
     var rx_isLoadMore: Variable<Bool> {get}
     var page: Int {get set}
     var initPage: Int {get}
@@ -36,7 +37,7 @@ public extension NKPullingViewModelable where Self: NSObject {
     
     //MARK: NKPullingState
     public var viewModelsObservable: Observable<[NKDiffable]> {
-        return self.rx_items.asObservable().map {$0.map {self.map(value: $0)}}
+        return self.rx_items.asObservable().map {$0.map {[unowned self] in self.map(value: $0)}}
     }
     
     public var items: NKVariable<[Any]> {
