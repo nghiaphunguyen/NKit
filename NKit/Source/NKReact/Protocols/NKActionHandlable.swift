@@ -16,7 +16,7 @@ public protocol NKActionHandlable {
     func handle(action: NKAction)
 }
 
-extension NKActionHandlable where Self: NSObject {
+public extension NKActionHandlable where Self: NSObject {
     public func setupActionHandler() {
         self.actionHub.handleActionObservable.filter {[weak self] in $0.isEqualSender(self?.sender) == true
             }.nk_subscribe { (action) in

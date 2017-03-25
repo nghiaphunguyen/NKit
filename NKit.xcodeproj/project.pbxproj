@@ -19,6 +19,7 @@
 		1806973F1E8695010040F6F3 /* NKErrorConvertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1806973E1E8695010040F6F3 /* NKErrorConvertable.swift */; };
 		180697411E8695500040F6F3 /* NKMessagable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180697401E8695500040F6F3 /* NKMessagable.swift */; };
 		180697471E86B16F0040F6F3 /* NKActionHandlable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180697461E86B16F0040F6F3 /* NKActionHandlable.swift */; };
+		1806974B1E86CD1C0040F6F3 /* NKBaseLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1806974A1E86CD1C0040F6F3 /* NKBaseLoader.swift */; };
 		181D798B1DF6F981004825D8 /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181D798A1DF6F981004825D8 /* Array+Extension.swift */; };
 		1821A5E41D9AD926004C8FAC /* SnapKit+NKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1821A5E31D9AD926004C8FAC /* SnapKit+NKit.swift */; };
 		1821A5E61D9ADABC004C8FAC /* Mirror+NKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1821A5E51D9ADABC004C8FAC /* Mirror+NKit.swift */; };
@@ -176,6 +177,7 @@
 		1806973E1E8695010040F6F3 /* NKErrorConvertable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKErrorConvertable.swift; sourceTree = "<group>"; };
 		180697401E8695500040F6F3 /* NKMessagable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKMessagable.swift; sourceTree = "<group>"; };
 		180697461E86B16F0040F6F3 /* NKActionHandlable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKActionHandlable.swift; sourceTree = "<group>"; };
+		1806974A1E86CD1C0040F6F3 /* NKBaseLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKBaseLoader.swift; sourceTree = "<group>"; };
 		181D798A1DF6F981004825D8 /* Array+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Extension.swift"; sourceTree = "<group>"; };
 		1821A5E31D9AD926004C8FAC /* SnapKit+NKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SnapKit+NKit.swift"; sourceTree = "<group>"; };
 		1821A5E51D9ADABC004C8FAC /* Mirror+NKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Mirror+NKit.swift"; sourceTree = "<group>"; };
@@ -639,6 +641,7 @@
 				188474F11D93D570009F4506 /* NSNotificationCenter+NRx.swift */,
 				188474F21D93D570009F4506 /* NSObject+NRx.swift */,
 				187674881DCB873000BE089E /* CLLocationManager.swift */,
+				1806974A1E86CD1C0040F6F3 /* NKBaseLoader.swift */,
 			);
 			path = Rx;
 			sourceTree = "<group>";
@@ -984,6 +987,7 @@
 				1806972A1E868EEE0040F6F3 /* NKBaseRowType.swift in Sources */,
 				18AF25941E09501A005C9158 /* NKPullingViewModel.swift in Sources */,
 				4236720D1E6197B0009BB55C /* NKNotificationProxy.swift in Sources */,
+				1806974B1E86CD1C0040F6F3 /* NKBaseLoader.swift in Sources */,
 				18CD79CE1E004D500078E694 /* NKColor.swift in Sources */,
 				1828D0C61D6F1799007D0933 /* CALayer+Closure.swift in Sources */,
 				1806973D1E8691D20040F6F3 /* NKCallbackable.swift in Sources */,

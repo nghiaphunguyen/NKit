@@ -9,14 +9,13 @@
 import UIKit
 
 public class NKRowAction<T>: NKBaseRowAction {
-    public let sender: AnyObject
+    public let sender: AnyObject?
     public let indexPath: IndexPath
     public let value: T
     
     public init?(payload: Any?, sender: AnyObject?, indexPath: IndexPath?) {
         guard let indexPath = indexPath else {return nil}
         guard let payload = payload as? T else {return nil}
-        guard let sender = sender else {return nil}
         self.value = payload
         self.sender = sender
         self.indexPath = indexPath
