@@ -232,39 +232,38 @@ precedencegroup NKOperator140 {
 precedencegroup NKOperator130 {}
 
 infix operator ~ : NKOperator160
-public func ~ <T: UIView>(left: T, right: NKViewIdentifier) -> T {
+@discardableResult public func ~ <T: UIView>(left: T, right: NKViewIdentifier) -> T {
     return left.nk_id(right)
 }
 
 infix operator >>> : NKOperator150
-public func >>> <T: UIView>(left: T, right: @escaping (T) -> Void) -> NKViewConfiguration<T> {
+@discardableResult public func >>> <T: UIView>(left: T, right: @escaping (T) -> Void) -> NKViewConfiguration<T> {
     return NKViewConfiguration(view: left, config: right)
 }
 
 infix operator <> : NKOperator151
-public func <> <T: UIView>(left: T, right: (T) -> Void) -> T {
+@discardableResult public func <> <T: UIView>(left: T, right: (T) -> Void) -> T {
     right(left)
     
     return left
 }
 
 infix operator <<< : NKOperator140
-public func <<< <T: UIView, U: UIView>(left: T, right: U) -> T {
+@discardableResult public func <<< <T: UIView, U: UIView>(left: T, right: U) -> T {
     return left.nk_addSubview(right)
 }
 
-@available(iOS 9.0, *)
-public func <<< <T: UIStackView, U: UIView>(left: T, right: U) -> T {
-    return left.nk_addArrangedSubview(right)
-}
-
-@available(iOS 9.0, *)
-public func <<< <T: UIView, U: UIView>(left: T, right: NKViewConfiguration<U>) -> T {
+@discardableResult public func <<< <T: UIView, U: UIView>(left: T, right: NKViewConfiguration<U>) -> T {
     return left.nk_addSubview(right.view, config: right.config)
 }
 
 @available(iOS 9.0, *)
-public func <<< <T: UIStackView
+@discardableResult public func <<< <T: UIStackView, U: UIView>(left: T, right: U) -> T {
+    return left.nk_addArrangedSubview(right)
+}
+
+@available(iOS 9.0, *)
+@discardableResult public func <<< <T: UIStackView
     , U: UIView>(left: T, right: NKViewConfiguration<U>) -> T {
     return left.nk_addArrangedSubview(right.view, config: right.config)
 }
@@ -275,6 +274,6 @@ public enum NKLayoutMapping {
 }
 
 infix operator <-> : NKOperator130
-public func <-> <T: UIView>(left: T, right: NKLayoutMapping) -> T {
+@discardableResult public func <-> <T: UIView>(left: T, right: NKLayoutMapping) -> T {
     return left.nk_mapIds()
 }

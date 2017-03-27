@@ -22,7 +22,7 @@ open class NKBasePullingViewModel: NSObject, NKPullingViewModelable {
     public lazy var offset: Int = {return self.getOffset()}()
     
     open var viewModelsObservable: Observable<[NKDiffable]> {
-        return self.rx_items.asObservable().map { $0.map {[unowned self] in self.map(value: $0)} }
+        return self.rx_items.asObservable().map { $0.flatMap {[unowned self] in self.map(value: $0)} }
     }
     
     open var errorString: NKVariable<String?> {
@@ -53,7 +53,7 @@ open class NKBasePullingViewModel: NSObject, NKPullingViewModelable {
         fatalError()
     }
     
-    open func map(value: Any) -> NKDiffable {
+    open func map(value: Any) -> NKDiffable? {
         fatalError()
     }
     

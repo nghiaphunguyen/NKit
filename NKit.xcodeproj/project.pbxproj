@@ -20,6 +20,7 @@
 		180697411E8695500040F6F3 /* NKMessagable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180697401E8695500040F6F3 /* NKMessagable.swift */; };
 		180697471E86B16F0040F6F3 /* NKActionHandlable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180697461E86B16F0040F6F3 /* NKActionHandlable.swift */; };
 		1806974B1E86CD1C0040F6F3 /* NKBaseLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1806974A1E86CD1C0040F6F3 /* NKBaseLoader.swift */; };
+		1806974D1E881A950040F6F3 /* TestLayoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1806974C1E881A950040F6F3 /* TestLayoutViewController.swift */; };
 		181D798B1DF6F981004825D8 /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181D798A1DF6F981004825D8 /* Array+Extension.swift */; };
 		1821A5E41D9AD926004C8FAC /* SnapKit+NKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1821A5E31D9AD926004C8FAC /* SnapKit+NKit.swift */; };
 		1821A5E61D9ADABC004C8FAC /* Mirror+NKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1821A5E51D9ADABC004C8FAC /* Mirror+NKit.swift */; };
@@ -178,6 +179,7 @@
 		180697401E8695500040F6F3 /* NKMessagable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKMessagable.swift; sourceTree = "<group>"; };
 		180697461E86B16F0040F6F3 /* NKActionHandlable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKActionHandlable.swift; sourceTree = "<group>"; };
 		1806974A1E86CD1C0040F6F3 /* NKBaseLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKBaseLoader.swift; sourceTree = "<group>"; };
+		1806974C1E881A950040F6F3 /* TestLayoutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestLayoutViewController.swift; sourceTree = "<group>"; };
 		181D798A1DF6F981004825D8 /* Array+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Extension.swift"; sourceTree = "<group>"; };
 		1821A5E31D9AD926004C8FAC /* SnapKit+NKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SnapKit+NKit.swift"; sourceTree = "<group>"; };
 		1821A5E51D9ADABC004C8FAC /* Mirror+NKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Mirror+NKit.swift"; sourceTree = "<group>"; };
@@ -590,6 +592,7 @@
 				4271A8E41E48D12100C686BB /* CollectionViewTesting.swift */,
 				4271A9151E4C6E4D00C686BB /* TestTableView.swift */,
 				42EBDE271E82409F009C79D8 /* TestTransitionViewController.swift */,
+				1806974C1E881A950040F6F3 /* TestLayoutViewController.swift */,
 			);
 			path = Demo;
 			sourceTree = "<group>";
@@ -1028,6 +1031,7 @@
 				183D0DB51D8595E50084754E /* OneViewController.swift in Sources */,
 				183F9B281DC8AA8400D9C7B9 /* NKLogEventManager.swift in Sources */,
 				42F5BA5B1E6EC67C00FD27EB /* Array+NKStyle.swift in Sources */,
+				1806974D1E881A950040F6F3 /* TestLayoutViewController.swift in Sources */,
 				1828D0D51D6F1799007D0933 /* String+Extension.swift in Sources */,
 				422C250A1E6EAC9000FBB511 /* NKStylable.swift in Sources */,
 				1828D0E61D6F1799007D0933 /* UIView+Utilities.swift in Sources */,

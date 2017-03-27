@@ -25,7 +25,7 @@ public protocol NKPullingViewModelable: NKLoadable, NKPullingState, NKPullingAct
     func pull() -> Observable<[Any]>
     
     // Mapping from pulling items to view model items
-    func map(value: Any) -> NKDiffable
+    func map(value: Any) -> NKDiffable?
     
     //MARK: Optional
     func doSomethingBeforeLoadingModels() -> Observable<Void>
@@ -37,7 +37,7 @@ public extension NKPullingViewModelable where Self: NSObject {
     
     //MARK: NKPullingState
     public var viewModelsObservable: Observable<[NKDiffable]> {
-        return self.rx_items.asObservable().map {$0.map {[unowned self] in self.map(value: $0)}}
+        return self.rx_items.asObservable().map {$0.flatMap {[unowned self] in self.map(value: $0)}}
     }
     
     public var items: NKVariable<[Any]> {
