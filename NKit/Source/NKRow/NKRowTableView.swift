@@ -8,7 +8,7 @@
 
 import UIKit
 
-open class RowTableView: NKTableView {
+open class NKRowTableView: NKTableView {
     override open func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
         if let value = self.nk_delegate?.tableView?(tableView, shouldHighlightRowAt: indexPath) {
             return value

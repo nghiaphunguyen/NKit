@@ -8,10 +8,10 @@
 
 import UIKit
 
-public class NKRowAction<T>: NKBaseRowAction {
-    public let sender: AnyObject?
-    public let indexPath: IndexPath
-    public let value: T
+open class NKRowAction<T>: NKBaseRowAction {
+    open let sender: AnyObject?
+    open let indexPath: IndexPath
+    open let value: T
     
     public init?(payload: Any?, sender: AnyObject?, indexPath: IndexPath?) {
         guard let indexPath = indexPath else {return nil}
