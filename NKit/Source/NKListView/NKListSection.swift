@@ -9,7 +9,7 @@
 import UIKit
 
 open class NKListSection: NSObject {
-    open fileprivate(set) var models: [NKDiffable] = []
+    open var models: [NKDiffable] = []
     open fileprivate(set) var headerModel: Any? = nil
     open fileprivate(set) var footerModel: Any? = nil
     
