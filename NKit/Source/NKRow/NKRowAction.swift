@@ -8,15 +8,33 @@
 
 import UIKit
 
+protocol NKOptional {}
+
+extension Optional: NKOptional {}
+
 open class NKRowAction<T>: NKBaseRowAction {
     open let sender: AnyObject?
     open let indexPath: IndexPath
-    open let value: T
+    open let value: T!
     
     public init?(payload: Any?, sender: AnyObject?, indexPath: IndexPath?) {
+        
         guard let indexPath = indexPath else {return nil}
-        guard let payload = payload as? T else {return nil}
-        self.value = payload
+        
+        if payload == nil {
+            guard T.self is NKOptional.Type else {
+                return nil
+            }
+            
+            self.value = nil
+        } else {
+            guard let payload = payload as? T else {
+                return nil
+            }
+            
+            self.value = payload
+        }
+        
         self.sender = sender
         self.indexPath = indexPath
     }

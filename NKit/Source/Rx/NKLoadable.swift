@@ -28,7 +28,9 @@ public protocol NKLoadable {
 public extension NKLoadable {
     
     public func clearError() {
-        self.rx_error.value = nil
+        if self.rx_error.value != nil {
+            self.rx_error.value = nil
+        }
     }
     
     public func load<T>(_ observable: Observable<T>) -> Observable<T> {
