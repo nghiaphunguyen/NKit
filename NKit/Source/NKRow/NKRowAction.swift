@@ -8,9 +8,9 @@
 
 import UIKit
 
-protocol NKOptional {}
+protocol NKOptional2 {}
 
-extension Optional: NKOptional {}
+extension Optional: NKOptional2 {}
 
 open class NKRowAction<T>: NKBaseRowAction {
     open let sender: AnyObject?
@@ -22,7 +22,7 @@ open class NKRowAction<T>: NKBaseRowAction {
         guard let indexPath = indexPath else {return nil}
         
         if payload == nil {
-            guard T.self is NKOptional.Type else {
+            guard T.self is NKOptional2.Type else {
                 return nil
             }
             
