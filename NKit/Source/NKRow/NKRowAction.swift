@@ -15,7 +15,7 @@ extension Optional: NKOptional2 {}
 open class NKRowAction<T>: NKBaseRowAction {
     open let sender: AnyObject?
     open let indexPath: IndexPath
-    open let value: T!
+    open let value: T?
     
     public init?(payload: Any?, sender: AnyObject?, indexPath: IndexPath?) {
         
