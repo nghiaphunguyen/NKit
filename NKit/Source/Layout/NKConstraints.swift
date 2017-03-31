@@ -76,7 +76,7 @@ public func ~(left: CGFloat, right: UInt) -> NKConstraintRelativeItem {
     return NKConstraintRelativeItem(item: nil, constant: left, priority: right)
 }
 
-public func ==(left: NKConstraintItem, right: NKConstraintItem) -> NSLayoutConstraint {
+@discardableResult public func ==(left: NKConstraintItem, right: NKConstraintItem) -> NSLayoutConstraint {
     let relativeItem = NKConstraintRelativeItem(item: right)
     
     let result = left.constraintWithRelativeItem(right: relativeItem, relation: .equal)
@@ -84,14 +84,14 @@ public func ==(left: NKConstraintItem, right: NKConstraintItem) -> NSLayoutConst
     return result
 }
 
-public func >=(left: NKConstraintItem, right: NKConstraintItem) -> NSLayoutConstraint {
+@discardableResult public func >=(left: NKConstraintItem, right: NKConstraintItem) -> NSLayoutConstraint {
     let relativeItem = NKConstraintRelativeItem(item: right)
     let result = left.constraintWithRelativeItem(right: relativeItem, relation: .greaterThanOrEqual)
     result.isActive = true
     return result
 }
 
-public func <=(left: NKConstraintItem, right: NKConstraintItem) -> NSLayoutConstraint {
+@discardableResult public func <=(left: NKConstraintItem, right: NKConstraintItem) -> NSLayoutConstraint {
     let relativeItem = NKConstraintRelativeItem(item: right)
     
     let result = left.constraintWithRelativeItem(right: relativeItem, relation: .lessThanOrEqual)
@@ -99,25 +99,25 @@ public func <=(left: NKConstraintItem, right: NKConstraintItem) -> NSLayoutConst
     return result
 }
 
-public func ==(left: NKConstraintItem, right: NKConstraintRelativeItem) -> NSLayoutConstraint {
+@discardableResult public func ==(left: NKConstraintItem, right: NKConstraintRelativeItem) -> NSLayoutConstraint {
     let result = left.constraintWithRelativeItem(right: right, relation: .equal)
     result.isActive = true
     return result
 }
 
-public func >=(left: NKConstraintItem, right: NKConstraintRelativeItem) -> NSLayoutConstraint {
+@discardableResult public func >=(left: NKConstraintItem, right: NKConstraintRelativeItem) -> NSLayoutConstraint {
     let result = left.constraintWithRelativeItem(right: right, relation: .greaterThanOrEqual)
     result.isActive = true
     return result
 }
 
-public func <=(left: NKConstraintItem, right: NKConstraintRelativeItem) -> NSLayoutConstraint {
+@discardableResult public func <=(left: NKConstraintItem, right: NKConstraintRelativeItem) -> NSLayoutConstraint {
     let result = left.constraintWithRelativeItem(right: right, relation: .lessThanOrEqual)
     result.isActive = true
     return result
 }
 
-public func ==(left: NKConstraintItem, right: CGFloat) -> NSLayoutConstraint {
+@discardableResult public func ==(left: NKConstraintItem, right: CGFloat) -> NSLayoutConstraint {
     
     let relativeItem = NKConstraintRelativeItem(constant: right)
     
@@ -126,7 +126,7 @@ public func ==(left: NKConstraintItem, right: CGFloat) -> NSLayoutConstraint {
     return result
 }
 
-public func >=(left: NKConstraintItem, right: CGFloat) -> NSLayoutConstraint {
+@discardableResult public func >=(left: NKConstraintItem, right: CGFloat) -> NSLayoutConstraint {
     let relativeItem = NKConstraintRelativeItem(constant: right)
     
     let result = left.constraintWithRelativeItem(right: relativeItem, relation: .greaterThanOrEqual)
@@ -134,7 +134,7 @@ public func >=(left: NKConstraintItem, right: CGFloat) -> NSLayoutConstraint {
     return result
 }
 
-public func <=(left: NKConstraintItem, right: CGFloat) -> NSLayoutConstraint {
+@discardableResult public func <=(left: NKConstraintItem, right: CGFloat) -> NSLayoutConstraint {
     let relativeItem = NKConstraintRelativeItem(constant: right)
     
     let result = left.constraintWithRelativeItem(right: relativeItem, relation: .lessThanOrEqual)

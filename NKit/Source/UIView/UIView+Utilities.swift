@@ -116,6 +116,8 @@ public extension UIView {
         
         return view as? UICollectionView
     }
+    
+    public var nk_style()
 }
 
 public extension UIView {

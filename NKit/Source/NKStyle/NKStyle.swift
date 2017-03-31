@@ -8,6 +8,10 @@
 
 import UIKit
 
+public func >> <T>(left: T.Type, right: @escaping (T) -> Void) -> NKStylable {
+    return NKStyle<T>.init(config: right)
+}
+
 public struct NKStyle<T>: NKStylable {
     let config: (T) -> Void
     
