@@ -6,10 +6,39 @@
 ////  Copyright © 2017 Nghia Nguyen. All rights reserved.
 ////
 //
-//import UIKit
+import UIKit
+import OAStackView
+
+class TestLayoutViewController: UIViewController {
+    struct Style {
+        static var view = UIView.self >> {
+            $0.backgroundColor = UIColor.black
+        }
+    }
+    
+    enum Id: String, NKViewIdentifier {
+        case view
+    }
+    
+    override func loadView() {
+        super.loadView()
+        
+        self.view
+            <<< UIView() >>> {
+                $0
+                    <<< UIView() >>> {
+                        $0
+                            <<< UIView() ~ Style.view ~ Id.view >>> {
+                                $0.nka_top == 10
+                            }
+                            <<< UIView()
+                            <<< UIView()
+                
+            }
+        }
+    }
+}
 //
-//class TestLayoutViewController: UIViewController {
-//    
 //    enum Id: String, NKViewIdentifier, NKStylable {
 //        case view
 //        
