@@ -236,8 +236,16 @@ infix operator ~ : NKOperator160
     return left.nk_id(right)
 }
 
-infix operator >>> : NKOperator150
-@discardableResult public func >>> <T: UIView>(left: T, right: @escaping (T) -> Void) -> NKViewConfiguration<T> {
+@discardableResult public func ~ <T: UIView>(left: T, right: NKStylable) -> T {
+    return left.nk_styles(right)
+}
+
+@discardableResult public func ~ <T: UIView>(left: T, right: [NKStylable]) -> T {
+    return left.nk_styles(right)
+}
+
+infix operator >> : NKOperator150
+@discardableResult public func >> <T: UIView>(left: T, right: @escaping (T) -> Void) -> NKViewConfiguration<T> {
     return NKViewConfiguration(view: left, config: right)
 }
 
@@ -248,25 +256,37 @@ infix operator <> : NKOperator151
     return left
 }
 
-infix operator <<< : NKOperator140
-@discardableResult public func <<< <T: UIView, U: UIView>(left: T, right: U) -> T {
+infix operator << : NKOperator140
+@discardableResult public func << <T: UIView, U: UIView>(left: T, right: U) -> T {
     return left.nk_addSubview(right)
 }
 
-@discardableResult public func <<< <T: UIView, U: UIView>(left: T, right: NKViewConfiguration<U>) -> T {
+@discardableResult public func << <T: UIView, U: UIView>(left: T, right: NKViewConfiguration<U>) -> T {
     return left.nk_addSubview(right.view, config: right.config)
 }
 
 @available(iOS 9.0, *)
-@discardableResult public func <<< <T: UIStackView, U: UIView>(left: T, right: U) -> T {
+@discardableResult public func << <T: UIStackView, U: UIView>(left: T, right: U) -> T {
     return left.nk_addArrangedSubview(right)
 }
 
 @available(iOS 9.0, *)
-@discardableResult public func <<< <T: UIStackView
+@discardableResult public func << <T: UIStackView
     , U: UIView>(left: T, right: NKViewConfiguration<U>) -> T {
     return left.nk_addArrangedSubview(right.view, config: right.config)
 }
+
+//MARK: OAStackView
+@discardableResult public func << <T: OAStackView, U: UIView>(left: T, right: U) -> T {
+    return left.nk_addArrangedSubview(right)
+}
+
+@available(iOS 9.0, *)
+@discardableResult public func << <T: OAStackView
+    , U: UIView>(left: T, right: NKViewConfiguration<U>) -> T {
+    return left.nk_addArrangedSubview(right.view, config: right.config)
+}
+
 
 public var MAP = NKLayoutMapping.Ids
 public enum NKLayoutMapping {
