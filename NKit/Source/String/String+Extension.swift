@@ -20,7 +20,7 @@ public func *(left: String, right: UInt) -> String {
 
 infix operator ++
 public func ++(left: String, right: String) -> String {
-    return (left as NSString).appendingPathComponent(right)
+    return URL(string: left)?.appendingPathComponent(right).absoluteString ?? ""
 }
 
 public extension String {
