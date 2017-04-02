@@ -12,6 +12,8 @@ public struct NKProxy: NKProxyable {
     
     var handlers = [NKHandlable.Type]()
     
+    public init() {}
+    
     public mutating func add(handler: NKHandlable.Type) {
         self.handlers.append(handler)
     }
