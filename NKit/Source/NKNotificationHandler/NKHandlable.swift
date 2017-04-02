@@ -8,7 +8,7 @@
 
 import UIKit
 
-public protocol NKNotificationHandlable {
-    init?(json: [AnyHashable: Any])
+public protocol NKHandlable {
+    init?(payload: Any)
     func execute()
 }
