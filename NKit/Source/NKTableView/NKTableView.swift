@@ -15,7 +15,7 @@ public var NKTableViewAutomaticHeight: CGFloat { return 2 }
 open class NKTableView: UITableView {
     internal var cellConfigurations: [NKListViewCellWrapperConfigurable] = []
     public internal(set) var sections: [NKListSection] = []
-    
+    fileprivate var heightsOfCell = [IndexPath : CGFloat]()
     //MARK: paging
     fileprivate lazy var rx_paging = Variable<Bool>(false)
     public var paging: Bool {
@@ -118,6 +118,7 @@ extension NKTableView: UITableViewDataSource {
 
 extension NKTableView: UITableViewDelegate {
     dynamic open func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        self.heightsOfCell[indexPath] = cell.nk_height
         self.nk_delegate?.tableView?(tableView, willDisplay: cell, forRowAt: indexPath)
     }
     
@@ -148,6 +149,10 @@ extension NKTableView: UITableViewDelegate {
         let cellConfiguration = self.getCellConfiguration(withModel: model)
         let result = cellConfiguration.size(with: self, section: section, model: model)
         return result.height
+    }
+    
+    dynamic open func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return self.heightsOfCell[indexPath] ?? UITableViewAutomaticDimension
     }
     
     dynamic open func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {

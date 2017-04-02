@@ -133,7 +133,7 @@ public extension NKPullingViewModelable where Self: NSObject {
             .flatMapLatest({strongSelf.doSomethingAfterLoadLoadingModels(models: $0)})
             .do(onNext: {
                 strongSelf.rx_items.value += $0
-                strongSelf.rx_isLoadMore.value = !(strongSelf.rx_items.value.count == 0)
+                strongSelf.rx_isLoadMore.value = !($0.count == 0)
             })
         
     }
