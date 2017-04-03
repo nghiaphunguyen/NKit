@@ -20,6 +20,7 @@ open class NKBasePullingViewModel: NSObject, NKPullingViewModelable {
     public lazy var initPage: Int = {return self.getInitPage()}()
     public lazy var limit: Int = {return self.getLimit()}()
     public lazy var offset: Int = {return self.getOffset()}()
+    public lazy var resetType: ResetType = {return self.getResetType()}()
     
     open var viewModelsObservable: Observable<[NKDiffable]> {
         return self.rx_items.asObservable().map { $0.flatMap {[unowned self] in self.map(value: $0)} }
@@ -31,14 +32,32 @@ open class NKBasePullingViewModel: NSObject, NKPullingViewModelable {
     
     open func resetModel() {
         let strongSelf = self
-        strongSelf.rx_items.value = []
         strongSelf.rx_isLoadMore.value = true
         strongSelf.page = self.initPage
         strongSelf.offset = 0
     }
     
+    open func reverseModel() -> () -> Void {
+        let isLoadMore = self.rx_isLoadMore.value
+        let page = self.page
+        let offset = self.offset
+        
+        return { [weak self] in
+            guard let sSelf = self else {
+                return
+            }
+            sSelf.rx_isLoadMore.value = isLoadMore
+            sSelf.page = page
+            sSelf.offset = offset
+        }
+    }
+    
     open func getOffset() -> Int {
         return 0
+    }
+    
+    open func getResetType() -> ResetType {
+        return .default
     }
     
     open func getInitPage() -> Int {

@@ -99,6 +99,7 @@
 		18A1DAD01D6F167E00D566C2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18A1DACE1D6F167E00D566C2 /* LaunchScreen.storyboard */; };
 		18AF25941E09501A005C9158 /* NKPullingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AF25931E09501A005C9158 /* NKPullingViewModel.swift */; };
 		18AF25981E095CE8005C9158 /* NKPullingReactable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AF25971E095CE8005C9158 /* NKPullingReactable.swift */; };
+		18C55C701E91EDE100BC6B9B /* TestRefresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C55C6F1E91EDE100BC6B9B /* TestRefresh.swift */; };
 		18CD79CE1E004D500078E694 /* NKColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CD79CD1E004D500078E694 /* NKColor.swift */; };
 		18CE80761D959A2800D510E4 /* UIView+Injected.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CE80751D959A2800D510E4 /* UIView+Injected.swift */; };
 		18DD40011D870055004B420E /* TwoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DD40001D870055004B420E /* TwoViewController.swift */; };
@@ -261,6 +262,7 @@
 		18A1DAD11D6F167E00D566C2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		18AF25931E09501A005C9158 /* NKPullingViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKPullingViewModel.swift; sourceTree = "<group>"; };
 		18AF25971E095CE8005C9158 /* NKPullingReactable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKPullingReactable.swift; sourceTree = "<group>"; };
+		18C55C6F1E91EDE100BC6B9B /* TestRefresh.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestRefresh.swift; sourceTree = "<group>"; };
 		18CD79CD1E004D500078E694 /* NKColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKColor.swift; sourceTree = "<group>"; };
 		18CE80751D959A2800D510E4 /* UIView+Injected.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Injected.swift"; sourceTree = "<group>"; };
 		18DD40001D870055004B420E /* TwoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwoViewController.swift; sourceTree = "<group>"; };
@@ -593,6 +595,7 @@
 				4271A9151E4C6E4D00C686BB /* TestTableView.swift */,
 				42EBDE271E82409F009C79D8 /* TestTransitionViewController.swift */,
 				1806974C1E881A950040F6F3 /* TestLayoutViewController.swift */,
+				18C55C6F1E91EDE100BC6B9B /* TestRefresh.swift */,
 			);
 			path = Demo;
 			sourceTree = "<group>";
@@ -1052,6 +1055,7 @@
 				183F9B261DC87C0F00D9C7B9 /* Optional+NKit.swift in Sources */,
 				186058C41D9E7A2F0079CE63 /* NKImage.swift in Sources */,
 				4271A91A1E4C8DE200C686BB /* NKTableViewCellConfigurable.swift in Sources */,
+				18C55C701E91EDE100BC6B9B /* TestRefresh.swift in Sources */,
 				42FE62D31E7776A40096E6BB /* NKReducable.swift in Sources */,
 				180697351E8691220040F6F3 /* NKRowTableView.swift in Sources */,
 				4271A9291E4D669C00C686BB /* NKListViewCellWrapperConfigurable.swift in Sources */,

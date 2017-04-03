@@ -10,6 +10,11 @@ import UIKit
 import RxSwift
 import NRxSwift
 
+public enum ResetType {
+    case clear
+    case `default`
+}
+
 public protocol NKPullingViewModelable: NKLoadable, NKPullingState, NKPullingAction {
     //MARK: need override
     
@@ -20,6 +25,7 @@ public protocol NKPullingViewModelable: NKLoadable, NKPullingState, NKPullingAct
     var initPage: Int {get}
     var offset: Int {get set}
     var limit: Int {get}
+    var resetType: ResetType {get}
     
     // pull items from ouside source
     func pull() -> Observable<[Any]>
@@ -31,11 +37,16 @@ public protocol NKPullingViewModelable: NKLoadable, NKPullingState, NKPullingAct
     func doSomethingBeforeLoadingModels() -> Observable<Void>
     func doSomethingAfterLoadLoadingModels(models: [Any]) -> Observable<[Any]>
     func resetModel()
+    func reverseModel() -> () -> Void
 }
 
 public extension NKPullingViewModelable where Self: NSObject {
     
     //MARK: NKPullingState
+    public var resetType: ResetType {
+        return .default
+    }
+    
     public var viewModelsObservable: Observable<[NKDiffable]> {
         return self.rx_items.asObservable().map {$0.flatMap {[unowned self] in self.map(value: $0)}}
     }
@@ -79,16 +90,30 @@ public extension NKPullingViewModelable where Self: NSObject {
     //MARK: NKPullingAction
     public func loadMore() {
         let strongSelf = self
-        strongSelf.load(self.pullData())
+        strongSelf.load(self.pullData().do(onNext: { [unowned strongSelf] in
+            strongSelf.rx_items.value += $0
+            strongSelf.rx_isLoadMore.value = !($0.count == 0)
+            }
+            
+        ))
             .subscribe()
             .addDisposableTo(self.nk_disposeBag)
     }
     
     public func refresh() {
         let strongSelf = self
+        let reverseModelClosure = self.reverseModel()
+        let observable: Observable<Void> = self.resetType == .clear ? Observable<Void>.nk_from(strongSelf.resetModel).flatMapLatest({[unowned strongSelf] in Observable<Void>.nk_from(strongSelf.resetItems)}) : Observable<Void>.nk_from(strongSelf.resetModel)
         strongSelf.load(
-            Observable<Void>.nk_from(strongSelf.resetModel)
-                .flatMapLatest({_ in strongSelf.pullData()})
+                observable
+                .flatMapLatest({[unowned strongSelf] _ in strongSelf.pullData().do(onNext: {
+                    strongSelf.rx_items.value = $0
+                    strongSelf.rx_isLoadMore.value = !($0.count == 0)
+                }, onError: {[unowned strongSelf] _ in
+                    if strongSelf.resetType == .default {
+                        reverseModelClosure()
+                    }
+                })})
             )
             .subscribe()
             .addDisposableTo(self.nk_disposeBag)
@@ -110,10 +135,28 @@ public extension NKPullingViewModelable where Self: NSObject {
     
     public func resetModel() {
         var strongSelf = self
-        strongSelf.rx_items.value = []
         strongSelf.rx_isLoadMore.value = true
         strongSelf.page = self.initPage
         strongSelf.offset = 0
+    }
+    
+    public func reverseModel() -> () -> Void {
+        let isLoadMore = self.rx_isLoadMore.value
+        let page = self.page
+        let offset = self.offset
+        
+        return { [weak self] in
+            guard var sSelf = self else {
+                return
+            }
+            sSelf.rx_isLoadMore.value = isLoadMore
+            sSelf.page = page
+            sSelf.offset = offset
+        }
+    }
+    
+    public func resetItems() {
+        self.rx_items.value = []
     }
     
     private func canLoadMore() -> Observable<Void> {
@@ -121,21 +164,17 @@ public extension NKPullingViewModelable where Self: NSObject {
     }
     
     private func pullData() -> Observable<[Any]> {
-        var strongSelf = self
+        let strongSelf = self
         return strongSelf
             .canLoadMore()
-            .flatMapLatest({_ in strongSelf.doSomethingBeforeLoadingModels()})
-            .flatMapLatest({_ in strongSelf.pull()})
-            .do(onNext: {
-                strongSelf.page = strongSelf.page + 1
-                strongSelf.offset += $0.count
+            .flatMapLatest({[unowned strongSelf] _ in strongSelf.doSomethingBeforeLoadingModels()})
+            .flatMapLatest({[unowned strongSelf] _ in strongSelf.pull()})
+            .do(onNext: { [weak strongSelf] in
+                guard var sSelf = strongSelf else {return}
+                sSelf.page = sSelf.page + 1
+                sSelf.offset += $0.count
             })
-            .flatMapLatest({strongSelf.doSomethingAfterLoadLoadingModels(models: $0)})
-            .do(onNext: {
-                strongSelf.rx_items.value += $0
-                strongSelf.rx_isLoadMore.value = !($0.count == 0)
-            })
-        
+            .flatMapLatest({[unowned strongSelf] in strongSelf.doSomethingAfterLoadLoadingModels(models: $0)})
     }
 }
 
