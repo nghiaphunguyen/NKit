@@ -17,8 +17,9 @@ open class NKListSection: NSObject {
     
     var footerConfiguarationType: NKListSupplementaryViewConfigurable.Type? = nil
     
-    public var insertAnimation: UITableViewRowAnimation = UITableViewRowAnimation.none
-    public var deleteAnimation: UITableViewRowAnimation = UITableViewRowAnimation.none
+    open var animation: UITableViewRowAnimation {
+        return .none
+    }
 }
 
 //MARK: final public functions
@@ -28,13 +29,13 @@ public extension NKListSection {
         let diff = Dwifft.diff(oldModels: self.models, newModels: models)
         if diff.results.count > 0 {
             
-            listView.performBatchUpdates({ [unowned self] in
+            listView.batchUpdates(animation: self.animation, updates: { [unowned self] in
                 self.models = models
                 let insertIndexPaths = diff.insertions.map {IndexPath.init(row: $0.idx, section: section) }
                 let deleteIndexPaths = diff.deletions.map {IndexPath.init(row: $0.idx, section: section)}
                 
-                listView.insertItems(at: insertIndexPaths, animation: self.insertAnimation)
-                listView.deleteItems(at: deleteIndexPaths, animation: self.deleteAnimation)
+                listView.insertItems(at: insertIndexPaths, animation: self.animation)
+                listView.deleteItems(at: deleteIndexPaths, animation: self.animation)
             }, completion: nil)
         }
         

@@ -11,7 +11,7 @@ import UIKit
 public protocol NKListView {
     var view: UIScrollView {get}
     
-    func performBatchUpdates(_ updates: (() -> Swift.Void)?, completion: ((Bool) -> Swift.Void)?)
+    func batchUpdates(animation: UITableViewRowAnimation, updates: (() -> Swift.Void)?, completion: ((Bool) -> Swift.Void)?)
     
     func insertItems(at indexPaths: [IndexPath], animation: UITableViewRowAnimation)
     func deleteItems(at indexPaths: [IndexPath], animation: UITableViewRowAnimation)
@@ -168,25 +168,27 @@ extension NKCollectionView: NKListView {
         return self
     }
     
-    public func insertItems(at indexPaths: [IndexPath], animation: UITableViewRowAnimation) {
-        if animation == .none {
-            UIView.performWithoutAnimation {
-                self.insertItems(at: indexPaths)
-            }
-        } else {
-            self.insertItems(at: indexPaths)
+    public func batchUpdates(animation: UITableViewRowAnimation, updates: (() -> Void)?, completion: ((Bool) -> Void)?) {
+        
+        let doUpdates: () -> Void = {
+            self.performBatchUpdates(updates, completion: completion)
         }
         
+        if animation == .none {
+            UIView.animate(withDuration: 0, animations: {
+                doUpdates()
+            })
+        } else {
+            doUpdates()
+        }
+    }
+    
+    public func insertItems(at indexPaths: [IndexPath], animation: UITableViewRowAnimation) {
+        self.insertItems(at: indexPaths)
     }
     
     public func deleteItems(at indexPaths: [IndexPath], animation: UITableViewRowAnimation) {
-        if animation == .none {
-            UIView.performWithoutAnimation {
-                self.deleteItems(at: indexPaths)
-            }
-        } else {
-            self.deleteItems(at: indexPaths)
-        }
+        self.deleteItems(at: indexPaths)
     }
     
     public func invalidateSupplementaryView(of kind: String, at section: Int) {
@@ -207,7 +209,7 @@ extension NKCollectionView: NKListView {
     }
     
     public func registerFooter(_ viewClass: Swift.AnyClass?, forFooterWithReuseIdentifier identifier: String) {
-                self.register(viewClass, forSupplementaryViewOfKind: UICollectionElementKindSectionFooter, withReuseIdentifier: identifier)
+        self.register(viewClass, forSupplementaryViewOfKind: UICollectionElementKindSectionFooter, withReuseIdentifier: identifier)
     }
 }
 
@@ -217,11 +219,21 @@ extension NKTableView: NKListView {
         return self
     }
     
-    public func performBatchUpdates(_ updates: (() -> Void)?, completion: ((Bool) -> Void)?) {
-        self.beginUpdates()
-        updates?()
-        completion?(true)
-        self.endUpdates()
+    public func batchUpdates(animation: UITableViewRowAnimation, updates: (() -> Void)?, completion: ((Bool) -> Void)?) {
+        let doUpdates: () -> Void = { [unowned self] in
+            self.beginUpdates()
+            updates?()
+            self.endUpdates()
+            completion?(true)
+        }
+        
+        if animation == .none {
+            UIView.animate(withDuration: 0, animations: {
+                doUpdates()
+            })
+        } else {
+            doUpdates()
+        }
     }
     
     public func insertItems(at indexPaths: [IndexPath], animation: UITableViewRowAnimation) {
