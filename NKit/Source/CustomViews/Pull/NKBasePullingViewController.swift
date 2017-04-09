@@ -152,7 +152,7 @@ fileprivate extension NKBasePullingViewController {
         let listView = self.listView.view
         let loadMoreOffset = self.loadMoreOffset
         listView.rx.contentOffset.filter { contentOffset in
-            return listView.nk_height <= listView.contentSize.height && contentOffset.y >= listView.contentSize.height - listView.nk_height + loadMoreOffset}.throttle(1, scheduler: MainScheduler.instance).subscribe(onNext: {_ in
+            return listView.nk_height <= listView.contentSize.height && contentOffset.y >= listView.contentSize.height - listView.nk_height + loadMoreOffset}.throttle(3, scheduler: MainScheduler.instance).subscribe(onNext: {_ in
             viewModel.loadMore()
         }).addDisposableTo(self.nk_disposeBag)
         
