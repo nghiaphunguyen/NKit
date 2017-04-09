@@ -159,22 +159,24 @@ public extension NKPullingViewModelable where Self: NSObject {
         self.rx_items.value = []
     }
     
-    private func canLoadMore() -> Observable<Void> {
-        return self.rx_isLoadMore.asObservable().take(1).filter {$0}.map { _ in return}
-    }
-    
     private func pullData() -> Observable<[Any]> {
         let strongSelf = self
-        return strongSelf
-            .canLoadMore()
-            .flatMapLatest({[unowned strongSelf] _ in strongSelf.doSomethingBeforeLoadingModels()})
-            .flatMapLatest({[unowned strongSelf] _ in strongSelf.pull()})
-            .do(onNext: { [weak strongSelf] in
-                guard var sSelf = strongSelf else {return}
-                sSelf.page = sSelf.page + 1
-                sSelf.offset += $0.count
-            })
-            .flatMapLatest({[unowned strongSelf] in strongSelf.doSomethingAfterLoadLoadingModels(models: $0)})
+        return Observable.nk_start({ [unowned strongSelf] in
+            if self.rx_isLoadMore.value == true {
+                return strongSelf.doSomethingBeforeLoadingModels()
+                    .flatMapLatest({[unowned strongSelf] _ in strongSelf.pull()})
+                    .do(onNext: { [weak strongSelf] in
+                        guard var sSelf = strongSelf else {return}
+                        
+                        sSelf.page = sSelf.page + 1
+                        sSelf.offset += $0.count
+                        sSelf.rx_isLoadMore.value = !($0.count == 0)
+                    })
+                    .flatMapLatest({[unowned strongSelf] in strongSelf.doSomethingAfterLoadLoadingModels(models: $0)})
+            } else {
+                return Observable.just([])
+            }
+        })
     }
 }
 

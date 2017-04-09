@@ -25,7 +25,7 @@ public protocol NKLoadable {
     func load<T>(_ observable: Observable<T>) -> Observable<T>
 }
 
-public extension NKLoadable {
+public extension NKLoadable where Self: AnyObject {
     
     public func clearError() {
         if self.rx_error.value != nil {
@@ -35,18 +35,23 @@ public extension NKLoadable {
     
     public func load<T>(_ observable: Observable<T>) -> Observable<T> {
         return self.canLoadDataObservable
-            .do(onNext: {self.setupBeforeLoading()})
+            .do(onNext: {[unowned self] in self.setupBeforeLoading()})
             .flatMapLatest({_ in observable})
-            .nk_doOnNextOrCompleteOrError({self.resetAfterDone()})
-            .do(onError: {self.rx_error.value = $0})
+            .nk_doOnNextOrError({[unowned self] in self.resetAfterDone()})
+            .do(onError: {[unowned self] in self.rx_error.value = $0})
     }
     
     public func setupBeforeLoading() {
-        self.rx_isLoading.value = true
+        if self.rx_isLoading.value != true {
+            self.rx_isLoading.value = true
+        }
+        
     }
     
     public func resetAfterDone() {
-        self.rx_isLoading.value = false
+        if self.rx_isLoading.value != false {
+            self.rx_isLoading.value = false
+        }
     }
     
     public var isLoading: NKVariable<Bool> {
@@ -59,11 +64,5 @@ public extension NKLoadable {
     
     private var canLoadDataObservable: Observable<Void> {
         return self.rx_isLoading.asObservable().take(1).filter({$0 == false}).map {_ in return}
-//        return Observable.nk_baseCreate({ (observer) in
-//            print("Loading = \(self.rx_isLoading.value)")
-//            if self.rx_isLoading.value == false {
-//                observer.nk_setValue()
-//            }
-//        })
     }
 }
