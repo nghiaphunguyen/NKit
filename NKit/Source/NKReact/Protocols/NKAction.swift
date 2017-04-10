@@ -25,4 +25,14 @@ public extension NKAction {
     public func isEqualSender(_ sender: AnyObject?) -> Bool {
         return self.sender != nil && self.sender === sender
     }
+    
+    public func value<T>(identifier: String?) -> T? {
+        guard self.identifier != nil && self.identifier == identifier else {
+            return nil
+        }
+        
+        guard let action = self as? NKBaseAction<T> else {return nil}
+        
+        return action.value
+    }
 }

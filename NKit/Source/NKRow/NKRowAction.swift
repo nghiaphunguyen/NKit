@@ -12,10 +12,10 @@ protocol NKOptional2 {}
 
 extension Optional: NKOptional2 {}
 
-open class NKRowAction<T>: NKAction {
+open class NKBaseAction<T>: NKAction {
     open let sender: AnyObject?
     open let identifier: String?
-    open let value: T!
+    open let value: T?
     
     public init?(payload: Any?, sender: AnyObject?, identifier: String?) {
         
