@@ -12,15 +12,12 @@ protocol NKOptional2 {}
 
 extension Optional: NKOptional2 {}
 
-open class NKRowAction<T>: NKBaseRowAction {
+open class NKRowAction<T>: NKAction {
     open let sender: AnyObject?
     open let identifier: String?
-    open let indexPath: IndexPath
     open let value: T!
     
-    public init?(payload: Any?, sender: AnyObject?, identifier: String?,  indexPath: IndexPath?) {
-        
-        guard let indexPath = indexPath else {return nil}
+    public init?(payload: Any?, sender: AnyObject?, identifier: String?) {
         
         if payload == nil {
             guard T.self is NKOptional2.Type else {
@@ -38,6 +35,5 @@ open class NKRowAction<T>: NKBaseRowAction {
         
         self.sender = sender
         self.identifier = identifier
-        self.indexPath = indexPath
     }
 }

@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		1806972A1E868EEE0040F6F3 /* NKBaseRowType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180697291E868EEE0040F6F3 /* NKBaseRowType.swift */; };
-		1806972F1E86905B0040F6F3 /* NKBaseRowAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1806972E1E86905B0040F6F3 /* NKBaseRowAction.swift */; };
 		180697311E8690CB0040F6F3 /* NKRowAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180697301E8690CB0040F6F3 /* NKRowAction.swift */; };
 		180697341E8691220040F6F3 /* NKRowCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180697321E8691220040F6F3 /* NKRowCollectionView.swift */; };
 		180697351E8691220040F6F3 /* NKRowTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180697331E8691220040F6F3 /* NKRowTableView.swift */; };
@@ -168,7 +167,6 @@
 
 /* Begin PBXFileReference section */
 		180697291E868EEE0040F6F3 /* NKBaseRowType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKBaseRowType.swift; sourceTree = "<group>"; };
-		1806972E1E86905B0040F6F3 /* NKBaseRowAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKBaseRowAction.swift; sourceTree = "<group>"; };
 		180697301E8690CB0040F6F3 /* NKRowAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKRowAction.swift; sourceTree = "<group>"; };
 		180697321E8691220040F6F3 /* NKRowCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKRowCollectionView.swift; sourceTree = "<group>"; };
 		180697331E8691220040F6F3 /* NKRowTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKRowTableView.swift; sourceTree = "<group>"; };
@@ -360,7 +358,6 @@
 				180697321E8691220040F6F3 /* NKRowCollectionView.swift */,
 				180697331E8691220040F6F3 /* NKRowTableView.swift */,
 				180697291E868EEE0040F6F3 /* NKBaseRowType.swift */,
-				1806972E1E86905B0040F6F3 /* NKBaseRowAction.swift */,
 				180697301E8690CB0040F6F3 /* NKRowAction.swift */,
 				1806973C1E8691D20040F6F3 /* NKCallbackable.swift */,
 			);
@@ -969,7 +966,6 @@
 				189619621D9908E4006BBA0D /* Int+Random.swift in Sources */,
 				1828D0C51D6F1799007D0933 /* Array+BinaryInsert.swift in Sources */,
 				1828D0C81D6F1799007D0933 /* NKCircleImageView.swift in Sources */,
-				1806972F1E86905B0040F6F3 /* NKBaseRowAction.swift in Sources */,
 				428B78EC1E59A56D00929CC7 /* NKBasePullingViewModel.swift in Sources */,
 				4271A8BD1E46D23700C686BB /* NKCollectionReusableView.swift in Sources */,
 				180697311E8690CB0040F6F3 /* NKRowAction.swift in Sources */,

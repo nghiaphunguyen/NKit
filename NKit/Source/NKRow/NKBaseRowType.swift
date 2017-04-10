@@ -10,7 +10,6 @@ import UIKit
 
 public protocol NKBaseRowType {
     var sender: AnyObject? {get}
-    var indexPath: IndexPath? {get}
     func setupBehaviour()
     func sendAction(_ action: NKAction?)
 }
