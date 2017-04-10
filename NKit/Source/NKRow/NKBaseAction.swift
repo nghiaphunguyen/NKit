@@ -14,10 +14,10 @@ extension Optional: NKOptional2 {}
 
 open class NKBaseAction<T>: NKAction {
     open let sender: AnyObject?
-    open let identifier: String?
+    open let identifier: NKActionIdentifier?
     open let value: T?
     
-    public init?(payload: Any?, sender: AnyObject?, identifier: String?) {
+    public init?(payload: Any?, sender: AnyObject?, identifier: NKActionIdentifier?) {
         
         if payload == nil {
             guard T.self is NKOptional2.Type else {
