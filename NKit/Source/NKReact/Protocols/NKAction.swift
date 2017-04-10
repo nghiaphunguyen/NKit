@@ -10,10 +10,15 @@ import UIKit
 
 public protocol NKAction {
     var sender: AnyObject? {get}
+    var identifier: String? {get}
 }
 
 public extension NKAction {
     public var sender: AnyObject? {
+        return nil
+    }
+    
+    public var identifier: String? {
         return nil
     }
     

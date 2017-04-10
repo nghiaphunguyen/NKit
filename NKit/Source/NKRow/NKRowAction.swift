@@ -14,10 +14,11 @@ extension Optional: NKOptional2 {}
 
 open class NKRowAction<T>: NKBaseRowAction {
     open let sender: AnyObject?
+    open let identifier: String?
     open let indexPath: IndexPath
-    open let value: T?
+    open let value: T!
     
-    public init?(payload: Any?, sender: AnyObject?, indexPath: IndexPath?) {
+    public init?(payload: Any?, sender: AnyObject?, identifier: String?,  indexPath: IndexPath?) {
         
         guard let indexPath = indexPath else {return nil}
         
@@ -36,6 +37,7 @@ open class NKRowAction<T>: NKBaseRowAction {
         }
         
         self.sender = sender
+        self.identifier = identifier
         self.indexPath = indexPath
     }
 }
