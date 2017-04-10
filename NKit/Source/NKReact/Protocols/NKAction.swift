@@ -10,7 +10,7 @@ import UIKit
 
 public protocol NKAction {
     var sender: AnyObject? {get}
-    var identifier: String? {get}
+    var identifier: NKActionIdentifier? {get}
 }
 
 public extension NKAction {
@@ -18,7 +18,7 @@ public extension NKAction {
         return nil
     }
     
-    public var identifier: String? {
+    public var identifier: NKActionIdentifier? {
         return nil
     }
     
@@ -26,13 +26,7 @@ public extension NKAction {
         return self.sender != nil && self.sender === sender
     }
     
-    public func value<T>(identifier: String?) -> T? {
-        guard self.identifier != nil && self.identifier == identifier else {
-            return nil
-        }
-        
-        guard let action = self as? NKBaseAction<T> else {return nil}
-        
-        return action.value
+    public func isEqualIdentifier(_ identifier: NKActionIdentifier?) -> Bool {
+        return self.identifier != nil && self.identifier?.rawValue == identifier?.rawValue
     }
 }

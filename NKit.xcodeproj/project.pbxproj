@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1806972A1E868EEE0040F6F3 /* NKBaseRowType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180697291E868EEE0040F6F3 /* NKBaseRowType.swift */; };
-		180697311E8690CB0040F6F3 /* NKRowAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180697301E8690CB0040F6F3 /* NKRowAction.swift */; };
+		180697311E8690CB0040F6F3 /* NKBaseAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180697301E8690CB0040F6F3 /* NKBaseAction.swift */; };
 		180697341E8691220040F6F3 /* NKRowCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180697321E8691220040F6F3 /* NKRowCollectionView.swift */; };
 		180697351E8691220040F6F3 /* NKRowTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180697331E8691220040F6F3 /* NKRowTableView.swift */; };
 		180697391E8691680040F6F3 /* NKPresentRowType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180697361E8691680040F6F3 /* NKPresentRowType.swift */; };
@@ -85,6 +85,7 @@
 		188474F31D93D570009F4506 /* NKLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188474F01D93D570009F4506 /* NKLoadable.swift */; };
 		188474F41D93D570009F4506 /* NSNotificationCenter+NRx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188474F11D93D570009F4506 /* NSNotificationCenter+NRx.swift */; };
 		188474F51D93D570009F4506 /* NSObject+NRx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188474F21D93D570009F4506 /* NSObject+NRx.swift */; };
+		1893257D1E9B853600D58748 /* NKActionIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1893257C1E9B853600D58748 /* NKActionIdentifier.swift */; };
 		1896195C1D9900DB006BBA0D /* KillOptional.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1896195B1D9900DB006BBA0D /* KillOptional.swift */; };
 		189619621D9908E4006BBA0D /* Int+Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189619611D9908E4006BBA0D /* Int+Random.swift */; };
 		189C3BE71D7090960057F068 /* NKGestureRecognizerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189C3BE61D7090960057F068 /* NKGestureRecognizerDelegate.swift */; };
@@ -167,7 +168,7 @@
 
 /* Begin PBXFileReference section */
 		180697291E868EEE0040F6F3 /* NKBaseRowType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKBaseRowType.swift; sourceTree = "<group>"; };
-		180697301E8690CB0040F6F3 /* NKRowAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKRowAction.swift; sourceTree = "<group>"; };
+		180697301E8690CB0040F6F3 /* NKBaseAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKBaseAction.swift; sourceTree = "<group>"; };
 		180697321E8691220040F6F3 /* NKRowCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKRowCollectionView.swift; sourceTree = "<group>"; };
 		180697331E8691220040F6F3 /* NKRowTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKRowTableView.swift; sourceTree = "<group>"; };
 		180697361E8691680040F6F3 /* NKPresentRowType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKPresentRowType.swift; sourceTree = "<group>"; };
@@ -245,6 +246,7 @@
 		188474F01D93D570009F4506 /* NKLoadable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKLoadable.swift; sourceTree = "<group>"; };
 		188474F11D93D570009F4506 /* NSNotificationCenter+NRx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSNotificationCenter+NRx.swift"; sourceTree = "<group>"; };
 		188474F21D93D570009F4506 /* NSObject+NRx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSObject+NRx.swift"; sourceTree = "<group>"; };
+		1893257C1E9B853600D58748 /* NKActionIdentifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKActionIdentifier.swift; sourceTree = "<group>"; };
 		1896195B1D9900DB006BBA0D /* KillOptional.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KillOptional.swift; sourceTree = "<group>"; };
 		189619611D9908E4006BBA0D /* Int+Random.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Int+Random.swift"; sourceTree = "<group>"; };
 		189C3BE61D7090960057F068 /* NKGestureRecognizerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKGestureRecognizerDelegate.swift; sourceTree = "<group>"; };
@@ -358,8 +360,9 @@
 				180697321E8691220040F6F3 /* NKRowCollectionView.swift */,
 				180697331E8691220040F6F3 /* NKRowTableView.swift */,
 				180697291E868EEE0040F6F3 /* NKBaseRowType.swift */,
-				180697301E8690CB0040F6F3 /* NKRowAction.swift */,
+				180697301E8690CB0040F6F3 /* NKBaseAction.swift */,
 				1806973C1E8691D20040F6F3 /* NKCallbackable.swift */,
+				1893257C1E9B853600D58748 /* NKActionIdentifier.swift */,
 			);
 			path = NKRow;
 			sourceTree = "<group>";
@@ -968,7 +971,7 @@
 				1828D0C81D6F1799007D0933 /* NKCircleImageView.swift in Sources */,
 				428B78EC1E59A56D00929CC7 /* NKBasePullingViewModel.swift in Sources */,
 				4271A8BD1E46D23700C686BB /* NKCollectionReusableView.swift in Sources */,
-				180697311E8690CB0040F6F3 /* NKRowAction.swift in Sources */,
+				180697311E8690CB0040F6F3 /* NKBaseAction.swift in Sources */,
 				4271A8CB1E46E40500C686BB /* NKCollectionViewDelegate.swift in Sources */,
 				1828D0CA1D6F1799007D0933 /* NKCornerView.swift in Sources */,
 				18CE80761D959A2800D510E4 /* UIView+Injected.swift in Sources */,
@@ -1030,6 +1033,7 @@
 				1896195C1D9900DB006BBA0D /* KillOptional.swift in Sources */,
 				183D0DB51D8595E50084754E /* OneViewController.swift in Sources */,
 				183F9B281DC8AA8400D9C7B9 /* NKLogEventManager.swift in Sources */,
+				1893257D1E9B853600D58748 /* NKActionIdentifier.swift in Sources */,
 				42F5BA5B1E6EC67C00FD27EB /* Array+NKStyle.swift in Sources */,
 				1806974D1E881A950040F6F3 /* TestLayoutViewController.swift in Sources */,
 				1828D0D51D6F1799007D0933 /* String+Extension.swift in Sources */,
