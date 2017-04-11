@@ -220,10 +220,10 @@ extension NKTableView: NKListView {
     }
     
     public func batchUpdates(animation: UITableViewRowAnimation, updates: (() -> Void)?, completion: ((Bool) -> Void)?) {
-        let doUpdates: () -> Void = { [unowned self] in
-            self.beginUpdates()
+        let doUpdates: () -> Void = { [weak self] in
+            self?.beginUpdates()
             updates?()
-            self.endUpdates()
+            self?.endUpdates()
             completion?(true)
         }
         

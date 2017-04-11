@@ -29,13 +29,14 @@ public extension NKListSection {
         let diff = Dwifft.diff(oldModels: self.models, newModels: models)
         if diff.results.count > 0 {
             
-            listView.batchUpdates(animation: self.animation, updates: { [unowned self] in
-                self.models = models
+            listView.batchUpdates(animation: self.animation, updates: { [weak self] in
+                guard let sSelf = self else {return}
+                sSelf.models = models
                 let insertIndexPaths = diff.insertions.map {IndexPath.init(row: $0.idx, section: section) }
                 let deleteIndexPaths = diff.deletions.map {IndexPath.init(row: $0.idx, section: section)}
                 
-                listView.insertItems(at: insertIndexPaths, animation: self.animation)
-                listView.deleteItems(at: deleteIndexPaths, animation: self.animation)
+                listView.insertItems(at: insertIndexPaths, animation: sSelf.animation)
+                listView.deleteItems(at: deleteIndexPaths, animation: sSelf.animation)
             }, completion: nil)
         }
         

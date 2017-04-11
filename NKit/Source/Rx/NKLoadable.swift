@@ -35,10 +35,10 @@ public extension NKLoadable where Self: AnyObject {
     
     public func load<T>(_ observable: Observable<T>) -> Observable<T> {
         return self.canLoadDataObservable
-            .do(onNext: {[unowned self] in self.setupBeforeLoading()})
+            .do(onNext: {[weak self] in self?.setupBeforeLoading()})
             .flatMapLatest({_ in observable})
-            .nk_doOnNextOrError({[unowned self] in self.resetAfterDone()})
-            .do(onError: {[unowned self] in self.rx_error.value = $0})
+            .nk_doOnNextOrError({[weak self] in self?.resetAfterDone()})
+            .do(onError: {[weak self] in self?.rx_error.value = $0})
     }
     
     public func setupBeforeLoading() {

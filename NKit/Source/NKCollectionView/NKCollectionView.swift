@@ -386,8 +386,9 @@ fileprivate extension NKCollectionView {
         
         self.nk_scrollViewDidEndScrollingObservable
             .takeUntil(self.rx_paging.asObservable().filter({$0 == false}))
-            .bindNext { [unowned self] (point) in
-                guard let layout = self.collectionViewLayout as? UICollectionViewFlowLayout else {
+            .bindNext { [weak self] (point) in
+                guard let sSelf = self else {return}
+                guard let layout = sSelf.collectionViewLayout as? UICollectionViewFlowLayout else {
                     return
                 }
                 
@@ -396,7 +397,7 @@ fileprivate extension NKCollectionView {
                 let itemSize = isHorizontal ? layout.itemSize.width : layout.itemSize.height
                 let spacing = isHorizontal ? layout.minimumInteritemSpacing : layout.minimumLineSpacing
                 let inset = isHorizontal ? layout.sectionInset.left : layout.sectionInset.top
-                let viewSize = isHorizontal ? self.nk_width : self.nk_height
+                let viewSize = isHorizontal ? sSelf.nk_width : sSelf.nk_height
                 let value = itemSize + spacing
                 let firstValue = 3 * itemSize / 2 + spacing + inset - viewSize / 2
                 
@@ -414,7 +415,7 @@ fileprivate extension NKCollectionView {
                 
                 let page = currentPage + k
                 
-                self.setCurrentPage(page)
+                sSelf.setCurrentPage(page)
             }.addDisposableTo(self.nk_disposeBag)
     }
 }

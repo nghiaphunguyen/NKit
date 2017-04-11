@@ -108,39 +108,41 @@ extension NKBasePullingViewController {
 //MARK: React
 fileprivate extension NKBasePullingViewController {
     func setupViewModel(with viewModel: NKPullingViewModelable) {
-        viewModel.shouldShowLoadingObseravble.subscribe(onNext: { [unowned self] in
+        viewModel.shouldShowLoadingObseravble.subscribe(onNext: { [weak self] in
+            guard let sSelf = self else {return}
+            
             if $0 {
-                if !self.refreshControl.isRefreshing {
-                    self.loadingView.show(payload: nil, withCompletion: nil)
+                if !sSelf.refreshControl.isRefreshing {
+                    sSelf.loadingView.show(payload: nil, withCompletion: nil)
                 }
             } else {
-                self.loadingView.hide(withCompletion: nil)
-                self.refreshControl.endRefreshing()
+                sSelf.loadingView.hide(withCompletion: nil)
+                sSelf.refreshControl.endRefreshing()
             }
         }).addDisposableTo(self.nk_disposeBag)
         
-        viewModel.shouldShowEmptyViewObservable.subscribe(onNext: { [unowned self] in
-            $0 ? self.emptyView.show(payload: nil, withCompletion: nil) : self.emptyView.hide(withCompletion: nil)
+        viewModel.shouldShowEmptyViewObservable.subscribe(onNext: { [weak self] in
+            $0 ? self?.emptyView.show(payload: nil, withCompletion: nil) : self?.emptyView.hide(withCompletion: nil)
         }).addDisposableTo(self.nk_disposeBag)
         
-        viewModel.shouldShowErrorViewObservable.subscribe(onNext: { [unowned self] in
-            $0 ? self.errorView.show(payload: viewModel.errorString.value, withCompletion: nil) : self.errorView.hide(withCompletion: {
+        viewModel.shouldShowErrorViewObservable.subscribe(onNext: { [weak self] in
+            $0 ? self?.errorView.show(payload: viewModel.errorString.value, withCompletion: nil) : self?.errorView.hide(withCompletion: {
                 viewModel.clearError()
             })
         }).addDisposableTo(self.nk_disposeBag)
         
-        viewModel.shouldShowErrorPopupViewObservable.subscribe(onNext: { [unowned self] in
-            $0 ? self.popupErrorView.show(payload: viewModel.errorString.value, withCompletion: nil) : self.popupErrorView.hide(withCompletion: {
+        viewModel.shouldShowErrorPopupViewObservable.subscribe(onNext: { [weak self] in
+            $0 ? self?.popupErrorView.show(payload: viewModel.errorString.value, withCompletion: nil) : self?.popupErrorView.hide(withCompletion: {
                 viewModel.clearError()
             })
         }).addDisposableTo(self.nk_disposeBag)
         
-        viewModel.viewModelsObservable.subscribe(onNext: { [unowned self] in
-            self.listView.updateFirstSection(withModels: $0)
+        viewModel.viewModelsObservable.subscribe(onNext: { [weak self] in
+            self?.listView.updateFirstSection(withModels: $0)
         }).addDisposableTo(self.nk_disposeBag)
         
-        viewModel.isLoadMore.observable.distinctUntilChanged().subscribe(onNext: { [unowned self] in
-            self.listView.updateFirstSection(withFooterModel: $0)
+        viewModel.isLoadMore.observable.distinctUntilChanged().subscribe(onNext: { [weak self] in
+            self?.listView.updateFirstSection(withFooterModel: $0)
         }).addDisposableTo(self.nk_disposeBag)
         
         viewModel.shouldShowListViewObservable.map{!$0}.bindTo(self.listView.view.rx.isHidden).addDisposableTo(self.nk_disposeBag)
@@ -156,20 +158,20 @@ fileprivate extension NKBasePullingViewController {
             viewModel.loadMore()
         }).addDisposableTo(self.nk_disposeBag)
         
-        self.popupErrorView.tappedRetryButtonObservable?.subscribe(onNext: { [unowned self] in
-            self.popupErrorView.hide(withCompletion: {
+        self.popupErrorView.tappedRetryButtonObservable?.subscribe(onNext: { [weak self] in
+            self?.popupErrorView.hide(withCompletion: {
                 viewModel.loadMore()
             })
         }).addDisposableTo(self.nk_disposeBag)
         
-        self.errorView.tappedRetryButtonObservable?.subscribe(onNext: { [unowned self] in
-            self.errorView.hide(withCompletion: {
+        self.errorView.tappedRetryButtonObservable?.subscribe(onNext: { [weak self] in
+            self?.errorView.hide(withCompletion: {
                 viewModel.refresh()
             })
         }).addDisposableTo(self.nk_disposeBag)
         
-        self.emptyView.tappedRetryButtonObservable?.subscribe(onNext: { [unowned self] in
-            self.emptyView.hide(withCompletion: {
+        self.emptyView.tappedRetryButtonObservable?.subscribe(onNext: { [weak self] in
+            self?.emptyView.hide(withCompletion: {
                 viewModel.refresh()
             })
         }).addDisposableTo(self.nk_disposeBag)
