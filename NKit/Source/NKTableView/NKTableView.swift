@@ -163,7 +163,7 @@ extension NKTableView: UITableViewDelegate {
             return result.height
         }
         
-        return 0
+        return tableView.style == .grouped ? CGFloat.leastNormalMagnitude : 0
     }
     
     dynamic open func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
@@ -174,7 +174,7 @@ extension NKTableView: UITableViewDelegate {
             return result.height
         }
         
-        return 0
+        return tableView.style == .grouped ? CGFloat.leastNormalMagnitude : 0
     }
     
     dynamic open func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
