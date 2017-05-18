@@ -245,14 +245,26 @@ extension NKTableView: NKListView {
     }
     
     public func invalidateSupplementaryView(of kind: String, at section: Int) {
+        var view: UIView?
+        var model: Any?
+        let s = self.getSection(with: section)
         switch kind {
         case UICollectionElementKindSectionFooter:
-            self.footerView(forSection: section)?.setNeedsDisplay()
+            view = self.footerView(forSection: section)
+            model = s.footerModel
+            
         case UICollectionElementKindSectionHeader:
-            self.headerView(forSection: section)?.setNeedsDisplay()
+            view = self.headerView(forSection: section)
+            model = s.headerModel
         default:
-            return
+            break
         }
+        
+        view?.setNeedsDisplay()
+        if let view = view as? NKListSupplementaryViewConfigurable, let model = model {
+            view.listView(self, configWithModel: model, at: section)
+        }
+
     }
     
     public func register(_ cellClass: Swift.AnyClass?, forCellWithReuseIdentifier identifier: String) {
