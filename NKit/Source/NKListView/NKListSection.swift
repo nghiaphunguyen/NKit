@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Diff
 
 open class NKListSection: NSObject {
     open var models: [NKDiffable] = []
@@ -26,19 +27,22 @@ open class NKListSection: NSObject {
 public extension NKListSection {
     public final func update(models: [NKDiffable], for listView: NKListView, at section: Int) {
         
-        let diff = Dwifft.diff(oldModels: self.models, newModels: models)
-        if diff.results.count > 0 {
+        Diff.diff(oldModels: self.models, newModels: models, result: {[weak self] diff in
+            guard let sSelf = self else {return}
             
-            listView.batchUpdates(animation: self.animation, updates: { [weak self] in
-                guard let sSelf = self else {return}
-                sSelf.models = models
-                let insertIndexPaths = diff.insertions.map {IndexPath.init(row: $0.idx, section: section) }
-                let deleteIndexPaths = diff.deletions.map {IndexPath.init(row: $0.idx, section: section)}
+            if diff.elements.count > 0 {
                 
-                listView.insertItems(at: insertIndexPaths, animation: sSelf.animation)
-                listView.deleteItems(at: deleteIndexPaths, animation: sSelf.animation)
-            }, completion: nil)
-        }
+                listView.batchUpdates(animation: sSelf.animation, updates: { [weak self] in
+                    guard let sSelf = self else {return}
+                    sSelf.models = models
+                    let insertIndexPaths = diff.insertions.map {IndexPath.init(row: $0.idx, section: section) }
+                    let deleteIndexPaths = diff.deletions.map {IndexPath.init(row: $0.idx, section: section)}
+                    
+                    listView.insertItems(at: insertIndexPaths, animation: sSelf.animation)
+                    listView.deleteItems(at: deleteIndexPaths, animation: sSelf.animation)
+                    }, completion: nil)
+            }
+        })
         
         //print("update models: \(models) inSection:\(section)")
     }

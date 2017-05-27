@@ -10,6 +10,7 @@ pod 'SnapKit'
 pod 'NRxSwift'
 pod 'RxCocoa’
 pod 'OAStackView'
+pod 'Diff'
 
 end
 

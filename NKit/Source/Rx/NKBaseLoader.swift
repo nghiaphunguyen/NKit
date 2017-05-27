@@ -20,10 +20,14 @@ open class NKBaseLoader: NSObject, NKLoadable {
     }
     
     open func setupBeforeLoading() {
-        
+        if self.rx_isLoading.value != true {
+            self.rx_isLoading.value = true
+        }
     }
     
     open func resetAfterDone() {
-        
+        if self.rx_isLoading.value != false {
+            self.rx_isLoading.value = false
+        }
     }
 }

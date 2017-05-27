@@ -1,4 +1,5 @@
 PODS:
+  - Diff (0.5.3)
   - NRxSwift (1.0.18):
     - RxSwift
   - OAStackView (1.0.1)
@@ -8,18 +9,20 @@ PODS:
   - SnapKit (3.0.2)
 
 DEPENDENCIES:
+  - Diff
   - NRxSwift
   - OAStackView
   - RxCocoa
   - SnapKit
 
 SPEC CHECKSUMS:
+  Diff: befa1d19c32726b2b36ce915d98793e2fbde8dcc
   NRxSwift: cea5dafbdf2c525faf7841ddd75d670b1bf16c78
   OAStackView: 95e7cb79cbea25c2342f496a44bdbe8bd4c8d510
   RxCocoa: 0a2f3ae381cf16f4021a4cee7a4420f83058a965
   RxSwift: af5680055c4ad04480189c52d28385b1029493a6
   SnapKit: 2e456761aa92d4d4067a7a5594c18769d451a8ad
 
-PODFILE CHECKSUM: 5e19d13872dbffdfc7e5a04c2935f3424b93b3cf
+PODFILE CHECKSUM: 708e7288338fc6c387ccbc77bdca2fdc46dabca9
 
 COCOAPODS: 1.2.0
