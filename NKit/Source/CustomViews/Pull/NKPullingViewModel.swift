@@ -27,6 +27,8 @@ public protocol NKPullingViewModelable: NKLoadable, NKPullingState, NKPullingAct
     var limit: Int {get}
     var resetType: ResetType {get}
     
+    var requestDisposable: Disposable? {get set}
+
     // pull items from ouside source
     func pull() -> Observable<[Any]>
     
@@ -89,26 +91,27 @@ public extension NKPullingViewModelable where Self: NSObject {
     
     //MARK: NKPullingAction
     public func loadMore() {
-        let strongSelf = self
-        strongSelf.load(self.pullData().do(onNext: { [weak strongSelf] in
+        var strongSelf = self
+        strongSelf.requestDisposable = strongSelf.load(self.pullData().do(onNext: { [weak strongSelf] in
             strongSelf?.rx_items.value += $0
             strongSelf?.rx_isLoadMore.value = !($0.count == 0)
             }
             
         ))
             .subscribe()
-            .addDisposableTo(self.nk_disposeBag)
+        
+        strongSelf.requestDisposable?.addDisposableTo(self.nk_disposeBag)
     }
     
     public func refresh() {
-        let strongSelf = self
+        var strongSelf = self
         let reverseModelClosure = self.reverseModel()
         let observable: Observable<Void> = self.resetType == .clear ? Observable<Void>.nk_from(strongSelf.resetModel).flatMapLatest({[weak strongSelf] _ -> Observable<Void> in
             guard let sSelf = strongSelf else {return Observable.empty()}
             return Observable<Void>.nk_from(sSelf.resetItems)
         }) : Observable<Void>.nk_from(strongSelf.resetModel)
         
-        strongSelf.load(
+        strongSelf.requestDisposable = strongSelf.load(
                 observable
                 .flatMapLatest({[weak strongSelf] value -> Observable<[Any]> in
                     
@@ -126,7 +129,8 @@ public extension NKPullingViewModelable where Self: NSObject {
                 })})
             )
             .subscribe()
-            .addDisposableTo(self.nk_disposeBag)
+        
+        strongSelf.requestDisposable?.addDisposableTo(self.nk_disposeBag)
     }
     
     public func clearError() {

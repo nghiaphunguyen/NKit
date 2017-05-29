@@ -16,6 +16,7 @@ open class NKBasePullingViewModel: NSObject, NKPullingViewModelable {
     public var rx_isLoadMore = Variable<Bool>(true)
     public var rx_isLoading = Variable<Bool>(false)
     public var rx_error = Variable<Error?>(nil)
+    public var requestDisposable: Disposable? = nil
     public lazy var page: Int = {return self.getInitPage()}()
     public lazy var initPage: Int = {return self.getInitPage()}()
     public lazy var limit: Int = {return self.getLimit()}()
