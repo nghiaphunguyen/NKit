@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import NKit
 
 //MARK: -------Model-------
 protocol NumberTableViewCellModel: NKDiffable {
@@ -26,7 +25,7 @@ struct NumberTableViewCellModelImp: NumberTableViewCellModel {
 }
 
 //MARK: -------Cell-------
-final class NumberTableViewCell: NKBaseTableViewCell {
+final class NumberTableViewCell: NKBaseCollectionViewCell {
     fileprivate lazy var label: UILabel = Id.label.view(self)
 }
 
@@ -60,13 +59,14 @@ extension NumberTableViewCell {
 extension NumberTableViewCell: NKListViewCellConfigurable {
     typealias ViewCellModel = NumberTableViewCellModel
 
-    func tableView(_ tableView: NKTableView, configWithModel model: ViewCellModel, atIndexPath indexPath: IndexPath) {
-        self.label.text = model.num.nk_string
+    func collectionView(_ collectionView: NKCollectionView, configWithModel model: NumberTableViewCellModel, atIndexPath indexPath: IndexPath) {
+            self.label.text = model.num.nk_string
+    }
+    
+    static func size(withCollectionView collectionView: NKCollectionView, section: NKCollectionSection, model: NumberTableViewCellModel) -> CGSize {
+        return CGSize(width: 50, height: 50)
     }
 
-    static func height(withTableView tableView: NKTableView, section: NKTableSection, model: ViewCellModel) -> CGFloat {
-        return UITableViewAutomaticDimension
-    }
 }
 
 //MARK: Testing

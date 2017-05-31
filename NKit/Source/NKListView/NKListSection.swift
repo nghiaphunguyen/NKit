@@ -23,26 +23,45 @@ open class NKListSection: NSObject {
     }
 }
 
-//MARK: final public functions
+private var backgroundQueue = DispatchQueue.init(label: "diff")
+
 public extension NKListSection {
+    
     public final func update(models: [NKDiffable], for listView: NKListView, at section: Int) {
         
-        Diff.diff(oldModels: self.models, newModels: models, result: {[weak self] diff in
+        backgroundQueue.async { [weak self] in
             guard let sSelf = self else {return}
             
-            if diff.elements.count > 0 {
-                
-                listView.batchUpdates(animation: sSelf.animation, updates: { [weak self] in
-                    guard let sSelf = self else {return}
+            if sSelf.models.count == 0 || models.count == 0 {
+                // reload
+                DispatchQueue.main.async {
                     sSelf.models = models
-                    let insertIndexPaths = diff.insertions.map {IndexPath.init(row: $0.idx, section: section) }
-                    let deleteIndexPaths = diff.deletions.map {IndexPath.init(row: $0.idx, section: section)}
-                    
-                    listView.insertItems(at: insertIndexPaths, animation: sSelf.animation)
-                    listView.deleteItems(at: deleteIndexPaths, animation: sSelf.animation)
-                    }, completion: nil)
+                    listView.reloadData()
+                }
+                
+                return
             }
-        })
+            
+            let diff = sSelf.models.diff(models)
+            if diff.elements.count > 0 {
+                DispatchQueue.main.async {
+//                    print("batch prepare for updating")
+                    listView.batchUpdates(animation: sSelf.animation, updates: { [weak self] in
+                        guard let sSelf = self else {return}
+//                        print("batch start updating")
+                        sSelf.models = models
+                        let insertIndexPaths = diff.insertions.map {IndexPath.init(row: $0.idx, section: section) }
+                        let deleteIndexPaths = diff.deletions.map {IndexPath.init(row: $0.idx, section: section)}
+                        
+                        listView.insertItems(at: insertIndexPaths, animation: sSelf.animation)
+                        listView.deleteItems(at: deleteIndexPaths, animation: sSelf.animation)
+                        
+                        }, completion: { _ in
+//                            print("batch end updating")
+                    })
+                }
+            }
+        }
         
         //print("update models: \(models) inSection:\(section)")
     }

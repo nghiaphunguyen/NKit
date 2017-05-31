@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import NKit
 import NRxSwift
 import RxSwift
 
@@ -15,7 +14,7 @@ import RxSwift
 final class OtherTestingCollectionViewController: UIViewController {
     fileprivate(set) var reactor: OtherTestingCollectionReactable? = nil
     
-    fileprivate lazy var tableView : NKTableView = Id.tableView.view(self)
+    fileprivate lazy var tableView : NKCollectionView = Id.tableView.view(self)
 }
 
 //MARK: Layout
@@ -31,11 +30,12 @@ extension OtherTestingCollectionViewController {
     override func loadView() {
         super.loadView()
         
-        self.view.nk_addSubview(NKTableView(frame: .zero, style: .grouped) ~ Id.tableView) {
+        self.view.nk_addSubview(NKCollectionView.init(sectionOptions: [[]]) ~ Id.tableView) {
+            $0.backgroundColor = UIColor.green
             $0.snp.makeConstraints({ (make) in
                 make.edges.equalToSuperview()
             })
-            $0.addSection(NKBaseTableSection.init(options: []))
+//            $0.addSection(NKBaseTableSection.init(options: []))
             $0.register(cellType: NumberTableViewCell.self)
         }
     }

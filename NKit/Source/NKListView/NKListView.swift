@@ -25,6 +25,8 @@ public protocol NKListView {
     func registerHeader(_ viewClass: Swift.AnyClass?, forHeaderWithReuseIdentifier identifier: String)
     
     func registerFooter(_ viewClass: Swift.AnyClass?, forFooterWithReuseIdentifier identifier: String)
+    
+    func reloadData()
 }
 
 extension NKListView {

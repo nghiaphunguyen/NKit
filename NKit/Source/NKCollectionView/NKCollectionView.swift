@@ -98,7 +98,7 @@ extension NKCollectionView: UICollectionViewDataSource {
     dynamic open func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         guard 0..<self.sections.count ~= section else {return 0}
         
-        ////print("in section: \(section) numItems: \(self.sections[section].models.count)")
+        //print("in section: \(section) numItems: \(self.sections[section].models.count)")
         return self.sections[section].models.count
     }
     
