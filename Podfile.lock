@@ -1,6 +1,6 @@
 PODS:
   - Diff (0.5.3)
-  - NRxSwift (1.0.18):
+  - NRxSwift (1.0.19):
     - RxSwift
   - OAStackView (1.0.1)
   - RxCocoa (3.0.0):
@@ -17,7 +17,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   Diff: befa1d19c32726b2b36ce915d98793e2fbde8dcc
-  NRxSwift: cea5dafbdf2c525faf7841ddd75d670b1bf16c78
+  NRxSwift: b680bad93bc813222c1d674c7e7e4d7b77f144b1
   OAStackView: 95e7cb79cbea25c2342f496a44bdbe8bd4c8d510
   RxCocoa: 0a2f3ae381cf16f4021a4cee7a4420f83058a965
   RxSwift: af5680055c4ad04480189c52d28385b1029493a6

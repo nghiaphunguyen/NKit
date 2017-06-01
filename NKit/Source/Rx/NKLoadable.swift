@@ -29,7 +29,7 @@ public extension NKLoadable where Self: AnyObject {
     
     public func clearError() {
         if self.rx_error.value != nil {
-            self.rx_error.value = nil
+            self.rx_error.nk_asyncSet(value: nil)
         }
     }
     
