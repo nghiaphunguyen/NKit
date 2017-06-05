@@ -44,11 +44,10 @@ public extension NKListSection {
             
             let diff = sSelf.models.diff(models)
             if diff.elements.count > 0 {
-                DispatchQueue.main.async {
-//                    print("batch prepare for updating")
+                DispatchQueue.main.sync {
                     listView.batchUpdates(animation: sSelf.animation, updates: { [weak self] in
                         guard let sSelf = self else {return}
-//                        print("batch start updating")
+
                         sSelf.models = models
                         let insertIndexPaths = diff.insertions.map {IndexPath.init(row: $0.idx, section: section) }
                         let deleteIndexPaths = diff.deletions.map {IndexPath.init(row: $0.idx, section: section)}
@@ -56,9 +55,7 @@ public extension NKListSection {
                         listView.insertItems(at: insertIndexPaths, animation: sSelf.animation)
                         listView.deleteItems(at: deleteIndexPaths, animation: sSelf.animation)
                         
-                        }, completion: { _ in
-//                            print("batch end updating")
-                    })
+                        }, completion: nil)
                 }
             }
         }
