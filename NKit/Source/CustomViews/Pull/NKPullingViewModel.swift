@@ -40,6 +40,7 @@ public protocol NKPullingViewModelable: NKLoadable, NKPullingState, NKPullingAct
     func doSomethingAfterLoadLoadingModels(models: [Any]) -> Observable<[Any]>
     func resetModel()
     func reverseModel() -> () -> Void
+    func disposePreRequest()
 }
 
 public extension NKPullingViewModelable where Self: NSObject {
@@ -135,7 +136,7 @@ public extension NKPullingViewModelable where Self: NSObject {
     
     public func clearError() {
         if self.rx_error.value != nil {
-            self.rx_error.value = nil
+            self.rx_error.nk_asyncSet(value: nil)
         }
     }
     
@@ -171,6 +172,11 @@ public extension NKPullingViewModelable where Self: NSObject {
     
     public func resetItems() {
         self.rx_items.value = []
+    }
+    
+    public func disposePreRequest() {
+        self.requestDisposable?.dispose()
+        self.rx_isLoading.value = false
     }
     
     private func pullData() -> Observable<[Any]> {
