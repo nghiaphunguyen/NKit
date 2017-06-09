@@ -11,6 +11,7 @@ import Diff
 
 open class NKListSection: NSObject {
     open var models: [NKDiffable] = []
+    open var isFirstUpdate = true
     open fileprivate(set) var headerModel: Any? = nil
     open fileprivate(set) var footerModel: Any? = nil
     
@@ -29,12 +30,19 @@ public extension NKListSection {
     
     public final func update(models: [NKDiffable], for listView: NKListView, at section: Int) {
         
+        if (self.isFirstUpdate) {
+            self.isFirstUpdate = false
+            self.models = models
+            listView.reloadData()
+            return
+        }
+        
         backgroundQueue.async { [weak self] in
             guard let sSelf = self else {return}
             
             if sSelf.models.count == 0 || models.count == 0 {
                 // reload
-                DispatchQueue.main.async {
+                DispatchQueue.main.sync {
                     sSelf.models = models
                     listView.reloadData()
                 }
