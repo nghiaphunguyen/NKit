@@ -15,7 +15,7 @@ open class NKBaseLoader: NSObject, NKLoadable {
     
     open func clearError() {
         if self.rx_error.value != nil {
-            self.rx_error.value = nil
+            self.rx_error.nk_asyncSet(value: nil)
         }
     }
     

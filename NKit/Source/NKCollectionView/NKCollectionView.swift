@@ -84,7 +84,7 @@ open class NKCollectionView: UICollectionView {
         
         //print("Page=\(page) newOffset=\(newOffset) value=\(value) firstvalue=\(value) itemSize:\(itemSize) viewSize:\(viewSize)")
         self.setContentOffset(newPoint, animated: true)
-        self.rx_currentPage.value = page
+        self.rx_currentPage.nk_asyncSet(value: page)
     }
 }
 
