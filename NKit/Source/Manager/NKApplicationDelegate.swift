@@ -10,14 +10,12 @@ import Foundation
 import UIKit
 import CloudKit
 
-public protocol NKAppConfigDelegate: UIApplicationDelegate {}
-
 open class NKApplicationDelegate: NKLayoutTester, UIApplicationDelegate {
     
     public var window: UIWindow?
     
-    open var configs: [NKAppConfigDelegate] { return [] }
-    public lazy var _configs: [NKAppConfigDelegate] = {
+    open var configs: [UIApplicationDelegate] { return [] }
+    public lazy var _configs: [UIApplicationDelegate] = {
         return self.configs
     }()
     
