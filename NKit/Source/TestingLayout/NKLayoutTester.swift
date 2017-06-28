@@ -24,7 +24,8 @@ open class NKLayoutTester: UIResponder {
         return nil
     }
     
-    public final var _rootViewController: UIViewController? {
+    // can modify if need (not recommend)
+    open var _rootViewController: UIViewController? {
         #if DEBUG
             if let testingLayout = self.testingLayout {
                 return testingLayout.viewController
