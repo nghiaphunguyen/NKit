@@ -17,7 +17,7 @@ open class NKApplicationDelegate: NKLayoutTester, UIApplicationDelegate {
     public var window: UIWindow?
     
     open var services: [NKAppConfigDelegate] { return [] }
-    private lazy var _services: [NKAppConfigDelegate] = {
+    public lazy var _services: [NKAppConfigDelegate] = {
         return self.services
     }()
     
