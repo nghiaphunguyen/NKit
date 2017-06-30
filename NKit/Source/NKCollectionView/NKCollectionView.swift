@@ -17,6 +17,8 @@ open class NKCollectionView: UICollectionView {
     internal var cellConfigurations: [NKListViewCellWrapperConfigurable] = []
     public internal(set) var sections: [NKListSection] = []
     
+    public let actionHandler: ((NKAction) -> Void)? = nil
+    
     //MARK: paging
     fileprivate lazy var rx_paging = Variable<Bool>(false)
     public var paging: Bool {

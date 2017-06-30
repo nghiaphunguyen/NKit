@@ -11,6 +11,8 @@ import UIKit
 public protocol NKListView {
     var view: UIScrollView {get}
     
+    var actionHandler: ((NKAction) -> Void)? {get}
+    
     func batchUpdates(animation: UITableViewRowAnimation, updates: (() -> Swift.Void)?, completion: ((Bool) -> Swift.Void)?)
     
     func insertItems(at indexPaths: [IndexPath], animation: UITableViewRowAnimation)

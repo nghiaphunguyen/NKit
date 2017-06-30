@@ -85,6 +85,8 @@
 		188474F31D93D570009F4506 /* NKLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188474F01D93D570009F4506 /* NKLoadable.swift */; };
 		188474F41D93D570009F4506 /* NSNotificationCenter+NRx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188474F11D93D570009F4506 /* NSNotificationCenter+NRx.swift */; };
 		188474F51D93D570009F4506 /* NSObject+NRx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188474F21D93D570009F4506 /* NSObject+NRx.swift */; };
+		18848D8A1F06383400CFF3CB /* UICollectionViewCell+NKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18848D891F06383400CFF3CB /* UICollectionViewCell+NKit.swift */; };
+		18848D8C1F06388800CFF3CB /* UITableViewCell+NKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18848D8B1F06388800CFF3CB /* UITableViewCell+NKit.swift */; };
 		1893257F1E9B986500D58748 /* NKActionIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1893257E1E9B986500D58748 /* NKActionIdentifier.swift */; };
 		1896195C1D9900DB006BBA0D /* KillOptional.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1896195B1D9900DB006BBA0D /* KillOptional.swift */; };
 		189619621D9908E4006BBA0D /* Int+Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189619611D9908E4006BBA0D /* Int+Random.swift */; };
@@ -250,6 +252,8 @@
 		188474F01D93D570009F4506 /* NKLoadable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKLoadable.swift; sourceTree = "<group>"; };
 		188474F11D93D570009F4506 /* NSNotificationCenter+NRx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSNotificationCenter+NRx.swift"; sourceTree = "<group>"; };
 		188474F21D93D570009F4506 /* NSObject+NRx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSObject+NRx.swift"; sourceTree = "<group>"; };
+		18848D891F06383400CFF3CB /* UICollectionViewCell+NKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UICollectionViewCell+NKit.swift"; sourceTree = "<group>"; };
+		18848D8B1F06388800CFF3CB /* UITableViewCell+NKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+NKit.swift"; sourceTree = "<group>"; };
 		1893257E1E9B986500D58748 /* NKActionIdentifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NKActionIdentifier.swift; sourceTree = "<group>"; };
 		1896195B1D9900DB006BBA0D /* KillOptional.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KillOptional.swift; sourceTree = "<group>"; };
 		189619611D9908E4006BBA0D /* Int+Random.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Int+Random.swift"; sourceTree = "<group>"; };
@@ -377,6 +381,8 @@
 		1828D0831D6F1799007D0933 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				18848D871F06381D00CFF3CB /* UICollectionViewCell */,
+				18848D881F06381D00CFF3CB /* UITableViewCell */,
 				180697281E868E8F0040F6F3 /* NKRow */,
 				42FE62C21E7775B80096E6BB /* NKReact */,
 				422C25081E6EAC8400FBB511 /* NKStyle */,
@@ -659,6 +665,22 @@
 				1806974A1E86CD1C0040F6F3 /* NKBaseLoader.swift */,
 			);
 			path = Rx;
+			sourceTree = "<group>";
+		};
+		18848D871F06381D00CFF3CB /* UICollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				18848D891F06383400CFF3CB /* UICollectionViewCell+NKit.swift */,
+			);
+			path = UICollectionViewCell;
+			sourceTree = "<group>";
+		};
+		18848D881F06381D00CFF3CB /* UITableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				18848D8B1F06388800CFF3CB /* UITableViewCell+NKit.swift */,
+			);
+			path = UITableViewCell;
 			sourceTree = "<group>";
 		};
 		189619601D9908E4006BBA0D /* Number */ = {
@@ -1063,6 +1085,7 @@
 				422C250A1E6EAC9000FBB511 /* NKStylable.swift in Sources */,
 				1828D0E61D6F1799007D0933 /* UIView+Utilities.swift in Sources */,
 				1828D0DC1D6F1799007D0933 /* UIImage+Color.swift in Sources */,
+				18848D8C1F06388800CFF3CB /* UITableViewCell+NKit.swift in Sources */,
 				1828D0C91D6F1799007D0933 /* NKContainerView.swift in Sources */,
 				1828D0E01D6F1799007D0933 /* UINavigationController+Animation.swift in Sources */,
 				1828D0E11D6F1799007D0933 /* UIView+Animation.swift in Sources */,
@@ -1127,6 +1150,7 @@
 				1828D0E31D6F1799007D0933 /* UIView+Frame.swift in Sources */,
 				4271A8C31E46D23700C686BB /* NKDetechable.swift in Sources */,
 				1828D0D01D6F1799007D0933 /* NKTextView.swift in Sources */,
+				18848D8A1F06383400CFF3CB /* UICollectionViewCell+NKit.swift in Sources */,
 				18A1DAC61D6F167D00D566C2 /* AppDelegate.swift in Sources */,
 				188474F31D93D570009F4506 /* NKLoadable.swift in Sources */,
 				4271A9251E4D628300C686BB /* NKListSupplementaryViewConfigurable.swift in Sources */,
