@@ -36,7 +36,7 @@ extension OtherTestingCollectionViewController {
                 make.edges.equalToSuperview()
             })
 //            $0.addSection(NKBaseTableSection.init(options: []))
-            $0.register(cellType: NumberTableViewCell.self)
+            $0.register(cellType: NKCollectionViewCell<NumberTableViewCell>.self)
         }
     }
     

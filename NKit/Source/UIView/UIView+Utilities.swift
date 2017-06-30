@@ -100,21 +100,28 @@ public extension UIView {
     }
     
     public var nk_tableView: UITableView? {
-        var view = self.superview
-        while view != nil && view?.isKind(of: UITableView.self) != true {
-            view = view?.superview
-        }
-        
-        return view as? UITableView
+        return self.superView(withClass: UITableView.self) as? UITableView
     }
     
     public var nk_collectionView: UICollectionView? {
+        return self.superView(withClass: UICollectionView.self) as? UICollectionView
+    }
+    
+    public var nk_colletionViewCell: UICollectionViewCell? {
+        return self.superView(withClass: UICollectionViewCell.self) as? UICollectionViewCell
+    }
+    
+    public var nk_tableViewCell: UITableViewCell? {
+        return self.superView(withClass: UITableViewCell.self) as? UITableViewCell
+    }
+    
+    private func superView(withClass clas: AnyClass) -> UIView? {
         var view = self.superview
-        while view != nil && view?.isKind(of: UICollectionView.self) != true {
+        while view != nil && view?.isKind(of: clas) != true {
             view = view?.superview
         }
         
-        return view as? UICollectionView
+        return view
     }
 }
 
