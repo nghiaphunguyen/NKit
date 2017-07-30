@@ -63,7 +63,7 @@ open class NKCollectionView: UICollectionView {
     }
     
     dynamic open func setCurrentPage(_ page: Int) {
-        guard let layout = self.collectionViewLayout as? UICollectionViewFlowLayout else {
+        guard self.rx_currentPage.value != page, let layout = self.collectionViewLayout as? UICollectionViewFlowLayout else {
             return
         }
         
@@ -388,6 +388,7 @@ fileprivate extension NKCollectionView {
         
         self.nk_scrollViewDidEndScrollingObservable
             .takeUntil(self.rx_paging.asObservable().filter({$0 == false}))
+            .nk_observeAsyncOnMainQueue()
             .bindNext { [weak self] (point) in
                 guard let sSelf = self else {return}
                 guard let layout = sSelf.collectionViewLayout as? UICollectionViewFlowLayout else {

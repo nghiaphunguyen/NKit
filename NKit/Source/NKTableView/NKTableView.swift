@@ -53,6 +53,8 @@ open class NKTableView: UITableView {
     }
     
     dynamic open func setCurrentPage(_ page: Int) {
+        guard page != self.rx_currentPage.value else {return}
+        
         let itemSize = self.rowHeight
         let spacing: CGFloat = 0
         let inset = self.contentInset.top
@@ -488,6 +490,7 @@ fileprivate extension NKTableView {
         
         self.nk_scrollViewDidEndScrollingObservable
             .takeUntil(self.rx_paging.asObservable().filter({$0 == false}))
+            .nk_observeAsyncOnMainQueue()
             .bindNext { [unowned self] (point) in
                 //NPN TODO: recheck
                 let itemSize = self.rowHeight
