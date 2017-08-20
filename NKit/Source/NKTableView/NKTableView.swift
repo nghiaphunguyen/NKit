@@ -16,7 +16,7 @@ open class NKTableView: UITableView {
     internal var cellConfigurations: [NKListViewCellWrapperConfigurable] = []
     public internal(set) var sections: [NKListSection] = []
     
-    public let actionHandler: ((NKAction) -> Void)? = nil
+    public var actionHandler: ((NKAction) -> Void)? = nil
     
     fileprivate var heightsOfCell = [IndexPath : CGFloat]()
     //MARK: paging
