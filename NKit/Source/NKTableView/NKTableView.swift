@@ -59,10 +59,13 @@ open class NKTableView: UITableView {
         return self.rx_currentPage.value
     }()
     
+    var currentOffsetY: CGFloat = 0
+    
     dynamic open func setCurrentPage(_ page: Int) {
         var page = page
         guard page != self.rx_currentPage.value else {return}
         
+        let offsetY = self.contentOffset.y
         let itemSize = self.rowHeight
         let spacing: CGFloat = 0
         let inset = self.contentInset.top
@@ -73,11 +76,13 @@ open class NKTableView: UITableView {
         page = max(0, page % (self.sections.first?.models.count ?? 0))
         let modelsCount = (self.sections.first?.models.count ?? 0)
         if let config = self.infinityConfig {
-            if (self.rx_currentPage.value == (modelsCount - 1)) && page == 0 {
-                self.actualPage = self.rx_currentPage.value + 1
-                
+            let isSideDown = offsetY > self.currentOffsetY
+            self.currentOffsetY = offsetY
+            
+            if self.rx_currentPage.value > config.numberOffCellInScreen && page < config.numberOffCellInScreen && isSideDown {
+                self.actualPage = page + modelsCount
             } else {
-                if (self.actualPage >= modelsCount && page > self.rx_currentPage.value) {
+                if (self.actualPage >= modelsCount && page > self.rx_currentPage.value && page <= config.numberOffCellInScreen) {
                     self.actualPage += 1
                     
                     if self.actualPage > modelsCount + config.numberOffCellInScreen {
