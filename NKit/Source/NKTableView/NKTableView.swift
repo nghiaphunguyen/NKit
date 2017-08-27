@@ -19,6 +19,9 @@ open class NKTableView: UITableView {
     public var actionHandler: ((NKAction) -> Void)? = nil
     
     fileprivate var heightsOfCell = [IndexPath : CGFloat]()
+    
+    public var infinityConfig: (cellHeight: CGFloat, numberOffCellInScreen: Int, itemMargin: CGFloat)? = nil
+    
     //MARK: paging
     fileprivate lazy var rx_paging = Variable<Bool>(false)
     public var paging: Bool {
@@ -74,6 +77,14 @@ open class NKTableView: UITableView {
         self.setContentOffset(newPoint, animated: true)
         self.rx_currentPage.value = page
     }
+    
+    fileprivate func getIndexPath(from indexPath: IndexPath) -> IndexPath {
+        var indexPath = indexPath
+        if self.infinityConfig.nk_isNotNil {
+            indexPath = IndexPath(row: indexPath.row % self.sections[indexPath.section].models.count, section: indexPath.section)
+        }
+        return indexPath
+    }
 }
 
 extension NKTableView: UITableViewDataSource {
@@ -84,7 +95,11 @@ extension NKTableView: UITableViewDataSource {
     dynamic open func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard 0..<self.sections.count ~= section else {return 0}
         
-        return self.sections[section].models.count
+        if let config = self.infinityConfig, self.sections.count == 1 {
+            return self.sections[section].models.count + config.numberOffCellInScreen + 1
+        } else {
+            return self.sections[section].models.count
+        }
     }
     
     dynamic open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -370,6 +385,16 @@ extension NKTableView: UITableViewDelegate {
     
     dynamic open func scrollViewDidScrollToTop(_ scrollView: UIScrollView) {
         self.nk_delegate?.scrollViewDidScrollToTop?(scrollView)
+        
+        if let config = self.infinityConfig {
+            let offset = scrollView.contentOffset
+            let itemCount = max(1, (self.sections.first?.models.count ?? 0))
+            let cellsHeight = Int(config.cellHeight) * itemCount
+            let delta = offset.y - CGFloat(cellsHeight + Int(config.itemMargin) * (itemCount - 1))
+            if delta > 0 {
+                scrollView.contentOffset = CGPoint.init(x: offset.x, y: delta )
+            }
+        }
     }
 }
 
