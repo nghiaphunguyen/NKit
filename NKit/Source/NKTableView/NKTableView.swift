@@ -55,7 +55,12 @@ open class NKTableView: UITableView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    lazy var actualPage: Int = {
+        return self.rx_currentPage.value
+    }()
+    
     dynamic open func setCurrentPage(_ page: Int) {
+        var page = page
         guard page != self.rx_currentPage.value else {return}
         
         let itemSize = self.rowHeight
@@ -65,15 +70,36 @@ open class NKTableView: UITableView {
         let value = itemSize + spacing
         let firstValue = 3 * itemSize / 2 + spacing + inset - viewSize / 2
         
-        let page = max(0, min(page, (self.sections.first?.models.count ?? 0) - 1))
+        page = max(0, page % (self.sections.first?.models.count ?? 0))
+        let modelsCount = (self.sections.first?.models.count ?? 0)
+        if let config = self.infinityConfig {
+            if (self.rx_currentPage.value == (modelsCount - 1)) && page == 0 {
+                self.actualPage = self.rx_currentPage.value + 1
+                
+            } else {
+                if (self.actualPage >= modelsCount && page > self.rx_currentPage.value) {
+                    self.actualPage += 1
+                    
+                    if self.actualPage > modelsCount + config.numberOffCellInScreen {
+                        self.actualPage = actualPage % modelsCount
+                    }
+                } else {
+                    self.actualPage = page
+                }
+            }
+            
+            
+        } else {
+            self.actualPage = page
+        }
+        
         let minOffset: CGFloat = 0
         
         let maxOffset = self.contentSize.height - self.nk_height
         
-        let newOffset = max(minOffset, min(CGFloat(page - 1) * value + (page > 0 ? firstValue : 0), maxOffset))
+        let newOffset = max(minOffset, min(CGFloat(self.actualPage - 1) * value + (self.actualPage > 0 ? firstValue : 0), maxOffset))
         let newPoint = CGPoint(x: 0, y: newOffset)
         
-        //print("Page=\(page) newOffset=\(newOffset) value=\(value) firstvalue=\(value) itemSize:\(itemSize) viewSize:\(viewSize)")
         self.setContentOffset(newPoint, animated: true)
         self.rx_currentPage.value = page
     }
@@ -81,7 +107,10 @@ open class NKTableView: UITableView {
     fileprivate func getIndexPath(from indexPath: IndexPath) -> IndexPath {
         var indexPath = indexPath
         if self.infinityConfig.nk_isNotNil {
-            indexPath = IndexPath(row: indexPath.row % self.sections[indexPath.section].models.count, section: indexPath.section)
+            let itemsCount = self.sections[indexPath.section].models.count
+            if itemsCount > 0 {
+                indexPath = IndexPath(row: indexPath.row % itemsCount, section: indexPath.section)
+            }
         }
         return indexPath
     }
@@ -95,7 +124,7 @@ extension NKTableView: UITableViewDataSource {
     dynamic open func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard 0..<self.sections.count ~= section else {return 0}
         
-        if let config = self.infinityConfig, self.sections.count == 1 {
+        if let config = self.infinityConfig, self.sections.count == 1 && self.sections[section].models.count > 0 {
             return self.sections[section].models.count + config.numberOffCellInScreen + 1
         } else {
             return self.sections[section].models.count
@@ -103,6 +132,7 @@ extension NKTableView: UITableViewDataSource {
     }
     
     dynamic open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let indexPath = self.getIndexPath(from: indexPath)
         let model = self.getModel(with: indexPath)
         let cellConfiguartion = self.getCellConfiguration(with: indexPath)
         let cell = tableView.dequeueReusableCell(withIdentifier: cellConfiguartion.reuseIdentifier, for: indexPath)
@@ -165,6 +195,7 @@ extension NKTableView: UITableViewDelegate {
     // Variable height support
     dynamic open func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let section = self.getSection(with: indexPath.section)
+        let indexPath = self.getIndexPath(from: indexPath)
         let model = self.getModel(withSection: section, row: indexPath.row)
         let cellConfiguration = self.getCellConfiguration(withModel: model)
         let result = cellConfiguration.size(with: self, section: section, model: model)
@@ -333,6 +364,16 @@ extension NKTableView: UITableViewDelegate {
     
     dynamic open func scrollViewDidScroll(_ scrollView: UIScrollView) {
         self.nk_delegate?.scrollViewDidScroll?(scrollView)
+        
+        if let config = self.infinityConfig {
+            let offset = scrollView.contentOffset
+            let itemCount = max(1, (self.sections.first?.models.count ?? 0))
+            let cellsHeight = Int(config.cellHeight) * itemCount
+            let delta = offset.y - CGFloat(cellsHeight + Int(config.itemMargin) * (itemCount - 1))
+            if delta > 0 {
+                scrollView.contentOffset = CGPoint.init(x: offset.x, y: delta )
+            }
+        }
     }// any offset changes
     
     dynamic open func scrollViewDidZoom(_ scrollView: UIScrollView) {
@@ -366,7 +407,7 @@ extension NKTableView: UITableViewDelegate {
     dynamic open func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
         self.nk_delegate?.scrollViewDidEndScrollingAnimation?(scrollView)
     }// called when setContentOffset/scrollRectVisible:animated: finishes. not called if not animating
-
+    
     dynamic open func viewForZooming(in scrollView: UIScrollView) -> UIView? {
         return self.nk_delegate?.viewForZooming?(in: scrollView) ?? nil
     }// return a view that will be scaled. if delegate returns nil, nothing happens
@@ -385,35 +426,25 @@ extension NKTableView: UITableViewDelegate {
     
     dynamic open func scrollViewDidScrollToTop(_ scrollView: UIScrollView) {
         self.nk_delegate?.scrollViewDidScrollToTop?(scrollView)
-        
-        if let config = self.infinityConfig {
-            let offset = scrollView.contentOffset
-            let itemCount = max(1, (self.sections.first?.models.count ?? 0))
-            let cellsHeight = Int(config.cellHeight) * itemCount
-            let delta = offset.y - CGFloat(cellsHeight + Int(config.itemMargin) * (itemCount - 1))
-            if delta > 0 {
-                scrollView.contentOffset = CGPoint.init(x: offset.x, y: delta )
-            }
-        }
     }
 }
 
 //open class NKTableView: UITableView {
 //    public override init(frame: CGRect, style: UITableViewStyle) {
 //        super.init(frame: frame, style: style)
-//        
-//        
+//
+//
 //    }
 //}
 //
 //extension NKTableView: UITableViewDataSource {
 //    dynamic open func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        
+//
 //    }
 //}
 //
 //extension NKTableView: UITableViewDelegate {
-//    
+//
 //}
 
 
@@ -428,11 +459,11 @@ extension NKTableView: UITableViewDelegate {
 //
 ////MARK: - Properties
 //open class NKTableView: ATTableView {
-//    
+//
 //    //private properties
-//    
+//
 //    lazy var preHeight: CGFloat? = nil
-//    
+//
 //    open var cellHeightToFit = false {
 //        didSet {
 //            self.estimatedRowHeight = Constant.EstimatedRowHeight
@@ -440,39 +471,39 @@ extension NKTableView: UITableViewDelegate {
 //            self.setNeedsLayout()
 //        }
 //    }
-//    
+//
 //    open var isHeightToFit = false {
 //        didSet {
 //            self.setNeedsLayout()
 //        }
 //    }
-//    
+//
 //    open var addMoreConfigForCell: ((_ cell: UITableViewCell, _ indexPath: IndexPath) -> Void)?
-//    
+//
 //    open var separateHeight: CGFloat? //just trick to use separate views
-//    
+//
 //    open override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        
+//
 //        let cell = super.tableView(tableView, cellForRowAt: indexPath)
 //        self.addMoreConfigForCell?(cell, indexPath)
 //        return cell
 //    }
-//    
+//
 //    open override func layoutSubviews() {
 //        super.layoutSubviews()
-//        
+//
 //        if self.isHeightToFit && self.contentSize.height != self.preHeight{
 //            self.snp.updateConstraints({ (make) -> Void in
 //                make.height.equalTo(self.contentSize.height)
 //            })
-//            
+//
 //            if self.preHeight == nil || self.preHeight! <= 0 {
 //                self.reloadData()
 //            }
-//            
+//
 //            self.preHeight = self.contentSize.height
 //        }
-//        
+//
 //        self.layoutIfNeeded()
 //    }
 //}
@@ -480,7 +511,7 @@ extension NKTableView: UITableViewDelegate {
 //public extension NKTableView {
 //    dynamic open func reloadWithItems(items: [Any]) {
 //        self.clearAll()
-//        
+//
 //        if let separateHeight = self.separateHeight {
 //            for (index, item) in items.enumerated() {
 //                let section = ATTableViewSection()
@@ -496,7 +527,7 @@ extension NKTableView: UITableViewDelegate {
 //        } else {
 //            self.addItems(items: items)
 //        }
-//        
+//
 //        self.reloadData()
 //    }
 //}
