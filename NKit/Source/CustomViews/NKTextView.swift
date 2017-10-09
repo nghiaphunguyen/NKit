@@ -56,7 +56,10 @@ open class NKTextView: UITextView, UITextViewDelegate {
             self.text = self.nk_placeholder
             self.textColor = self.nk_placeholderColor
         } else {
-            self.text = self.nk_text
+            if self.text != self.nk_text {
+                self.text = self.nk_text
+            }
+            
             self.textColor = self.nk_contentTextColor
         }
     }
