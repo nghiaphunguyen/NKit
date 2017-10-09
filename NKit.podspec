@@ -11,10 +11,10 @@ Pod::Spec.new do |s|
   s.source_files  = "Classes", "NKit/Source/**/*.{swift}"
   s.requires_arc = true
 
-  s.dependency 'SnapKit'
-  s.dependency 'NRxSwift'
-  s.dependency 'RxCocoa'
-  s.dependency 'OAStackView'
-  s.dependency 'Diff'
+  s.dependency 'SnapKit', '3.2.0'
+  s.dependency 'NRxSwift', '1.0.21'
+  s.dependency 'RxCocoa', '3.5.0'
+  s.dependency 'OAStackView', '1.0.1'
+  s.dependency 'Diff', '0.5.3'
 
 end
