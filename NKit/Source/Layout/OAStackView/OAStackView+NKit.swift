@@ -16,7 +16,7 @@ public extension OAStackView {
         return self
     }
     
-    @discardableResult public static func nk_create(_ distribution: OAStackViewDistribution = .fill, alignment: OAStackViewAlignment = .fill, spacing: CGFloat = 0, axis: UILayoutConstraintAxis = .vertical) -> Self {
+    @discardableResult public static func nk_create(_ distribution: OAStackViewDistribution = .fill, alignment: OAStackViewAlignment = .fill, spacing: CGFloat = 0, axis: NSLayoutConstraint.Axis = .vertical) -> Self {
         let stackView = self.init()
         stackView.alignment = alignment
         stackView.distribution = distribution

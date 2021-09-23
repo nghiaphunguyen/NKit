@@ -55,7 +55,7 @@ class OneViewController: UIViewController {
         self.navigationController?.view.layoutIfNeeded()
     }
     
-    func gotoTwoView() {
+    @objc func gotoTwoView() {
         self.navigationController?.pushViewController(TwoViewController(), animated: true)
     }
     

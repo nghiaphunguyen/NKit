@@ -17,7 +17,7 @@ public protocol NKLogEventManagerProtocol {
     func logEvent(name: String, type: NKEventType, extraInfo: [String : NSObject]?)
 }
 
-public final class NKLogEventManager: AnyObject {
+public final class NKLogEventManager {
     public static let sharedInstance = NKLogEventManager()
     
     fileprivate var eventManagers = [NKLogEventManagerProtocol]()

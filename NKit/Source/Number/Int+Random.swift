@@ -14,7 +14,7 @@ public extension Int {
     }
     
     public var nk_dummyString: String {
-        let templateCount = Dummy.Template.characters.count
+        let templateCount = Dummy.Template.count
         let times = UInt((self / templateCount) + 1)
         return (Dummy.Template * times)[0..<self]
     }

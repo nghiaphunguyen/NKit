@@ -22,7 +22,7 @@ public extension UIViewController {
         }
     }
     
-    @discardableResult public func nk_defaultTappedLeftBarButton() {
+    @objc @discardableResult public func nk_defaultTappedLeftBarButton() {
         _ = self.navigationController?.popViewController(animated: true)
     }
     
@@ -44,7 +44,7 @@ public extension UIViewController {
     
     @discardableResult public func nk_setBackBarButton(
         text: String = "", color: UIColor? = nil) -> UIViewController {
-        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: text, style: UIBarButtonItemStyle.plain, target: nil, action: nil)
+            self.navigationItem.backBarButtonItem = UIBarButtonItem(title: text, style: UIBarButtonItem.Style.plain, target: nil, action: nil)
         
         if color != nil {
             self.navigationController?.navigationBar.tintColor = color
@@ -70,18 +70,18 @@ public extension UIViewController {
                                     font: UIFont = UIFont.systemFont(ofSize: 14),
                                     selector: Selector = #selector(UIViewController.nk_defaultTappedLeftBarButton),
                                     enablePopGesture: Bool = true) -> UIViewController {
-        let textAttributes = [NSForegroundColorAttributeName : color,
-                              NSFontAttributeName : font]
-        let highlightTextAttributes = [NSForegroundColorAttributeName : highlightColor,
-                                       NSFontAttributeName : font]
+        let textAttributes = [NSAttributedString.Key.foregroundColor : color,
+                              NSAttributedString.Key.font : font]
+        let highlightTextAttributes = [NSAttributedString.Key.foregroundColor : highlightColor,
+                                       NSAttributedString.Key.font : font]
         
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: text,
-                                                                style: UIBarButtonItemStyle.plain,
+                                                                style: UIBarButtonItem.Style.plain,
                                                                 target: self,
                                                                 action: selector)
         
-        self.navigationItem.leftBarButtonItem?.setTitleTextAttributes(textAttributes, for: UIControlState.normal)
-        self.navigationItem.leftBarButtonItem?.setTitleTextAttributes(highlightTextAttributes, for: UIControlState.highlighted)
+        self.navigationItem.leftBarButtonItem?.setTitleTextAttributes(textAttributes, for: UIControl.State.normal)
+        self.navigationItem.leftBarButtonItem?.setTitleTextAttributes(highlightTextAttributes, for: UIControl.State.highlighted)
         
         
         self.setupHandleGestureForLeftButtonIfNeed(enablePopGesture: enablePopGesture)
@@ -92,7 +92,7 @@ public extension UIViewController {
     @discardableResult public func nk_setLeftBarButton(_ image: UIImage?,
                                     selector: Selector = #selector(UIViewController.nk_defaultTappedLeftBarButton),
                                     enablePopGesture: Bool = true) -> UIViewController {
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: image, style: UIBarButtonItemStyle.plain, target: self, action: selector)
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: image, style: UIBarButtonItem.Style.plain, target: self, action: selector)
         self.setupHandleGestureForLeftButtonIfNeed(enablePopGesture: enablePopGesture)
         return self
     }
@@ -101,7 +101,7 @@ public extension UIViewController {
                                      selector: Selector = #selector(UIViewController.nk_defaultTappedLeftBarButton),
                                      enablePopGesture: Bool = true) -> UIViewController {
         
-        self.navigationItem.leftBarButtonItems = [UIBarButtonItem(image: image, style: UIBarButtonItemStyle.plain, target: self, action: selector)] + otherItems
+        self.navigationItem.leftBarButtonItems = [UIBarButtonItem(image: image, style: UIBarButtonItem.Style.plain, target: self, action: selector)] + otherItems
         
         self.setupHandleGestureForLeftButtonIfNeed(enablePopGesture: enablePopGesture)
         
@@ -120,26 +120,26 @@ public extension UIViewController {
                                      highlightColor: UIColor = UIColor.lightGray,
                                      font: UIFont = UIFont.systemFont(ofSize: 14),
                                      selector: Selector) -> UIViewController {
-        let textAttributes = [NSForegroundColorAttributeName : color,
-                              NSFontAttributeName : font]
+        let textAttributes = [NSAttributedString.Key.foregroundColor : color,
+                              NSAttributedString.Key.font : font]
         
-        let highlightTextAttributes = [NSForegroundColorAttributeName : highlightColor,
-                                       NSFontAttributeName : font]
+        let highlightTextAttributes = [NSAttributedString.Key.foregroundColor : highlightColor,
+                                       NSAttributedString.Key.font : font]
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: text,
-                                                                 style: UIBarButtonItemStyle.plain,
+                                                                 style: UIBarButtonItem.Style.plain,
                                                                  target: self,
                                                                  action: selector)
         
-        self.navigationItem.rightBarButtonItem?.setTitleTextAttributes(textAttributes, for: UIControlState.normal)
-        self.navigationItem.rightBarButtonItem?.setTitleTextAttributes(highlightTextAttributes, for: UIControlState.highlighted)
+        self.navigationItem.rightBarButtonItem?.setTitleTextAttributes(textAttributes, for: UIControl.State.normal)
+        self.navigationItem.rightBarButtonItem?.setTitleTextAttributes(highlightTextAttributes, for: UIControl.State.highlighted)
         
         
         return self
     }
     
     @discardableResult public func nk_setRightBarButton(image: UIImage, selector: Selector) -> UIViewController {
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: image, style: UIBarButtonItemStyle.plain, target: self, action: selector)
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: image, style: UIBarButtonItem.Style.plain, target: self, action: selector)
         
         return self
     }
@@ -163,15 +163,15 @@ public extension UIViewController {
         return self
     }
     
-    @discardableResult public func nk_setRightBarButton(system: UIBarButtonSystemItem, selector: Selector) -> UIViewController {
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.done, target: self, action: selector)
+    @discardableResult public func nk_setRightBarButton(system: UIBarButtonItem.SystemItem, selector: Selector) -> UIViewController {
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.done, target: self, action: selector)
         return self
     }
     
-    @discardableResult public func nk_setTitleStyle(              color: UIColor = UIColor.black,
+    @discardableResult public func nk_setTitleStyle(color: UIColor = UIColor.black,
                                                         font: UIFont = UIFont.systemFont(ofSize: 14)) -> UIViewController {
-        let textAttributes = [NSForegroundColorAttributeName : color,
-                              NSFontAttributeName : font]
+        let textAttributes = [NSAttributedString.Key.foregroundColor : color,
+                              NSAttributedString.Key.font : font]
         self.navigationController?.navigationBar.titleTextAttributes = textAttributes
         return self
     }

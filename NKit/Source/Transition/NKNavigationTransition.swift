@@ -53,7 +53,7 @@ extension NKNavigationTransition: UINavigationControllerDelegate {
             }
         }
     
-        public func navigationController(_ animationControllerForfromtonavigationController: UINavigationController, animationControllerFor operation: UINavigationControllerOperation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    public func navigationController(_ animationControllerForfromtonavigationController: UINavigationController, animationControllerFor operation: UINavigationController.Operation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
     
             self.currentAnimator = self[NKNavigationDirection(source: type(of: fromVC), destination: type(of: toVC), operation: operation)]
             

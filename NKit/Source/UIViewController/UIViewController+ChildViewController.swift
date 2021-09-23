@@ -39,14 +39,14 @@ let b = CheckReactor<CheckState, CheckAction>()
 
 public extension UIViewController {
     public func nk_addChildViewController(controller: UIViewController) {
-        self.addChildViewController(controller)
-        controller.didMove(toParentViewController: self)
+        self.addChild(controller)
+        controller.didMove(toParent: self)
     }
     
     public func nk_removeFromParentViewController() {
-        self.willMove(toParentViewController: nil)
+        self.willMove(toParent: nil)
         self.view.removeFromSuperview()
-        self.removeFromParentViewController()
+        self.removeFromParent()
     }
 }
 
@@ -57,7 +57,7 @@ public extension UIViewController {
         self.view.addGestureRecognizer(tapGesture)
     }
     
-    public func nk_hideKeyboard() {
+    @objc public func nk_hideKeyboard() {
         self.view.endEditing(true)
     }
 }

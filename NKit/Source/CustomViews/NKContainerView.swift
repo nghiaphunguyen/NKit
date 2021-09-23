@@ -24,7 +24,7 @@ open class NKContainerView<T: UIView>: NKBaseView{
             
             if let view = self.contentView {
                 self.addSubview(view)
-                self.bringSubview(toFront: view)
+                self.bringSubviewToFront(view)
             }
         }
     }
@@ -78,7 +78,7 @@ open class NKContainerView<T: UIView>: NKBaseView{
             }
             
             self.addSubview(self.nk_c_shadowView)
-            self.sendSubview(toBack: self.nk_c_shadowView)
+            self.sendSubviewToBack(self.nk_c_shadowView)
             
             let color = self.nk_c_shadowColor
             self.nk_c_shadowColor = color
@@ -103,7 +103,7 @@ open class NKContainerView<T: UIView>: NKBaseView{
     
     private func internalSetup() {
         self.addSubview(self.nk_c_shadowView)
-        self.sendSubview(toBack: self.nk_c_shadowView)
+        self.sendSubviewToBack(self.nk_c_shadowView)
         self.nk_c_shadowView.snp.makeConstraints { (make) -> Void in
             make.edges.equalToSuperview()
         }
@@ -119,7 +119,7 @@ open class NKContainerView<T: UIView>: NKBaseView{
         return self
     }
     
-    open static func createContainerViewWithViews(views: [UIView]) -> NKContainerView<UIView> {
+    public static func createContainerViewWithViews(views: [UIView]) -> NKContainerView<UIView> {
         let containerView = UIView()
         for view in views {
             containerView.addSubview(view)

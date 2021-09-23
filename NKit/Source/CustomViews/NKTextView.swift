@@ -10,8 +10,8 @@ import RxCocoa
 
 open class NKTextView: UITextView, UITextViewDelegate {
     
-    private var _rx_didBeginEdit = Variable<Void>()
-    private var _rx_didEndEdit = Variable<Void>()
+    private var _rx_didBeginEdit = Variable<Void>(())
+    private var _rx_didEndEdit = Variable<Void>(())
     
     public var rx_didBeginEdit: Observable<Void> {
         return self._rx_didBeginEdit.asObservable()
@@ -56,7 +56,10 @@ open class NKTextView: UITextView, UITextViewDelegate {
             self.text = self.nk_placeholder
             self.textColor = self.nk_placeholderColor
         } else {
-            self.text = self.nk_text
+            if self.text != self.nk_text {
+                self.text = self.nk_text
+            }
+            
             self.textColor = self.nk_contentTextColor
         }
     }

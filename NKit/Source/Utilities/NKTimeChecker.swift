@@ -8,9 +8,8 @@
 
 import Foundation
 import RxSwift
-import NRxSwift
 
-public final class NKTimeChecker: AnyObject {
+public final class NKTimeChecker {
     private(set) var latestSuccessfulCheckingTime: TimeInterval = 0 {
         didSet {
             guard let key = self.key else {

@@ -9,7 +9,7 @@ import RxSwift
 import RxCocoa
 
 public extension UIView {
-    public func nk_addTarget(_ target: Any, action: Selector, for event: UIControlEvents) {
+    public func nk_addTarget(_ target: Any, action: Selector, for event: UIControl.Event) {
         self.nk_addSubview(UIButton()) {
             $0.snp.makeConstraints({ (make) in
                 make.edges.equalToSuperview()

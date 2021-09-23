@@ -79,7 +79,7 @@ extension TestCell: NKListViewCellConfigurable {
     }
     
     static func height(withTableView tableView: NKTableView, section: NKTableSection, model: UIColor) -> CGFloat {
-        return UITableViewAutomaticDimension
+        return UITableView.automaticDimension
     }
 }
 

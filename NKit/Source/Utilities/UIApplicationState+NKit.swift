@@ -9,7 +9,7 @@
 import UIKit
 
 
-public extension UIApplicationState {
+public extension UIApplication.State {
     public var nk_desc: String {
         switch self {
         case .active:

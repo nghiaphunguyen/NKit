@@ -62,7 +62,7 @@ public extension UIViewController{
                 value: CGFloat(M_PI * 2),
                 type: NKAnimationType.ByValue,
                 duration: 1,
-                timingFunction: CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear),
+                                                       timingFunction: CAMediaTimingFunction(name: CAMediaTimingFunctionName.linear),
                 repeatCount: HUGE)
     }
     

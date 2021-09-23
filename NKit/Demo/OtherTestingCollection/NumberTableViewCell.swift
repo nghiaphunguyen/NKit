@@ -27,6 +27,19 @@ struct NumberTableViewCellModelImp: NumberTableViewCellModel {
 //MARK: -------Cell-------
 final class NumberTableViewCell: NKBaseView {
     fileprivate lazy var label: UILabel = Id.label.view(self)
+
+    override func setupView() {
+        self.nk_addSubview(UILabel() ~ Id.label) {
+            $0.sizeToFit()
+            $0.snp.makeConstraints({ (make) in
+                make.edges.equalToSuperview().inset(5)
+            })
+        }
+    }
+
+    override func setupRx() {
+
+    }
 }
 
 //MARK: Layout
@@ -38,23 +51,9 @@ extension NumberTableViewCell {
     fileprivate struct Style {
         
     }
-
-    override func setupView() {
-        self.nk_addSubview(UILabel() ~ Id.label) {
-            $0.sizeToFit()
-            $0.snp.makeConstraints({ (make) in
-                make.edges.equalToSuperview().inset(5)
-            })
-        }
-    }
 }
 
 //MARK: Action
-extension NumberTableViewCell {
-    override func setupRx() {
-
-    }
-}
 
 extension NumberTableViewCell: NKCollectionViewCellConfigurable {
     typealias ViewCellModel = NumberTableViewCellModel

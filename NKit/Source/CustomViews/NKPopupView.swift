@@ -54,7 +54,7 @@ open class NKPopupView<T: UIView>: NKContainerView<T>, UIGestureRecognizerDelega
 //            return
 //        }
         
-        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: UIViewAnimationOptions.curveEaseOut, animations: { () -> Void in
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: UIView.AnimationOptions.curveEaseOut, animations: { () -> Void in
             self.contentView?.transform = CGAffineTransform.identity.scaledBy(x: 1, y: 1)
             }, completion: { (result) in
                 completion?()
@@ -78,7 +78,7 @@ open class NKPopupView<T: UIView>: NKContainerView<T>, UIGestureRecognizerDelega
 //        }
         
         // animation show
-        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: UIViewAnimationOptions.curveEaseOut, animations: { () -> Void in
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: UIView.AnimationOptions.curveEaseOut, animations: { () -> Void in
             
             self.contentView?.transform = CGAffineTransform.identity.scaledBy(x: 0.000001, y: 0.000001)
             }, completion: { (result) in

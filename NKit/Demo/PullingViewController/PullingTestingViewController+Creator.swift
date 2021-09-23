@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import NRxSwift
 
 extension PullingTestingViewController {
     static var testingInstance: PullingTestingViewController {

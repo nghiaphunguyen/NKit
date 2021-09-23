@@ -11,7 +11,7 @@ var NKAssociatedAnimationCompletionHandle: UInt8 = 0
 
 public typealias NKAnimationClosure = (_ animation: CAAnimation, _ finished: Bool) -> Void
 
-open class NKAnimationClosureWrapper : AnyObject {
+open class NKAnimationClosureWrapper {
     open var closure: NKAnimationClosure?
     open var animation: CAAnimation!
     

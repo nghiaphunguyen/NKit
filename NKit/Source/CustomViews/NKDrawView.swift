@@ -10,10 +10,10 @@ import Foundation
 import UIKit
 class NKDrawView: UIView {
 
-    var drawRectCompletion: ((_ view: NKDrawView, _ extraInfo: [String: AnyObject]) -> Void)?
-    var extraInfo = [String : AnyObject]()
+    var drawRectCompletion: ((_ view: NKDrawView, _ extraInfo: [String]) -> Void)?
+    var extraInfo = [String ]()
     
-    convenience init(drawRect: @escaping (_ view: NKDrawView, _ extraInfo: [String: AnyObject]) -> Void) {
+    convenience init(drawRect: @escaping (_ view: NKDrawView, _ extraInfo: [String]) -> Void) {
         self.init(frame: CGRect.zero)
         
         self.drawRectCompletion = drawRect

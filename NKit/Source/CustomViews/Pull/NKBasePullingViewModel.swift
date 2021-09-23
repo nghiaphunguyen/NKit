@@ -8,7 +8,6 @@
 
 import UIKit
 import RxSwift
-import NRxSwift
 
 open class NKBasePullingViewModel: NSObject, NKPullingViewModelable {
 
