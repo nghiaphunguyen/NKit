@@ -6,8 +6,9 @@
 
 import UIKit
 
+
 public extension UIView {
-    public var nk_x: CGFloat {
+    @objc public var nk_x: CGFloat {
         get {
             return self.frame.origin.x
         }
@@ -16,7 +17,7 @@ public extension UIView {
         }
     }
     
-    public var nk_y: CGFloat {
+    @objc public var nk_y: CGFloat {
         get {
             return self.frame.origin.y
         }
@@ -26,7 +27,7 @@ public extension UIView {
         }
     }
     
-    public var nk_width: CGFloat {
+    @objc public var nk_width: CGFloat {
         get {
             return self.frame.size.width
         }
@@ -36,7 +37,7 @@ public extension UIView {
         }
     }
     
-    public var nk_height: CGFloat {
+    @objc public var nk_height: CGFloat {
         get {
             return self.frame.size.height
         }
@@ -46,7 +47,7 @@ public extension UIView {
         }
     }
     
-    public var nk_cornerRadius: CGFloat {
+    @objc public var nk_cornerRadius: CGFloat {
         get {
             return self.layer.cornerRadius
         }
@@ -57,7 +58,7 @@ public extension UIView {
         }
     }
     
-    public var nk_shadowOffset: CGSize {
+    @objc public var nk_shadowOffset: CGSize {
         get {
             return self.layer.shadowOffset
         }
@@ -67,7 +68,7 @@ public extension UIView {
         }
     }
     
-    public var nk_shadowOpacity: Float {
+    @objc public var nk_shadowOpacity: Float {
         get {
             return self.layer.shadowOpacity
         }
@@ -77,7 +78,7 @@ public extension UIView {
         }
     }
     
-    public var nk_shadowColor: UIColor? {
+    @objc public var nk_shadowColor: UIColor? {
         get {
             if let color = self.layer.shadowColor {
                 return UIColor(cgColor: color)
@@ -91,7 +92,7 @@ public extension UIView {
         }
     }
     
-    public var nk_shadowRadius: CGFloat {
+    @objc public var nk_shadowRadius: CGFloat {
         get {
             return self.layer.shadowRadius
         }
@@ -101,7 +102,7 @@ public extension UIView {
         }
     }
     
-    public var nk_borderColor: UIColor? {
+    @objc public var nk_borderColor: UIColor? {
         get {
             if let color = self.layer.borderColor {
                 return UIColor(cgColor: color)
@@ -114,7 +115,7 @@ public extension UIView {
         }
     }
     
-    public var nk_borderWidth: CGFloat {
+    @objc public var nk_borderWidth: CGFloat {
         get {
             return self.layer.borderWidth
         }
@@ -125,75 +126,75 @@ public extension UIView {
     }
     
     //MARK: Align with view
-    public func nk_alignTopView(_ view: UIView, offset: CGFloat = 0) -> UIView {
+    @objc public func nk_alignTopView(_ view: UIView, offset: CGFloat = 0) -> UIView {
         self.nk_y = view.nk_y + view.nk_height + offset
         return self
     }
     
-    public func nk_alignLeadingView(_ view: UIView, offset: CGFloat = 0) -> UIView {
+    @objc public func nk_alignLeadingView(_ view: UIView, offset: CGFloat = 0) -> UIView {
         self.nk_x = view.nk_x + view.nk_width + offset
         return self
     }
     
-    public func nk_alignTrailingView(_ view: UIView, offset: CGFloat = 0) -> UIView {
+    @objc public func nk_alignTrailingView(_ view: UIView, offset: CGFloat = 0) -> UIView {
         self.nk_x = view.nk_x - self.nk_width + offset
         return self
     }
     
-    public func nk_alignBottomView(_ view: UIView, offset: CGFloat = 0) -> UIView {
+    @objc public func nk_alignBottomView(_ view: UIView, offset: CGFloat = 0) -> UIView {
         self.nk_y = view.nk_y - self.nk_height + offset
         return self
     }
     
-    public func nk_centerVerticalView(_ view: UIView, offset: CGFloat = 0) -> UIView {
+    @objc public func nk_centerVerticalView(_ view: UIView, offset: CGFloat = 0) -> UIView {
         self.center = CGPoint(x: self.center.x, y:
             view.center.y + offset)
         return self
     }
     
-    public func nk_centerHorizontalView(_ view: UIView, offset: CGFloat = 0) -> UIView {
+    @objc public func nk_centerHorizontalView(_ view: UIView, offset: CGFloat = 0) -> UIView {
         self.center = CGPoint(x : view.center.x + offset, y: self.center.y)
         return self
     }
     
     // MARK: Pin with view
-    public func nk_pinTopView(_ view: UIView, offset: CGFloat = 0) -> UIView {
+    @objc public func nk_pinTopView(_ view: UIView, offset: CGFloat = 0) -> UIView {
         self.nk_y = view.nk_y + offset
         
         return self
     }
     
-    public func nk_pinBottomView(_ view: UIView, offset: CGFloat = 0) -> UIView {
+    @objc public func nk_pinBottomView(_ view: UIView, offset: CGFloat = 0) -> UIView {
         self.nk_y = view.nk_y + view.nk_height - self.nk_height + offset
         
         return self
     }
     
-    public func nk_pinLeadingView(_ view: UIView, offset: CGFloat = 0) -> UIView {
+    @objc public func nk_pinLeadingView(_ view: UIView, offset: CGFloat = 0) -> UIView {
         self.nk_x = view.nk_x + offset
         
         return self
     }
     
-    public func nk_pinTrailingView(_ view: UIView, offset: CGFloat = 0) -> UIView {
+    @objc  public func nk_pinTrailingView(_ view: UIView, offset: CGFloat = 0) -> UIView {
         self.nk_x = view.nk_x + view.nk_width - self.nk_width + offset
         
         return self
     }
 
     //MARK: Layout with parent
-    public func nk_pinTopParent(_ offset: CGFloat = 0) -> UIView {
+    @objc public func nk_pinTopParent(_ offset: CGFloat = 0) -> UIView {
         self.nk_y = offset
         return self
     }
     
-    public func nk_pinLeadingParent(_ offset: CGFloat = 0) -> UIView {
+    @objc public func nk_pinLeadingParent(_ offset: CGFloat = 0) -> UIView {
         self.nk_x = offset
         return self
     }
     
     
-    public func nk_pinTrailingParent(_ offset: CGFloat = 0) -> UIView {
+    @objc public func nk_pinTrailingParent(_ offset: CGFloat = 0) -> UIView {
         guard let superview = self.superview else {
             return self
         }
@@ -202,7 +203,7 @@ public extension UIView {
         return self
     }
     
-    public func nk_pinBottomParent(_ offset: CGFloat = 0) -> UIView {
+    @objc public func nk_pinBottomParent(_ offset: CGFloat = 0) -> UIView {
         guard let superview = self.superview else {
             return self
         }
@@ -211,7 +212,7 @@ public extension UIView {
         return self
     }
     
-    public func nk_centerHorizontalParent(_ offset: CGFloat = 0) -> UIView {
+    @objc public func nk_centerHorizontalParent(_ offset: CGFloat = 0) -> UIView {
         guard let superview = self.superview else {
             return self
         }
@@ -220,7 +221,7 @@ public extension UIView {
         return self
     }
     
-    public func nk_centerVerticalParent(_ offset: CGFloat = 0) -> UIView {
+    @objc public func nk_centerVerticalParent(_ offset: CGFloat = 0) -> UIView {
         guard let superview = self.superview else {
             return self
         }
@@ -232,15 +233,15 @@ public extension UIView {
 
 
 public extension UIView {
-    public func nk_convertFrameToView(_ view: UIView) -> CGRect {
+    @objc public func nk_convertFrameToView(_ view: UIView) -> CGRect {
         return self.convert(self.bounds, to: view)
     }
     
-    public func nk_convertPointToView(_ view: UIView) -> CGPoint {
+    @objc public func nk_convertPointToView(_ view: UIView) -> CGPoint {
         return self.convert(self.bounds.origin, to: view)
     }
     
-    public func nk_frameAtCenterWithSize(_ size: CGSize, offset: CGSize = CGSize.zero) -> CGRect {
+    @objc public func nk_frameAtCenterWithSize(_ size: CGSize, offset: CGSize = CGSize.zero) -> CGRect {
         let center = CGPoint(x: self.frame.size.width / 2, y: self.frame.size.height / 2)
         var result = CGRect.zero
         result.size = size
