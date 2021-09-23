@@ -9,7 +9,7 @@
 import UIKit
 
 public extension UIViewController {
-    public var nk_nearestNavigationController: UINavigationController? {
+    @objc public var nk_nearestNavigationController: UINavigationController? {
         if let navigationController = self as? UINavigationController {
             return navigationController
         }
@@ -17,7 +17,7 @@ public extension UIViewController {
         return self.parent?.nk_nearestNavigationController
     }
     
-    public var nk_visibleViewController: UIViewController? {
+    @objc public var nk_visibleViewController: UIViewController? {
         if let navigationController = self as? UINavigationController {
             return navigationController.visibleViewController?.nk_visibleViewController
         }
@@ -29,7 +29,7 @@ public extension UIViewController {
         return self
     }
     
-    public var nk_topViewController: UIViewController? {
+    @objc public var nk_topViewController: UIViewController? {
         var viewController: UIViewController? = self
         while viewController?.presentedViewController != nil {
             viewController = viewController?.presentedViewController
@@ -38,11 +38,11 @@ public extension UIViewController {
         return viewController
     }
     
-    public var nk_topVisibleViewController: UIViewController? {
+    @objc public var nk_topVisibleViewController: UIViewController? {
         return self.nk_topViewController?.nk_visibleViewController
     }
     
-    public var nk_sourceViewController: UIViewController? {
+    @objc public var nk_sourceViewController: UIViewController? {
         return self.presentingViewController?._nk_sourceViewControllerFromViewController(viewController: self)
     }
     
