@@ -19,7 +19,7 @@ public extension UIButton {
             self.init(frame: CGRect.zero)
             
             self.setTitle(title, for: .normal)
-            self.setTitleColor(textColor, for: UIControlState.normal)
+        self.setTitleColor(textColor, for: UIControl.State.normal)
             self.titleLabel?.font = textFont
             
             if let bg = backgroundColor {
@@ -51,10 +51,10 @@ public extension UIButton {
         highlightColor: UIColor? = nil) {
             self.init(frame: CGRect.zero)
             
-            self.setImage(normalImage, for: UIControlState.normal)
-            self.setImage(selectedImage, for: UIControlState.selected)
+        self.setImage(normalImage, for: UIControl.State.normal)
+            self.setImage(selectedImage, for: .selected)
             if highlightColor != nil {
-                self.setBackgroundImage(UIImage.nk_fromColor(highlightColor!, size: CGSizeMake(1, 1)), for: UIControlState.highlighted)
+                self.setBackgroundImage(UIImage.nk_fromColor(highlightColor!, size: CGSizeMake(1, 1)), for: UIControl.State.highlighted)
             }
             
             self.setTitle(title, for: .normal)

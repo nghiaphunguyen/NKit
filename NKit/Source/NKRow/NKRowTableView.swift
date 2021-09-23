@@ -25,6 +25,6 @@ open class NKRowTableView: NKTableView {
         tableView.deselectRow(at: indexPath, animated: true)
         guard let cell = tableView.cellForRow(at: indexPath) as? NKSelectionRowType else {return}
         
-        cell.selectSubject.onNext()
+        cell.selectSubject.onNext(Void())
     }
 }

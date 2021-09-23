@@ -13,7 +13,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let locationManager = NKLocationManager.init()
+//        let locationManager = NKLocationManager.init()
         // Do any additional setup after loading the view, typically from a nib.
     }
 

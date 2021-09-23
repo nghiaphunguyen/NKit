@@ -45,7 +45,7 @@ public func <<(left: UIViewController.Type, right: UIViewController.Type) -> NKN
 public struct NKNavigationDirection {
     let source: UIViewController.Type
     let destination: UIViewController.Type
-    let operation: UINavigationControllerOperation
+    let operation: UINavigationController.Operation
 }
 
 extension NKNavigationDirection: Hashable {

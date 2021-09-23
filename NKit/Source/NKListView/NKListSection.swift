@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Diff
 
 open class NKListSection: NSObject {
     open var models: [NKDiffable] = []
@@ -19,7 +18,7 @@ open class NKListSection: NSObject {
     
     var footerConfiguarationType: NKListSupplementaryViewConfigurable.Type? = nil
     
-    open var animation: UITableViewRowAnimation {
+    open var animation: UITableView.RowAnimation {
         return .none
     }
 }
@@ -74,13 +73,13 @@ public extension NKListSection {
     public final func update(headerModel model: Any?, for listView: NKListView, at section: Int) {
         self.headerModel = model
         
-        listView.invalidateSupplementaryView(of: UICollectionElementKindSectionHeader, at: section)
+        listView.invalidateSupplementaryView(of: UICollectionView.elementKindSectionHeader, at: section)
         //print("update headerModel: \(model)")
     }
     
     public final func update(footerModel model: Any?, for listView: NKListView, at section: Int) {
         self.footerModel = model
-        listView.invalidateSupplementaryView(of: UICollectionElementKindSectionFooter, at: section)
+        listView.invalidateSupplementaryView(of: UICollectionView.elementKindSectionFooter, at: section)
         //print("update footerModel: \(model)")
     }
     
@@ -91,7 +90,7 @@ public extension NKListSection {
             listView.registerHeader(headerConfiguration, forHeaderWithReuseIdentifier: headerConfiguration.identifier)
         }
         
-        listView.invalidateSupplementaryView(of: UICollectionElementKindSectionHeader, at: section)
+        listView.invalidateSupplementaryView(of: UICollectionView.elementKindSectionHeader, at: section)
     }
     
     public final func update(footer: NKListSupplementaryViewConfigurable.Type?, for listView: NKListView, at section: Int) {
@@ -101,7 +100,7 @@ public extension NKListSection {
             listView.registerFooter(footerConfiguration, forFooterWithReuseIdentifier: footerConfiguration.identifier)
         }
         
-        listView.invalidateSupplementaryView(of: UICollectionElementKindSectionFooter, at: section)
+        listView.invalidateSupplementaryView(of: UICollectionView.elementKindSectionFooter, at: section)
     }
     
     public final func update(headerModel model: Any?, for listView: NKListView) {

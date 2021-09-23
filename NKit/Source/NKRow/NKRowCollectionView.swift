@@ -23,7 +23,7 @@ open class NKRowCollectionView: NKCollectionView {
         
         collectionView.deselectItem(at: indexPath, animated: true)
         guard let cell = collectionView.cellForItem(at: indexPath) as? NKSelectionRowType else {return}
-        cell.selectSubject.onNext()
+        cell.selectSubject.onNext(Void())
     }
     
 }

@@ -10,9 +10,9 @@ import UIKit
 
 public struct NKConstraintItem {
     let view: UIView
-    let attribute: NSLayoutAttribute
+    let attribute: NSLayoutConstraint.Attribute
     
-    public func constraintWithRelativeItem(right: NKConstraintRelativeItem, relation: NSLayoutRelation) -> NSLayoutConstraint {
+    public func constraintWithRelativeItem(right: NKConstraintRelativeItem, relation: NSLayoutConstraint.Relation) -> NSLayoutConstraint {
         self.view.translatesAutoresizingMaskIntoConstraints = false
         right.item?.view.translatesAutoresizingMaskIntoConstraints = false
         

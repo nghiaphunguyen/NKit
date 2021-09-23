@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import NRxSwift
 import RxSwift
 
 class TextCell: NKBaseTableViewCell, NKListViewCellConfigurable {
@@ -29,7 +28,7 @@ class TextCell: NKBaseTableViewCell, NKListViewCellConfigurable {
     }
     
     static func height(withTableView tableView: NKTableView, section: NKTableSection, model: ViewCellModel) -> CGFloat {
-        return UITableViewAutomaticDimension
+        return UITableView.automaticDimension
     }
 }
 

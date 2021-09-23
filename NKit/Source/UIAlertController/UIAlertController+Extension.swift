@@ -24,7 +24,7 @@ public enum NKAlertAction {
         }
     }
     
-    public var style: UIAlertActionStyle {
+    public var style: UIAlertAction.Style {
         switch self {
         case .Default(_):
             return .default
@@ -38,7 +38,7 @@ public enum NKAlertAction {
 
 public extension UIAlertController {
     
-    public static func nk_showAlertController(fromController controller: UIViewController? = nk_topVisibleRootViewController, title: String?, message: String?, actions: [NKAlertAction], type: UIAlertControllerStyle = .alert, handler: NKAlertControllerHandler? = nil, completion: (() -> Void)? = nil) -> UIAlertController {
+    public static func nk_showAlertController(fromController controller: UIViewController? = nk_topVisibleRootViewController, title: String?, message: String?, actions: [NKAlertAction], type: UIAlertController.Style = .alert, handler: NKAlertControllerHandler? = nil, completion: (() -> Void)? = nil) -> UIAlertController {
         
         var alertActions = [UIAlertAction]()
         for (index, action) in actions.enumerated() {
@@ -55,7 +55,7 @@ public extension UIAlertController {
         title: String?,
         message: String?,
         actions: [UIAlertAction],
-        type: UIAlertControllerStyle = .alert,
+                                              type: UIAlertController.Style = .alert,
         completion: (() -> Void)? = nil) -> UIAlertController {
             let alertController = UIAlertController(title: title, message: message, preferredStyle: type)
             for action in actions {

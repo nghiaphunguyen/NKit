@@ -9,9 +9,9 @@
 import UIKit
 
 public final class NKPresentationTransition: NSObject {
-    open private(set) var presentAnimator: NKAnimator? = nil
-    open private(set) var dismissAnimator: NKAnimator? = nil
-    open private(set) var controller: UIPresentationController? = nil
+    public private(set) var presentAnimator: NKAnimator? = nil
+    public private(set) var dismissAnimator: NKAnimator? = nil
+    public private(set) var controller: UIPresentationController? = nil
     
     public init(presentAnimator: NKAnimator? = nil, dismissAnimator: NKAnimator?, controller: UIPresentationController?) {
         self.presentAnimator = presentAnimator
@@ -23,17 +23,17 @@ public final class NKPresentationTransition: NSObject {
         super.init()
     }
     
-    open func changePresentAniamtor(animator: NKAnimator?) -> Self {
+    public func changePresentAniamtor(animator: NKAnimator?) -> Self {
         self.presentAnimator = animator
         return self
     }
     
-    open func changeDismissAniamator(animator: NKAnimator?) -> Self {
+    public func changeDismissAniamator(animator: NKAnimator?) -> Self {
         self.dismissAnimator = animator
         return self
     }
     
-    open func changeController(controller: UIPresentationController?) -> Self {
+    public func changeController(controller: UIPresentationController?) -> Self {
         self.controller = controller
         return self
     }
@@ -41,7 +41,7 @@ public final class NKPresentationTransition: NSObject {
 
 extension NKPresentationTransition: UIViewControllerTransitioningDelegate {
     
-    dynamic open func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
+    dynamic public func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
         self.controller?.setValue(presented, forKey: "presentedViewController")
         self.controller?.setValue(presenting, forKey: "presentingViewController")
         return controller

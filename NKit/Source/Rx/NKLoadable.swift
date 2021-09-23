@@ -8,7 +8,6 @@
 
 import Foundation
 import RxSwift
-import NRxSwift
 
 public protocol NKLoadable {
     var rx_isLoading: Variable<Bool> {get}

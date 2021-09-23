@@ -8,7 +8,6 @@
 
 import UIKit
 import RxSwift
-import NRxSwift
 
 public var NKTableViewAutomaticHeight: CGFloat { return 2 }
 
@@ -41,7 +40,7 @@ open class NKTableView: UITableView {
     
     public var nk_delegate: NKTableViewDelegate? = nil
     
-    public override init(frame: CGRect, style: UITableViewStyle) {
+    public override init(frame: CGRect, style: UITableView.Style) {
         super.init(frame: frame, style: style)
         
         self.dataSource = self
@@ -110,7 +109,7 @@ extension NKTableView: UITableViewDataSource {
         return self.nk_delegate?.tableView?(tableView, sectionForSectionIndexTitle: title, at: index) ?? 0
     }
     
-    dynamic open func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    dynamic open func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         self.nk_delegate?.tableView?(tableView, commit: editingStyle, forRowAt: indexPath)
     }
     
@@ -155,7 +154,7 @@ extension NKTableView: UITableViewDelegate {
     }
     
     dynamic open func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return self.heightsOfCell[indexPath] ?? UITableViewAutomaticDimension
+        return self.heightsOfCell[indexPath] ?? UITableView.automaticDimension
     }
     
     dynamic open func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -242,7 +241,7 @@ extension NKTableView: UITableViewDelegate {
     // Editing
     
     // Allows customization of the editingStyle for a particular cell located at 'indexPath'. If not implemented, all editable cells will have UITableViewCellEditingStyleDelete set for them when the table has editing property set to YES.
-    dynamic open func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+    dynamic open func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
         return self.nk_delegate?.tableView?(tableView, editingStyleForRowAt: indexPath) ?? .none
     }
     

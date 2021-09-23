@@ -34,7 +34,7 @@ open class NKLabel: UILabel {
             }
         }
         
-        return super.drawText(in: UIEdgeInsetsInsetRect(actualRect, self.edgeInsets))
+        return super.drawText(in: actualRect.inset(by: self.edgeInsets))
     }
     
     open override var intrinsicContentSize: CGSize {

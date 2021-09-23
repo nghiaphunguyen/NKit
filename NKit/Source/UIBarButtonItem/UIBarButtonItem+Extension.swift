@@ -42,14 +42,14 @@ public extension UIBarButtonItem {
     }
     
     public static func nk_create(with actionTitleButton: ActionTitleButton) -> UIBarButtonItem {
-        let textAttributes = [NSFontAttributeName: actionTitleButton.font, NSForegroundColorAttributeName: actionTitleButton.color]
+        let textAttributes = [NSAttributedString.Key.font: actionTitleButton.font, NSAttributedString.Key.foregroundColor: actionTitleButton.color]
         let buttonItem = UIBarButtonItem(title: actionTitleButton.title, style: .plain, target: actionTitleButton.target, action: actionTitleButton.selector)
         buttonItem.setTitleTextAttributes(textAttributes, for: .normal)
         return buttonItem
     }
     
     public static func nk_create(with actionImageButton: ActionImageButton) -> UIBarButtonItem {
-        return UIBarButtonItem(image: actionImageButton.image, style: UIBarButtonItemStyle.plain, target: actionImageButton.target, action: actionImageButton.selector)
+        return UIBarButtonItem(image: actionImageButton.image, style: UIBarButtonItem.Style.plain, target: actionImageButton.target, action: actionImageButton.selector)
     }
 }
 

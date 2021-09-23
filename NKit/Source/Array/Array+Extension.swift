@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import NRxSwift
 
 public extension Array where Element: NKOptional {
     public var nk_unwrap: Array<Element.Wrapped> {

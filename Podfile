@@ -7,18 +7,16 @@ target 'NKit' do
 
   # Pods for NKit
 pod 'SnapKit'
-pod 'NRxSwift'
+pod 'RxSwift'
 pod 'RxCocoa’
 pod 'OAStackView'
-pod 'Diff'
 
 end
 
 post_install do |installer|
     installer.pods_project.targets.each do |target|
         target.build_configurations.each do |config|
-            config.build_settings['SWIFT_VERSION'] = '3.0'
-            config.build_settings['MACOSX_DEPLOYMENT_TARGET'] = '10.10'
+            config.build_settings['SWIFT_VERSION'] = '5.0'
         end
     end
 end

@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Diff
 
 public protocol NKDiffable {
     var diffIdentifier: String {get}

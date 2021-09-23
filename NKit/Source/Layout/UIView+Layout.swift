@@ -155,12 +155,12 @@ public extension UIView {
         return self
     }
     
-    public func nk_keepSize(num: Float = 1, axis: UILayoutConstraintAxis = .horizontal) -> Self {
+    public func nk_keepSize(num: Float = 1, axis: NSLayoutConstraint.Axis = .horizontal) -> Self {
         let huggingPriority: Float = 250 + num * 10
-        self.setContentHuggingPriority(huggingPriority, for: axis)
+        self.setContentHuggingPriority(UILayoutPriority(rawValue: huggingPriority) ?? .defaultLow, for: axis)
         
         let resistancePriority: Float = 750 + num * 10
-        self.setContentCompressionResistancePriority(resistancePriority, for: axis)
+        self.setContentCompressionResistancePriority(UILayoutPriority(rawValue: resistancePriority) ?? .defaultHigh, for: axis)
         return self
         
     }

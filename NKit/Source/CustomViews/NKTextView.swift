@@ -10,8 +10,8 @@ import RxCocoa
 
 open class NKTextView: UITextView, UITextViewDelegate {
     
-    private var _rx_didBeginEdit = Variable<Void>()
-    private var _rx_didEndEdit = Variable<Void>()
+    private var _rx_didBeginEdit = Variable<Void>(())
+    private var _rx_didEndEdit = Variable<Void>(())
     
     public var rx_didBeginEdit: Observable<Void> {
         return self._rx_didBeginEdit.asObservable()

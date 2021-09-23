@@ -16,7 +16,7 @@ public final class NKPresentationController: UIPresentationController {
     }
     
     public enum Option {
-        case BlurViewStyle(UIBlurEffectStyle)
+        case BlurViewStyle(UIBlurEffect.Style)
         case DimViewColor(UIColor)
         case TapOutsideToDismiss
         case CloseButton(UIImage, CGSize)

@@ -8,7 +8,7 @@ import UIKit
 
 var NKTextFieldEdgeInsetToken: UInt8 = 0
 
-open class NKEdgeInsetWrapper: AnyObject {
+open class NKEdgeInsetWrapper {
     var edgeInset: UIEdgeInsets?
     
     init(edgeInset: UIEdgeInsets?) {

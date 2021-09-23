@@ -8,7 +8,6 @@
 
 import UIKit
 import RxSwift
-import NRxSwift
 
 public final class NKStore<StateType: NKState>: NKStorable {
     private let rx_state = Variable<StateType>(StateType())

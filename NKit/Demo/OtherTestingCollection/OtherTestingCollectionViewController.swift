@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import NRxSwift
 import RxSwift
 
 //MARK: Properties

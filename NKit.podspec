@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "NKit"
-  s.version      = "2.1.77"
+  s.version      = "5.0"
   s.summary      = "NKit provides some exteions of UIKit and Foundation classes"
   s.homepage     = "http://knacker.com"
   s.license      = "MIT"
@@ -11,10 +11,9 @@ Pod::Spec.new do |s|
   s.source_files  = "Classes", "NKit/Source/**/*.{swift}"
   s.requires_arc = true
 
-  s.dependency 'SnapKit', '3.2.0'
-  s.dependency 'NRxSwift', '1.0.21'
-  s.dependency 'RxCocoa', '3.5.0'
+  s.dependency 'SnapKit', '4.2.0'
+  s.dependency 'RxCocoa', '5.1.3'
+  s.dependency 'RxSwift', '5.1.3'
   s.dependency 'OAStackView', '1.0.1'
-  s.dependency 'Diff', '0.5.3'
 
 end

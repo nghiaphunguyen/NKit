@@ -31,7 +31,7 @@ public extension String {
     
     public var nk_uppercaseFirstCharacter: String {
         var string = self
-        if string.characters.count < 1 {
+        if string.count < 1 {
             return ""
         }
         
@@ -41,16 +41,16 @@ public extension String {
     }
     
     public subscript(r: Range<Int>) -> String {
-        let startIndex = self.index(self.startIndex, offsetBy: min(self.characters.count, r.lowerBound))
-        let endIndex = self.index(self.startIndex, offsetBy: min(self.characters.count, r.upperBound))
+        let startIndex = self.index(self.startIndex, offsetBy: min(self.count, r.lowerBound))
+        let endIndex = self.index(self.startIndex, offsetBy: min(self.count, r.upperBound))
         
-        return self[startIndex..<endIndex]
+        return String(self[startIndex..<endIndex])
     }
     
     public func nk_match(pattern: String) -> Bool {
         do {
             let regex = try NSRegularExpression(pattern: pattern, options: [.caseInsensitive])
-            return regex.firstMatch(in: self, options: NSRegularExpression.MatchingOptions(rawValue: 0), range: NSMakeRange(0, characters.count)) != nil
+            return regex.firstMatch(in: self, options: NSRegularExpression.MatchingOptions(rawValue: 0), range: NSMakeRange(0, count)) != nil
         } catch {
             return false
         }
@@ -95,7 +95,7 @@ public extension String {
 public extension String {
     public func nk_heightWithWidth(width: CGFloat, font: UIFont) -> CGFloat {
         let maxSize = CGSize(width: width, height: CGFloat.greatestFiniteMagnitude)
-        let actualSize = self.boundingRect(with: maxSize, options: [.usesLineFragmentOrigin], attributes: [NSFontAttributeName: font], context: nil)
+        let actualSize = self.boundingRect(with: maxSize, options: [.usesLineFragmentOrigin], attributes: [NSAttributedString.Key.font: font], context: nil)
         return actualSize.height
     }
 }

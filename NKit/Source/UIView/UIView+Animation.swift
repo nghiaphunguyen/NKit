@@ -27,7 +27,7 @@ public extension UIView {
         delay: TimeInterval = 0,
         usingSpringWithDamping damping: CGFloat = 1,
         initialSpringVelocity velocity: CGFloat = 1,
-        options: UIViewAnimationOptions = .curveEaseOut,
+                                                       options: UIView.AnimationOptions = .curveEaseOut,
         completion: ((Bool) -> Void)? = nil) {
             UIView.animate(withDuration: duration, delay: delay, usingSpringWithDamping: damping, initialSpringVelocity: velocity, options: options, animations: { () -> Void in
                 self.layoutIfNeeded()
@@ -38,7 +38,7 @@ public extension UIView {
         value: CGFloat,
         type: NKAnimationType,
         duration: Double,
-        timingFunction: CAMediaTimingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionDefault),
+                                      timingFunction: CAMediaTimingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.default),
         repeatCount: Float? = nil,
         key: String? = nil,
         completion: NKAnimationClosure? = nil) -> CAAnimation {
@@ -61,7 +61,7 @@ public extension UIView {
             }
             
             animation.timingFunction = timingFunction
-            animation.fillMode = kCAFillModeForwards
+        animation.fillMode = CAMediaTimingFillMode.forwards
             
             if key == nil || completion == nil {
                 self.layer.add(animation, forKey: key)

@@ -15,7 +15,7 @@ extension NKPresentationTransition {
             
             content.toView.transform = CGAffineTransform.init(scaleX: 0, y: 0)
             
-            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: UIViewAnimationOptions.curveEaseOut, animations: {
+            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: UIView.AnimationOptions.curveEaseOut, animations: {
                 content.toView.transform = CGAffineTransform.init(scaleX: 1, y: 1)
             }, completion: {
                 content.completeTransition(didComplete: $0)

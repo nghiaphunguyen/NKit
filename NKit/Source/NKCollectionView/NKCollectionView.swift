@@ -8,7 +8,6 @@
 
 import UIKit
 import RxSwift
-import NRxSwift
 import RxCocoa
 
 public var NKCollectionViewAutomaticSize: CGSize { return CGSize(width: 1, height: 1) }
@@ -121,7 +120,7 @@ extension NKCollectionView: UICollectionViewDataSource {
         let section = self.getSection(with: indexPath.section)
         
         switch kind {
-        case UICollectionElementKindSectionHeader:
+        case UICollectionView.elementKindSectionHeader:
             guard let headerConfigurationType = section.headerConfiguarationType else {
                 fatalError("Don't exist header for indexPath:\(indexPath)")
             }

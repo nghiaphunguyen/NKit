@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import NRxSwift
 import RxSwift
 
 public protocol NKViewable {
@@ -147,7 +146,7 @@ fileprivate extension NKBasePullingViewController {
         
         viewModel.shouldShowListViewObservable.map{!$0}.bindTo(self.listView.view.rx.isHidden).addDisposableTo(self.nk_disposeBag)
         //Actions
-        self.refreshControl.rx.controlEvent(UIControlEvents.valueChanged).throttle(1, latest: false, scheduler: MainScheduler.instance).bindNext {
+        self.refreshControl.rx.controlEvent(.valueChanged).throttle(1, latest: false, scheduler: MainScheduler.instance).bindNext {
             viewModel.refresh()
         }.addDisposableTo(self.nk_disposeBag)
         
