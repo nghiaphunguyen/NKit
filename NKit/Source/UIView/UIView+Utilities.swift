@@ -9,7 +9,7 @@ import RxSwift
 import RxCocoa
 
 public extension UIView {
-    public func nk_addTarget(_ target: Any, action: Selector, for event: UIControl.Event) {
+    @objc public func nk_addTarget(_ target: Any, action: Selector, for event: UIControl.Event) {
         self.nk_addSubview(UIButton()) {
             $0.snp.makeConstraints({ (make) in
                 make.edges.equalToSuperview()
@@ -19,7 +19,7 @@ public extension UIView {
         }
     }
     
-    public var nk_parentViewController: UIViewController? {
+    @objc public var nk_parentViewController: UIViewController? {
         var parentResponder: UIResponder? = self
         while parentResponder != nil {
             parentResponder = parentResponder?.next
@@ -31,7 +31,7 @@ public extension UIView {
         return nil
     }
     
-    @discardableResult public func nk_addBorder(borderWidth: CGFloat = 1,
+    @objc @discardableResult public func nk_addBorder(borderWidth: CGFloat = 1,
                                                 color: UIColor = UIColor.black,
                                                 cornerRadius: CGFloat = 0) -> UIView {
         self.layer.borderColor = color.cgColor
@@ -44,7 +44,7 @@ public extension UIView {
         return self
     }
     
-    @discardableResult public func nk_setBorderForAllSubviews() -> UIView {
+    @objc @discardableResult public func nk_setBorderForAllSubviews() -> UIView {
         self.nk_addBorder(borderWidth: 1, color: UIColor.yellow)
         
         for view in self.subviews {
@@ -66,7 +66,7 @@ public extension UIView {
         UIColor(hex: 0xFF9800), UIColor(hex: 0xFF5722),
         UIColor(hex: 0x795548), UIColor(hex: 0x9E9E9E)] }
     
-    public func nk_setBackgroundColorForAllSubviews() -> UIView {
+    @objc public func nk_setBackgroundColorForAllSubviews() -> UIView {
         
         let colors = type(of: self).materialBackgroundColors
         var index = 0
@@ -87,7 +87,7 @@ public extension UIView {
         return self
     }
     
-    public func nk_snapshot() -> UIImage {
+    @objc public func nk_snapshot() -> UIImage {
         UIGraphicsBeginImageContextWithOptions(self.frame.size, false, UIScreen.main.scale)
         
         let context = UIGraphicsGetCurrentContext()
@@ -99,19 +99,19 @@ public extension UIView {
         return image!
     }
     
-    public var nk_tableView: UITableView? {
+    @objc public var nk_tableView: UITableView? {
         return self.superView(withClass: UITableView.self) as? UITableView
     }
     
-    public var nk_collectionView: UICollectionView? {
+    @objc public var nk_collectionView: UICollectionView? {
         return self.superView(withClass: UICollectionView.self) as? UICollectionView
     }
     
-    public var nk_colletionViewCell: UICollectionViewCell? {
+    @objc public var nk_colletionViewCell: UICollectionViewCell? {
         return self.superView(withClass: UICollectionViewCell.self) as? UICollectionViewCell
     }
     
-    public var nk_tableViewCell: UITableViewCell? {
+    @objc public var nk_tableViewCell: UITableViewCell? {
         return self.superView(withClass: UITableViewCell.self) as? UITableViewCell
     }
     
@@ -126,14 +126,14 @@ public extension UIView {
 }
 
 public extension UIView {
-    public func nk_autoHideKeyboardWhenTapOutside() {
+    @objc public func nk_autoHideKeyboardWhenTapOutside() {
         self.rx_tap()
             .bindNext({[unowned self]_ in
                 self.endEditing(true)})
             .addDisposableTo(self.nk_disposeBag)
     }
     
-    public var nk_firstSubviewResponse: UIView? {
+    @objc public var nk_firstSubviewResponse: UIView? {
         if self.isFirstResponder {
             return self
         }
@@ -147,7 +147,7 @@ public extension UIView {
         return nil
     }
     
-    public func nk_findAllSubviews(types: [AnyClass]) -> [UIView] {
+    @objc public func nk_findAllSubviews(types: [AnyClass]) -> [UIView] {
         var result = [UIView]()
         
         if types.contains(where: {self.isKind(of: $0) })  {
