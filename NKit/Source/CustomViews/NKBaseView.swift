@@ -20,10 +20,10 @@ open class NKBaseView: UIView {
         self.setupView()
         self.setupRx()
     }
-    
-    dynamic open func setupView() {
+
+    @objc dynamic open func setupView() {
     }
-    
-    dynamic open func setupRx() {
+
+    @objc dynamic open func setupRx() {
     }
 }

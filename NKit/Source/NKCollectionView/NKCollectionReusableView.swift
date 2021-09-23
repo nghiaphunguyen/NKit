@@ -22,6 +22,6 @@ open class NKCollectionReusableView: UICollectionReusableView {
     }
     
     
-    dynamic open func setupView() {}
-    dynamic open func setupRx() {}
+    @objc dynamic open func setupView() {}
+    @objc dynamic open func setupRx() {}
 }

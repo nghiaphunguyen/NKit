@@ -21,9 +21,9 @@ open class NKBaseCollectionViewCell: UICollectionViewCell {
         self.setupRx()
     }
     
-    dynamic open func setupView() {}
+    @objc dynamic open func setupView() {}
     
-    dynamic open func setupRx() {}
+    @objc dynamic open func setupRx() {}
     
 //    open override func preferredLayoutAttributesFitting(_ layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
 //        guard let autoFitDimension = self.autoFitDimension else {

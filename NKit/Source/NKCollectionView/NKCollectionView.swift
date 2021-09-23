@@ -61,7 +61,7 @@ open class NKCollectionView: UICollectionView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    dynamic open func setCurrentPage(_ page: Int) {
+    @objc dynamic open func setCurrentPage(_ page: Int) {
         guard self.rx_currentPage.value != page, let layout = self.collectionViewLayout as? UICollectionViewFlowLayout else {
             return
         }
@@ -91,19 +91,19 @@ open class NKCollectionView: UICollectionView {
 
 //MARK: Datasource
 extension NKCollectionView: UICollectionViewDataSource {
-    dynamic open func numberOfSections(in collectionView: UICollectionView) -> Int {
+    @objc dynamic open func numberOfSections(in collectionView: UICollectionView) -> Int {
         ////print("num of sections: \(self.sections.count)")
         return self.sections.count
     }
     
-    dynamic open func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    @objc dynamic open func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         guard 0..<self.sections.count ~= section else {return 0}
         
         //print("in section: \(section) numItems: \(self.sections[section].models.count)")
         return self.sections[section].models.count
     }
     
-    dynamic open func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    @objc dynamic open func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let model = self.getModel(with: indexPath)
         let cellConfiguration = self.getCellConfiguration(withModel: model)
         
@@ -116,7 +116,7 @@ extension NKCollectionView: UICollectionViewDataSource {
         return cell
     }
     
-    dynamic open func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+    @objc dynamic open func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let section = self.getSection(with: indexPath.section)
         
         switch kind {
@@ -151,7 +151,7 @@ extension NKCollectionView: UICollectionViewDataSource {
 
 //MARK: Delegate
 extension NKCollectionView: UICollectionViewDelegateFlowLayout {
-    dynamic open func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    @objc dynamic open func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let section = self.getSection(with: indexPath.section)
         let model = self.getModel(withSection: section, row: indexPath.row)
         let cellConfiguration = self.getCellConfiguration(withModel: model)
@@ -163,7 +163,7 @@ extension NKCollectionView: UICollectionViewDelegateFlowLayout {
         return result.size
     }
     
-    dynamic open func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+    @objc dynamic open func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         if let section = self.getSection(with: section) as? NKCollectionSection {
             return section.inset(with: collectionView)
         }
@@ -171,7 +171,7 @@ extension NKCollectionView: UICollectionViewDelegateFlowLayout {
         return .zero
     }
     
-    dynamic open func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+    @objc dynamic open func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         guard let section = self.getSection(with: section) as? NKCollectionSection else {
             return 0
         }
@@ -182,7 +182,7 @@ extension NKCollectionView: UICollectionViewDelegateFlowLayout {
         return result
     }
     
-    dynamic open func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+    @objc dynamic open func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         guard let section = self.getSection(with: section) as? NKCollectionSection else {
             return 0
         }
@@ -193,7 +193,7 @@ extension NKCollectionView: UICollectionViewDelegateFlowLayout {
         return result
     }
     
-    dynamic open func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+    @objc dynamic open func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         let section = self.getSection(with: section)
         if let headerConfiguration = section.headerConfiguarationType {
             let result = headerConfiguration.size(with: self, section: section, model: section.headerModel)
@@ -206,7 +206,7 @@ extension NKCollectionView: UICollectionViewDelegateFlowLayout {
         return .zero
     }
     
-    dynamic open func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
+    @objc dynamic open func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
         let section = self.getSection(with: section)
         if let footerConfiguration = section.footerConfiguarationType {
             let result = footerConfiguration.size(with: self, section: section, model: section.footerModel)
@@ -219,157 +219,157 @@ extension NKCollectionView: UICollectionViewDelegateFlowLayout {
         return .zero
     }
 
-    dynamic open func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    @objc dynamic open func scrollViewDidScroll(_ scrollView: UIScrollView) {
         self.nk_delegate?.scrollViewDidScroll?(scrollView)
     }
     
-    dynamic open func scrollViewDidZoom(_ scrollView: UIScrollView) {
+    @objc dynamic open func scrollViewDidZoom(_ scrollView: UIScrollView) {
         self.nk_delegate?.scrollViewDidZoom?(scrollView)
     }
     
     
     // called on start of dragging (may require some time and or distance to move)
-    dynamic open func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+    @objc dynamic open func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         self.nk_delegate?.scrollViewWillBeginDragging?(scrollView)
     }
     
     // called on finger up if the user dragged. velocity is in points/millisecond. targetContentOffset may be changed to adjust where the scroll view comes to rest
-    dynamic open func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+    @objc dynamic open func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         self.nk_delegate?.scrollViewWillEndDragging?(scrollView, withVelocity: velocity, targetContentOffset: targetContentOffset)
     }
     
     // called on finger up if the user dragged. decelerate is true if it will continue moving afterwards
-    dynamic open func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+    @objc dynamic open func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         
         self.nk_delegate?.scrollViewDidEndDragging?(scrollView, willDecelerate: decelerate)
     }
     
-    dynamic open func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
+    @objc dynamic open func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
         self.nk_delegate?.scrollViewWillBeginDecelerating?(scrollView)
     }
     
-    dynamic open func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+    @objc dynamic open func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         self.nk_delegate?.scrollViewDidEndDecelerating?(scrollView)
     }
     
-    dynamic open func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) // called when setContentOffset/scrollRectVisible:animated: finishes. not called if not animating
+    @objc dynamic open func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) // called when setContentOffset/scrollRectVisible:animated: finishes. not called if not animating
     {
         self.nk_delegate?.scrollViewDidEndScrollingAnimation?(scrollView)
     }
     
-    dynamic open func viewForZooming(in scrollView: UIScrollView) -> UIView? // return a view that will be scaled. if delegate returns nil, nothing happens
+    @objc dynamic open func viewForZooming(in scrollView: UIScrollView) -> UIView? // return a view that will be scaled. if delegate returns nil, nothing happens
     {
         return self.nk_delegate?.viewForZooming?(in: scrollView)
     }
     
-    dynamic open func scrollViewWillBeginZooming(_ scrollView: UIScrollView, with view: UIView?) // called before the scroll view begins zooming its content
+    @objc dynamic open func scrollViewWillBeginZooming(_ scrollView: UIScrollView, with view: UIView?) // called before the scroll view begins zooming its content
     {
         self.nk_delegate?.scrollViewWillBeginZooming?(scrollView, with: view)
     }
     
-    dynamic open func scrollViewDidEndZooming(_ scrollView: UIScrollView, with view: UIView?, atScale scale: CGFloat) // scale between minimum and maximum. called after any 'bounce' animations
+    @objc dynamic open func scrollViewDidEndZooming(_ scrollView: UIScrollView, with view: UIView?, atScale scale: CGFloat) // scale between minimum and maximum. called after any 'bounce' animations
     {
         self.nk_delegate?.scrollViewDidEndZooming?(scrollView, with: view, atScale: scale)
     }
     
-    dynamic open func scrollViewShouldScrollToTop(_ scrollView: UIScrollView) -> Bool // return a yes if you want to scroll to the top. if not defined, assumes YES
+    @objc dynamic open func scrollViewShouldScrollToTop(_ scrollView: UIScrollView) -> Bool // return a yes if you want to scroll to the top. if not defined, assumes YES
     {
         return self.nk_delegate?.scrollViewShouldScrollToTop?(scrollView) ?? true
     }
     
-    dynamic open func scrollViewDidScrollToTop(_ scrollView: UIScrollView) // called when scrolling animation finished. may be called immediately if already at top
+    @objc dynamic open func scrollViewDidScrollToTop(_ scrollView: UIScrollView) // called when scrolling animation finished. may be called immediately if already at top
     {
         self.nk_delegate?.scrollViewDidScrollToTop?(scrollView)
     }
 
-    dynamic open func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    @objc dynamic open func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         self.nk_delegate?.collectionView?(collectionView, didSelectItemAt: indexPath)
     }
     
-    dynamic open func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
+    @objc dynamic open func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
         return self.nk_delegate?.collectionView?(collectionView, shouldHighlightItemAt: indexPath) ?? true
     }
     
-    dynamic open func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {
+    @objc dynamic open func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {
         self.nk_delegate?.collectionView?(collectionView, didHighlightItemAt: indexPath)
     }
     
-    dynamic open func collectionView(_ collectionView: UICollectionView, didUnhighlightItemAt indexPath: IndexPath) {
+    @objc dynamic open func collectionView(_ collectionView: UICollectionView, didUnhighlightItemAt indexPath: IndexPath) {
         self.nk_delegate?.collectionView?(collectionView, didUnhighlightItemAt: indexPath)
     }
     
-    dynamic open func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
+    @objc dynamic open func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
         return self.nk_delegate?.collectionView?(collectionView, shouldSelectItemAt: indexPath) ?? true
     }
     
-    dynamic open func collectionView(_ collectionView: UICollectionView, shouldDeselectItemAt indexPath: IndexPath) -> Bool {
+    @objc dynamic open func collectionView(_ collectionView: UICollectionView, shouldDeselectItemAt indexPath: IndexPath) -> Bool {
         return self.nk_delegate?.collectionView?(collectionView, shouldDeselectItemAt: indexPath) ?? true
     }
     
-    dynamic open func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+    @objc dynamic open func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         self.nk_delegate?.collectionView?(collectionView, didDeselectItemAt: indexPath)
     }
     
-    dynamic open func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+    @objc dynamic open func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         self.nk_delegate?.collectionView?(collectionView, willDisplay: cell, forItemAt: indexPath)
     }
     
-    dynamic open func collectionView(_ collectionView: UICollectionView, willDisplaySupplementaryView view: UICollectionReusableView, forElementKind elementKind: String, at indexPath: IndexPath) {
+    @objc dynamic open func collectionView(_ collectionView: UICollectionView, willDisplaySupplementaryView view: UICollectionReusableView, forElementKind elementKind: String, at indexPath: IndexPath) {
         self.nk_delegate?.collectionView?(collectionView, willDisplaySupplementaryView: view, forElementKind: elementKind, at: indexPath)
     }
     
-    dynamic open func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+    @objc dynamic open func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         self.nk_delegate?.collectionView?(collectionView, didEndDisplaying: cell, forItemAt: indexPath)
     }
     
-    dynamic open func collectionView(_ collectionView: UICollectionView, didEndDisplayingSupplementaryView view: UICollectionReusableView, forElementOfKind elementKind: String, at indexPath: IndexPath) {
+    @objc dynamic open func collectionView(_ collectionView: UICollectionView, didEndDisplayingSupplementaryView view: UICollectionReusableView, forElementOfKind elementKind: String, at indexPath: IndexPath) {
         self.nk_delegate?.collectionView?(collectionView, didEndDisplayingSupplementaryView: view, forElementOfKind: elementKind, at: indexPath)
     }
     
-    dynamic open func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
+    @objc dynamic open func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
         return self.nk_delegate?.collectionView?(collectionView, shouldShowMenuForItemAt: indexPath) ?? false
     }
     
-    dynamic open func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
+    @objc dynamic open func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
         return self.nk_delegate?.collectionView?(collectionView, canPerformAction: action, forItemAt: indexPath, withSender: sender) ?? true
     }
     
-    dynamic open func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
+    @objc dynamic open func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
         self.nk_delegate?.collectionView?(collectionView, performAction: action, forItemAt: indexPath, withSender: sender)
     }
     
     
-    dynamic open func collectionView(_ collectionView: UICollectionView, transitionLayoutForOldLayout fromLayout: UICollectionViewLayout, newLayout toLayout: UICollectionViewLayout) -> UICollectionViewTransitionLayout {
+    @objc dynamic open func collectionView(_ collectionView: UICollectionView, transitionLayoutForOldLayout fromLayout: UICollectionViewLayout, newLayout toLayout: UICollectionViewLayout) -> UICollectionViewTransitionLayout {
         return self.nk_delegate?.collectionView?(collectionView, transitionLayoutForOldLayout: fromLayout, newLayout: toLayout) ?? UICollectionViewTransitionLayout(currentLayout: fromLayout, nextLayout: toLayout)
     }
     
     @available(iOS 9.0, *)
-    dynamic open func collectionView(_ collectionView: UICollectionView, canFocusItemAt indexPath: IndexPath) -> Bool {
+    @objc dynamic open func collectionView(_ collectionView: UICollectionView, canFocusItemAt indexPath: IndexPath) -> Bool {
         return self.nk_delegate?.collectionView?(collectionView, canFocusItemAt: indexPath) ?? true
     }
     
     @available(iOS 9.0, *)
-    dynamic open func collectionView(_ collectionView: UICollectionView, shouldUpdateFocusIn context: UICollectionViewFocusUpdateContext) -> Bool {
+    @objc dynamic open func collectionView(_ collectionView: UICollectionView, shouldUpdateFocusIn context: UICollectionViewFocusUpdateContext) -> Bool {
         return self.nk_delegate?.collectionView?(collectionView, shouldUpdateFocusIn: context) ?? true
     }
     
     @available(iOS 9.0, *)
-    dynamic open func collectionView(_ collectionView: UICollectionView, didUpdateFocusIn context: UICollectionViewFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
+    @objc dynamic open func collectionView(_ collectionView: UICollectionView, didUpdateFocusIn context: UICollectionViewFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
         self.nk_delegate?.collectionView?(collectionView, didUpdateFocusIn: context, with: coordinator)
     }
     
     @available(iOS 9.0, *)
-    dynamic open func indexPathForPreferredFocusedView(in collectionView: UICollectionView) -> IndexPath? {
+    @objc dynamic open func indexPathForPreferredFocusedView(in collectionView: UICollectionView) -> IndexPath? {
         return self.nk_delegate?.indexPathForPreferredFocusedView?(in: collectionView)
     }
     
     @available(iOS 9.0, *)
-    dynamic open func collectionView(_ collectionView: UICollectionView, targetIndexPathForMoveFromItemAt originalIndexPath: IndexPath, toProposedIndexPath proposedIndexPath: IndexPath) -> IndexPath {
+    @objc dynamic open func collectionView(_ collectionView: UICollectionView, targetIndexPathForMoveFromItemAt originalIndexPath: IndexPath, toProposedIndexPath proposedIndexPath: IndexPath) -> IndexPath {
         return self.nk_delegate?.collectionView?(collectionView, targetIndexPathForMoveFromItemAt: originalIndexPath, toProposedIndexPath: proposedIndexPath) ?? proposedIndexPath
     }
     
     @available(iOS 9.0, *)
-    dynamic open func collectionView(_ collectionView: UICollectionView, targetContentOffsetForProposedContentOffset proposedContentOffset: CGPoint) -> CGPoint {
+    @objc dynamic open func collectionView(_ collectionView: UICollectionView, targetContentOffsetForProposedContentOffset proposedContentOffset: CGPoint) -> CGPoint {
         return self.nk_delegate?.collectionView?(collectionView, targetContentOffsetForProposedContentOffset: proposedContentOffset) ?? proposedContentOffset
     }
 }
